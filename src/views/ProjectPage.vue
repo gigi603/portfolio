@@ -45,7 +45,6 @@
         imgs.push(img.src);
       })})
       this.imgs = imgs
-      return this.imgs;
     },
     methods: {
       showImg (index) {
