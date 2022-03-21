@@ -5,7 +5,7 @@
 				<div class="px-14 pt-14 grid sm:grid-cols-1 md:grid-cols-3 flex items-center">
 					<div class="px-14 xs:col-span-1 sm:col-span-1 md:col-span-2">
 						<h1 class="mt-2 mb-4 text-xl font-bold">
-						I’m Gilbert Trinidad, I'm a product designer, and I resolve problems for people. How ?
+						I’m Gilbert Trinidado, I'm a product designer, and I resolve problems for people. How ?
 						</h1>
 						<p class="my-10 text-sm">I research for the best solution by identifying and amplifying the utility and usability of a product or service to create a simple and intuitive user experience.</p>
 						<p class="my-10 text-sm">I make the solution in designing applications to make a beautiful and consistent interface with the user experience.</p>
