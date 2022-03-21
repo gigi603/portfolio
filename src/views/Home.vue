@@ -38,7 +38,7 @@
 					</div>
 				</div>
 			</div>
-			<h2 class="py-8 text-white text-3xl font-bold">PROJECTS / PRACTICES</h2>  
+			<h2 class="py-8 text-white text-3xl font-bold">PRACTICES</h2>  
 			<div class="relative flex flex-row min-w-0 break-words bg-white w-full shadow-lg rounded-3xl">
 				<div class="px-14 py-14 xs:grid-cols-1 sm:grid-cols-1 md:w-full flex-auto">
 					<div class="slider">
@@ -144,7 +144,7 @@ export default {
 			],
 			softwares: [
 				{ name: "Figma", icon:require("@/assets/icons/figma_logo.jpg"), description: "Figma gives you all the tools you need for the design phase of the project, including vector tools which are capable of fully-fledged illustration, as well as prototyping capabilities, and code generation for hand-off. Personnaly i use it because it’s very powerful like sketch and it’s free comparate to sketch.", showDetails: false},
-				{ name: "Visual Studio Code", icon:require("@/assets/icons/vs_code_logo.jpg"), description: "Visual Studio Code is a IDE, I mean a developper software who enable you to code using many programmation language but for a designer/integrator as me, I use it to integrate in html/css the design that I make on figma.", showDetails: false}
+				{ name: "VS Code", icon:require("@/assets/icons/vs_code_logo.jpg"), description: "Visual Studio Code is a IDE, I mean a developper software who enable you to code using many programmation language but for a designer/integrator as me, I use it to integrate in html/css the design that I make on figma.", showDetails: false}
 			],
 			frameworks: [
 				{ name: "Bootstrap", icon:require("@/assets/icons/bootstrap_logo.jpg"), description: "Bootstrap is a css framework that allows you to design web pages quickly and customize responsive mobile-first sites. Bootstrap is the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, and it’s simple to use . It simplifies the life of the developer who will concentrate much more on the management of events and datas instead of styling the site.", showDetails: false},
@@ -368,15 +368,15 @@ export default {
 	}
 	.slick-dots li button:before {
 		font-family: 'slick';
-		font-size: 12px;
-		line-height: 12px;
+		font-size: 12px !important;
+		line-height: 12px !important;
 
 		position: absolute;
 		top: 0;
 		left: 0;
 
-		width: 12px;
-		height: 12px;
+		width: 12px !important;
+		height: 12px !important;
 
 		content: '•';
 		text-align: center;

@@ -70,4 +70,7 @@ export default {
     .project-list {
         background-color: #F4F5F7;
     }
+    .project-list:hover {
+        background-color: #EEEEEE;
+    }
 </style>
