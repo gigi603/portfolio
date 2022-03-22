@@ -5,7 +5,7 @@
                 <div class="py-10 pl-12" style="padding-left: 4.5rem;"><h2 class="font-bold text-2xl">PROJECTS</h2></div>
                 <div class="mb-10">
                     <div v-for="(project, index) in projects" :key="index" class="align-middle" data-aos="fade-in">  
-                        <router-link class="px-14 py-10 mb-6 grid sm:grid-cols-1 justify-center project-list rounded-3xl hover:shadow-lg" style="margin-left:4.5rem;margin-right:4.5rem;" :to="{ name:'ProjectPage', params:{ id: project.id } }">
+                        <router-link class="px-14 py-10 mx-6 md:mx-16 mb-6 grid sm:grid-cols-1 justify-center project-list rounded-3xl hover:shadow-lg" :to="{ name:'ProjectPage', params:{ id: project.id } }">
                             <span class="font-bold text-2xl">{{project.name}}<!--<button class="bg-black hover:opacity-75 text-white text-xl px-3 py-3 ml-0 rounded-full float-right">See this project</button>--></span>
                         </router-link>
                     </div>
