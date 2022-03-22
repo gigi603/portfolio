@@ -4,8 +4,8 @@
       <div v-for="(project, index) in projects" :key="index" class="relative flex flex-col min-w-0 break-words bg-white w-full shadow-lg rounded-3xl">
         <div v-if="project.id == $route.params.id ">
           <div class="pt-10" style="padding-left: 4.5rem;"><h2 class="font-bold text-2xl"><button @click="$router.go(-1)" class="mr-2"><font-awesome-icon icon="fa-solid fa-chevron-left" color="#000" size="sm" /></button> What is {{ project.name }} ?</h2></div>
-          <div class="px-14 py-10 grid grid-cols-1 flex-auto rounded-3xl" style="padding-left: 4.5rem; padding-right: 4.5rem;">
-            <p>{{ project.description }} <a href="https://app.unfate.co/" class="font-bold text-black" >Unfate</a>.</p>
+          <div class="md:px-16 py-10 grid grid-cols-1 flex-auto rounded-3xl">
+            <p class="px-6 md:px-16">{{ project.description }} <a href="https://app.unfate.co/" class="font-bold text-black" >Unfate</a>.</p>
             <div class="py-10 grid sm:grid-cols-1 md:grid-cols-4 flex-auto ">
                 <div v-for="(img, index) in imgs" :key="index" @click="() => showImg(index)" data-aos="zoom-in" class="w-60 h-48 mb-10 mx-auto shadow-md hover:shadow-lg cursor-pointer rounded-3xl border-color-card flex justify-center items-center">
                   <img :src="img" class="max-h-32 mx-auto"  alt="">

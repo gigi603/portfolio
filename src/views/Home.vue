@@ -2,11 +2,12 @@
 	<div class="container mx-auto px-4">
 		<div class="flex flex-wrap px-4">
 			<div class="relative bg-white w-full shadow-lg rounded-3xl">
-				<div class="px-14 pt-14 grid sm:grid-cols-1 md:grid-cols-3 flex items-center">
+				<div class="px-6 md:px-14 pt-14 grid sm:grid-cols-1 md:grid-cols-3 flex items-center">
 					<div class="md:px-14 
 								md:col-span-2
 								sm:px-4 
-								sm:col-span-1">
+								sm:col-span-1
+					">
 						<h1 class="mt-2 mb-4 text-xl font-bold">
 						I’m Gilbert Trinidad, I'm a product designer, and I resolve problems for people. How ?
 						</h1>
@@ -18,9 +19,9 @@
 						<img src="@/assets/images/resolve.jpg"/>
 					</div>
 				</div>
-				<div class="px-14 mb-14 grid sm:grid-cols-1 md:grid-cols-2">
-					<a href="/files/CV-english-gilbert-trinidad.pdf" download class="text-center bg-black text-white text-xl px-5 py-4 w-2/5 rounded-full m-auto hover:opacity-75">Download my CV</a>
-					<a href="/files/CV-french-gilbert-trinidad.pdf" download  class="text-center bg-black text-white text-xl px-5 py-4 w-2/5 rounded-full m-auto hover:opacity-75">Télécharger mon CV</a>
+				<div class="px-4 md:px-14 mb-14 grid sm:grid-cols-1 md:grid-cols-2">
+					<a href="/files/CV-english-gilbert-trinidad.pdf" download class="text-center bg-black text-white text-xl px-3 py-3 w-full my-4 md:px-5 md:py-4 md:w-2/5 rounded-full m-auto hover:opacity-75">Download my CV</a>
+					<a href="/files/CV-french-gilbert-trinidad.pdf" download  class="text-center bg-black text-white text-xl px-3 py-3 w-full mt-2 md:px-5 md:py-4 md:w-2/5 rounded-full m-auto hover:opacity-75">Télécharger mon CV</a>
 				</div>
 			</div>
 			<h2 class="py-8 text-white text-3xl font-bold">SKILLS</h2>  
@@ -60,7 +61,7 @@
 							:index="index"
 							@hide="handleHide"
 						></vue-easy-lightbox>					
-						<div class="pt-14 text-center">
+						<div class="pt-12 text-center">
 							<button @click="goToPractices()" class="bg-black text-white hover:opacity-75 text-xl px-3 py-3 w-1/5 rounded-full m-auto">See my work</button>
 						</div>
 					</div>
@@ -132,12 +133,38 @@ export default {
 				"speed": 500,
 				"slidesToShow": 3,
 				"slidesToScroll": 3,
-				"touchThreshold": 5
+				"touchThreshold": 5,
+				"responsive": [
+					{
+						"breakpoint": 1024,
+						"settings": {
+							"slidesToShow": 3,
+							"slidesToScroll": 3,
+							"infinite": true,
+							"dots": true
+						}
+					},
+					{
+						"breakpoint": 600,
+						"settings": {
+							"slidesToShow": 2,
+							"slidesToScroll": 2,
+							"initialSlide": 2
+						}
+					},
+					{
+					"breakpoint": 480,
+						"settings": {
+							"slidesToShow": 1,
+							"slidesToScroll": 1
+						}
+					}
+				]
             },
 			skills: [
 				{ icon:require("@/assets/icons/icon_ux_design.jpg"), name: "UX DESIGN", description: "UX design is a human-first approach to web design. UX designers depend heavily on research and testing in order to find out what is best for the users according to their needs, what they value and what pains them — and then to design an ideal solution around it.", showDetails: false},
 				{ icon:require("@/assets/icons/icon_ui_design.jpg"), name: "UI DESIGN", description: "UI design is the visual side of web design. It’s the UI designer’s job to perfect the tiniest of details on a website like button, color palettes, form etc to create an interface and interactions that users are comfortable and confident with using.", showDetails: false},
-				{ icon:require("@/assets/icons/icon_html_css.jpg"), name: "HTML - CSS - JS", description: "HTML, CSS and JS is used to build a website, it composed the pages of a website, the HTML is the structure of the page and the CSS corresponds to the design, and the javascript is used to interact with these elements to do for exemple animations.", showDetails: false},
+				{ icon:require("@/assets/icons/icon_html_css.jpg"), name: "HTML - CSS", description: "HTML, CSS and JS is used to build a website, it composed the pages of a website, the HTML is the structure of the page and the CSS corresponds to the design, and the javascript is used to interact with these elements to do for exemple animations.", showDetails: false},
 			],
 			imgs: [
 				require("@/assets/images/practices/airmusic-september-2021.png"),
@@ -234,13 +261,19 @@ export default {
   };
 </script>
 
-<style scoped>
+<style>
+	.slick-track{
+		position: relative;
+		top: 11px !important;
+		left: 0;
+		display: block;
+		transform: translateZ(0);
+	}
 	.slick-prev,
 	.slick-next {
 		font-size: 0;
 		line-height: 0;
 		position: absolute;
-		top: 50%;
 		display: block;
 		padding: 0;
 		-webkit-transform: translate(0, -50%);
@@ -276,8 +309,8 @@ export default {
 	.slick-prev:before,
 	.slick-next:before {
 		font-family: 'slick';
-		font-size: 50px;
-		line-height: 1;
+		font-size: 30px;
+		line-height: 0;
 
 		opacity: 0.75;
 		color: black;
@@ -301,11 +334,11 @@ export default {
 	}
 
 	.slick-next {
-		right: -25px;
+		right: -15px;
 	}
 	[dir='rtl'] .slick-next {
 		right: auto;
-		left: -25px;
+		left: -15px;
 	}
 	.slick-next:before {
 		content: '→';
@@ -315,9 +348,6 @@ export default {
 	}
 
 	/* Dots */
-	.slick-dotted.slick-slider {
-		margin-bottom: 30px;
-	}
 
 	.slick-dots {
 		position: absolute;
@@ -392,6 +422,15 @@ export default {
 	.slick-dots li.slick-active button:before {
 		opacity: 0.75;
 		color: black;
+	}
+	.slick-list {
+		position: relative;
+		height: 250px;
+		display: block;
+		overflow: hidden;
+		margin: 0;
+		padding: 0;
+		transform: translateZ(0);
 	}
 </style>
 

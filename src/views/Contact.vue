@@ -3,7 +3,7 @@
     <div class="flex flex-wrap px-4">
       <form ref="form" @submit.prevent="checkForm" id="contact-form" class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-3xl">
         <div class="pt-10"><h2 class="font-bold text-center text-2xl">CONTACT ME</h2></div>
-        <div class="px-14 py-10 grid sm:grid-cols-1 xs:grid-cols-1 flex-auto rounded-3xl" style="padding-left: 4.5rem; padding-right: 4.5rem;">
+        <div class=" px-4 md:px-14 py-10 grid sm:grid-cols-1 xs:grid-cols-1 flex-auto rounded-3xl">
           <div class="flex justify-center mb-8">
             <div class="md:w-1/3 sm:w-full xs:w-full lg:w-1/3 floating-input relative">
               <input id="fullname" v-model="user_name" name="user_name" class="h-16 font-bold rounded w-full py-2 px-4 leading-tight focus:border-red" type="text" placeholder="dupont françois" autocomplete="off">
@@ -34,7 +34,7 @@
           <div class="flex items-center w-full">
 						<!-- <input type="submit" :disabled="user_name == '' && user_email == '' && message == ''" class="text-white bg-black disabled:opacity-1 text-xl send px-3 py-3 w-1/6 rounded-full m-auto" value="Send"/><span class="pr-2">Send</span>  -->
             <button v-bind:class="[{ 'btn-send-disabled cursor-not-allowed text-white text-xl px-3 py-3 md:w-1/6 sm:w-full xs:w-full lg:w-1/6 rounded-full m-auto': (!user_name || !user_email || !message)},
-             {'text-white bg-black hover:opacity-75 text-xl px-3 py-3 md:w-1/6 sm:w-full lg:w-1/6 rounded-full m-auto': (user_name != '' && user_email != '' && message != '')}]"
+             {'text-white bg-black hover:opacity-75 text-xl px-3 py-3 md:w-1/6 w-full lg:w-1/6 rounded-full m-auto': (user_name != '' && user_email != '' && message != '')}]"
               v-bind:disabled="!user_name || !user_email || !message"><span class ="pr-2">Send</span><font-awesome-icon icon="fa-solid fa-paper-plane" /></button>
           </div>
         </div>

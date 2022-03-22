@@ -2,7 +2,7 @@
   <nav class="container mx-auto md:flex md:justify-between md:items-center px-2 py-3">
       <div class="flex items-center justify-between">
         <!-- Mobile menu button -->
-        <div @click="toggleNav" class="flex md:hidden">
+        <div @click="toggleNav" class="flex md:hidden px-6">
           <button
             type="button"
             class="
