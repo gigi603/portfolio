@@ -36,7 +36,7 @@
     "@vue/cli-plugin-babel": "^5.0.3",
     "@vue/cli-plugin-eslint": "^5.0.3",
     "@vue/cli-plugin-router": "^5.0.3",
-    "@vue/cli-service": "^5.0.4",
+    "@vue/cli-service": "^4.5.16",
     "autoprefixer": "^9.8.8",
     "babel-eslint": "^10.1.0",
     "coffee-loader": "^1.0.0",
@@ -47,7 +47,7 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "vue-cli-plugin-coffee": "^0.1.0",
     "vue-template-compiler": "^2.6.11",
-    "webpack": "^4.0.0"
+    "webpack": "^5.70.0"
   },
   "eslintConfig": {
     "root": true,
