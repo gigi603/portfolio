@@ -30,7 +30,7 @@
         :class="showMenu ? 'flex' : 'hidden'" 
         class="
           flex-col 
-          mt-8 
+          my-8 
           space-y-4
           text-center
           md:flex 
