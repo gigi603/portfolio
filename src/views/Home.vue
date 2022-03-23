@@ -164,7 +164,7 @@ export default {
 			skills: [
 				{ icon:require("@/assets/icons/icon_ux_design.jpg"), name: "UX DESIGN", description: "UX design is a human-first approach to web design. UX designers depend heavily on research and testing in order to find out what is best for the users according to their needs, what they value and what pains them — and then to design an ideal solution around it.", showDetails: false},
 				{ icon:require("@/assets/icons/icon_ui_design.jpg"), name: "UI DESIGN", description: "UI design is the visual side of web design. It’s the UI designer’s job to perfect the tiniest of details on a website like button, color palettes, form etc to create an interface and interactions that users are comfortable and confident with using.", showDetails: false},
-				{ icon:require("@/assets/icons/icon_html_css.jpg"), name: "HTML - CSS", description: "HTML, CSS and JS is used to build a website, it composed the pages of a website, the HTML is the structure of the page and the CSS corresponds to the design, and the javascript is used to interact with these elements to do for exemple animations.", showDetails: false},
+				{ icon:require("@/assets/icons/icon_html_css.jpg"), name: "HTML - CSS - JS", description: "HTML, CSS and JS is used to build a website, it composed the pages of a website, the HTML is the structure of the page and the CSS corresponds to the design, and the javascript is used to interact with these elements to do for exemple animations.", showDetails: false},
 			],
 			imgs: [
 				require("@/assets/images/practices/airmusic-september-2021.png"),
