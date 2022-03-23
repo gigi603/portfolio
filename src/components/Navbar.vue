@@ -38,8 +38,8 @@
           md:flex-row
           md:items-center
           md:space-x-10
-          md:mt-0
-          
+          md:mt-2
+          md:mb-2
         ">
           
           <router-link to="/" class="px-6 py-2.5 font-normal text-base flex items-center text-center text-white hover:opacity-75">Home</router-link>
