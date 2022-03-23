@@ -9,7 +9,7 @@
 								sm:col-span-1
 					">
 						<h1 class="mt-2 mb-4 text-xl font-bold">
-						I’m Gilbert Trinidad, I'm a product designer, and I resolve problems for people. How ?
+						I’m Gilbert Trinidad, I'm a product/web designer, and I resolve problems for people. How ?
 						</h1>
 						<p class="my-10 text-sm">I research for the best solution by identifying and amplifying the utility and usability of a product or service to create a simple and intuitive user experience.</p>
 						<p class="my-10 text-sm">I make the solution in designing applications to make a beautiful and consistent interface with the user experience.</p>
