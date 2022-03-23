@@ -44,11 +44,11 @@
 			</div>
 			<h2 class="py-8 text-white text-3xl font-bold">PRACTICES</h2>  
 			<div class="relative flex flex-row min-w-0 break-words bg-white w-full shadow-lg rounded-3xl">
-				<div class="px-14 py-14 xs:grid-cols-1 sm:grid-cols-1 md:w-full flex-auto">
+				<div class="px-14 py-14 grid-cols-1 w-full flex-auto">
 					<div class="slider">
 						<VueSlickCarousel v-bind="settings">
-							<div v-for="(src, index) in imgs" :key="index" data-aos="zoom-in" class="grid xs:col-span-1 sm:col-span-1">
-								<div class="w-60 h-52 grid xs:col-span-1 sm:col-span-1 shadow-md hover:shadow-lg cursor-pointer mx-auto rounded-3xl border-color-card flex justify-center items-center pic"
+							<div v-for="(src, index) in imgs" :key="index" data-aos="zoom-in" class="grid col-span-1">
+								<div class="md:w-60 w-full h-52 shadow-md hover:shadow-lg cursor-pointer mx-auto rounded-3xl border-color-card flex justify-center items-center pic"
 									@click="() => showImg(index)"
 								>
 									<img :src="src" class="h-32 mx-auto"  alt="">
@@ -60,10 +60,10 @@
 							:imgs="imgs"
 							:index="index"
 							@hide="handleHide"
-						></vue-easy-lightbox>					
-						<div class="pt-12 text-center">
-							<button @click="goToPractices()" class="bg-black text-white hover:opacity-75 text-xl px-3 py-3 w-1/5 rounded-full m-auto">See my work</button>
-						</div>
+						></vue-easy-lightbox>
+					</div>
+          <div class="pt-12 text-center">
+						<button @click="goToPractices()" class="bg-black text-white hover:opacity-75 text-xl px-3 py-3 md:w-1/5 w-full rounded-full m-auto">See my work</button>
 					</div>
 				</div>
 			</div>
@@ -332,6 +332,17 @@ export default {
 	[dir='rtl'] .slick-prev:before {
 		content: '→';
 	}
+
+  @media screen and (min-width: 200px) and (max-width: 640px) {
+  .slick-prev {
+		left: -30px;
+	}
+
+  .slick-next {
+		left: 100%;
+	}
+	
+}
 
 	.slick-next {
 		right: -15px;
