@@ -17,7 +17,7 @@
 					</div>
 					<div class="md:px-14
 					">
-						<img src="@/assets/images/resolve.jpg"/>
+						<img class="mx-auto md:m-0" src="@/assets/images/resolve.jpg"/>
 					</div>
 				</div>
 				<div class="px-4 md:px-14 mb-14 grid sm:grid-cols-1 md:grid-cols-2">
