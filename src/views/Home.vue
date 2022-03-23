@@ -15,13 +15,14 @@
 						<p class="my-10 text-sm">I make the solution in designing applications to make a beautiful and consistent interface with the user experience.</p>
 						<p class="my-10 text-sm">I solve the problem by bringing value to the product or service through my analysis, wireframes, mockups and prototypes and I integrate the design in html/css to simplify the developper’s work.</p>
 					</div>
-					<div class="px-14">
+					<div class="md:px-14
+					">
 						<img src="@/assets/images/resolve.jpg"/>
 					</div>
 				</div>
 				<div class="px-4 md:px-14 mb-14 grid sm:grid-cols-1 md:grid-cols-2">
 					<a href="/files/CV-english-gilbert-trinidad.pdf" download class="text-center bg-black text-white text-xl px-3 py-3 w-full my-4 md:px-5 md:py-4 md:w-2/5 rounded-full m-auto hover:opacity-75">Download my CV</a>
-					<a href="/files/CV-french-gilbert-trinidad.pdf" download  class="text-center bg-black text-white text-xl px-3 py-3 w-full mt-2 md:px-5 md:py-4 md:w-2/5 rounded-full m-auto hover:opacity-75">Télécharger mon CV</a>
+					<a href="/files/CV-french-gilbert-trinidad.pdf" download  class="text-center bg-black text-white text-xl px-3 py-3 w-full my-4 md:px-5 md:py-4 md:w-2/5 rounded-full m-auto hover:opacity-75">Télécharger mon CV</a>
 				</div>
 			</div>
 			<h2 class="py-8 text-white text-3xl font-bold">SKILLS</h2>  
