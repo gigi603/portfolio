@@ -182,15 +182,10 @@ export default {
 			],
 		}
 	},
-	created: function () {
-		console.log('imgs', this.imgs)
-	},
 	methods: {
 		toggleDescription(item) {
 			console.log(item);
 			item.showDetails = !item.showDetails
-			let test = document.getElementsByClassName(item.name)[0]
-			console.log('test', test)
 			if(item['showDetails'] == true) {
 				document.getElementsByClassName(item.name)[0].style.height = "auto";
 			} else {
