@@ -31,14 +31,14 @@
 					<div class="p-10" data-aos="zoom-in">
 						<img :src="skill.icon" class="mx-auto"/>
 						<p class="font-bold text-3xl text-center py-5">{{skill.name}}</p>
-						<p v-show-slide="skill.showDetails" :class="skill.name" class="text-gray-700 text-sm pb-5">
+						<p v-show-slide="skill.showDetails" :class="skill.index" class="text-gray-700 text-sm skill-description pb-5">
 							{{skill.description}}
 						</p>
-						<div v-if="skill.showDetails == true" class="text-center">
+						<div v-if="skill.showDetails == true" class="text-slide text-center">
 							<button @click="toggleDescription(skill)" class="toggle-description w-14 h-14 rounded-full" style="border: 1px solid #D3D3D3" ><font-awesome-icon icon="fa-solid fa-chevron-up" color="#D3D3D3" size="2xl" /></button>
 						</div>
 						<div v-else class="text-center">
-							<button @click="toggleDescription(skill)" class="toggle-description w-14 h-14 rounded-full" style="border: 1px solid #D3D3D3"><font-awesome-icon icon="fa-solid fa-chevron-down" color="#D3D3D3" size="2xl" /></button>
+							<button @click="toggleDescription(skill)" class="toggle-description w-14 h-14 rounded-full skill-button" style="border: 1px solid #D3D3D3"><font-awesome-icon icon="fa-solid fa-chevron-down" color="#D3D3D3" size="2xl" /></button>
 						</div>
 					</div>
 				</div>
@@ -330,15 +330,45 @@ export default {
 	}
 
   @media screen and (min-width: 200px) and (max-width: 640px) {
-  .slick-prev {
-		left: -30px;
-	}
+    .slick-prev {
+      left: -30px;
+    }
+    .slick-next {
+      left: 100%;
+    }
+    
+  }
 
-  .slick-next {
-		left: 100%;
-	}
-	
-}
+  @media screen and (min-width: 768px) and (max-width: 1022px) {
+    .skill-description {
+      padding-bottom: 0 !important;
+    }	
+    .text-slide {
+      padding-top: 2rem !important;
+      margin-bottom: 2rem !important;
+    }
+  }
+
+  @media screen and (min-width: 1023px) and (max-width: 1279px) {
+    .skill-description {
+      padding-bottom: 0 !important;
+    }	
+    .text-slide {
+      padding-top: 2rem !important;
+      margin-bottom: 2rem !important;
+    }
+  }
+
+  /* @media screen and (min-width: 941px) and (max-width: 940px) {
+    .skill-description {
+      height: 700px;
+      padding-bottom: 0 !important;
+      color: red !important;
+    }	
+    .text-slide {
+      padding-top: 2rem !important;
+    }
+  } */
 
 	.slick-next {
 		right: -15px;
