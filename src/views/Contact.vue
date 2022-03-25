@@ -77,7 +77,6 @@ export default {
         if (!user_name.length) {
           return { valid: false, error: "Please enter your fullname" };
         }
-        console.log('user_name.length', user_name.length)
         if (user_name.length < 2) {
           return { valid: false, error: "Your fullname is too short" };
         }
