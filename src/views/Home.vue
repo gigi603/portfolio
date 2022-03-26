@@ -2,11 +2,9 @@
   <div class="container mx-auto px-4">
 		<div class="flex flex-wrap px-4">
 			<div class="relative bg-white w-full shadow-lg rounded-3xl">
-				<div class="px-6 md:px-14 pt-14 grid sm:grid-cols-1 md:grid-cols-3 flex items-center">
-					<div class="md:px-14 
-								md:col-span-2
-								sm:px-4 
-								sm:col-span-1
+				<div class="px-6 md:px-14 pt-14 grid sm:grid-cols-1 md:grid-cols-2 sm:col-span-1  md:col-span-2 flex items-center">
+					<div class="md:pl-14 
+								sm:px-4 	
 					">
 						<h1 class="mt-2 mb-4 text-xl font-bold">
 						I’m Gilbert Trinidad, I'm a product/web designer, and I resolve problems for people. How ?
@@ -15,9 +13,9 @@
 						<p class="my-10 text-sm">I make the solution in designing applications to make a beautiful and consistent interface with the user experience.</p>
 						<p class="my-10 text-sm">I solve the problem by bringing value to the product or service through my analysis, wireframes, mockups and prototypes and I integrate the design in html/css to simplify the developper’s work.</p>
 					</div>
-					<div class="md:px-14
+					<div class="flex-center
 					">
-						<img class="mx-auto md:m-0" src="@/assets/images/resolve.jpg"/>
+						<img class="text-right m-0 m-auto" src="@/assets/images/resolve.jpg"/>
 					</div>
 				</div>
 				<div class="px-4 md:px-14 mb-14 grid sm:grid-cols-1 md:grid-cols-2">
@@ -222,6 +220,11 @@ export default {
 </script>
 
 <style>
+  .flex-center { 
+    align-items: center; 
+    justify-content: center; 
+    flex-direction: column; 
+  } 
 	.slick-track{
 		position: relative;
 		top: 11px !important;
@@ -302,6 +305,9 @@ export default {
     }
     
   }
+  .md\:w-2\/5 {
+        width: 40% !important;
+    }
 
   @media screen and (min-width: 768px) and (max-width: 1022px) {
     .skill-description {
@@ -310,6 +316,13 @@ export default {
     .text-slide {
       padding-top: 2rem !important;
       margin-bottom: 2rem !important;
+    }
+    .md\:grid-cols-3  {
+      grid-template-columns: none !important;
+    }
+    
+    .md\:grid-cols-2 {
+        grid-template-columns: none !important;
     }
   }
 
@@ -321,18 +334,10 @@ export default {
       padding-top: 2rem !important;
       margin-bottom: 2rem !important;
     }
-  }
-
-  /* @media screen and (min-width: 941px) and (max-width: 940px) {
-    .skill-description {
-      height: 700px;
-      padding-bottom: 0 !important;
-      color: red !important;
-    }	
-    .text-slide {
-      padding-top: 2rem !important;
+    .md\:w-2\/5 {
+        width: 60% !important;
     }
-  } */
+  }
 
 	.slick-next {
 		right: -15px;
