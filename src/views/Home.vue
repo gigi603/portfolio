@@ -19,8 +19,8 @@
 					</div>
 				</div>
 				<div class="px-4 md:px-14 mb-14 grid sm:grid-cols-1 md:grid-cols-2">
-					<a href="/files/CV-english-gilbert-trinidad.pdf" download class="text-center bg-black text-white text-xl px-3 py-3 w-full my-4 md:px-5 md:py-4 md:w-2/5 rounded-full m-auto hover:opacity-75">Download my CV</a>
-					<a href="/files/CV-french-gilbert-trinidad.pdf" download  class="text-center bg-black text-white text-xl px-3 py-3 w-full my-4 md:px-5 md:py-4 md:w-2/5 rounded-full m-auto hover:opacity-75">Télécharger mon CV</a>
+					<a href="/files/CV-english-gilbert-trinidad.pdf" download class="text-center bg-black text-white text-xl px-3 py-3 sm:w-full my-4 md:px-5 md:py-4 md:w-2/5 rounded-full m-auto hover:opacity-75">Download my CV</a>
+					<a href="/files/CV-french-gilbert-trinidad.pdf" download  class="text-center bg-black text-white text-xl px-3 py-3 sm:w-full my-4 md:px-5 md:py-4 md:w-2/5 rounded-full m-auto hover:opacity-75">Télécharger mon CV</a>
 				</div>
 			</div>
 			<h2 class="py-8 text-white text-3xl font-bold">SKILLS</h2>  
@@ -303,11 +303,12 @@ export default {
     .slick-next {
       left: 100%;
     }
+    .md\:w-2\/5 {
+      width:100%
+    }
     
   }
-  .md\:w-2\/5 {
-        width: 40% !important;
-    }
+  
 
   @media screen and (min-width: 768px) and (max-width: 1022px) {
     .skill-description {
