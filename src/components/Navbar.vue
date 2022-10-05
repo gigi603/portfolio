@@ -30,16 +30,17 @@
         :class="showMenu ? 'flex' : 'hidden'" 
         class="
           flex-col 
-          mt-8 
+          my-8
+          sm:items-center
           space-y-4
           text-center
           md:flex 
           md:space-y-0
           md:flex-row
           md:items-center
-          md:space-x-10
-          md:mt-0
-          
+          md:space-x-20
+          md:mt-2
+          md:mb-2
         ">
           
           <router-link to="/" class="px-6 py-2.5 font-normal text-base flex items-center text-center text-white hover:opacity-75">Home</router-link>
