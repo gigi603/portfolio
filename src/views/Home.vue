@@ -59,7 +59,7 @@
 				</div>
 			</div>
 			<h2 class="py-8 text-white text-3xl font-bold  w-full">SOFTWARES / FRAMEWORK</h2>  
-			<div class="mx-auto grid sm:grid-cols-1 md:grid-cols-3 grid-cols-4 gap-5 w-full mb-20">
+			<div class="mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 w-full mb-20">
 				<div v-for="software in softwares" :key="software.name" :class="software.name" class="rounded-3xl overflow-hidden bg-white shadow-lg">
 					<div class="p-10" data-aos="zoom-in">
 						<img :src="software.icon" class="mx-auto"/>
