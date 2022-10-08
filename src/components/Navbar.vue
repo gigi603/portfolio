@@ -30,14 +30,15 @@
         :class="showMenu ? 'flex' : 'hidden'" 
         class="
           flex-col 
-          my-8 
+          my-8
+          sm:items-center
           space-y-4
           text-center
           md:flex 
           md:space-y-0
           md:flex-row
           md:items-center
-          md:space-x-10
+          md:space-x-20
           md:mt-2
           md:mb-2
         ">
