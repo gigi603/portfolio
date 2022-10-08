@@ -38,8 +38,8 @@
 				<div class="px-14 py-14 xs:grid-cols-1 sm:grid-cols-1 w-full flex-auto">
 					<div class="slider">
 						<VueSlickCarousel v-bind="settings">
-							<div v-for="(src, index) in imgs" :key="index" data-aos="zoom-in" class="grid col-span-1">
-								<div class="md:w-60 w-full h-52 shadow-md hover:shadow-lg cursor-pointer mx-auto rounded-3xl border-color-card flex justify-center items-center pic"
+							<div v-for="(src, index) in imgs" :key="index" data-aos="zoom-in" class="grid xs:col-span-1 sm:col-span-1">
+								<div class="w-60 h-52 grid xs:col-span-1 sm:col-span-1 shadow-md hover:shadow-lg cursor-pointer mx-auto rounded-3xl border-color-card flex justify-center items-center pic"
 									@click="() => showImg(index)"
 								>
 									<img :src="src" class="h-32 mx-auto"  alt="">
