@@ -8,7 +8,7 @@
 								
 					">
 						<h1 class="mt-2 mb-4 text-xl font-bold">
-						I’m Gilbert Trinidad, I'm a product designer, and I resolve problems for people. How ?
+						I’m Gilbert Trinidad, I'm a web designer, and I resolve problems for people. How ?
 						</h1>
 						<p class="my-10 text-sm">I research for the best solution by identifying and amplifying the utility and usability of a product or service to create a simple and intuitive user experience.</p>
 						<p class="my-10 text-sm">I make the solution in designing applications to make a beautiful and consistent interface with the user experience.</p>
@@ -189,40 +189,7 @@ export default {
             });
         },
 
-        // Events listeners
-        handleAfterChange(event, slick, currentSlide) {
-            console.log('handleAfterChange', event, slick, currentSlide);
-        },
-        handleBeforeChange(event, slick, currentSlide, nextSlide) {
-            console.log('handleBeforeChange', event, slick, currentSlide, nextSlide);
-        },
-        handleBreakpoint(event, slick, breakpoint) {
-            console.log('handleBreakpoint', event, slick, breakpoint);
-        },
-        handleDestroy(event, slick) {
-            console.log('handleDestroy', event, slick);
-        },
-        handleEdge(event, slick, direction) {
-            console.log('handleEdge', event, slick, direction);
-        },
-        handleInit(event, slick) {
-            console.log('handleInit', event, slick);
-        },
-        handleReInit(event, slick) {
-            console.log('handleReInit', event, slick);
-        },
-        handleSetPosition(event, slick) {
-            console.log('handleSetPosition', event, slick);
-        },
-        handleSwipe(event, slick, direction) {
-            console.log('handleSwipe', event, slick, direction);
-        },
-        handleLazyLoaded(event, slick, image, imageSource) {
-            console.log('handleLazyLoaded', event, slick, image, imageSource);
-        },
-        handleLazeLoadError(event, slick, image, imageSource) {
-            console.log('handleLazeLoadError', event, slick, image, imageSource);
-        },
+        
 	}
   };
 </script>
