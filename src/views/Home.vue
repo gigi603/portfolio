@@ -262,50 +262,6 @@ export default {
 		content: '→';
 	}
 
-  @media screen and (min-width: 200px) and (max-width: 640px) {
-    .slick-prev {
-      left: -30px;
-    }
-    .slick-next {
-      left: 100%;
-    }
-    .md\:w-2\/5 {
-      width:100%
-    }
-    
-  }
-  
-
-  @media screen and (min-width: 768px) and (max-width: 1022px) {
-    .skill-description {
-      padding-bottom: 0 !important;
-    }	
-    .text-slide {
-      padding-top: 2rem !important;
-      margin-bottom: 2rem !important;
-    }
-    .md\:grid-cols-3  {
-      grid-template-columns: none !important;
-    }
-    
-    .md\:grid-cols-2 {
-        grid-template-columns: none !important;
-    }
-  }
-
-  @media screen and (min-width: 1023px) and (max-width: 1279px) {
-    .skill-description {
-      padding-bottom: 0 !important;
-    }	
-    .text-slide {
-      padding-top: 2rem !important;
-      margin-bottom: 2rem !important;
-    }
-    .md\:w-2\/5 {
-        width: 60% !important;
-    }
-  }
-
 	.slick-next {
 		right: -15px;
 	}
