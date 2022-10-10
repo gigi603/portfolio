@@ -8,7 +8,7 @@
 								
 					">
 						<h1 class="mt-2 mb-4 text-xl font-bold">
-						I’m Gilbert Trinidad, I'm a product/web designer, and I resolve problems for people. How ?
+						I’m Gilbert Trinidad, I'm a web designer, and I resolve problems for people. How ?
 						</h1>
 						<p class="my-10 text-sm">I research for the best solution by identifying and amplifying the utility and usability of a product or service to create a simple and intuitive user experience.</p>
 						<p class="my-10 text-sm">I make the solution in designing applications to make a beautiful and consistent interface with the user experience.</p>
@@ -183,17 +183,14 @@ export default {
             this.$nextTick(() => {
                 this.$refs.slick.reSlick();
             });
-        },       
+        },
+
+        
 	}
   };
 </script>
 
 <style>
-  .flex-center { 
-    align-items: center; 
-    justify-content: center; 
-    flex-direction: column; 
-  } 
 	.slick-track{
 		position: relative;
 		top: 11px !important;
