@@ -44,7 +44,6 @@ export default {
                 require("@/assets/images/practices/edit-text.svg"),
                 require("@/assets/images/practices/download.svg"),
                 require("@/assets/images/practices/navbar.svg"),
-                require("@/assets/images/practices/playlist-music.svg"),
                 require("@/assets/images/practices/forfait.svg"),
                 require("@/assets/images/practices/landing-page.svg"),
                 require("@/assets/images/practices/card.svg"),
