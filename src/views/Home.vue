@@ -16,8 +16,8 @@
 					</div>
 				</div>
 				<div class="px-4 md:px-14 mb-14 grid md:grid-cols-1 lg:grid-cols-2">
-					<a href="/files/CV-english-gilbert-trinidad.pdf" download class="text-center bg-black text-white text-xl px-3 py-3  my-4 md:px-5 md:py-4 w-full md:w-2/5 lg:md:w-2/5 rounded-full m-auto hover:opacity-75">Download my CV</a>
-					<a href="/files/CV-french-gilbert-trinidad.pdf" download  class="text-center bg-black text-white text-xl px-3 py-3  my-4 md:px-5 md:py-4 w-full md:w-2/5 lg:md:w-2/5 rounded-full m-auto hover:opacity-75">Télécharger mon CV</a>
+					<a href="/files/CV-webdesigner-gilbert-trinidad-english.pdf" download class="text-center bg-black text-white text-xl px-3 py-3  my-4 md:px-5 md:py-4 w-full md:w-2/5 lg:md:w-2/5 rounded-full m-auto hover:opacity-75">Download my CV</a>
+					<a href="/files/CV-webdesigner-gilbert-trinidad-french.pdf" download  class="text-center bg-black text-white text-xl px-3 py-3  my-4 md:px-5 md:py-4 w-full md:w-2/5 lg:md:w-2/5 rounded-full m-auto hover:opacity-75">Télécharger mon CV</a>
 				</div>
 			</div>
 			<h2 class="py-8 text-white text-3xl font-bold w-full">SKILLS</h2>
