@@ -3,10 +3,7 @@
 		<div class="flex flex-wrap px-4">
 			<div class="relative bg-white w-full shadow-lg rounded-3xl">
 				<div class="px-6 md:px-14 pt-14 grid sm:grid-cols-1 md:grid-cols-2 sm:col-span-1  md:col-span-2 flex items-center">
-					<div class="pl-14 
-								sm:px-4 
-								
-					">
+					<div class="sm:px-4">
 						<h1 class="mt-2 mb-4 text-xl font-bold">
 						I’m Gilbert Trinidad, I'm a web designer, and I resolve problems for people. How ?
 						</h1>
