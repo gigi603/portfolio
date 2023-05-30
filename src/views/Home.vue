@@ -1,37 +1,49 @@
 <template>
-    <div class="container mx-auto px-4">
-		<div class="flex flex-wrap px-4">
-			<div class="relative bg-white w-full shadow-lg rounded-3xl">
-				<div class="px-6 md:px-14 pt-14 grid sm:grid-cols-1 md:grid-cols-2 sm:col-span-1  md:col-span-2 flex items-center">
-					<div class="sm:px-4">
-						<h1 class="mt-2 mb-4 text-xl font-bold">
-						I’m Gilbert Trinidad, I'm a web designer, and I resolve problems for people. How ?
+<div>
+	<div class="w-full" style="background-color: #eee6ff">
+		<div class="container mx-auto max-w-7xl">
+			<div class="flex flex-wrap">
+				<div class="grid sm:grid-cols-1 md:grid-cols-2 sm:col-span-1  md:col-span-2 flex items-center">
+					<div style="height:700px;">
+						<h1 class="mt-2 mb-4 text-6xl font-bold leading-normal">
+						Bonjour je suis <br>Gilbert Trinidad,
 						</h1>
-						<p class="my-10 text-sm">I research for the best solution by identifying and amplifying the utility and usability of a product or service to create a simple and intuitive user experience.</p>
-						<p class="my-10 text-sm">I make the solution in designing applications to make a beautiful and consistent interface with the user experience.</p>
-						<p class="my-10 text-sm">I solve the problem by bringing value to the product or service through my analysis, wireframes, mockups and prototypes and I integrate the design in html/css to simplify the developper’s work.</p>
+						<h2 class="my-10 font-bold" style="font-size: 45px;color: #9535D8">UI/UX Designer freelance</h2>
+						<p class="my-10 text-base" style="color: #383a3c">Spécialisé dans le développement de produits et de services, je résouds des problèmes à l’aide de la création d’interfaces visuels, ergonomique ainsi que la création d’applications web, responsives et mobiles.</p>
+						<div class="mt-8">
+							<button class="text-center text-white text-base font-bold px-6 py-4 mt-6  w-full md:w-2/5 lg:md:w-2/5 rounded-full m-auto hover:opacity-75" style="background-color: #9535d7;"><a href="/files/CV-webdesigner-gilbert-trinidad-french.pdf" download  >Télécharger mon CV</a></button>
+						</div>
 					</div>
-					<div class="mx-auto">
-						<img src="@/assets/images/resolve.jpg"/>
+					<div class="image-container">
+						<img src="@/assets/images/gilbert-trinidad-portfolio.png" class="w-full h-auto"/>
 					</div>
-				</div>
-				<div class="px-4 md:px-14 mb-14 grid md:grid-cols-1 lg:grid-cols-2">
-					<a href="/files/CV-webdesigner-gilbert-trinidad-english.pdf" download class="text-center bg-black text-white text-xl px-3 py-3  my-4 md:px-5 md:py-4 w-full md:w-2/5 lg:md:w-2/5 rounded-full m-auto hover:opacity-75">Download my CV</a>
-					<a href="/files/CV-webdesigner-gilbert-trinidad-french.pdf" download  class="text-center bg-black text-white text-xl px-3 py-3  my-4 md:px-5 md:py-4 w-full md:w-2/5 lg:md:w-2/5 rounded-full m-auto hover:opacity-75">Télécharger mon CV</a>
 				</div>
 			</div>
-			<h2 class="py-8 text-white text-3xl font-bold w-full">SKILLS</h2>
-			<div class="flex gap-6 mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 w-full">
-				<div v-for="(skill, index) in skills" :key="index" :class="skill.name" class="rounded-3xl overflow-hidden bg-white shadow-lg">
+			<h2 class="py-8 text-black text-3xl font-bold w-full">MES COMPETENCES</h2>
+			<div class="flex gap-6 mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 w-full mb-10 z-10">
+				<div v-for="(skill, index) in skills" :key="index" :class="skill.name" class="rounded-3xl overflow-hidden bg-white  shadow-lg">
+					<div class="p-8" data-aos="zoom-in">
+						<img :src="skill.icon" class="mx-auto w-16 h-16"/>
+						<h3 class="font-bold text-3xl text-center py-5">{{skill.name}}</h3>
+						<p class="text-center" style="color:#7a7a7a">{{skill.description}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="w-full bg-white" style="margin-top: -10%;">
+		<div class="container mx-auto max-w-7xl competences-bloc pt-40">
+			<h2 class="py-8 text-black text-3xl font-bold  w-full">MES OUTILS</h2>  
+			<div class="mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 w-full mb-10">
+				<div v-for="software in softwares" :key="software.name" :class="software.name" class="rounded-3xl overflow-hidden bg-white shadow-2xl">
 					<div class="p-10" data-aos="zoom-in">
-						<img :src="skill.icon" class="mx-auto"/>
-						<p class="font-bold text-3xl text-center py-5">{{skill.name}}</p>
+						<img :src="software.icon" class="mx-auto"/>
+						<div class="font-bold text-3xl text-center py-5"><h3>{{software.name}}</h3></div>
 					</div>
 				</div>
 			</div>
-		
-			<h2 class="py-8 text-white text-3xl font-bold w-full">PRACTICES</h2>  
-			<div class="relative flex flex-row min-w-0 break-words bg-white w-full shadow-lg rounded-3xl">
+			<h2 class="py-8 text-black text-3xl font-bold w-full">MES TRAVAUX</h2>  
+			<div class="flex flex-row min-w-0 break-words bg-white w-full shadow-lg rounded-3xl">
 				<div class="px-14 py-14 xs:grid-cols-1 sm:grid-cols-1 w-full flex-auto">
 					<div class="slider">
 						<VueSlickCarousel v-bind="settings">
@@ -50,22 +62,14 @@
 							@hide="handleHide"
 						></vue-easy-lightbox>					
 						<div class="pt-12 text-center">
-							<button @click="goToPractices()" class="bg-black text-white hover:opacity-75 text-xl px-3 py-3 md:w-2/5 w-1/5 lg:w-1/5 w-full rounded-full m-auto">See my work</button>
+							<button @click="goToPractices()" class="bg-black text-white hover:opacity-75 text-xl px-3 py-3 md:w-2/5 w-1/5 lg:w-1/5 w-full rounded-full m-auto">Consulter</button>
 						</div>
-					</div>
-				</div>
-			</div>
-			<h2 class="py-8 text-white text-3xl font-bold  w-full">SOFTWARES / FRAMEWORK</h2>  
-			<div class="mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 w-full mb-20">
-				<div v-for="software in softwares" :key="software.name" :class="software.name" class="rounded-3xl overflow-hidden bg-white shadow-lg">
-					<div class="p-10" data-aos="zoom-in">
-						<img :src="software.icon" class="mx-auto"/>
-						<div class="font-bold text-3xl text-center py-5">{{software.name}}</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 </template>
 
 <script>
@@ -123,9 +127,9 @@ export default {
 				]
             },
 			skills: [
-				{ icon:require("@/assets/icons/icon_ux_design.jpg"), name: "UX DESIGN", description: "UX design is a human-first approach to web design. UX designers depend heavily on research and testing in order to find out what is best for the users according to their needs, what they value and what pains them — and then to design an ideal solution around it.", showDetails: false},
-				{ icon:require("@/assets/icons/icon_ui_design.jpg"), name: "UI DESIGN", description: "UI design is the visual side of web design. It’s the UI designer’s job to perfect the tiniest of details on a website like button, color palettes, form etc to create an interface and interactions that users are comfortable and confident with using.", showDetails: false},
-				{ icon:require("@/assets/icons/icon_html_css.jpg"), name: "HTML - CSS - JS", description: "HTML, CSS and JS is used to build a website, it composed the pages of a website, the HTML is the structure of the page and the CSS corresponds to the design, and the javascript is used to interact with these elements to do for exemple animations.", showDetails: false},
+				{ icon:require("@/assets/icons/ux-logo.png"), name: "UX DESIGN", description: "De la besoin du client, recherche de solutions, mise en place de structure pour la meilleure expérience utilisateur.", showDetails: true},
+				{ icon:require("@/assets/icons/ui-logo.png"), name: "UI DESIGN", description: "Création de chartes graphiques, logos, interfaces visuels pour des applications web/mobiles.", showDetails: false},
+				{ icon:require("@/assets/icons/dev-logo.png"), name: "Intégrateur web", description: "Intégrations bootstrap, tailwindcss, reactjs", showDetails: false},
 			],
 			imgs: [
 				require("@/assets/images/practices/airmusic-september-2021.png"),
@@ -192,6 +196,11 @@ export default {
 </script>
 
 <style>
+	.image-container {
+		height: 700px; /* Définissez la hauteur souhaitée pour votre conteneur */
+		overflow: hidden;
+	}
+	/*  */
 	.slick-track{
 		position: relative;
 		top: 11px !important;

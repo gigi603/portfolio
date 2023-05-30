@@ -1,7 +1,7 @@
 <template>
-  <div id="app" class="container mx-auto max-w-7xl">
+  <div id="app" class="w-full m-0 p-0" style="background-color: #eee6ff">
     <Navbar/>
-    <router-view :data="datas"/>
+      <router-view :data="datas"/>
   </div>
 </template>
 
@@ -31,8 +31,12 @@ export default {
 
 <style>
 
-.font-bold {
-  font-weight: 900;
+h1, h2, h3 {
+  font-family: "Montserrat", "sans-serif";
+}
+
+p, span, li, a {
+  font-family: "Poppins", "sans-serif";
 }
 
 #nav {
@@ -44,7 +48,7 @@ a {
 }
 
 body {
-  background-color: #4169E1;
+  background-color: #FFF;
 }
 
 .border-color-card {
