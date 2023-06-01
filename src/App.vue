@@ -58,7 +58,7 @@ p, span, li, a {
 }
 
 body {
-  background-color: #FFF;
+  background-color: #EEE6FF;
 }
 
 .border-color-card {

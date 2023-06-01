@@ -9,6 +9,7 @@ const projects = [
       { src:require("@/assets/images/projects/SPCoach/SPCoach.png") },
       { src:require("@/assets/images/projects/SPCoach/SPCoach-mobile.png") },
       { src:require("@/assets/images/projects/SPCoach/intro-min.png") },
+      { src:require("@/assets/images/projects/SPCoach/avantages-min.png") },
       { src:require("@/assets/images/projects/SPCoach/mes-tarifs-min.png") },
       { src:require("@/assets/images/projects/SPCoach/page-de-confirmation-min.png") },
 
