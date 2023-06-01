@@ -1,18 +1,20 @@
 <template>
-    <div class="container mx-auto px-4">
-        <div class="flex flex-row px-4">
-            <div class="bg-white w-full mb-8 shadow-lg rounded-3xl">
-                <div class="py-10 pl-12" style="padding-left: 4.5rem;"><h2 class="font-bold text-2xl">PROJECTS</h2></div>
-                <div class="mb-10">
-                    <div v-for="(project, index) in projects" :key="index" class="align-middle" data-aos="fade-in">  
-                        <router-link class="px-14 py-10 mb-6 grid sm:grid-cols-1 justify-center project-list rounded-3xl hover:shadow-lg" style="margin-left:4.5rem;margin-right:4.5rem;" :to="{ name:'ProjectPage', params:{ id: project.id } }">
-                            <span class="font-bold text-2xl">{{project.name}}<!--<button class="bg-black hover:opacity-75 text-white text-xl px-3 py-3 ml-0 rounded-full float-right">See this project</button>--></span>
+    
+    <div class="container mx-auto max-w-7xl competences-bloc py-10">
+        <h2 class="py-8 text-black text-3xl font-bold w-full" id="projects">MES PROJETS</h2>
+        <div class="flex gap-6 mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 w-full mb-10 z-10"> 
+            <div v-for="(project, index) in projects" :key="index" :class="project.name" @click="redirectToProjectPage(project.id)" class="rounded-3xl border-color-card overflow-hidden bg-white shadow-lg" data-aos="zoom-in">
+                <router-link :to="{ name:'ProjectPage', params:{ id: project.id } }">
+                <img :src="project.img" class="mx-auto w-full" style="height:391px;"/>
+                <div class="px-20 flex w-full">
+                    <h3 class="font-bold text-3xl text-left w-1/2 py-10">{{project.name}}</h3>
+                    <button class="w-1/2 flex justify-end items-center">
+                        <router-link class="w-14 h-14 flex justify-center items-center grid sm:grid-cols-1 justify-center rounded-full bg-black hover:shadow-lg" :to="{ name:'ProjectPage', params:{ id: project.id } }">
+                            <img src="@/assets/icons/arrow-right-fill.svg" class="mx-auto w-8 h-8"> 
                         </router-link>
-                    </div>
-                    <!-- <div class="px-20 pb-10 grid grid-cols-1 flex-auto">
-                        <Pagination :current="currentPage" :total="total" :per-page="perPage" :key="index" @page-changed="currentPage = $event"/>
-                    </div> -->
+                    </button>
                 </div>
+                </router-link>
             </div>
         </div>
     </div>
@@ -50,6 +52,10 @@ export default {
         }
     },
     methods: {
+        redirectToProjectPage(id) {
+            // Redirection vers la page du projet avec l'id spécifié
+            this.$router.push({ name: 'ProjectPage', params: { id } });
+        },
         showImg (index) {
 			this.index = index
 			this.visible = true
@@ -66,8 +72,3 @@ export default {
     }
 }
 </script>
-<style scoped>
-    .project-list {
-        background-color: #F4F5F7;
-    }
-</style>

@@ -2,11 +2,13 @@
   <div id="app" class="w-full m-0 p-0" style="background-color: #eee6ff">
     <Navbar/>
       <router-view :data="datas"/>
+      <Footer/>
   </div>
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue'
+import Footer from './components/Footer.vue'
 import Vue from 'vue'
 import notification from 'vue-notification-ui'
 Vue.use(notification, {
@@ -25,26 +27,34 @@ export default {
   },
   components: {
     Navbar,
+    Footer
   },
 }
 </script>
 
 <style>
 
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./assets/fonts/Montserrat/static/Montserrat-Bold.ttf') format('truetype');
+  /* Ajoutez les autres formats de police si vous les avez téléchargés (ex. woff, woff2, etc.) */
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins/Poppins-Regular-400.ttf') format('truetype');
+  /* Ajoutez les autres formats de police si vous les avez téléchargés (ex. woff, woff2, etc.) */
+}
 h1, h2, h3 {
-  font-family: "Montserrat", "sans-serif";
+  font-family: "Montserrat", sans-serif;
 }
 
 p, span, li, a {
-  font-family: "Poppins", "sans-serif";
+  font-family: "Poppins", sans-serif;
 }
 
 #nav {
   padding: 30px;
-}
-
-a {
-  font-weight: normal;
 }
 
 body {

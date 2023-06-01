@@ -4,22 +4,22 @@
 		<div class="container mx-auto max-w-7xl">
 			<div class="flex flex-wrap">
 				<div class="grid sm:grid-cols-1 md:grid-cols-2 sm:col-span-1  md:col-span-2 flex items-center">
-					<div style="height:700px;">
+					<div class="flex flex-wrap flex-col justify-center" data-aos="zoom-in">
 						<h1 class="mt-2 mb-4 text-6xl font-bold leading-normal">
 						Bonjour je suis <br>Gilbert Trinidad,
 						</h1>
-						<h2 class="my-10 font-bold" style="font-size: 45px;color: #9535D8">UI/UX Designer freelance</h2>
-						<p class="my-10 text-base" style="color: #383a3c">Spécialisé dans le développement de produits et de services, je résouds des problèmes à l’aide de la création d’interfaces visuels, ergonomique ainsi que la création d’applications web, responsives et mobiles.</p>
-						<div class="mt-8">
+						<h2 class="py-5 font-bold" style="font-size: 45px;color: #9535D8">UI/UX Designer freelance</h2>
+						<p class="py-5 text-base" style="color: #383a3c">Spécialisé dans le développement de produits et de services, je résouds des problèmes à l’aide de la création d’interfaces visuels, ergonomique ainsi que la création d’applications web, responsives et mobiles.</p>
+						<div class="pt-4">
 							<button class="text-center text-white text-base font-bold px-6 py-4 mt-6  w-full md:w-2/5 lg:md:w-2/5 rounded-full m-auto hover:opacity-75" style="background-color: #9535d7;"><a href="/files/CV-webdesigner-gilbert-trinidad-french.pdf" download  >Télécharger mon CV</a></button>
 						</div>
 					</div>
 					<div class="image-container">
-						<img src="@/assets/images/gilbert-trinidad-portfolio.png" class="w-full h-auto"/>
+						<img src="@/assets/images/gilbert-trinidad-portfolio.png" class="w-full h-auto" data-aos="zoom-in"/>
 					</div>
 				</div>
 			</div>
-			<h2 class="py-8 text-black text-3xl font-bold w-full">MES COMPETENCES</h2>
+			<h2 class="py-8 text-black text-3xl font-bold w-full">COMPETENCES</h2>
 			<div class="flex gap-6 mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 w-full mb-10 z-10">
 				<div v-for="(skill, index) in skills" :key="index" :class="skill.name" class="rounded-3xl overflow-hidden bg-white  shadow-lg">
 					<div class="p-8" data-aos="zoom-in">
@@ -32,26 +32,39 @@
 		</div>
 	</div>
 	<div class="w-full bg-white" style="margin-top: -10%;">
-		<div class="container mx-auto max-w-7xl competences-bloc pt-40">
-			<h2 class="py-8 text-black text-3xl font-bold  w-full">MES OUTILS</h2>  
+		<div class="container mx-auto max-w-7xl competences-bloc py-40">
+			<h2 class="py-8 text-black text-3xl font-bold w-full" id="projects">PROJETS</h2>
+			<div class="flex gap-6 mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 w-full mb-10 z-10">
+				<div v-for="(project, index) in projects" :key="index" :class="project.name" class="flex flex-wrap items-center rounded-3xl border-color-card overflow-hidden bg-white shadow-lg" @click="redirectToProjectPage(project.id)" data-aos="zoom-in">
+					<router-link :to="{ name:'ProjectPage', params:{ id: project.id } }">
+						<img :src="project.img" class="mx-auto w-full" style="height:391px;"/>
+						<div class="px-20 flex w-full">
+							<h3 class="font-bold text-3xl text-left w-1/2 py-10">{{project.name}}</h3>
+							<button class="w-1/2 flex justify-end items-center"><router-link class="w-14 h-14 flex justify-center items-center grid sm:grid-cols-1 justify-center rounded-full bg-black 	hover:shadow-lg" :to="{ name:'ProjectPage', params:{ id: project.id } }"><img src="@/assets/icons/arrow-right-fill.svg" class="mx-auto w-8 h-8"> 
+							</router-link></button>
+						</div>
+					</router-link>
+				</div>
+			</div>
+			<h2 class="py-8 text-black text-3xl font-bold  w-full">OUTILS</h2>  
 			<div class="mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 w-full mb-10">
-				<div v-for="software in softwares" :key="software.name" :class="software.name" class="rounded-3xl overflow-hidden bg-white shadow-2xl">
+				<div v-for="software in softwares" :key="software.name" :class="software.name" class="rounded-3xl border-color-card overflow-hidden bg-white shadow-xl">
 					<div class="p-10" data-aos="zoom-in">
 						<img :src="software.icon" class="mx-auto"/>
 						<div class="font-bold text-3xl text-center py-5"><h3>{{software.name}}</h3></div>
 					</div>
 				</div>
 			</div>
-			<h2 class="py-8 text-black text-3xl font-bold w-full">MES TRAVAUX</h2>  
-			<div class="flex flex-row min-w-0 break-words bg-white w-full shadow-lg rounded-3xl">
+			<h2 class="py-8 text-black text-3xl font-bold w-full">TRAVAUX</h2>  
+			<div class="flex flex-row min-w-0 break-words bg-white w-full shadow-lg border-color-card rounded-3xl">
 				<div class="px-14 py-14 xs:grid-cols-1 sm:grid-cols-1 w-full flex-auto">
 					<div class="slider">
 						<VueSlickCarousel v-bind="settings">
 							<div v-for="(src, index) in imgs" :key="index" data-aos="zoom-in" class="grid xs:col-span-1 sm:col-span-1">
-								<div class="w-60 h-52 grid xs:col-span-1 sm:col-span-1 shadow-md hover:shadow-lg cursor-pointer mx-auto rounded-3xl border-color-card flex justify-center items-center pic"
+								<div class="w-80 h-56 grid xs:col-span-1 sm:col-span-1 shadow-md hover:shadow-lg cursor-pointer mx-auto rounded-3xl border-color-card flex justify-center items-center pic"
 									@click="() => showImg(index)"
 								>
-									<img :src="src" class="h-32 mx-auto"  alt="">
+									<img :src="src" class="h-52 mx-auto"  alt="">
 								</div>
 							</div>
 						</VueSlickCarousel>	
@@ -73,6 +86,7 @@
 </template>
 
 <script>
+import projects from '../db/projects'
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 // optional style for arrows & dots
@@ -90,6 +104,7 @@ export default {
 	data: function() {
 		return {
 			visible: false,
+			projects: projects,
 			index: 0,
 			settings: {
 				"dots": true,
@@ -138,14 +153,14 @@ export default {
 				require("@/assets/images/practices/edit-profile.svg"),
 			],
 			softwares: [
-				{ name: "Photoshop", icon:require("@/assets/icons/photoshop_logo.png"), description: "Figma gives you all the tools you need for the design phase of the project, including vector tools which are capable of fully-fledged illustration, as well as prototyping capabilities, and code generation for hand-off. Personnaly i use it because it’s very powerful like sketch and it’s free comparate to sketch.", showDetails: false},
-				{ name: "Illustrator", icon:require("@/assets/icons/illustrator_logo.png"), description: "Figma gives you all the tools you need for the design phase of the project, including vector tools which are capable of fully-fledged illustration, as well as prototyping capabilities, and code generation for hand-off. Personnaly i use it because it’s very powerful like sketch and it’s free comparate to sketch.", showDetails: false},
-				{ name: "InDesign", icon:require("@/assets/icons/indesign_logo.png"), description: "Figma gives you all the tools you need for the design phase of the project, including vector tools which are capable of fully-fledged illustration, as well as prototyping capabilities, and code generation for hand-off. Personnaly i use it because it’s very powerful like sketch and it’s free comparate to sketch.", showDetails: false},
-				{ name: "Premiere Pro", icon:require("@/assets/icons/premierepro_logo.png"), description: "Figma gives you all the tools you need for the design phase of the project, including vector tools which are capable of fully-fledged illustration, as well as prototyping capabilities, and code generation for hand-off. Personnaly i use it because it’s very powerful like sketch and it’s free comparate to sketch.", showDetails: false},
-				{ name: "Figma", icon:require("@/assets/icons/figma_logo.jpg"), description: "Figma gives you all the tools you need for the design phase of the project, including vector tools which are capable of fully-fledged illustration, as well as prototyping capabilities, and code generation for hand-off. Personnaly i use it because it’s very powerful like sketch and it’s free comparate to sketch.", showDetails: false},
-				{ name: "VS Code", icon:require("@/assets/icons/vs_code_logo.jpg"), description: "Visual Studio Code is a IDE, I mean a developper software who enable you to code using many programmation language but for a designer/integrator as me, I use it to integrate in html/css the design that I make on figma.", showDetails: false},
-				{ name: "Bootstrap", icon:require("@/assets/icons/bootstrap_logo.jpg"), description: "Bootstrap is a css framework that allows you to design web pages quickly and customize responsive mobile-first sites. Bootstrap is the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, and it’s simple to use . It simplifies the life of the developer who will concentrate much more on the management of events and datas instead of styling the site.", showDetails: false},
-				{ name: "Tailwind css", icon:require("@/assets/icons/tailwindcss_logo.jpg"), description: "Tailwindcss is a css framework like bootstrap. but it has the particularity to use classes to design a website page, which is very powerful, Bootstrap does that but it is very limited comparated to tailwind which has so many classes containing css properties that if you use it correctly you don’t need to add custom css, and it’s very simple to use it too. I personnaly use tailwindcss instead of bootstrap since i discovered it.", showDetails: false}
+				{ name: "Photoshop", icon:require("@/assets/icons/photoshop_logo.png")},
+				{ name: "Illustrator", icon:require("@/assets/icons/illustrator_logo.png")},
+				{ name: "InDesign", icon:require("@/assets/icons/indesign_logo.png")},
+				{ name: "Premiere Pro", icon:require("@/assets/icons/premierepro_logo.png")},
+				{ name: "Figma", icon:require("@/assets/icons/figma_logo.jpg")},
+				{ name: "VS Code", icon:require("@/assets/icons/vs_code_logo.jpg")},
+				{ name: "Bootstrap", icon:require("@/assets/icons/bootstrap_logo.jpg")},
+				{ name: "Tailwind css", icon:require("@/assets/icons/tailwindcss_logo.jpg")}
 			],
 		}
 	},
@@ -153,6 +168,10 @@ export default {
 		console.log('imgs', this.imgs)
 	},
 	methods: {
+		redirectToProjectPage(id) {
+            // Redirection vers la page du projet avec l'id spécifié
+            this.$router.push({ name: 'ProjectPage', params: { id } });
+        },
 		toggleDescription(item) {
 			console.log(item);
 			item.showDetails = !item.showDetails

@@ -1,16 +1,17 @@
 <template>
-  <nav class="w-full bg-white md:flex md:justify-between md:items-center px-2 py-3">
-      <div class="flex items-center justify-between">
+  <nav class="w-full bg-white px-2 py-3">
+      <div class="flex md:max-w-7xl justify-end">
         <!-- Mobile menu button -->
         <div @click="toggleNav" class="flex md:hidden px-6">
           <button
             type="button"
             class="
-              text-white
+              text-black
+              text-center
               border-2
               py-2
               px-2
-              border-white
+              border-black
               rounded-lg 
               hover:text-gray-400
               focus:outline-none focus:text-gray-400
@@ -37,16 +38,18 @@
           md:flex 
           md:space-y-0
           md:flex-row
-          md:items-center
+          md:max-w-7xl
+          md:mx-auto
+          md:justify-end
           md:space-x-20
           md:mt-2
           md:mb-2
         ">
           
-          <router-link to="/" class="px-6 py-2.5 font-normal text-base flex items-center text-center text-black hover:opacity-75">Home</router-link>
-          <router-link to="/projects" class="px-6 py-2.5 w-full font-normal text-base flex items-center text-black hover:opacity-75">Projects</router-link>
-          <router-link to="/practices" class="px-6 py-2.5 font-normal text-base flex items-center text-black hover:opacity-75">Practices</router-link>
-          <router-link to="/contact" class="px-6 py-2 font-normal text-base flex items-center text-black hover:opacity-75">Contact</router-link>
+          <router-link to="/" class="px-6 py-2.5 text-base text-center text-black hover:opacity-75">Accueil</router-link>
+          <router-link to="/projects" class="px-6 py-2.5 text-base text-center text-black hover:opacity-75">Projets</router-link>
+          <router-link to="/practices" class="px-6 py-2.5 text-base text-center text-black hover:opacity-75">Travaux</router-link>
+          <router-link to="/contact" class="px-6 py-2 text-base text-center text-black hover:opacity-75">Me contacter</router-link>
       </ul>
   </nav>
 </template>
