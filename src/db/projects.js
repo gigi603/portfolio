@@ -6,14 +6,12 @@ const projects = [
     img:require("@/assets/images/projects/vignette-spcoach.png"),
     url_website: "http://spcoach.fr/",
     images: [
-      { src:require("@/assets/images/projects/Login.svg") },
-      { src:require("@/assets/images/projects/Course-details.svg") },
-      { src:require("@/assets/images/projects/Lesson-1.svg") },
-      { src:require("@/assets/images/projects/Settings.svg") },
-      { src:require("@/assets/images/projects/Exam_Instruction.svg") },
-      { src:require("@/assets/images/projects/Exam_next_question.svg") },
-      { src:require("@/assets/images/projects/Exam_Success.svg") },
-      { src:require("@/assets/images/projects/Practice.svg") },
+      { src:require("@/assets/images/projects/SPCoach/SPCoach.png") },
+      { src:require("@/assets/images/projects/SPCoach/SPCoach-mobile.png") },
+      { src:require("@/assets/images/projects/SPCoach/intro-min.png") },
+      { src:require("@/assets/images/projects/SPCoach/mes-tarifs-min.png") },
+      { src:require("@/assets/images/projects/SPCoach/page-de-confirmation-min.png") },
+
     ],
   },
   { 

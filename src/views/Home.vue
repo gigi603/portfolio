@@ -11,7 +11,7 @@
 						<h2 class="py-5 font-bold" style="font-size: 45px;color: #9535D8">UI/UX Designer freelance</h2>
 						<p class="py-5 text-base" style="color: #383a3c">Spécialisé dans le développement de produits et de services, je résouds des problèmes à l’aide de la création d’interfaces visuels, ergonomique ainsi que la création d’applications web, responsives et mobiles.</p>
 						<div class="pt-4">
-							<button class="text-center text-white text-base font-bold px-6 py-4 mt-6  w-full md:w-2/5 lg:md:w-2/5 rounded-full m-auto hover:opacity-75" style="background-color: #9535d7;"><a href="/files/CV-webdesigner-gilbert-trinidad-french.pdf" download  >Télécharger mon CV</a></button>
+							<button class="text-center text-white text-base font-bold px-6 py-4 mt-6  w-full md:w-2/5 lg:md:w-2/5 rounded-full m-auto hover:opacity-75" style="background-color: #9535d7;"><a href="/files/CV-UI-UX-designer-noir.pdf" download>Télécharger mon CV</a></button>
 						</div>
 					</div>
 					<div class="image-container">
@@ -32,10 +32,10 @@
 		</div>
 	</div>
 	<div class="w-full bg-white" style="margin-top: -10%;">
-		<div class="container mx-auto max-w-7xl competences-bloc py-40">
+		<div class="container mx-auto max-w-7xl competences-bloc pt-40 pb-20">
 			<h2 class="py-8 text-black text-3xl font-bold w-full" id="projects">PROJETS</h2>
-			<div class="flex gap-6 mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 w-full mb-10 z-10">
-				<div v-for="(project, index) in projects" :key="index" :class="project.name" class="flex flex-wrap items-center rounded-3xl border-color-card overflow-hidden bg-white shadow-lg" @click="redirectToProjectPage(project.id)" data-aos="zoom-in">
+			<div class="flex gap-6 mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 w-full mb-10">
+				<div v-for="(project, index) in projects" :key="index" :class="project.name" class="rounded-3xl border-color-card overflow-hidden bg-white shadow-lg" @click="redirectToProjectPage(project.id)" data-aos="zoom-in">
 					<router-link :to="{ name:'ProjectPage', params:{ id: project.id } }">
 						<img :src="project.img" class="mx-auto w-full" style="height:391px;"/>
 						<div class="px-20 flex w-full">

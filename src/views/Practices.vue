@@ -2,7 +2,7 @@
   <div class="container mx-auto px-4">
     <div class="flex flex-wrap px-4">
       <div class="flex flex-col min-w-0 break-words bg-white drop-shadow-xl w-full my-20 shadow-lg rounded-3xl">
-        <div class="py-10 pl-12" style="padding-left: 4.5rem;"><h2 class="font-bold text-3xl">PRACTICES</h2></div>
+        <div class="py-10 pl-12" style="padding-left: 4.5rem;"><h2 class="font-bold text-3xl">TRAVAUX</h2></div>
         <div class="md:px-14 grid xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 flex-auto">
           <div v-for="(img, index) in paginatedOrders" :key="index" @click="() => showImg(((currentPage - 1) * perPage) + index)" data-aos="zoom-in" data-aos-once="false" class="w-96 h-80 mb-10 mx-auto shadow-md hover:shadow-lg cursor-pointer rounded-3xl border-color-card flex justify-center items-center">
             <img :src="img" class="h-48 mx-auto"  alt="" >
