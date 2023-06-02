@@ -1,6 +1,6 @@
 <template>
   <nav class="w-full bg-white px-2 py-3 flex flex-wrap">
-    <div class="flex w-4/5 mx-auto">
+    <div class="flex w-4/5 mx-auto px-6">
       <ul class="flex justify-start">
         <router-link to="/" class="px-6 py-2.5 flex flex-wrap justify-start items-start text-black hover:opacity-75">
           <img src="@/assets/icons/logo.png" class="w-14">
