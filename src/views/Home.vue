@@ -2,18 +2,18 @@
 	<div>
 		<div class="w-full" style="background-color: #eee6ff">
 			<div class="container mx-auto max-w-7xl">	
-				<div class="flex flex-col md:flex-row grid sm:grid-cols-1 md:grid-cols-2 sm:col-span-1  md:col-span-2  items-center">
-					<div class="flex flex-wrap flex-col justify-center px-6" data-aos="zoom-in">
-						<h1 class="mt-2 mb-4 text-6xl font-bold leading-normal">
+				<div class="flex flex-wrap grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+					<div class="md:py-20 w-full md:w-1/2 lg:w-1/2 px-6" data-aos="zoom-in">
+						<h1 class="mt-2 mb-4 text-4xl md:text-6xl font-bold leading-normal">
 						Bonjour je suis <br>Gilbert Trinidad,
 						</h1>
-						<h2 class="py-5 font-bold" style="font-size: 45px;color: #9535D8">UI/UX Designer freelance</h2>
+						<h2 class="py-5 font-bold text-4xl md:text-5xl" style="color: #9535D8">UI/UX Designer freelance</h2>
 						<p class="py-5 text-base" style="color: #383a3c">Spécialisé dans le développement de produits et de services, je résouds des problèmes à l’aide de la création d’interfaces visuels, ergonomique ainsi que la création d’applications web, responsives et mobiles.</p>
-						<div class="pt-4">
-							<button class="text-center text-white text-base font-bold px-6 py-4 mt-6  w-full md:w-2/5 lg:md:w-2/5 rounded-full m-auto hover:opacity-75" style="background-color: #9535d7;"><a href="/files/CV-UI-UX-designer-noir.pdf" download>Télécharger mon CV</a></button>
-						</div>
+						<button class="text-center text-white text-base font-bold px-6 py-4 mt-6  w-full md:w-2/5 lg:md:w-2/5 rounded-full m-auto hover:opacity-75" style="background-color: #9535d7;">
+							<a href="/files/CV-UI-UX-designer-noir.pdf" download>Télécharger mon CV</a>
+						</button>
 					</div>
-					<div class="px-6">
+					<div class="w-full md:w-1/2 lg:w-1/2 px-6 h-96">
 						<img src="@/assets/images/gilbert-trinidad-portfolio.png" class="w-full h-auto" data-aos="zoom-in"/>
 					</div>
 				</div>
