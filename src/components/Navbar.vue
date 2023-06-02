@@ -1,26 +1,17 @@
 <template>
   <nav class="w-full bg-white px-2 py-3 flex flex-wrap">
-    <div class="flex w-4/5 mx-auto px-6">
-      <ul class="flex justify-start">
-        <router-link to="/" class="px-6 py-2.5 flex flex-wrap justify-start items-start text-black hover:opacity-75">
+    <div class="flex flex-wrap w-11/12 mx-auto md:px-6">
+      <ul class="flex w-11/12 md:w-1/12 justify-start">
+        <router-link to="/" class="md:px-6 py-2.5 flex flex-wrap justify-start items-start text-black hover:opacity-75">
           <img src="@/assets/icons/logo.png" class="w-14">
         </router-link>
       </ul>
     
-        <div class="flex md:max-w-7xl justify-end">
-          <div @click="toggleNav" class="flex md:hidden px-6">
+        <div class="flex w-1/12 justify-end">
+          <div @click="toggleNav" class="flex w-full justify-end items-center md:hidden md:px-6">
             <button
               type="button"
-              class="
-                text-black
-                text-center
-                border-2
-                py-2
-                px-2
-                border-black
-                rounded-lg 
-                hover:text-gray-400
-                focus:outline-none focus:text-gray-400
+              class="w-12/12 md:w-1/12 text-black text-center border-2 py-2 px-2 border-black rounded-lg  hover:text-gray-400 focus:outline-none focus:text-gray-400
               "
             >
               <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current">
@@ -37,6 +28,7 @@
         <ul 
           :class="showMenu ? 'flex' : 'hidden'" 
           class="
+            w-full
             flex-col 
             my-8
             sm:items-center
@@ -45,7 +37,7 @@
             md:flex 
             md:space-y-0
             md:flex-row
-            md:w-full
+            md:w-10/12
             md:justify-end
             md:space-x-20
             md:mt-2
