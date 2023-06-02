@@ -8,9 +8,9 @@
           <div class="md:px-16 py-10 grid grid-cols-1 flex-auto rounded-3xl">
             <p class="px-6">{{ project.description }} Lien du site 
               <button><a :href=project.url_website target="_blank" class="font-bold text-black" >{{ project.name }}</a></button></p>
-            <div class="py-10 grid sm:grid-cols-1 md:grid-cols-3 flex-auto">
-                <div v-for="(img, index) in imgs" :key="index" @click="() => showImg(index)" data-aos="zoom-in" class="w-96 h-80 mb-10 mx-auto shadow-md hover:shadow-lg cursor-pointer rounded-3xl border-color-card flex justify-center items-center">
-                  <img :src="img" class="h-48 mx-auto"  alt="">
+            <div class="py-10 flex flex-wrap md:px-14 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                <div v-for="(img, index) in imgs" :key="index" @click="() => showImg(index)" data-aos="zoom-in" class="w-64 md:w-96 md:h-80 mb-10 mx-auto shadow-md hover:shadow-lg cursor-pointer rounded-3xl border-color-card flex justify-center items-center">
+                  <img :src="img" class="h-48 mx-auto" style="max-width:15rem;"  alt="">
                 </div>
             </div>
           </div>
