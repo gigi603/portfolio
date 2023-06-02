@@ -1,19 +1,37 @@
 const projects = [
-    { 
-      id: '1', 
-      name: "Unfate",
-      description: "Unfate is a learning platform that aims to teach a subject in the clearest and most complete way possible. Many people can't find all the information on the same site and have to browse the web to take a piece here and there, Unfate aims to provide the best courses so that the person does not feel obliged by lack of information to look elsewhere. One of the peculiarity of this platform is that the purchase of the courses is done via cryptocurrencies. I worked on this project as a web designer. Go to ",
-      images: [
-        { src:require("@/assets/images/projects/Login.svg") },
-        { src:require("@/assets/images/projects/Course-details.svg") },
-        { src:require("@/assets/images/projects/Lesson-1.svg") },
-        { src:require("@/assets/images/projects/Settings.svg") },
-        { src:require("@/assets/images/projects/Exam_Instruction.svg") },
-        { src:require("@/assets/images/projects/Exam_next_question.svg") },
-        { src:require("@/assets/images/projects/Exam_Success.svg") },
-        { src:require("@/assets/images/projects/Practice.svg") },
-      ],
-    },
+  { 
+    id: '1', 
+    name: "SPCoach",
+    description: "SPCoach offre des services de coaching, thérapies pour des particuliers et/ou des entreprises afin d'améliorer les aspets de la confiance en soi, la mise en place de stratégies permettant une meilleure communication en entreprises ou dans la vie de tous les jours. ",
+    img:require("@/assets/images/projects/vignette-spcoach.png"),
+    url_website: "http://spcoach.fr/",
+    images: [
+      { src:require("@/assets/images/projects/SPCoach/SPCoach.png") },
+      { src:require("@/assets/images/projects/SPCoach/SPCoach-mobile.png") },
+      { src:require("@/assets/images/projects/SPCoach/intro-min.png") },
+      { src:require("@/assets/images/projects/SPCoach/avantages-min.png") },
+      { src:require("@/assets/images/projects/SPCoach/mes-tarifs-min.png") },
+      { src:require("@/assets/images/projects/SPCoach/page-de-confirmation-min.png") },
+
+    ],
+  },
+  { 
+    id: '2', 
+    name: "Unfate",
+    description: "Unfate est une plateforme d'apprentissage qui vise à enseigner une matière de la manière la plus claire et la plus complète possible. Beaucoup de gens ne parviennent pas à trouver toutes les informations sur un même site et doivent naviguer sur le web pour les trouver ici et là. Unfate a pour objectif de proposer les meilleurs cours afin que la personne n'ait pas besoin de chercher ailleurs par manque d'informations. L'une des particularités de cette plateforme est que l'achat des cours se fait via des cryptomonnaies.",
+    url_website:"https://app.unfate.co/",
+    img:require("@/assets/images/projects/vignette-unfate.png"),
+    images: [
+      { src:require("@/assets/images/projects/Login.svg") },
+      { src:require("@/assets/images/projects/Course-details.svg") },
+      { src:require("@/assets/images/projects/Lesson-1.svg") },
+      { src:require("@/assets/images/projects/Settings.svg") },
+      { src:require("@/assets/images/projects/Exam_Instruction.svg") },
+      { src:require("@/assets/images/projects/Exam_next_question.svg") },
+      { src:require("@/assets/images/projects/Exam_Success.svg") },
+      { src:require("@/assets/images/projects/Practice.svg") },
+    ],
+  },
 ]
 
 export default projects
