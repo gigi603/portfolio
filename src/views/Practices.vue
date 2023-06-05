@@ -4,7 +4,7 @@
       <div class="flex flex-col min-w-0 break-words bg-white drop-shadow-xl w-full my-20 shadow-lg rounded-3xl">
         <div class="py-10 pl-12" style="padding-left: 4.5rem;"><h2 class="font-bold text-3xl">TRAVAUX</h2></div>
         <div class="flex flex-wrap md:px-14 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          <div v-for="(img, index) in paginatedOrders" :key="index" @click="() => showImg(((currentPage - 1) * perPage) + index)" data-aos="zoom-in" data-aos-once="false" class="w-64 md:w-96 md:h-80 mb-10 mx-auto shadow-md hover:shadow-lg cursor-pointer rounded-3xl border-color-card flex justify-center items-center">
+          <div v-for="(img, index) in paginatedOrders" :key="index" @click="() => showImg(((currentPage - 1) * perPage) + index)" data-aos="zoom-in" data-aos-once="false" class="item md:h-80 mb-10 mx-4 my-4 shadow-md hover:shadow-lg cursor-pointer rounded-3xl border-color-card flex justify-center items-center">
             <img :src="img" class="h-48 mx-auto" style="max-width:15rem;" alt="" >
           </div>
           <vue-easy-lightbox 
@@ -14,7 +14,7 @@
             @hide="handleHide"
           ></vue-easy-lightbox>
         </div>
-        <div class="md:px-20 md:pb-10 flex justify-center md:justify-end grid-cols-1 md:grid-cols-3 lg:grid-cols-3 flex-auto">
+        <div class="md:px-20 md:pb-10 flex justify-center md:justify-end">
           <Pagination :current="currentPage" :total="total" :per-page="perPage" :key="index" @page-changed="currentPage = $event"/>
         </div>
       </div>
@@ -52,7 +52,7 @@ export default {
             ],
             currentPage: 1,
             perPage: 6,
-            total: 20
+            total: 13
         }
 	},
     computed: {
@@ -87,6 +87,21 @@ export default {
   .project-list {
     background-color: #F4F5F7;
   }
+  .item {
+    flex-basis: 30.33%
+  }
+
+  @media (max-width: 915px) { /* Taille écran tablette */
+  .item {
+    flex-basis: 44%; /* ou flex-basis: calc(100% / 2); */
+  }
+}
+
+@media (max-width: 480px) { /* Taille écran mobile */
+  .item {
+    flex-basis: 100%;
+  }
+}
   .cursor-pointer {
       cursor: pointer !important;
   }
