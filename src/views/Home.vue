@@ -3,7 +3,7 @@
 		<div class="w-full" style="background-color: #eee6ff">
 			<div class="container mx-auto max-w-7xl">	
 				<div class="flex flex-wrap grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-					<div class="md:py-20 w-full md:w-1/2 lg:w-1/2 px-6" data-aos="zoom-in">
+					<div class="md:py-20 card-intro px-6" data-aos="zoom-in">
 						<h1 class="mt-2 mb-4 text-4xl md:text-6xl font-bold leading-normal">
 						Bonjour je suis <br>Gilbert Trinidad,
 						</h1>
@@ -13,8 +13,8 @@
 							<a href="/files/CV-UI-UX-designer-noir.pdf" download>Télécharger mon CV</a>
 						</button>
 					</div>
-					<div class="w-full md:w-1/2 lg:w-1/2 px-6 h-96">
-						<img src="@/assets/images/gilbert-trinidad-portfolio.png" class="w-full h-auto" data-aos="zoom-in"/>
+					<div class="card-intro px-6 h-96">
+						<img src="@/assets/images/gilbert-trinidad-portfolio.png" class="gilbert-img" data-aos="zoom-in"/>
 					</div>
 				</div>
 				<div class="px-6">
@@ -211,6 +211,25 @@ export default {
 </script>
 
 <style>
+
+	.card-intro {
+		flex-basis:50%;
+	}
+	@media (max-width: 915px) { /* Taille écran tablette */
+		.card-intro {
+			flex-basis: 100%; /* ou flex-basis: calc(100% / 2); */
+		}
+
+		.gilbert-img {
+			height:500px;
+			margin:  0 auto;
+		}
+	}
+	@media (max-width: 480px) { /* Taille écran mobile */
+		.item {
+			flex-basis: 100%;
+		}
+	}
 	.image-container {
 		height: 700px; /* Définissez la hauteur souhaitée pour votre conteneur */
 		overflow: hidden;
