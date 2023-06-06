@@ -3,7 +3,7 @@
     <div class="flex flex-wrap w-11/12 mx-auto md:px-6">
       <ul class="flex w-11/12 md:w-1/12 justify-start">
         <router-link to="/" class="md:px-6 py-2.5 flex flex-wrap justify-start items-start text-black hover:opacity-75">
-          <img src="@/assets/icons/logo.png" class="w-14">
+          <img src="@/assets/icons/logo.svg" class="w-14">
         </router-link>
       </ul>
     
