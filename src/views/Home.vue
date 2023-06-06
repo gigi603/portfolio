@@ -47,7 +47,7 @@
 					</div>
 				</div>
 				<h2 class="py-8 text-black text-3xl font-bold  w-full">OUTILS</h2>  
-				<div class="mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 w-full mb-10">
+				<div class="mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 w-full">
 					<div v-for="software in softwares" :key="software.name" :class="software.name" class="rounded-3xl border-color-card overflow-hidden bg-white shadow-xl">
 						<div class="p-10" data-aos="zoom-in">
 							<img :src="software.icon" class="mx-auto"/>
@@ -215,7 +215,7 @@ export default {
 </script>
 
 <style>
-	@media (max-width: 1280px) {
+	@media (min-width: 1280px) {
 		.bg-purple {
 			background-image: linear-gradient(180deg, transparent  0%, transparent 85%, #FFF 85%, #FFF 100%);
 		}
