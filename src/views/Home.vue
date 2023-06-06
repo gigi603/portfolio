@@ -19,8 +19,8 @@
 				</div>
 				<div class="px-6">
 					<h2 class="py-8 text-black text-3xl font-bold w-full">COMPETENCES</h2>
-					<div class="flex gap-6 mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 w-full mb-10 z-10">
-						<div v-for="(skill, index) in skills" :key="index" :class="skill.name" class="rounded-3xl overflow-hidden bg-white  shadow-lg">
+					<div class="flex gap-6 mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 w-full">
+						<div v-for="(skill, index) in skills" :key="index" :class="skill.name" class="rounded-3xl overflow-hidden bg-white shadow-lg">
 							<div class="p-8" data-aos="zoom-in">
 								<img :src="skill.icon" class="mx-auto w-16 h-16"/>
 								<h3 class="font-bold text-3xl text-center py-5">{{skill.name}}</h3>
