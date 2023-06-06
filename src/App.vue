@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="w-full m-0 p-0" style="background-color: #eee6ff">
+  <div id="app" class="w-full m-0 p-0">
     <Navbar/>
       <router-view :data="datas"/>
       <Footer/>
