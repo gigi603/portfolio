@@ -8,7 +8,7 @@
 						Bonjour je suis <br>Gilbert Trinidad,
 						</h1>
 						<h2 class="py-5 font-bold text-4xl md:text-5xl" style="color: #9535D8">UI/UX Designer freelance</h2>
-						<p class="py-5 text-base" style="color: #383a3c">Spécialisé dans le développement de produits et de services, je résouds des problèmes à l’aide de la création d’interfaces visuels, ergonomique ainsi que la création d’applications web, responsives et mobiles.</p>
+						<p class="py-5 text-base" style="color: #383a3c">Spécialisé dans la création de produits digitaux, je résouds des problèmes à l’aide d’interfaces visuelles et ergonomiques.</p>
 						<button class="text-center text-white text-base font-bold px-6 py-4 mt-6  w-full md:w-2/5 lg:md:w-2/5 rounded-full m-auto hover:opacity-75" style="background-color: #9535d7;">
 							<a href="/files/CV-UI-UX-designer-noir.pdf" download>Télécharger mon CV</a>
 						</button>
