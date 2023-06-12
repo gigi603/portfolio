@@ -34,7 +34,7 @@
 		<div class="w-full bg-white">
 			<div class="container mx-auto max-w-7xl py-10 md:pt-20 md:pb-20 px-6">
 				<h2 class="py-8 text-black text-3xl font-bold w-full" id="projects">PROJETS</h2>
-				<div class="flex gap-6 mx-auto w-full">
+				<div class="flex gap-6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full">
 					<div v-for="(project, index) in projects" :key="index" :class="project.name" class="rounded-3xl border-color-card overflow-hidden bg-white shadow-lg" @click="redirectToProjectPage(project.id)" data-aos="zoom-in">
 						<router-link :to="{ name:'ProjectPage', params:{ id: project.id } }">
 							<img :src="project.img" class="mx-auto w-full h-72 md:h-96"/>
