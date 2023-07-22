@@ -4,7 +4,6 @@
         <div class="social-network flex flex-wrap justify-center">
             <a href="https://twitter.com/GilbertTrinid17" target="_blank" class="px-6"><img src="@/assets/icons/ri_twitter-fill.svg"></a>
             <a href="https://www.linkedin.com/in/gilbert-trinidad-755417102/" target="_blank" class="px-6"><img src="@/assets/icons/ri_linkedin-fill.svg"></a>
-            <router-link  to="/contact" class="w-full text-center text-white py-6">Envoyez moi un message</router-link>
             <span class="text-xs text-center" style="color:lightgray;">Copyright © 2023 | <router-link to="/politique">Politique de confidentialité</router-link></span>
         </div>
         </footer>
