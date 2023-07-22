@@ -1,5 +1,5 @@
 <template>
-    <footer style="background-color:#3d1657">
+    <footer id="contact" style="background-color:#3d1657">
         <h3 class="text-center text-white text-2xl font-bold p-6">ME CONTACTER</h3>
         <div class="social-network flex flex-wrap justify-center">
           <div class="flex w-full py-6 justify-center">
