@@ -6,8 +6,9 @@
         <div v-if="project.id == $route.params.id ">
           <div class="pt-10 pl-4 md:pl-20"><h2 class="font-bold text-2xl"><button @click="$router.go(-1)" class="mr-2"><font-awesome-icon icon="fa-solid fa-chevron-left" color="#000" size="sm" /></button> {{ project.name }} </h2></div>
           <div class="md:px-16 py-10 rounded-3xl">
-            <p class="px-6">{{ project.description }} Lien du site 
-              <button><a :href=project.url_website target="_blank" class="font-bold text-black" >{{ project.name }}</a></button></p>
+            <p class="px-6">{{ project.description }}
+                <span v-if="project.url_website != ''"> Lien du site: <button><a :href=project.url_website target="_blank" class="font-bold text-black" >{{ project.name }}</a></button></span>
+              </p>
             <div class="py-10 flex flex-wrap">
                 <div v-for="(img, index) in imgs" :key="index" @click="() => showImg(index)" data-aos="zoom-in" class="item md:h-80 shadow-md hover:shadow-lg cursor-pointer mx-4 my-4 rounded-3xl border-color-card flex justify-center items-center">
                   <img :src="img" class="h-48 mx-auto" style="max-width:15rem;"  alt="">
