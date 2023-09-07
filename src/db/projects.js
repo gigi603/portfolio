@@ -17,6 +17,17 @@ const projects = [
   },
   { 
     id: '2', 
+    name: "Atypikhouse",
+    description: "Atypikhouse est une plateforme de locations d'hebergements atypiques, dépaysement, tranquilité aux rendez-vous",
+    url_website:"",
+    img:require("@/assets/images/projects/vignette-atypikhouse.png"),
+    images: [
+      { src:require("@/assets/images/projects/Atypikhouse/Atypikhouse-home-desktop.svg") },
+      { src:require("@/assets/images/projects/Atypikhouse/Atypikhouse-home-mobile.svg") },
+    ],
+  },
+  { 
+    id: '3', 
     name: "Unfate",
     description: "Unfate est une plateforme d'apprentissage qui vise à enseigner une matière de la manière la plus claire et la plus complète possible. Beaucoup de gens ne parviennent pas à trouver toutes les informations sur un même site et doivent naviguer sur le web pour les trouver ici et là. Unfate a pour objectif de proposer les meilleurs cours afin que la personne n'ait pas besoin de chercher ailleurs par manque d'informations. L'une des particularités de cette plateforme est que l'achat des cours se fait via des cryptomonnaies.",
     url_website:"https://app.unfate.co/",
