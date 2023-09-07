@@ -19,11 +19,11 @@ const projects = [
     id: '2', 
     name: "Atypikhouse",
     description: "Atypikhouse est une plateforme de locations d'hebergements atypiques, dépaysement, tranquilité aux rendez-vous",
-    url_website:"",
+    url_website:'',
     img:require("@/assets/images/projects/vignette-atypikhouse.png"),
     images: [
-      { src:require("@/assets/images/projects/Atypikhouse/Atypikhouse-home-desktop.svg") },
-      { src:require("@/assets/images/projects/Atypikhouse/Atypikhouse-home-mobile.svg") },
+      { src:require("@/assets/images/projects/Atypikhouse/Atypikhouse-home-desktop.png") },
+      { src:require("@/assets/images/projects/Atypikhouse/Atypikhouse-home-mobile.png") },
     ],
   },
   { 
