@@ -53,8 +53,5 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ],
-  "engines": {
-    "node": "18.x" // Spécifiez la version de Node.js que vous souhaitez utiliser
-  }
+  ]
 }
