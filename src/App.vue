@@ -1,14 +1,14 @@
 <template>
   <div id="app" class="w-full m-0 p-0">
-    <Navbar/>
+    <NavbarComponent/>
       <router-view :data="datas"/>
-      <Footer/>
+      <FooterComponent/>
   </div>
 </template>
 
 <script>
-import Navbar from './components/Navbar.vue'
-import Footer from './components/Footer.vue'
+import NavbarComponent from './components/NavbarComponent.vue'
+import FooterComponent from './components/FooterComponent.vue'
 import Vue from 'vue'
 import notification from 'vue-notification-ui'
 Vue.use(notification, {
@@ -26,8 +26,8 @@ export default {
     datas: Array
   },
   components: {
-    Navbar,
-    Footer
+    NavbarComponent,
+    FooterComponent
   },
 }
 </script>
