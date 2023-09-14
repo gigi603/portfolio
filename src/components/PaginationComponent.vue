@@ -57,7 +57,7 @@
     </section>
 </template>
 
-<script lang="ts">
+<script>
   export default {
     name: 'PaginationComponent',
     props: {
@@ -71,7 +71,7 @@
       },
       perPage: {
         type: Number,
-        default: 15
+        default: 13
       },
       pageRange: {
         type: Number,

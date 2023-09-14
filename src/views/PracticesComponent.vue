@@ -15,7 +15,7 @@
           ></vue-easy-lightbox>
         </div>
         <div class="md:px-20 md:pb-10 flex justify-center md:justify-end">
-          <Pagination :current="currentPage" :total="total" :per-page="perPage" :key="index" @page-changed="currentPage = $event"/>
+          <PaginationComponent :current="currentPage" :total="total" :per-page="perPage" :key="index" @page-changed="currentPage = $event"/>
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@
 
 <script>
 // import '@ocrv/vue-tailwind-pagination/dist/style.css'
-import PaginationComponent from '../components/PaginationComponent.vue'
+import PaginationComponent from '@/components/PaginationComponent.vue'
 
 export default {
     name: 'PracticesComponent',
