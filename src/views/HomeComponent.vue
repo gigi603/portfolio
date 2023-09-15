@@ -36,15 +36,12 @@
 				<h2 class="py-8 text-black text-3xl font-bold w-full" id="projects">PROJETS</h2>
 				<div class="flex gap-6 mx-auto grid grid-cols-1 md:grid-cols-2 w-full">
 					<div v-for="(project, index) in projects" :key="index" :class="project.name" class="rounded-3xl border-color-card overflow-hidden bg-white shadow-lg" @click="redirectToProjectPage(project.id)" data-aos="zoom-in">
-						<router-link :to="{ name:'ProjectDetailComponent', params:{ id: project.id } }">
+						<router-link :to="{ name:'ProjectPage', params:{ id: project.id } }">
 							<img :src="project.img" class="mx-auto w-full h-72 md:h-96"/>
 							<div class="px-10 md:px-20 flex w-full">
 								<h3 class="font-bold text-3xl text-left w-1/2 py-10">{{project.name}}</h3>
-								<button class="w-1/2 flex justify-end items-center">
-<router-link class="w-14 h-14 flex justify-center items-center grid sm:grid-cols-1 justify-center rounded-full bg-black 	hover:shadow-lg" :to="{ name:'ProjectDetailComponent', params:{ id: project.id } }">
-<img src="@/assets/icons/arrow-right-fill.svg" class="mx-auto w-8 h-8"> 
-								</router-link>
-</button>
+								<button class="w-1/2 flex justify-end items-center"><router-link class="w-14 h-14 flex justify-center items-center grid sm:grid-cols-1 justify-center rounded-full bg-black 	hover:shadow-lg" :to="{ name:'ProjectPage', params:{ id: project.id } }"><img src="@/assets/icons/arrow-right-fill.svg" class="mx-auto w-8 h-8"> 
+								</router-link></button>
 							</div>
 						</router-link>
 					</div>
@@ -64,8 +61,7 @@
 						<div class="slider">
 							<VueSlickCarousel v-bind="settings">
 								<div v-for="(src, index) in imgs" :key="index" data-aos="zoom-in" class="grid xs:col-span-1 sm:col-span-1">
-									<div
-class="w-80 h-56 grid xs:col-span-1 sm:col-span-1 shadow-md hover:shadow-lg cursor-pointer mx-auto rounded-3xl border-color-card flex justify-center items-center pic"
+									<div class="w-80 h-56 grid xs:col-span-1 sm:col-span-1 shadow-md hover:shadow-lg cursor-pointer mx-auto rounded-3xl border-color-card flex justify-center items-center pic"
 										@click="() => showImg(index)"
 									>
 										<img :src="src" class="h-52 mx-auto"  alt="">
@@ -99,14 +95,11 @@ import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 export default {
 	name: 'HomeComponent',
+	props: {
+		icon: String,
+	},
 	components: { 
 		VueSlickCarousel,
-	},
-	props: {
-		icon: {
-			type: String,
-			default: '',
-		},
 	},
 	data: function() {
 		return {
@@ -171,15 +164,10 @@ export default {
 			],
 		}
 	},
-<<<<<<< HEAD
-=======
-	created: function () {
-	},
->>>>>>> dev
 	methods: {
 		redirectToProjectPage(id) {
             // Redirection vers la page du projet avec l'id spécifié
-            this.$router.push({ name: 'ProjectDetail', params: { id } });
+            this.$router.push({ name: 'ProjectPage', params: { id } });
         },
 		toggleDescription(item) {
 			item.showDetails = !item.showDetails
