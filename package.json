@@ -80,8 +80,6 @@
       "vue/no-multi-spaces": "off",
       "vue/html-closing-bracket-spacing": "off",
       "vue/no-template-shadow": "off"
-
-
     }
   },
   "browserslist": [
@@ -90,6 +88,3 @@
     "not dead"
   ]
 }
-
-
-
