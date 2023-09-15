@@ -24,6 +24,7 @@ import projects from '../db/projects'
 
 export default {
   name: 'ProjectsComponent',
+    // eslint-disable-next-line vue/multiline-html-element-content-newline
   components: {
     // Pagination
   },
