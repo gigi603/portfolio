@@ -23,9 +23,9 @@ const routes = [
   },
   {
     path: "/project/:id",
-    name: "ProjectPageComponent",
+    name: "ProjectDetailComponent",
     props: true,
-    component: () => import('../views/ProjectPageComponent.vue')
+    component: () => import('../views/ProjectDetailComponent.vue')
   },
   {
     path: '/contact',

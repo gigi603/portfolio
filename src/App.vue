@@ -22,12 +22,15 @@ Vue.use(notification, {
 
 export default {
   name: 'App',
-  props: {
-    datas: Array
-  },
   components: {
     NavbarComponent,
     FooterComponent
+  },
+  props: {
+    datas: {
+    type: Array,
+    default: () => [],
+  },
   },
 }
 </script>
