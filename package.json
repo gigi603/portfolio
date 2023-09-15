@@ -70,16 +70,7 @@
       "@typescript-eslint"
     ],
     "rules": {
-      "vue/no-unused-components": "off",
-      "vue/html-indent": "off",
-      "vue/max-attributes-per-line": "off",
-      "vue/singleline-html-element-content-newline": "off",
-      "vue/mustache-interpolation-spacing": "off",
-      "vue/html-self-closing": "off",
-      "vue/attributes-order": "off",
-      "vue/no-multi-spaces": "off",
-      "vue/html-closing-bracket-spacing": "off",
-      "vue/no-template-shadow": "off"
+      "vue/no-unused-components": "off"
     }
   },
   "browserslist": [
