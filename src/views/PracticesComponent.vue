@@ -51,7 +51,7 @@ export default {
                 require("@/assets/images/practices/accueil-reserver.svg"),
             ],
             currentPage: 1,
-            perPage: 13,
+            perPage: 6,
             total: 13
         }
 	},
