@@ -33,9 +33,13 @@
           </div>
           <div class="flex items-center w-full">
 						<!-- <input type="submit" :disabled="user_name == '' && user_email == '' && message == ''" class="text-white bg-black disabled:opacity-1 text-xl send px-3 py-3 w-1/6 rounded-full m-auto" value="Send"/><span class="pr-2">Send</span>  -->
-            <button v-bind:class="[{ 'btn-send-disabled cursor-not-allowed text-white text-xl px-3 py-3 md:w-2/6 w-3/5  xs:w-full lg:w-1/6 rounded-full m-auto': (!user_name || !user_email || !message)},
+            <button
+:class="[{ 'btn-send-disabled cursor-not-allowed text-white text-xl px-3 py-3 md:w-2/6 w-3/5  xs:w-full lg:w-1/6 rounded-full m-auto': (!user_name || !user_email || !message)},
              {'text-white bg-black hover:opacity-75 text-xl px-3 py-3 md:w-2/5 w-2/5 lg:w-1/5 w-full rounded-full m-auto': (user_name != '' && user_email != '' && message != '')}]"
-              v-bind:disabled="!user_name || !user_email || !message"><span class ="pr-2">Envoyer</span><font-awesome-icon icon="fa-solid fa-paper-plane" /></button>
+              :disabled="!user_name || !user_email || !message"
+>
+<span class="pr-2">Envoyer</span><font-awesome-icon icon="fa-solid fa-paper-plane" />
+</button>
           </div>
         </div>
     </form>

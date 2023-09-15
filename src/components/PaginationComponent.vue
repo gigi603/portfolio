@@ -1,20 +1,22 @@
 <template>
     <section class="flex flex-col items-end bg-white rounded-lg py-3 text-gray-700">
         <ul class="flex items-center">
-            <li class="pr-6" v-if="this.hasPrev()">
-                <a href="#" @click.prevent="this.changePage(this.prevPage)">
+            <li class="pr-6" v-if="hasPrev()">
+                <a href="#" @click.prevent="changePage(prevPage)">
                 <div class="flex items-center justify-center bg-black rounded-full transform rotate-45 h-8 w-8 paginate">
                     <div class="transform -rotate-45">
-                    <svg class="h-5 w-5 paginate-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
+                    <svg
+class="h-5 w-5 paginate-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor"
+>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M15 19l-7-7 7-7"/>
                     </svg>
                     </div>
                 </div>
                 </a>
             </li>
-            <li class="pr-6" v-if="this.hasFirst()">
-                <a href="#" @click.prevent="this.changePage(1)">
+            <li class="pr-6" v-if="hasFirst()">
+                <a href="#" @click.prevent="changePage(1)">
                 <div class="flex hover:bg-gray-200 rounded-md transform rotate-45 h-6 w-6 items-center justify-center paginate">
                 <span class="transform -rotate-45">
                 1
@@ -22,31 +24,35 @@
                 </div>
                 </a>
             </li>
-            <li class="pr-6" v-if="this.hasFirst()">...</li>
-            <li class="pr-6" v-for="page in this.pages" v-bind:key="page.id">
-                <a href="#" @click.prevent="this.changePage(page)">
-                <div :class="this.current == page ? 'paginate bg-black': 'bg-gray paginate'"
-                        class="flex rounded-full h-8 w-8 items-center justify-center">
-                    <span :class="this.current == page ? 'text-white font-bold current' : 'text-black font-bold'">{{ page }}</span>
+            <li class="pr-6" v-if="hasFirst()">...</li>
+            <li class="pr-6" v-for="page in pages" :key="page.id">
+                <a href="#" @click.prevent="changePage(page)">
+                <div
+:class="current == page ? 'paginate bg-black': 'bg-gray paginate'"
+                        class="flex rounded-full h-8 w-8 items-center justify-center"
+>
+                    <span :class="current == page ? 'text-white font-bold current' : 'text-black font-bold'">{{ page }}</span>
                 </div>
                 </a>
             </li>
-            <li class="pr-6" v-if="this.hasLast()">...</li>
-            <li class="pr-6" v-if="this.hasLast()">
-                <a href="#" @click.prevent="this.changePage(this.totalPages)">
+            <li class="pr-6" v-if="hasLast()">...</li>
+            <li class="pr-6" v-if="hasLast()">
+                <a href="#" @click.prevent="changePage(totalPages)">
                 <div class="flex hover:bg-gray-200 rounded-full h-8 w- items-center justify-center">
                 <span class="transform -rotate-45">
-                {{ this.totalPages }}
+                {{ totalPages }}
                 </span>
                 </div>
                 </a>
             </li>
-            <li v-if="this.hasNext()">
-                <a href="#" @click.prevent="this.changePage(this.nextPage)">
+            <li v-if="hasNext()">
+                <a href="#" @click.prevent="changePage(nextPage)">
                 <div class="flex items-center justify-center bg-black rounded-full transform rotate-45 h-8 w-8 paginate">
                     <div class="transform -rotate-45">
-                    <svg class="h-5 w-5 paginate-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
+                    <svg
+class="h-5 w-5 paginate-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor"
+>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M9 5l7 7-7 7"/>
                     </svg>
                     </div>
@@ -82,28 +88,10 @@
         default: false
   }
     },
+    emits: ['page-changed'],
     data() {
       return {
         input: ''
-      }
-    },
-    methods: {
-      hasFirst() {
-        return this.rangeStart !== 1;
-      },
-      hasLast() {
-        return this.rangeEnd < this.totalPages
-      },
-      hasPrev() {
-        return this.current > 1
-      },
-      hasNext() {
-        return this.current < this.totalPages
-      },
-      changePage(page){
-        if (page > 0 && page <= this.totalPages) {
-          this.$emit('page-changed', page)
-        }
       }
     },
     computed: {
@@ -130,6 +118,25 @@
       },
       prevPage() {
         return this.current - 1
+      }
+    },
+    methods: {
+      hasFirst() {
+        return this.rangeStart !== 1;
+      },
+      hasLast() {
+        return this.rangeEnd < this.totalPages
+      },
+      hasPrev() {
+        return this.current > 1
+      },
+      hasNext() {
+        return this.current < this.totalPages
+      },
+      changePage(page){
+        if (page > 0 && page <= this.totalPages) {
+          this.$emit('page-changed', page)
+        }
       }
     }
   }

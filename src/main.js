@@ -21,15 +21,15 @@ library.add(faPaperPlane);
 Vue.config.productionTip = false
 Vue.use(VShowSlide)
 Vue.use(VueEasyLightbox)
-Vue.component("font-awesome-icon", FontAwesomeIcon);
+Vue.component("FontAwesomeIcon", FontAwesomeIcon);
 
 new Vue({
   router,
-  render: h => h(App),
   mounted() {
     AOS.init({
       duration: 600,
       once: true
     })
   },
+  render: h => h(App),
 }).$mount('#app')
