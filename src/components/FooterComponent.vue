@@ -6,7 +6,7 @@
             <a href="https://twitter.com/GilbertTrinid17" target="_blank" class="px-6"><img src="@/assets/icons/ri_twitter-fill.svg"></a>
             <a href="https://www.linkedin.com/in/gilbert-trinidad-755417102/" target="_blank" class="px-6"><img src="@/assets/icons/ri_linkedin-fill.svg"></a>
           </div>
-            <p class="flex w-full justify-center py-2 text-white">Envoyez moi un message à gilbert.trinidad.pro@gmail.com</p>
+            <p class="flex w-full justify-center text-center py-2 text-white">Envoyez moi un message à gilbert.trinidad.pro@gmail.com</p>
             <span class="text-xs text-center" style="color:lightgray;">Copyright © 2023 | <router-link to="/politique">Politique de confidentialité</router-link></span>
         </div>
         </footer>
