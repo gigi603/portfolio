@@ -40,7 +40,7 @@
 							<img :src="project.img" class="mx-auto w-full h-72 md:h-96"/>
 							<div class="px-10 md:px-20 flex w-full">
 								<h3 class="font-bold text-3xl text-left w-1/2 py-10">{{project.name}}</h3>
-								<button class="w-1/2 flex justify-end items-center"><router-link class="w-14 h-14 flex justify-center items-center grid sm:grid-cols-1 justify-center rounded-full bg-black 	hover:shadow-lg" :to="{ name:'ProjectPage', params:{ id: project.id } }"><img src="@/assets/icons/arrow-right-fill.svg" class="mx-auto w-8 h-8"> 
+								<button class="w-1/2 flex justify-end items-center"><router-link class="w-14 h-14 flex justify-center items-center grid sm:grid-cols-1 justify-center rounded-full bg-black 	hover:shadow-lg" :to="{ name:'ProjectDetailComponent', params:{ id: project.id } }"><img src="@/assets/icons/arrow-right-fill.svg" class="mx-auto w-8 h-8"> 
 								</router-link></button>
 							</div>
 						</router-link>
