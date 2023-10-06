@@ -167,7 +167,11 @@ export default {
 	methods: {
 		redirectToProjectPage(id) {
             // Redirection vers la page du projet avec l'id spécifié
+<<<<<<< HEAD
             this.$router.push({ name: 'ProjectPage', params: { id } });
+=======
+            this.$router.push({ name: 'ProjectDetailComponent', params: { id } });
+>>>>>>> dev
         },
 		toggleDescription(item) {
 			item.showDetails = !item.showDetails
