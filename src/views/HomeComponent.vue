@@ -40,8 +40,11 @@
 							<img :src="project.img" class="mx-auto w-full h-72 md:h-96"/>
 							<div class="px-10 md:px-20 flex w-full">
 								<h3 class="font-bold text-3xl text-left w-1/2 py-10">{{project.name}}</h3>
-								<button class="w-1/2 flex justify-end items-center"><router-link class="w-14 h-14 flex justify-center items-center grid sm:grid-cols-1 justify-center rounded-full bg-black 	hover:shadow-lg" :to="{ name:'ProjectDetailComponent', params:{ id: project.id } }"><img src="@/assets/icons/arrow-right-fill.svg" class="mx-auto w-8 h-8"> 
-								</router-link></button>
+								<button class="w-1/2 flex justify-end items-center">
+									<router-link class="w-14 h-14 flex justify-center items-center grid sm:grid-cols-1 justify-center rounded-full bg-black hover:shadow-lg" :to="{ name:'ProjectDetailComponent', params:{ id: project.id } }">
+										<img src="@/assets/icons/arrow-right-fill.svg" class="mx-auto w-8 h-8"> 
+									</router-link>
+								</button>
 							</div>
 						</router-link>
 					</div>
@@ -61,9 +64,7 @@
 						<div class="slider">
 							<VueSlickCarousel v-bind="settings">
 								<div v-for="(src, index) in imgs" :key="index" data-aos="zoom-in" class="grid xs:col-span-1 sm:col-span-1">
-									<div class="w-80 h-56 grid xs:col-span-1 sm:col-span-1 shadow-md hover:shadow-lg cursor-pointer mx-auto rounded-3xl border-color-card flex justify-center items-center pic"
-										@click="() => showImg(index)"
-									>
+									<div class="w-80 h-56 grid xs:col-span-1 sm:col-span-1 shadow-md hover:shadow-lg cursor-pointer mx-auto rounded-3xl border-color-card flex justify-center items-center pic" @click="() => showImg(index)">
 										<img :src="src" class="h-52 mx-auto"  alt="">
 									</div>
 								</div>
@@ -95,11 +96,14 @@ import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 export default {
 	name: 'HomeComponent',
-	props: {
-		icon: String,
-	},
 	components: { 
 		VueSlickCarousel,
+	},
+	props: {
+		icon: {
+			type: String,
+			default: 'default-icon'
+		}
 	},
 	data: function() {
 		return {
