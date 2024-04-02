@@ -40,7 +40,7 @@
     "vue-slick-carousel": "^1.0.6",
     "vue-toastification": "^1.7.14",
     "whatwg-fetch": "^3.6.19",
-    "launch-editor": "^2.6.1",
+    "launch-editor": "^2.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
