@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="w-full bg-purple">
+		<div class="w-full bg-purple-full">
 			<div class="container mx-auto max-w-7xl">	
 				<div class="flex flex-wrap grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 					<div class="md:py-20 card-intro px-6" data-aos="zoom-in">
@@ -10,7 +10,7 @@
 						<h2 class="py-5 font-bold text-4xl md:text-5xl" style="color: #9535D8">UI/UX Designer freelance</h2>
 						<p class="py-5 text-base" style="color: #383a3c">Spécialisé dans la création de produits digitaux, je résouds des problèmes à l’aide d’interfaces visuelles et ergonomiques.</p>
 						<button class="text-center text-white text-base font-bold px-6 py-4 mt-6  w-full md:w-2/5 lg:md:w-2/5 rounded-full m-auto hover:opacity-75" style="background-color: #9535d7;">
-							<a href="/files/CV-UI-UX-designer-noir.pdf" download>Télécharger mon CV</a>
+							<a href="#contact">Me contacter</a>
 						</button>
 					</div>
 					<div class="card-intro px-6 h-96">
@@ -31,8 +31,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="w-full bg-white">
-			<div class="container mx-auto max-w-7xl py-10 md:pt-10 md:pb-20 px-6">
+		<div class="w-full bg-purple-full">
+			<div class="container mx-auto max-w-7xl pt-10 md:pt-10 px-6">
 				<h2 class="py-8 text-black text-3xl font-bold w-full" id="projects">PROJETS</h2>
 				<div class="flex gap-6 mx-auto grid grid-cols-1 md:grid-cols-2 pb-10 w-full">
 					<div v-for="(project, index) in projects" :key="index" :class="project.name" class="rounded-3xl border-color-card overflow-hidden bg-white shadow-lg" @click="redirectToProjectPage(project.id)" data-aos="zoom-in">
@@ -49,6 +49,10 @@
 						</router-link>
 					</div>
 				</div>
+			</div>
+		</div>
+		<div class="w-full bg-purple-full">
+			<div class="container mx-auto max-w-7xl pb-10 px-6">
 				<h2 class="py-8 text-black text-3xl font-bold  w-full">OUTILS</h2>  
 				<div class="mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 pb-10 w-full">
 					<div v-for="software in softwares" :key="software.name" :class="software.name" class="rounded-3xl border-color-card overflow-hidden bg-white shadow-xl">
@@ -81,9 +85,10 @@
 						</div>
 					</div>
 				</div> -->
-			</div>
+			
 		</div>
 	</div>
+</div>
 </template>
 
 <script>
@@ -146,9 +151,9 @@ export default {
 				]
             },
 			skills: [
-				{ icon:require("@/assets/icons/ux-logo.png"), name: "UX DESIGN", description: "De la besoin du client, recherche de solutions, mise en place de structure pour la meilleure expérience utilisateur.", showDetails: true},
-				{ icon:require("@/assets/icons/ui-logo.png"), name: "UI DESIGN", description: "Création de chartes graphiques, logos, interfaces visuels pour des applications web/mobiles.", showDetails: false},
-				{ icon:require("@/assets/icons/dev-logo.png"), name: "Intégrateur web", description: "Intégrations bootstrap, tailwindcss, reactjs", showDetails: false},
+				{ icon:require("@/assets/icons/ux-logo.png"), name: "UX DESIGN", description: "Passant par la compréhention du besoin client, de l'identification du problème à la recherche de solutions, je mets en place la méthode/structure adéquate pour créer la meilleure expérience utilisateur.", showDetails: true},
+				{ icon:require("@/assets/icons/ui-logo.png"), name: "UI DESIGN", description: "Passant par la création de chartes graphiques, logos, je mets en place de belles interfaces visuelles pour des applications web/mobiles.", showDetails: false},
+				{ icon:require("@/assets/icons/dev-logo.png"), name: "Intégrateur web", description: "Passant par du CSS ou des frameworks comme bootstrap/tailwindcss, j'intègre le design directement dans le code source de l'application web/mobile.", showDetails: false},
 			],
 			imgs: [
 				require("@/assets/images/practices/airmusic-september-2021.png"),
@@ -218,6 +223,9 @@ export default {
 	@media (min-width: 1280px) {
 		.bg-purple {
 			background-image: linear-gradient(180deg, transparent  0%, transparent 85%, #FFF 85%, #FFF 100%);
+		}
+		.bg-purple-full {
+			background-color: #eee6ff;
 		}
 	}
 	.card-intro {
