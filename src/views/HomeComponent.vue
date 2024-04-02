@@ -58,7 +58,7 @@
 						</div>
 					</div>
 				</div>
-				<h2 class="py-8 text-black text-3xl font-bold w-full">TRAVAUX</h2>  
+				<!-- <h2 class="py-8 text-black text-3xl font-bold w-full">TRAVAUX</h2>  
 				<div class="flex flex-row min-w-0 break-words bg-white w-full shadow-lg border-color-card rounded-3xl">
 					<div class="px-14 py-14 xs:grid-cols-1 sm:grid-cols-1 w-full flex-auto">
 						<div class="slider">
@@ -80,7 +80,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
