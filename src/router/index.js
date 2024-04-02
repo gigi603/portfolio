@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeComponent from '../views/HomeComponent.vue'
-
+//dazda
 
 Vue.use(VueRouter)
 
