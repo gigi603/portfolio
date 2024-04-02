@@ -28,11 +28,6 @@ const routes = [
     component: () => import('../views/ProjectDetailComponent.vue')
   },
   {
-    path: '/contact',
-    name: 'ContactComponent',
-    component: () => import('../views/ContactComponent.vue')
-  },
-  {
     path: '/politique',
     name: 'PolitiqueComponent',
     component: () => import('../views/PolitiqueComponent.vue')
