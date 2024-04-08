@@ -2,14 +2,11 @@ const projects = [
   { 
     id: '1', 
     name: "SPCoach",
-    description: "SPCoach offre des services de coaching, thérapies pour des particuliers et/ou des entreprises afin d'améliorer les aspets de la confiance en soi, la mise en place de stratégies permettant une meilleure communication en entreprises ou dans la vie de tous les jours. ",
+    description: "Sophie Pratt is a freelance coach with a diploma in psychopractice. She offers coaching and therapy services for individuals and companies to improve self-confidence and implement strategies for better communication in companies or in everyday life. ",
     img:require("@/assets/images/projects/vignette-spcoach.png"),
     url_website: "http://spcoach.fr/",
     images: [
-      { src:require("@/assets/images/projects/SPCoach/SPCoach.png") },
-      { src:require("@/assets/images/projects/SPCoach/SPCoach-mobile.png") },
       { src:require("@/assets/images/projects/SPCoach/intro-min.png") },
-      { src:require("@/assets/images/projects/SPCoach/avantages-min.png") },
       { src:require("@/assets/images/projects/SPCoach/mes-tarifs-min.png") },
       { src:require("@/assets/images/projects/SPCoach/page-de-confirmation-min.png") },
 
@@ -18,7 +15,7 @@ const projects = [
   { 
     id: '2', 
     name: "Atypikhouse",
-    description: "Atypikhouse est une plateforme de locations d'hebergements atypiques, dépaysement, tranquilité aux rendez-vous",
+    description: "Atypikhouse is an atypical accommodation rental platform. You'll find the change of scenery and tranquillity you need.",
     url_website:'',
     img:require("@/assets/images/projects/vignette-atypikhouse.png"),
     images: [
@@ -29,13 +26,11 @@ const projects = [
   { 
     id: '3', 
     name: "Unfate",
-    description: "Unfate est une plateforme d'apprentissage qui vise à enseigner une matière de la manière la plus claire et la plus complète possible. Beaucoup de gens ne parviennent pas à trouver toutes les informations sur un même site et doivent naviguer sur le web pour les trouver ici et là. Unfate a pour objectif de proposer les meilleurs cours afin que la personne n'ait pas besoin de chercher ailleurs par manque d'informations. L'une des particularités de cette plateforme est que l'achat des cours se fait via des cryptomonnaies.",
-    url_website:"https://app.unfate.co/",
+    description: "Unfate is a learning platform that aims to teach a subject as clearly and comprehensively as possible. Many people are unable to find all the information on a single site and have to surf the web to find it here and there. Unfate aims to offer the best courses so that people don't have to look elsewhere for lack of information. One of the special features of this platform is that courses are purchased via cryptocurrencies.",
+    url_website:"",
     img:require("@/assets/images/projects/vignette-unfate.png"),
     images: [
       { src:require("@/assets/images/projects/Login.svg") },
-      { src:require("@/assets/images/projects/Course-details.svg") },
-      { src:require("@/assets/images/projects/Lesson-1.svg") },
       { src:require("@/assets/images/projects/Settings.svg") },
       { src:require("@/assets/images/projects/Exam_Instruction.svg") },
       { src:require("@/assets/images/projects/Exam_next_question.svg") },

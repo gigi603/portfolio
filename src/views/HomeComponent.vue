@@ -5,12 +5,12 @@
 				<div class="flex flex-wrap grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 					<div class="md:py-20 card-intro px-6" data-aos="zoom-in">
 						<h1 class="mt-2 mb-4 text-4xl md:text-6xl font-bold leading-normal">
-						Bonjour je suis <br>Gilbert Trinidad,
+						Hello ! I am <br>Gilbert Trinidad
 						</h1>
 						<h2 class="py-5 font-bold text-4xl md:text-5xl" style="color: #9535D8">UI/UX Designer freelance</h2>
-						<p class="py-5 text-base" style="color: #383a3c">Spécialisé dans la création de produits digitaux, je résouds des problèmes à l’aide d’interfaces visuelles et ergonomiques.</p>
+						<p class="py-5 text-base" style="color: #383a3c">Specialising in the creation of digital products, I solve problems using visual and ergonomic interfaces.</p>
 						<button class="text-center text-white text-base font-bold px-6 py-4 mt-6  w-full md:w-2/5 lg:md:w-2/5 rounded-full m-auto hover:opacity-75" style="background-color: #9535d7;">
-							<a href="#contact">Me contacter</a>
+							<a href="#contact">Contact me</a>
 						</button>
 					</div>
 					<div class="card-intro px-6 h-96">
@@ -18,7 +18,7 @@
 					</div>
 				</div>
 				<div class="px-6">
-					<h2 class="py-8 text-black text-3xl font-bold w-full">COMPETENCES</h2>
+					<h2 class="py-8 text-black text-3xl font-bold w-full">SKILLS</h2>
 					<div class="flex gap-6 mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 w-full">
 						<div v-for="(skill, index) in skills" :key="index" :class="skill.name" class="rounded-3xl overflow-hidden bg-white shadow-lg">
 							<div class="p-8" data-aos="zoom-in">
@@ -33,7 +33,7 @@
 		</div>
 		<div class="w-full bg-purple-full">
 			<div class="container mx-auto max-w-7xl pt-10 md:pt-10 px-6">
-				<h2 class="py-8 text-black text-3xl font-bold w-full" id="projects">PROJETS</h2>
+				<h2 class="py-8 text-black text-3xl font-bold w-full" id="projects">PROJECTS</h2>
 				<div class="flex gap-6 mx-auto grid grid-cols-1 md:grid-cols-2 pb-10 w-full">
 					<div v-for="(project, index) in projects" :key="index" :class="project.name" class="rounded-3xl border-color-card overflow-hidden bg-white shadow-lg" @click="redirectToProjectPage(project.id)" data-aos="zoom-in">
 						<router-link :to="{ name:'ProjectDetailComponent', params:{ id: project.id } }">
@@ -53,7 +53,7 @@
 		</div>
 		<div class="w-full bg-purple-full">
 			<div class="container mx-auto max-w-7xl pb-10 px-6">
-				<h2 class="py-8 text-black text-3xl font-bold  w-full">OUTILS</h2>  
+				<h2 class="py-8 text-black text-3xl font-bold  w-full">TOOLS</h2>  
 				<div class="mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 pb-10 w-full">
 					<div v-for="software in softwares" :key="software.name" :class="software.name" class="rounded-3xl border-color-card overflow-hidden bg-white shadow-xl">
 						<div class="p-10" data-aos="zoom-in">
@@ -151,9 +151,9 @@ export default {
 				]
             },
 			skills: [
-				{ icon:require("@/assets/icons/ux-logo.png"), name: "UX DESIGN", description: "Passant par la compréhention du besoin client, de l'identification du problème à la recherche de solutions, je mets en place la méthode/structure adéquate pour créer la meilleure expérience utilisateur.", showDetails: true},
-				{ icon:require("@/assets/icons/ui-logo.png"), name: "UI DESIGN", description: "Passant par la création de chartes graphiques, logos, je mets en place de belles interfaces visuelles pour des applications web/mobiles.", showDetails: false},
-				{ icon:require("@/assets/icons/dev-logo.png"), name: "Intégrateur web", description: "Passant par du CSS ou des frameworks comme bootstrap/tailwindcss, j'intègre le design directement dans le code source de l'application web/mobile.", showDetails: false},
+				{ icon:require("@/assets/icons/ux-logo.png"), name: "UX DESIGN", description: "From understanding the customer's needs and identifying the problem to finding solutions, I put in place the right method/structure to create the best user experience.", showDetails: true},
+				{ icon:require("@/assets/icons/ui-logo.png"), name: "UI DESIGN", description: "Through the creation of graphic charters and logos, I set up beautiful visual interfaces for web/mobile applications.", showDetails: false},
+				{ icon:require("@/assets/icons/dev-logo.png"), name: "WEB INTEGRATOR", description: "Using CSS or frameworks such as bootstrap/tailwindcss, I integrate the design directly into the source code of the web/mobile application.", showDetails: false},
 			],
 			imgs: [
 				require("@/assets/images/practices/airmusic-september-2021.png"),
