@@ -1,6 +1,6 @@
 <template>
 <div class="container mx-auto max-w-7xl competences-bloc py-10 px-6">
-        <h2 class="py-8 text-black text-3xl font-bold w-full" id="projects">PROJETS</h2>
+        <h2 class="py-8 text-black text-3xl font-bold w-full" id="projects">PROJECTS</h2>
         <div class="flex gap-6 mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 w-full mb-10 z-10"> 
             <div v-for="(project, index) in projects" :key="index" :class="project.name" @click="redirectToProjectPage(project.id)" class="rounded-3xl border-color-card overflow-hidden bg-white shadow-lg" data-aos="zoom-in">
                 <router-link :to="{ name:'ProjectDetailComponent', params:{ id: project.id } }">
