@@ -57,7 +57,7 @@
 				<div class="mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 pb-10 w-full">
 					<div v-for="software in softwares" :key="software.name" :class="software.name" class="rounded-3xl border-color-card overflow-hidden bg-white shadow-xl">
 						<div class="p-10" data-aos="zoom-in">
-							<img :src="software.icon" class="mx-auto"/>
+							<img :src="software.icon" class="mx-auto w-16 h-16"/>
 							<div class="font-bold text-3xl text-center py-5"><h3>{{software.name}}</h3></div>
 						</div>
 					</div>
@@ -162,14 +162,10 @@ export default {
 				require("@/assets/images/practices/edit-profile.svg"),
 			],
 			softwares: [
-				{ name: "Photoshop", icon:require("@/assets/icons/photoshop_logo.png")},
-				{ name: "Illustrator", icon:require("@/assets/icons/illustrator_logo.png")},
-				{ name: "InDesign", icon:require("@/assets/icons/indesign_logo.png")},
-				{ name: "Premiere Pro", icon:require("@/assets/icons/premierepro_logo.png")},
-				{ name: "Figma", icon:require("@/assets/icons/figma_logo.jpg")},
-				{ name: "VS Code", icon:require("@/assets/icons/vs_code_logo.jpg")},
-				{ name: "Bootstrap", icon:require("@/assets/icons/bootstrap_logo.jpg")},
-				{ name: "Tailwind css", icon:require("@/assets/icons/tailwindcss_logo.jpg")}
+				{ name: "Figma", icon:require("@/assets/icons/figma_logo.svg")},
+				{ name: "Framer", icon:require("@/assets/icons/framer_logo.svg")},
+				{ name: "React", icon:require("@/assets/icons/react_logo.svg")},
+				{ name: "Tailwind css", icon:require("@/assets/icons/tailwind_logo.svg")}
 			],
 		}
 	},
