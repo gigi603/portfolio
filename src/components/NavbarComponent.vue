@@ -2,14 +2,15 @@
   <div class="container mx-auto max-w-7xl px-6 pt-6">
   <nav class="w-full bg-white rounded-3xl shadow-lg px-2 py-3 flex flex-wrap">
     <div class="flex flex-wrap w-full">
-      <ul class="flex w-11/12 md:w-1/12 justify-start">
+      <ul class="flex flex-grow md:flex-grow-0 md:w-1/12 justify-start">
         <router-link to="/" class="md:px-6 py-2.5 flex flex-wrap justify-start items-start text-black hover:opacity-75">
           <img src="@/assets/icons/logo-portfolio.svg" class="w-14">
         </router-link>
       </ul>
     
-        <div class="flex w-1/12 justify-end">
-          <div @click="toggleNav" class="flex w-full justify-end items-center md:hidden md:px-6">
+        <div class="flex items-center gap-3 md:hidden">
+          <LanguageSwitcher/>
+          <div @click="toggleNav" class="flex justify-end items-center">
             <button
               type="button"
               class="w-12/12 md:w-1/12 text-black text-center border-2 py-2 px-2 border-black rounded-lg  hover:text-gray-400 focus:outline-none focus:text-gray-400
@@ -49,6 +50,7 @@
             <router-link to="/projects" class="px-6 py-2.5 text-center hover:opacity-75" style="font-size:18px;">{{ $t('nav.projects') }}</router-link>
             <!--<router-link to="/practices" class="px-6 py-2.5 text-base text-center text-black hover:opacity-75">Travaux</router-link>-->
             <a href="#contact" class="px-6 py-2.5 text-center text-white font-bold rounded-full hover:opacity-75" style="font-size:18px; background-color: #9535d7;">{{ $t('nav.contact') }}</a>
+            <div class="hidden md:flex items-center" style="margin-left: 24px;"><LanguageSwitcher/></div>
         </ul>
     </div>
   </nav>
@@ -56,8 +58,11 @@
 </template>
 
 <script>
+import LanguageSwitcher from './LanguageSwitcher.vue'
+
 export default {
   name: 'NavbarComponent',
+  components: { LanguageSwitcher },
   data() {
     return {
       showMenu: false,
