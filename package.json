@@ -27,6 +27,7 @@
     "consolidate": "^1.0.1",
     "core-js": "^3.6.5",
     "es-abstract": "^1.22.2",
+    "launch-editor": "^2.6.1",
     "postcss": "^8.4.29",
     "stable": "^0.1.8",
     "string.prototype.padstart": "^3.1.5",
@@ -34,13 +35,13 @@
     "v-show-slide": "^1.8.3",
     "vue": "^2.6.11",
     "vue-easy-lightbox": "^0.16.2",
+    "vue-i18n": "^8.28.2",
     "vue-loader": "^17.2.2",
     "vue-notification-ui": "^1.0.4",
     "vue-router": "^3.2.0",
     "vue-slick-carousel": "^1.0.6",
     "vue-toastification": "^1.7.14",
-    "whatwg-fetch": "^3.6.19",
-    "launch-editor": "^2.6.1"
+    "whatwg-fetch": "^3.6.19"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

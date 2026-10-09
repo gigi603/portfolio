@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import i18n from './i18n'
 import './index.css'
 import VShowSlide from 'v-show-slide'
 import VueEasyLightbox from 'vue-easy-lightbox'
@@ -25,6 +26,7 @@ Vue.component("FontAwesomeIcon", FontAwesomeIcon);
 
 new Vue({
   router,
+  i18n,
   mounted() {
     AOS.init({
       duration: 600,

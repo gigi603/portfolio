@@ -5,19 +5,19 @@
 				<div class="flex flex-wrap items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 					<div class="md:py-20 card-intro px-6" data-aos="zoom-in">
 						<h1 class="mt-2 mb-4 text-4xl md:text-6xl font-bold leading-normal">
-						Hi, I'm <br>Gilbert Trinidad
+						{{ $t('hero.hello') }} <br>Gilbert Trinidad
 						</h1>
-						<h2 class="py-5 font-bold text-4xl md:text-5xl" style="color: #9535D8">Freelance Product Designer</h2>
-						<p class="py-5 text-base" style="color: #383a3c">I design clear, warm websites for coaches, therapists and small businesses, so their clients understand the offer and book in a few clicks.</p>
+						<h2 class="py-5 font-bold text-4xl md:text-5xl" style="color: #9535D8">{{ $t('hero.title') }}</h2>
+						<p class="py-5 text-base" style="color: #383a3c">{{ $t('hero.text') }}</p>
 						<div class="flex flex-col md:flex-row gap-4 mt-6">
-							<a v-if="bookingUrl" :href="bookingUrl" target="_blank" rel="noopener" class="inline-block text-center text-white text-base font-bold px-6 py-4 w-full md:w-auto rounded-full hover:opacity-75" style="background-color: #9535d7;">Book a free 30-min call</a>
-							<a href="#contact" :class="bookingUrl ? 'btn-outline' : 'text-white'" class="inline-block text-center text-base font-bold px-6 py-4 w-full md:w-auto rounded-full hover:opacity-75" :style="bookingUrl ? '' : 'background-color: #9535d7;'">Let's talk about your project</a>
+							<a v-if="bookingUrl" :href="bookingUrl" target="_blank" rel="noopener" class="inline-block text-center text-white text-base font-bold px-6 py-4 w-full md:w-auto rounded-full hover:opacity-75" style="background-color: #9535d7;">{{ $t('hero.book') }}</a>
+							<a href="#contact" :class="bookingUrl ? 'btn-outline' : 'text-white'" class="inline-block text-center text-base font-bold px-6 py-4 w-full md:w-auto rounded-full hover:opacity-75" :style="bookingUrl ? '' : 'background-color: #9535d7;'">{{ $t('hero.talk') }}</a>
 						</div>
-						<a href="#testimonials" class="inline-block pt-4 text-sm hover:underline" style="color:#7a7a7a">Trusted by coaches and therapists in Paris</a>
+						<a href="#testimonials" class="inline-block pt-4 text-sm hover:underline" style="color:#7a7a7a">{{ $t('hero.trusted') }}</a>
 					</div>
 					<div class="card-intro px-6 py-10" data-aos="zoom-in">
 						<div class="hero-mockup">
-							<img src="@/assets/images/projects/SPCoach/SPCoach.png" alt="SPCoach website, desktop and mobile" class="hero-mockup-desktop rounded-2xl shadow-2xl object-cover object-top"/>
+							<img src="@/assets/images/projects/SPCoach/SPCoach.png" :alt="$t('hero.mockupAlt')" class="hero-mockup-desktop rounded-2xl shadow-2xl object-cover object-top"/>
 							<img src="@/assets/images/projects/SPCoach/SPCoach-mobile.png" alt="" class="hero-mockup-mobile rounded-2xl shadow-2xl object-cover object-top"/>
 						</div>
 					</div>
@@ -26,7 +26,7 @@
 		</div>
 		<div class="w-full bg-purple-full">
 			<div class="container mx-auto max-w-7xl pt-10 md:pt-10 px-6">
-				<h2 class="py-8 text-black text-3xl font-bold w-full" id="projects">Selected work</h2>
+				<h2 class="py-8 text-black text-3xl font-bold w-full" id="projects">{{ $t('work.title') }}</h2>
 				<div class="flex gap-6 mx-auto grid grid-cols-1 md:grid-cols-2 pb-10 w-full">
 					<div v-for="(project, index) in projects" :key="index" :class="project.name" class="rounded-3xl border-color-card overflow-hidden bg-white shadow-lg" @click="redirectToProjectPage(project.id)" data-aos="zoom-in">
 						<router-link :to="{ name:'ProjectDetailComponent', params:{ id: project.id } }">
@@ -34,7 +34,7 @@
 							<div class="px-10 md:px-20 flex w-full">
 								<div class="w-3/4 py-8">
 									<h3 class="font-bold text-3xl text-left">{{project.name}}</h3>
-									<p class="text-left pt-2" style="color:#7a7a7a">{{project.hook}}</p>
+									<p class="text-left pt-2" style="color:#7a7a7a">{{ $t(`projects.${project.id}.hook`) }}</p>
 								</div>
 								<button class="w-1/4 flex justify-end items-center">
 									<router-link class="w-14 h-14 flex justify-center items-center grid sm:grid-cols-1 justify-center rounded-full bg-black hover:shadow-lg" :to="{ name:'ProjectDetailComponent', params:{ id: project.id } }">
@@ -49,27 +49,27 @@
 		</div>
 		<div class="w-full bg-white">
 			<div class="container mx-auto max-w-7xl px-6 pb-16">
-				<h2 class="py-8 text-black text-3xl font-bold w-full" id="testimonials">What clients say</h2>
+				<h2 class="py-8 text-black text-3xl font-bold w-full" id="testimonials">{{ $t('testimonials.title') }}</h2>
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 					<div v-for="testimonial in testimonials" :key="testimonial.name" class="rounded-3xl bg-white shadow-lg p-10 flex flex-col" data-aos="zoom-in">
 						<span class="quote-mark" aria-hidden="true">&ldquo;</span>
-						<p class="text-lg flex-grow" style="color: #383a3c">{{ testimonial.quote }}</p>
+						<p class="text-lg flex-grow" style="color: #383a3c">{{ $t(`testimonials.${testimonial.key}.quote`) }}</p>
 						<p class="font-bold pt-6">{{ testimonial.name }}</p>
-						<p style="color:#7a7a7a">{{ testimonial.job }}</p>
-						<router-link :to="{ name:'ProjectDetailComponent', params:{ id: testimonial.projectId } }" class="pt-4 text-sm hover:underline" style="color: #9535d7;">See the project →</router-link>
+						<p style="color:#7a7a7a">{{ $t(`testimonials.${testimonial.key}.job`) }}</p>
+						<router-link :to="{ name:'ProjectDetailComponent', params:{ id: testimonial.projectId } }" class="pt-4 text-sm hover:underline" style="color: #9535d7;">{{ $t('testimonials.seeProject') }}</router-link>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="w-full bg-purple-full">
 			<div class="container mx-auto max-w-7xl px-6 py-16">
-				<h2 class="pb-8 text-black text-3xl font-bold w-full">What I do</h2>
+				<h2 class="pb-8 text-black text-3xl font-bold w-full">{{ $t('skills.title') }}</h2>
 				<div class="flex gap-6 mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 w-full">
-					<div v-for="(skill, index) in skills" :key="index" :class="skill.name" class="rounded-3xl overflow-hidden bg-white shadow-lg">
+					<div v-for="(skill, index) in skills" :key="index" :class="skill.key" class="rounded-3xl overflow-hidden bg-white shadow-lg">
 						<div class="p-8" data-aos="zoom-in">
 							<img :src="skill.icon" class="mx-auto w-16 h-16"/>
-							<h3 class="font-bold text-3xl text-center py-5">{{skill.name}}</h3>
-							<p class="text-center" style="color:#7a7a7a">{{skill.description}}</p>
+							<h3 class="font-bold text-3xl text-center py-5">{{ $t(`skills.${skill.key}.name`) }}</h3>
+							<p class="text-center" style="color:#7a7a7a">{{ $t(`skills.${skill.key}.description`) }}</p>
 						</div>
 					</div>
 				</div>
@@ -77,13 +77,13 @@
 		</div>
 		<div class="w-full bg-white">
 			<div class="container mx-auto max-w-7xl px-6 pb-16">
-				<h2 class="py-8 text-black text-3xl font-bold w-full" id="about">ABOUT</h2>
+				<h2 class="py-8 text-black text-3xl font-bold w-full" id="about">{{ $t('about.title') }}</h2>
 				<div class="flex flex-col md:flex-row items-center gap-10" data-aos="zoom-in">
 					<img src="@/assets/images/gilbert-trinidad-portfolio.png" alt="Gilbert Trinidad" class="about-photo rounded-3xl object-cover"/>
 					<div class="text-lg leading-relaxed" style="color: #383a3c">
-						<p class="pb-4">I'm Gilbert, a freelance product designer based in France. I work mostly with independent professionals and small businesses who need a site that feels like them and actually brings in clients.</p>
-						<p>My approach is simple: understand the people you want to reach, make the offer easy to grasp, and remove everything that slows down the decision. Because I also code, I can take a project from the first sketch to a live website.</p>
-						<a href="/files/Gilbert-Trinidad-CV.pdf" target="_blank" class="inline-block pt-6 font-bold hover:underline" style="color: #9535d7;">Download my CV</a>
+						<p class="pb-4">{{ $t('about.p1') }}</p>
+						<p>{{ $t('about.p2') }}</p>
+						<a href="/files/Gilbert-Trinidad-CV.pdf" target="_blank" class="inline-block pt-6 font-bold hover:underline" style="color: #9535d7;">{{ $t('about.cv') }}</a>
 					</div>
 				</div>
 			</div>
@@ -154,8 +154,8 @@ export default {
 			projects: projects,
 			bookingUrl: BOOKING_URL,
 			testimonials: [
-				{ projectId: '1', name: 'Sophie Pratt', job: 'Coach and therapist', quote: 'Gilbert designed my website and wrote its copy. He took the time to understand my work and my clients, who are often anxious about taking the first step. The result is a warm, clear site that feels like me and makes booking a session easy.' },
-				{ projectId: '2', name: 'Mélodie Yeremian', job: 'Career coach and psychopractitioner', quote: 'My two services, career assessment and therapy, are very different. Gilbert understood that right away and gave each one its own clear path, with words that stay gentle, like my practice. Now visitors find the right service and book a discovery call easily.' },
+				{ key: 'sophie', projectId: '1', name: 'Sophie Pratt' },
+				{ key: 'melodie', projectId: '2', name: 'Mélodie Yeremian' },
 			],
 			index: 0,
 			settings: {
@@ -194,9 +194,9 @@ export default {
 				]
             },
 			skills: [
-				{ icon:require("@/assets/icons/ux-logo.png"), name: "UX Design", description: "I start with your clients: who they are, what stops them, what they need to decide. Then I structure the journey so the next step is always obvious.", showDetails: true},
-				{ icon:require("@/assets/icons/ui-logo.png"), name: "UI Design", description: "Visual identity, design system and interfaces for web and mobile, consistent and easy to read.", showDetails: false},
-				{ icon:require("@/assets/icons/dev-logo.png"), name: "Front-end integration", description: "I build what I design with HTML, CSS and Tailwind, so the final site matches the mockups.", showDetails: false},
+				{ icon:require("@/assets/icons/ux-logo.png"), key: "ux", showDetails: true},
+				{ icon:require("@/assets/icons/ui-logo.png"), key: "ui", showDetails: false},
+				{ icon:require("@/assets/icons/dev-logo.png"), key: "dev", showDetails: false},
 			],
 			imgs: [
 				require("@/assets/images/practices/airmusic-september-2021.png"),
