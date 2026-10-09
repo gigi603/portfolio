@@ -1,6 +1,7 @@
 <template>
-  <nav class="w-full bg-white px-2 py-3 flex flex-wrap">
-    <div class="flex flex-wrap container mx-auto max-w-7xl">
+  <div class="container mx-auto max-w-7xl px-6 pt-6">
+  <nav class="w-full bg-white rounded-3xl shadow-lg px-2 py-3 flex flex-wrap">
+    <div class="flex flex-wrap w-full">
       <ul class="flex w-11/12 md:w-1/12 justify-start">
         <router-link to="/" class="md:px-6 py-2.5 flex flex-wrap justify-start items-start text-black hover:opacity-75">
           <img src="@/assets/icons/logo-portfolio.svg" class="w-14">
@@ -51,6 +52,7 @@
         </ul>
     </div>
   </nav>
+  </div>
 </template>
 
 <script>
