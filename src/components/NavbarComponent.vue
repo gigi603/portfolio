@@ -48,7 +48,7 @@
 <router-link to="/" class="px-6 py-2.5 text-center decorationhover:opacity-75" style="font-size:18px;">HOME</router-link>
             <router-link to="/projects" class="px-6 py-2.5 text-center hover:opacity-75" style="font-size:18px;">PROJECTS</router-link>
             <!--<router-link to="/practices" class="px-6 py-2.5 text-base text-center text-black hover:opacity-75">Travaux</router-link>-->
-            <a href="#contact" class="px-6 py-2.5 text-center hover:opacity-75" style="font-size:18px;">CONTACT ME</a>
+            <a href="#contact" class="px-6 py-2.5 text-center text-white font-bold rounded-full hover:opacity-75" style="font-size:18px; background-color: #9535d7;">CONTACT ME</a>
         </ul>
     </div>
   </nav>

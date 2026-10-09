@@ -9,9 +9,7 @@
 						</h1>
 						<h2 class="py-5 font-bold text-4xl md:text-5xl" style="color: #9535D8">Freelance Product Designer</h2>
 						<p class="py-5 text-base" style="color: #383a3c">I design clear, warm websites for coaches, therapists and small businesses, so their clients understand the offer and book in a few clicks.</p>
-						<button class="text-center text-white text-base font-bold px-6 py-4 mt-6  w-full md:w-2/5 lg:md:w-2/5 rounded-full m-auto hover:opacity-75" style="background-color: #9535d7;">
-							<a href="#contact">Let's talk about your project</a>
-						</button>
+						<a href="#contact" class="inline-block text-center text-white text-base font-bold px-6 py-4 mt-6 w-full md:w-auto rounded-full hover:opacity-75" style="background-color: #9535d7;">Let's talk about your project</a>
 					</div>
 					<div class="card-intro px-6 py-10" data-aos="zoom-in">
 						<div class="hero-mockup">
