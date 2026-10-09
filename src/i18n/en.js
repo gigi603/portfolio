@@ -1,5 +1,13 @@
 // English texts. French lives in fr.js; any key missing there falls back to this file.
 export default {
+  "meta": {
+    "title": "Gilbert Trinidad, Freelance Product Designer",
+    "description": "Freelance product designer. I design clear, warm websites for coaches, therapists and small businesses, so their clients understand the offer and book in a few clicks."
+  },
+  "lang": {
+    "fr": "Français",
+    "en": "English"
+  },
   "nav": {
     "home": "HOME",
     "projects": "PROJECTS",
@@ -122,5 +130,9 @@ export default {
     "privacyNote": "Your details are only used to reply to you.",
     "privacy": "Privacy policy",
     "copyright": "© 2026 Gilbert Trinidad"
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "text": "This website doesn't use advertising cookies. The details you send through the contact form (name, email, message) are only used to reply to you and are never shared with third parties."
   }
 }

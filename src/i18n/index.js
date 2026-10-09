@@ -24,10 +24,17 @@ const i18n = new VueI18n({
   messages: { en, fr },
 })
 
+function applyDocumentLocale() {
+  document.documentElement.lang = i18n.locale
+  document.title = i18n.t('meta.title')
+  const description = document.querySelector('meta[name="description"]')
+  if (description) description.setAttribute('content', i18n.t('meta.description'))
+}
+
 export function setLocale(locale) {
   if (!SUPPORTED.includes(locale)) return
   i18n.locale = locale
-  document.documentElement.lang = locale
+  applyDocumentLocale()
   try {
     localStorage.setItem(STORAGE_KEY, locale)
   } catch (e) {
@@ -35,6 +42,6 @@ export function setLocale(locale) {
   }
 }
 
-document.documentElement.lang = i18n.locale
+applyDocumentLocale()
 
 export default i18n
