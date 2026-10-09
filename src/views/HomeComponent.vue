@@ -2,7 +2,7 @@
 	<div>
 		<div class="w-full bg-purple-full">
 			<div class="container mx-auto max-w-7xl">	
-				<div class="flex flex-wrap grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+				<div class="flex flex-wrap items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 					<div class="md:py-20 card-intro px-6" data-aos="zoom-in">
 						<h1 class="mt-2 mb-4 text-4xl md:text-6xl font-bold leading-normal">
 						Hello ! I am <br>Gilbert Trinidad
@@ -13,19 +13,10 @@
 							<a href="#contact">Contact me</a>
 						</button>
 					</div>
-					<div class="card-intro px-6 h-96">
-						<img src="@/assets/images/gilbert-trinidad-portfolio.png" class="gilbert-img" data-aos="zoom-in"/>
-					</div>
-				</div>
-				<div class="px-6">
-					<h2 class="py-8 text-black text-3xl font-bold w-full">SKILLS</h2>
-					<div class="flex gap-6 mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 w-full">
-						<div v-for="(skill, index) in skills" :key="index" :class="skill.name" class="rounded-3xl overflow-hidden bg-white shadow-lg">
-							<div class="p-8" data-aos="zoom-in">
-								<img :src="skill.icon" class="mx-auto w-16 h-16"/>
-								<h3 class="font-bold text-3xl text-center py-5">{{skill.name}}</h3>
-								<p class="text-center" style="color:#7a7a7a">{{skill.description}}</p>
-							</div>
+					<div class="card-intro px-6 py-10" data-aos="zoom-in">
+						<div class="hero-mockup">
+							<img src="@/assets/images/projects/SPCoach/SPCoach.png" alt="SPCoach website, desktop and mobile" class="hero-mockup-desktop rounded-2xl shadow-2xl object-cover object-top"/>
+							<img src="@/assets/images/projects/SPCoach/SPCoach-mobile.png" alt="" class="hero-mockup-mobile rounded-2xl shadow-2xl object-cover object-top"/>
 						</div>
 					</div>
 				</div>
@@ -48,6 +39,29 @@
 							</div>
 						</router-link>
 					</div>
+				</div>
+			</div>
+		</div>
+		<div class="w-full bg-purple-full">
+			<div class="container mx-auto max-w-7xl px-6 pb-16">
+				<h2 class="py-8 text-black text-3xl font-bold w-full">SKILLS</h2>
+				<div class="flex gap-6 mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 w-full">
+					<div v-for="(skill, index) in skills" :key="index" :class="skill.name" class="rounded-3xl overflow-hidden bg-white shadow-lg">
+						<div class="p-8" data-aos="zoom-in">
+							<img :src="skill.icon" class="mx-auto w-16 h-16"/>
+							<h3 class="font-bold text-3xl text-center py-5">{{skill.name}}</h3>
+							<p class="text-center" style="color:#7a7a7a">{{skill.description}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="w-full bg-white">
+			<div class="container mx-auto max-w-7xl px-6 pb-16">
+				<h2 class="py-8 text-black text-3xl font-bold w-full" id="about">ABOUT</h2>
+				<div class="flex flex-col md:flex-row items-center gap-10" data-aos="zoom-in">
+					<img src="@/assets/images/gilbert-trinidad-portfolio.png" alt="Gilbert Trinidad" class="about-photo rounded-3xl object-cover"/>
+					<p class="text-lg leading-relaxed" style="color: #383a3c">I'm Gilbert, a freelance product designer based in France. I help small businesses and startups turn their ideas into clear, usable digital products, from research to the final interface.</p>
 				</div>
 			</div>
 		</div>
@@ -227,14 +241,38 @@ export default {
 	.card-intro {
 		flex-basis:50%;
 	}
+	.hero-mockup {
+		position: relative;
+		padding: 0 0 48px 48px;
+	}
+	.hero-mockup-desktop {
+		display: block;
+		width: 100%;
+		aspect-ratio: 16 / 10;
+	}
+	.hero-mockup-mobile {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 26%;
+		aspect-ratio: 9 / 19;
+	}
+	.about-photo {
+		width: 320px;
+		height: 320px;
+		max-width: 100%;
+		flex-shrink: 0;
+	}
 	@media (max-width: 915px) { /* Taille écran tablette */
 		.card-intro {
 			flex-basis: 100%; /* ou flex-basis: calc(100% / 2); */
 		}
 
-		.gilbert-img {
-			height:500px;
-			margin:  0 auto;
+		.hero-mockup {
+			padding: 0;
+		}
+		.hero-mockup-mobile {
+			display: none;
 		}
 	}
 	@media (max-width: 480px) { /* Taille écran mobile */
