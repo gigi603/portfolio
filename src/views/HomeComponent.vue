@@ -9,7 +9,11 @@
 						</h1>
 						<h2 class="py-5 font-bold text-4xl md:text-5xl" style="color: #9535D8">Freelance Product Designer</h2>
 						<p class="py-5 text-base" style="color: #383a3c">I design clear, warm websites for coaches, therapists and small businesses, so their clients understand the offer and book in a few clicks.</p>
-						<a href="#contact" class="inline-block text-center text-white text-base font-bold px-6 py-4 mt-6 w-full md:w-auto rounded-full hover:opacity-75" style="background-color: #9535d7;">Let's talk about your project</a>
+						<div class="flex flex-col md:flex-row gap-4 mt-6">
+							<a v-if="bookingUrl" :href="bookingUrl" target="_blank" rel="noopener" class="inline-block text-center text-white text-base font-bold px-6 py-4 w-full md:w-auto rounded-full hover:opacity-75" style="background-color: #9535d7;">Book a free 30-min call</a>
+							<a href="#contact" :class="bookingUrl ? 'btn-outline' : 'text-white'" class="inline-block text-center text-base font-bold px-6 py-4 w-full md:w-auto rounded-full hover:opacity-75" :style="bookingUrl ? '' : 'background-color: #9535d7;'">Let's talk about your project</a>
+						</div>
+						<a href="#testimonials" class="inline-block pt-4 text-sm hover:underline" style="color:#7a7a7a">Trusted by coaches and therapists in Paris</a>
 					</div>
 					<div class="card-intro px-6 py-10" data-aos="zoom-in">
 						<div class="hero-mockup">
@@ -43,9 +47,23 @@
 				</div>
 			</div>
 		</div>
-		<div class="w-full bg-purple-full">
+		<div class="w-full bg-white">
 			<div class="container mx-auto max-w-7xl px-6 pb-16">
-				<h2 class="py-8 text-black text-3xl font-bold w-full">What I do</h2>
+				<h2 class="py-8 text-black text-3xl font-bold w-full" id="testimonials">What clients say</h2>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+					<div v-for="testimonial in testimonials" :key="testimonial.name" class="rounded-3xl bg-white shadow-lg p-10 flex flex-col" data-aos="zoom-in">
+						<span class="quote-mark" aria-hidden="true">&ldquo;</span>
+						<p class="text-lg flex-grow" style="color: #383a3c">{{ testimonial.quote }}</p>
+						<p class="font-bold pt-6">{{ testimonial.name }}</p>
+						<p style="color:#7a7a7a">{{ testimonial.job }}</p>
+						<router-link :to="{ name:'ProjectDetailComponent', params:{ id: testimonial.projectId } }" class="pt-4 text-sm hover:underline" style="color: #9535d7;">See the project →</router-link>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="w-full bg-purple-full">
+			<div class="container mx-auto max-w-7xl px-6 py-16">
+				<h2 class="pb-8 text-black text-3xl font-bold w-full">What I do</h2>
 				<div class="flex gap-6 mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 w-full">
 					<div v-for="(skill, index) in skills" :key="index" :class="skill.name" class="rounded-3xl overflow-hidden bg-white shadow-lg">
 						<div class="p-8" data-aos="zoom-in">
@@ -65,6 +83,7 @@
 					<div class="text-lg leading-relaxed" style="color: #383a3c">
 						<p class="pb-4">I'm Gilbert, a freelance product designer based in France. I work mostly with independent professionals and small businesses who need a site that feels like them and actually brings in clients.</p>
 						<p>My approach is simple: understand the people you want to reach, make the offer easy to grasp, and remove everything that slows down the decision. Because I also code, I can take a project from the first sketch to a live website.</p>
+						<a href="/files/Gilbert-Trinidad-CV.pdf" target="_blank" class="inline-block pt-6 font-bold hover:underline" style="color: #9535d7;">Download my CV</a>
 					</div>
 				</div>
 			</div>
@@ -111,6 +130,7 @@
 
 <script>
 import projects from '../db/projects'
+import { BOOKING_URL } from '../config'
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 // optional style for arrows & dots
@@ -132,6 +152,11 @@ export default {
 		return {
 			visible: false,
 			projects: projects,
+			bookingUrl: BOOKING_URL,
+			testimonials: [
+				{ projectId: '1', name: 'Sophie Pratt', job: 'Coach and therapist', quote: 'Gilbert designed my website and wrote its copy. He took the time to understand my work and my clients, who are often anxious about taking the first step. The result is a warm, clear site that feels like me and makes booking a session easy.' },
+				{ projectId: '2', name: 'Mélodie Yeremian', job: 'Career coach and psychopractitioner', quote: 'Gilbert designed my website and wrote its copy. He presented my two services, career assessment and therapy, clearly and in a gentle tone that matches my practice. Visitors easily find their way to a discovery call.' },
+			],
 			index: 0,
 			settings: {
 				"dots": true,
@@ -244,6 +269,18 @@ export default {
 	}
 	.card-intro {
 		flex-basis:50%;
+	}
+	.btn-outline {
+		color: #9535d7;
+		border: 2px solid #9535d7;
+		background-color: transparent;
+	}
+	.quote-mark {
+		color: #9535d7;
+		font-size: 72px;
+		line-height: 1;
+		font-weight: bold;
+		height: 48px;
 	}
 	.hero-mockup {
 		position: relative;
