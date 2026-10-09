@@ -7,7 +7,7 @@
 						<h1 class="mt-2 mb-4 text-4xl md:text-6xl font-bold leading-normal">
 						Hello ! I am <br>Gilbert Trinidad
 						</h1>
-						<h2 class="py-5 font-bold text-4xl md:text-5xl" style="color: #9535D8">UI/UX Designer freelance</h2>
+						<h2 class="py-5 font-bold text-4xl md:text-5xl" style="color: #9535D8">Freelance Product Designer</h2>
 						<p class="py-5 text-base" style="color: #383a3c">Specialising in the creation of digital products, I solve problems using visual and ergonomic interfaces.</p>
 						<button class="text-center text-white text-base font-bold px-6 py-4 mt-6  w-full md:w-2/5 lg:md:w-2/5 rounded-full m-auto hover:opacity-75" style="background-color: #9535d7;">
 							<a href="#contact">Contact me</a>
