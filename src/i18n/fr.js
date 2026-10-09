@@ -7,7 +7,9 @@ export default {
   "nav": {
     "home": "ACCUEIL",
     "projects": "PROJETS",
-    "contact": "CONTACT"
+    "contact": "CONTACT",
+    "about": "À PROPOS",
+    "cv": "CV"
   },
   "lang": {
     "fr": "Français",

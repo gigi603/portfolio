@@ -11,7 +11,9 @@ export default {
   "nav": {
     "home": "HOME",
     "projects": "PROJECTS",
-    "contact": "CONTACT ME"
+    "contact": "CONTACT ME",
+    "about": "ABOUT",
+    "cv": "CV"
   },
   "hero": {
     "hello": "Hi, I'm",
