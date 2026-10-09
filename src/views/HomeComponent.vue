@@ -5,12 +5,12 @@
 				<div class="flex flex-wrap items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 					<div class="md:py-20 card-intro px-6" data-aos="zoom-in">
 						<h1 class="mt-2 mb-4 text-4xl md:text-6xl font-bold leading-normal">
-						Hello ! I am <br>Gilbert Trinidad
+						Hi, I'm <br>Gilbert Trinidad
 						</h1>
 						<h2 class="py-5 font-bold text-4xl md:text-5xl" style="color: #9535D8">Freelance Product Designer</h2>
-						<p class="py-5 text-base" style="color: #383a3c">Specialising in the creation of digital products, I solve problems using visual and ergonomic interfaces.</p>
+						<p class="py-5 text-base" style="color: #383a3c">I design clear, warm websites for coaches, therapists and small businesses, so their clients understand the offer and book in a few clicks.</p>
 						<button class="text-center text-white text-base font-bold px-6 py-4 mt-6  w-full md:w-2/5 lg:md:w-2/5 rounded-full m-auto hover:opacity-75" style="background-color: #9535d7;">
-							<a href="#contact">Contact me</a>
+							<a href="#contact">Let's talk about your project</a>
 						</button>
 					</div>
 					<div class="card-intro px-6 py-10" data-aos="zoom-in">
@@ -24,14 +24,17 @@
 		</div>
 		<div class="w-full bg-purple-full">
 			<div class="container mx-auto max-w-7xl pt-10 md:pt-10 px-6">
-				<h2 class="py-8 text-black text-3xl font-bold w-full" id="projects">PROJECTS</h2>
+				<h2 class="py-8 text-black text-3xl font-bold w-full" id="projects">Selected work</h2>
 				<div class="flex gap-6 mx-auto grid grid-cols-1 md:grid-cols-2 pb-10 w-full">
 					<div v-for="(project, index) in projects" :key="index" :class="project.name" class="rounded-3xl border-color-card overflow-hidden bg-white shadow-lg" @click="redirectToProjectPage(project.id)" data-aos="zoom-in">
 						<router-link :to="{ name:'ProjectDetailComponent', params:{ id: project.id } }">
 							<img :src="project.img" class="mx-auto w-full h-72 md:h-96"/>
 							<div class="px-10 md:px-20 flex w-full">
-								<h3 class="font-bold text-3xl text-left w-1/2 py-10">{{project.name}}</h3>
-								<button class="w-1/2 flex justify-end items-center">
+								<div class="w-3/4 py-8">
+									<h3 class="font-bold text-3xl text-left">{{project.name}}</h3>
+									<p class="text-left pt-2" style="color:#7a7a7a">{{project.hook}}</p>
+								</div>
+								<button class="w-1/4 flex justify-end items-center">
 									<router-link class="w-14 h-14 flex justify-center items-center grid sm:grid-cols-1 justify-center rounded-full bg-black hover:shadow-lg" :to="{ name:'ProjectDetailComponent', params:{ id: project.id } }">
 										<img src="@/assets/icons/arrow-right-fill.svg" class="mx-auto w-8 h-8"> 
 									</router-link>
@@ -44,7 +47,7 @@
 		</div>
 		<div class="w-full bg-purple-full">
 			<div class="container mx-auto max-w-7xl px-6 pb-16">
-				<h2 class="py-8 text-black text-3xl font-bold w-full">SKILLS</h2>
+				<h2 class="py-8 text-black text-3xl font-bold w-full">What I do</h2>
 				<div class="flex gap-6 mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 w-full">
 					<div v-for="(skill, index) in skills" :key="index" :class="skill.name" class="rounded-3xl overflow-hidden bg-white shadow-lg">
 						<div class="p-8" data-aos="zoom-in">
@@ -61,7 +64,10 @@
 				<h2 class="py-8 text-black text-3xl font-bold w-full" id="about">ABOUT</h2>
 				<div class="flex flex-col md:flex-row items-center gap-10" data-aos="zoom-in">
 					<img src="@/assets/images/gilbert-trinidad-portfolio.png" alt="Gilbert Trinidad" class="about-photo rounded-3xl object-cover"/>
-					<p class="text-lg leading-relaxed" style="color: #383a3c">I'm Gilbert, a freelance product designer based in France. I help small businesses and startups turn their ideas into clear, usable digital products, from research to the final interface.</p>
+					<div class="text-lg leading-relaxed" style="color: #383a3c">
+						<p class="pb-4">I'm Gilbert, a freelance product designer based in France. I work mostly with independent professionals and small businesses who need a site that feels like them and actually brings in clients.</p>
+						<p>My approach is simple: understand the people you want to reach, make the offer easy to grasp, and remove everything that slows down the decision. Because I also code, I can take a project from the first sketch to a live website.</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -165,9 +171,9 @@ export default {
 				]
             },
 			skills: [
-				{ icon:require("@/assets/icons/ux-logo.png"), name: "UX DESIGN", description: "From understanding the customer's needs and identifying the problem to finding solutions, I put in place the right method/structure to create the best user experience.", showDetails: true},
-				{ icon:require("@/assets/icons/ui-logo.png"), name: "UI DESIGN", description: "Through the creation of graphic charters and logos, I set up beautiful visual interfaces for web/mobile applications.", showDetails: false},
-				{ icon:require("@/assets/icons/dev-logo.png"), name: "WEB INTEGRATOR", description: "Using CSS or frameworks such as bootstrap/tailwindcss, I integrate the design directly into the source code of the web/mobile application.", showDetails: false},
+				{ icon:require("@/assets/icons/ux-logo.png"), name: "UX Design", description: "I start with your clients: who they are, what stops them, what they need to decide. Then I structure the journey so the next step is always obvious.", showDetails: true},
+				{ icon:require("@/assets/icons/ui-logo.png"), name: "UI Design", description: "Visual identity, design system and interfaces for web and mobile, consistent and easy to read.", showDetails: false},
+				{ icon:require("@/assets/icons/dev-logo.png"), name: "Front-end integration", description: "I build what I design with HTML, CSS and Tailwind, so the final site matches the mockups.", showDetails: false},
 			],
 			imgs: [
 				require("@/assets/images/practices/airmusic-september-2021.png"),

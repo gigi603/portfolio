@@ -2,7 +2,21 @@ const projects = [
   { 
     id: '1', 
     name: "SPCoach",
-    description: "Sophie Pratt is a freelance coach with a diploma in psychopractice. She offers coaching and therapy services for individuals and companies to improve self-confidence and implement strategies for better communication in companies or in everyday life. ",
+    label: "Client project",
+    hook: "Website for a Paris coach: from first visit to booked session",
+    tagline: "A warm, reassuring site that turns visitors into booked sessions",
+    client: "Sophie Pratt, coach and therapist, Paris",
+    role: "UX/UI design & UX writing",
+    tools: "Figma",
+    sections: [
+      { title: "Context", text: "Sophie offers personal coaching, business coaching and therapy for social anxiety, in Paris and online. Many of her future clients are anxious about taking the first step, so the site had to feel safe before it could sell anything." },
+      { title: "The challenge", text: "Three different offers, three different audiences, and visitors who hesitate to reach out. They needed to understand quickly what Sophie does, whether it's for them, how it works and what it costs, without feeling pushed." },
+      { title: "Approach", text: "I designed the structure and wrote the copy together, so every section answers the next question a visitor is likely to ask. The tone is warm and personal, written in Sophie's own voice." },
+      { title: "Solution", text: "A single page that follows the visitor's questions: what is it, is it for me, how does it work, how much, who is she. Pricing is clear, with the 8-session package highlighted and the savings shown. A free 30-minute discovery call lowers the barrier to a first contact. A detailed FAQ answers common worries, and trust signals (Sorbonne, Qualiopi, testimonials) reassure. Booking buttons appear at every key moment." },
+      { title: "Outcome", text: "The site is live and Sophie uses it to present her offers and take bookings online." },
+    ],
+    visit_label: "Visit spcoach.fr",
+    description: "",
     img:require("@/assets/images/projects/vignette-spcoach.png"),
     url_website: "http://spcoach.fr/",
     images: [
@@ -15,7 +29,21 @@ const projects = [
   { 
     id: '2', 
     name: "Melodie Yeremian",
-    description: "As a certified career coach and psycho-practitioner, she supports individuals through professional and personal transitions, helping them overcome career roadblocks, rebuild self-esteem, and find meaning during periods of change or professional burnout. She offers structured, confidential, and safe guidance for career changes, personal development, and workplace well-being.",
+    label: "Client project",
+    hook: "Two services, one clear path to a discovery call",
+    tagline: "Two services, one clear path to a discovery call",
+    client: "Mélodie Yeremian, career coach and psychopractitioner, Paris and remote",
+    role: "UX/UI design & UX writing",
+    tools: "Figma",
+    sections: [
+      { title: "Context", text: "Mélodie supports people through professional and personal transitions with two distinct services: career assessments (bilan de compétences) and therapeutic support." },
+      { title: "The challenge", text: "The two services speak to different needs. Visitors had to find their path quickly, without confusing a career assessment with therapy, and feel confident enough to book a first call." },
+      { title: "Approach", text: "I organised the site around two clear paths and wrote copy that stays gentle and personal, in line with Mélodie's practice." },
+      { title: "Solution", text: "Each service has its own page, details and discovery booking. A \"Book an appointment\" button stays visible throughout. A personal \"About me\" section builds trust, and an online shop extends her offer." },
+      { title: "Outcome", text: "The site is live and Mélodie uses it to present both services and take bookings online." },
+    ],
+    visit_label: "Visit melodieyeremian.com",
+    description: "",
     img:require("@/assets/images/projects/vignette-melodieyeremian.png"),
     url_website: "https://melodieyeremian.com/",
     images: [
@@ -28,7 +56,9 @@ const projects = [
   { 
     id: '3', 
     name: "Atypikhouse",
-    description: "Atypikhouse is an atypical accommodation rental platform. You'll find the change of scenery and tranquillity you need.",
+    label: "Concept project",
+    hook: "Booking platform for unusual stays",
+    description: "Atypikhouse is a concept for a rental platform dedicated to unusual stays. I designed the desktop and mobile experience to help people find a quiet getaway and book it easily.",
     url_website:'',
     img:require("@/assets/images/projects/vignette-atypikhouse.png"),
     images: [
@@ -39,7 +69,9 @@ const projects = [
   { 
     id: '4', 
     name: "Unfate",
-    description: "Unfate is a learning platform that aims to teach a subject as clearly and comprehensively as possible. Many people are unable to find all the information on a single site and have to surf the web to find it here and there. Unfate aims to offer the best courses so that people don't have to look elsewhere for lack of information. One of the special features of this platform is that courses are purchased via cryptocurrencies.",
+    label: "Client project",
+    hook: "Learning platform with crypto-paid courses",
+    description: "Unfate is a learning platform built around one idea: everything you need on a subject in one place, so you don't have to piece it together from across the web. Courses are paid in cryptocurrency. Working with the founding team, I designed the main flows: login, settings, practice and exams. The product has since been discontinued.",
     url_website:"",
     img:require("@/assets/images/projects/vignette-unfate.png"),
     images: [

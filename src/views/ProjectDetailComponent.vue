@@ -6,10 +6,21 @@
         <div v-if="project.id == $route.params.id ">
           <div class="pt-10 pl-4 md:pl-20"><h2 class="font-bold text-2xl"><button @click="$router.go(-1)" class="mr-2"><font-awesome-icon icon="fa-solid fa-chevron-left" color="#000" size="sm" /></button> {{ project.name }} </h2></div>
           <div class="md:px-16 py-10 rounded-3xl">
-            <p class="px-6 pb-4">
+            <p v-if="project.label" class="px-6 pb-2 text-sm font-bold uppercase" style="color: #9535d8;">{{ project.label }}</p>
+            <p v-if="project.tagline" class="px-6 pb-6 text-2xl font-bold">{{ project.tagline }}</p>
+            <ul v-if="project.client" class="px-6 pb-6" style="color:#7a7a7a">
+              <li><span class="font-bold text-black">Client:</span> {{ project.client }}</li>
+              <li><span class="font-bold text-black">Role:</span> {{ project.role }}</li>
+              <li><span class="font-bold text-black">Tools:</span> {{ project.tools }}</li>
+            </ul>
+            <div v-for="section in project.sections" :key="section.title" class="px-6 pb-6">
+              <h3 class="font-bold text-xl pb-2">{{ section.title }}</h3>
+              <p>{{ section.text }}</p>
+            </div>
+            <p v-if="project.description" class="px-6 pb-4">
               {{ project.description }}
               </p>
-              <p v-if="project.url_website != ''" class="px-6 py-4"><a :href="project.url_website" target="_blank" class="font-bold text-white px-4 py-2 rounded-full" style="background-color: #9535d8;">Go to {{ project.name }}</a></p>
+              <p v-if="project.url_website != ''" class="px-6 py-4"><a :href="project.url_website" target="_blank" class="font-bold text-white px-4 py-2 rounded-full" style="background-color: #9535d8;">{{ project.visit_label || 'Go to ' + project.name }}</a></p>
             <div class="py-10 flex flex-wrap">
                 <div v-for="(img, index) in imgs" :key="index" @click="() => showImg(index)" data-aos="zoom-in" class="item md:h-80 shadow-md hover:shadow-lg cursor-pointer mx-4 my-4 rounded-3xl border-color-card flex justify-center items-center">
                   <img :src="img" class="h-48 mx-auto" style="max-width:15rem;"  alt="">

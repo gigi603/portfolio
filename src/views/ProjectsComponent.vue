@@ -1,13 +1,16 @@
 <template>
 <div class="container mx-auto max-w-7xl competences-bloc py-10 px-6">
-        <h2 class="py-8 text-black text-3xl font-bold w-full" id="projects">PROJECTS</h2>
+        <h2 class="py-8 text-black text-3xl font-bold w-full" id="projects">Selected work</h2>
         <div class="flex gap-6 mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 w-full mb-10 z-10"> 
             <div v-for="(project, index) in projects" :key="index" :class="project.name" @click="redirectToProjectPage(project.id)" class="rounded-3xl border-color-card overflow-hidden bg-white shadow-lg" data-aos="zoom-in">
                 <router-link :to="{ name:'ProjectDetailComponent', params:{ id: project.id } }">
                 <img :src="project.img" class="mx-auto w-full h-72 md:h-96"/>
                 <div class="px-10 md:px-20 flex w-full">
-                    <h3 class="font-bold text-3xl text-left w-1/2 py-10">{{project.name}}</h3>
-                    <button class="w-1/2 flex justify-end items-center">
+                    <div class="w-3/4 py-8">
+                        <h3 class="font-bold text-3xl text-left">{{project.name}}</h3>
+                        <p class="text-left pt-2" style="color:#7a7a7a">{{project.hook}}</p>
+                    </div>
+                    <button class="w-1/4 flex justify-end items-center">
                         <router-link class="w-14 h-14 flex justify-center items-center sm:grid-cols-1 justify-center rounded-full bg-black hover:shadow-lg" :to="{ name:'ProjectDetailComponent', params:{ id: project.id } }">
                             <img src="@/assets/icons/arrow-right-fill.svg" class="mx-auto w-8 h-8"> 
                         </router-link>
