@@ -1,10 +1,10 @@
 <template>
-  <div class="language-switcher inline-flex items-center rounded-full bg-white">
+  <div class="language-switcher inline-flex items-center">
     <button
       v-for="lang in languages"
       :key="lang.code"
       type="button"
-      class="flag rounded-full overflow-hidden"
+      class="flag rounded-full overflow-hidden bg-white shadow-sm"
       :class="{ active: $i18n.locale === lang.code }"
       :aria-label="lang.label"
       :title="lang.label"
@@ -62,11 +62,10 @@ export default {
 
 <style scoped>
   .language-switcher {
-    border: 1px solid #e9dcf7;
-    padding: 3px;
-    gap: 4px;
+    gap: 12px;
   }
   .flag {
+    border: 1px solid #e9dcf7;
     width: 32px;
     height: 32px;
     flex-shrink: 0;
