@@ -34,7 +34,7 @@ export default {
     },
     "melodie": {
       "job": "Consultante en bilan de compétences et psychopraticienne",
-      "quote": "Gilbert a conçu mon site et en a écrit les textes. Il a su présenter clairement mes deux accompagnements, le bilan de compétences et la thérapie, avec un ton doux qui correspond à ma pratique. Mes visiteurs trouvent facilement leur chemin jusqu'à un rendez-vous découverte."
+      "quote": "Mes deux accompagnements, le bilan de compétences et la thérapie, sont très différents. Gilbert l'a tout de suite compris et a donné à chacun un parcours clair, avec des mots qui restent doux, comme ma pratique. Aujourd'hui, mes visiteurs trouvent le bon accompagnement et réservent facilement un rendez-vous découverte."
     }
   },
   "skills": {
