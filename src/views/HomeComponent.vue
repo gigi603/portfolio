@@ -155,7 +155,7 @@ export default {
 			bookingUrl: BOOKING_URL,
 			testimonials: [
 				{ projectId: '1', name: 'Sophie Pratt', job: 'Coach and therapist', quote: 'Gilbert designed my website and wrote its copy. He took the time to understand my work and my clients, who are often anxious about taking the first step. The result is a warm, clear site that feels like me and makes booking a session easy.' },
-				{ projectId: '2', name: 'Mélodie Yeremian', job: 'Career coach and psychopractitioner', quote: 'Gilbert designed my website and wrote its copy. He presented my two services, career assessment and therapy, clearly and in a gentle tone that matches my practice. Visitors easily find their way to a discovery call.' },
+				{ projectId: '2', name: 'Mélodie Yeremian', job: 'Career coach and psychopractitioner', quote: 'My two services, career assessment and therapy, are very different. Gilbert understood that right away and gave each one its own clear path, with words that stay gentle, like my practice. Now visitors find the right service and book a discovery call easily.' },
 			],
 			index: 0,
 			settings: {
