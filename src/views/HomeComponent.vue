@@ -51,9 +51,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="w-full bg-purple-full">
+		<!-- <div class="w-full bg-purple-full">
 			<div class="container mx-auto max-w-7xl pb-10 px-6">
-				<h2 class="py-8 text-black text-3xl font-bold  w-full">TOOLS</h2>  
+				<h2 class="py-8 text-black text-3xl font-bold  w-full">TOOLS</h2>
 				<div class="mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 pb-10 w-full">
 					<div v-for="software in softwares" :key="software.name" :class="software.name" class="rounded-3xl border-color-card overflow-hidden bg-white shadow-xl">
 						<div class="p-10" data-aos="zoom-in">
@@ -61,8 +61,8 @@
 							<div class="font-bold text-3xl text-center py-5"><h3>{{software.name}}</h3></div>
 						</div>
 					</div>
-				</div>
-				<!-- <h2 class="py-8 text-black text-3xl font-bold w-full">TRAVAUX</h2>  
+				</div> -->
+				<!-- <h2 class="py-8 text-black text-3xl font-bold w-full">TRAVAUX</h2>
 				<div class="flex flex-row min-w-0 break-words bg-white w-full shadow-lg border-color-card rounded-3xl">
 					<div class="px-14 py-14 xs:grid-cols-1 sm:grid-cols-1 w-full flex-auto">
 						<div class="slider">
@@ -85,9 +85,9 @@
 						</div>
 					</div>
 				</div> -->
-			
-		</div>
-	</div>
+
+		<!-- </div>
+	</div> -->
 </div>
 </template>
 
