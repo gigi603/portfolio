@@ -41,7 +41,6 @@
 		</div>
 		<section class="testimonials" id="testimonials">
 			<div class="container mx-auto max-w-7xl px-6">
-				<span class="eyebrow">{{ $t('testimonials.eyebrow') }}</span>
 				<h2 class="section-title">{{ $t('testimonials.title') }}</h2>
 				<div class="testimonials-grid">
 					<article v-for="testimonial in testimonials" :key="testimonial.key" class="testimonial" data-aos="zoom-in">
@@ -64,11 +63,11 @@
 		</section>
 		<section class="skills">
 			<div class="skills-deco" aria-hidden="true">
+				<div class="skills-dots"></div>
 				<div class="skills-glow skills-glow-1"></div>
 				<div class="skills-glow skills-glow-2"></div>
 			</div>
 			<div class="container mx-auto max-w-7xl px-6 skills-inner">
-				<span class="eyebrow">{{ $t('skills.eyebrow') }}</span>
 				<h2 class="section-title">{{ $t('skills.title') }}</h2>
 				<p class="section-lead">{{ $t('skills.subtitle') }}</p>
 				<div class="skills-grid">
@@ -96,19 +95,31 @@
 				</div>
 			</div>
 		</section>
-		<div class="w-full bg-white" id="about">
-			<div class="container mx-auto max-w-7xl px-6 pb-16">
-				<h2 class="py-8 text-black text-3xl font-bold w-full">{{ $t('about.title') }}</h2>
-				<div class="flex flex-col md:flex-row items-center gap-10" data-aos="zoom-in">
-					<img src="@/assets/images/gilbert-trinidad-portfolio.png" alt="Gilbert Trinidad" class="about-photo rounded-3xl object-cover"/>
-					<div class="text-lg leading-relaxed" style="color: #383a3c">
-						<p class="pb-4">{{ $t('about.p1') }}</p>
-						<p>{{ $t('about.p2') }}</p>
-						<a href="/files/Gilbert-Trinidad-CV.pdf" target="_blank" class="inline-block pt-6 font-bold hover:underline" style="color: #9535d7;">{{ $t('about.cv') }}</a>
+		<section class="about" id="about">
+			<div class="about-inner">
+				<div class="about-frame" data-aos="zoom-in">
+					<span class="about-dot about-dot-1" aria-hidden="true"></span>
+					<span class="about-dot about-dot-2" aria-hidden="true"></span>
+					<div class="about-arch">
+						<img src="@/assets/images/gilbert-portrait.png" alt="Gilbert Trinidad">
+					</div>
+					<div class="about-chip about-chip-1" aria-hidden="true"><span class="about-chip-icon" style="background: #f3e8ff">✏️</span>{{ $t('about.chip1') }}</div>
+					<div class="about-chip about-chip-2" aria-hidden="true"><span class="about-chip-icon" style="background: #e0f2fe">💻</span>{{ $t('about.chip2') }}</div>
+				</div>
+				<div class="about-text">
+					<h2 class="section-title">{{ $t('about.title') }}</h2>
+					<p>{{ $t('about.p1Start') }}<span class="about-highlight">{{ $t('about.p1Highlight') }}</span>{{ $t('about.p1End') }}</p>
+					<p>{{ $t('about.p2') }}</p>
+					<div class="about-buttons">
+						<a href="#contact" class="about-btn about-btn-primary">{{ $t('about.cta') }}</a>
+						<a href="/files/Gilbert-Trinidad-CV.pdf" target="_blank" rel="noopener" class="about-btn about-btn-outline">
+							{{ $t('about.cv') }}
+							<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-5-5m5 5l5-5M5 20h14" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+						</a>
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 		<!-- <div class="w-full bg-purple-full">
 			<div class="container mx-auto max-w-7xl pb-10 px-6">
 				<h2 class="py-8 text-black text-3xl font-bold  w-full">TOOLS</h2>
@@ -514,16 +525,6 @@ export default {
 		border: 2px solid #9535d7;
 		background-color: transparent;
 	}
-	.eyebrow {
-		display: inline-block;
-		font-size: 13px;
-		font-weight: 600;
-		color: #7b2cb8;
-		background: #f3e8ff;
-		border-radius: 9999px;
-		padding: 5px 12px;
-		margin-bottom: 14px;
-	}
 	.section-title {
 		font-family: "Montserrat", sans-serif;
 		font-weight: 800;
@@ -536,8 +537,10 @@ export default {
 		margin-top: 10px;
 	}
 	.testimonials {
-		background: #fff;
-		padding-bottom: 100px;
+		position: relative;
+		z-index: 1;
+		/* White, except the bottom 110px where the skills gradient starts under the cards */
+		background: linear-gradient(180deg, #fff calc(100% - 110px), transparent calc(100% - 110px));
 	}
 	.testimonials-grid {
 		display: grid;
@@ -624,10 +627,23 @@ export default {
 	.skills {
 		position: relative;
 		overflow: hidden;
-		background: #eee6ff;
-		padding: 100px 0 110px;
+		/* The gradient starts under the testimonial cards, which sit on top of it */
+		margin-top: -110px;
+		padding: 230px 0 220px;
+		background: linear-gradient(180deg, #fff 0, #eee6ff 200px, #eee6ff calc(100% - 180px), #fff 100%);
 	}
-	.skills::before {
+	.skills-deco {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+	}
+	.skills-dots {
+		position: absolute;
+		inset: 0;
+		-webkit-mask-image: linear-gradient(180deg, transparent 80px, #000 300px, #000 calc(100% - 260px), transparent calc(100% - 60px));
+		mask-image: linear-gradient(180deg, transparent 80px, #000 300px, #000 calc(100% - 260px), transparent calc(100% - 60px));
+	}
+	.skills-dots::before {
 		content: "";
 		position: absolute;
 		inset: 0;
@@ -635,12 +651,6 @@ export default {
 		background-size: 26px 26px;
 		-webkit-mask-image: linear-gradient(90deg, #000 0, #000 18%, transparent 34%, transparent 66%, #000 82%);
 		mask-image: linear-gradient(90deg, #000 0, #000 18%, transparent 34%, transparent 66%, #000 82%);
-		pointer-events: none;
-	}
-	.skills-deco {
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
 	}
 	.skills-glow {
 		position: absolute;
@@ -649,8 +659,8 @@ export default {
 		border-radius: 50%;
 		filter: blur(60px);
 	}
-	.skills-glow-1 { left: -140px; top: 40px; background: rgba(149, 53, 215, 0.22); }
-	.skills-glow-2 { right: -140px; bottom: -60px; background: rgba(236, 72, 153, 0.16); }
+	.skills-glow-1 { left: -140px; top: 180px; background: rgba(149, 53, 215, 0.22); }
+	.skills-glow-2 { right: -140px; bottom: 140px; background: rgba(236, 72, 153, 0.16); }
 	.skills-inner {
 		position: relative;
 	}
@@ -759,6 +769,169 @@ export default {
 		}
 		.section-title {
 			font-size: 28px;
+		}
+	}
+	.about {
+		background: #fff;
+		padding: 110px 24px 120px;
+	}
+	.about-inner {
+		max-width: 1240px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 480px 1fr;
+		gap: 90px;
+		align-items: center;
+	}
+	.about-frame {
+		position: relative;
+		width: 440px;
+		height: 540px;
+		margin: 0 auto;
+	}
+	.about-arch {
+		position: absolute;
+		inset: 0;
+		border-radius: 220px 220px 36px 36px;
+		overflow: hidden;
+		background: linear-gradient(160deg, #c9a7f0 0%, #b388ea 45%, #e9a8d4 100%);
+		box-shadow: 0 30px 60px rgba(61, 22, 87, 0.18);
+	}
+	.about-arch::before {
+		content: "";
+		position: absolute;
+		width: 360px;
+		height: 360px;
+		border-radius: 50%;
+		left: 40px;
+		top: 70px;
+		background: rgba(255, 255, 255, 0.22);
+	}
+	.about-arch::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background-image: radial-gradient(rgba(255, 255, 255, 0.35) 1.6px, transparent 1.6px);
+		background-size: 22px 22px;
+		-webkit-mask-image: linear-gradient(180deg, #000, transparent 60%);
+		mask-image: linear-gradient(180deg, #000, transparent 60%);
+	}
+	.about-arch img {
+		position: absolute;
+		left: 50%;
+		bottom: 0;
+		width: 470px;
+		max-width: none;
+		transform: translateX(-50%);
+		z-index: 1;
+	}
+	.about-chip {
+		position: absolute;
+		z-index: 2;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		background: #fff;
+		border-radius: 16px;
+		padding: 12px 16px;
+		font-size: 13.5px;
+		font-weight: 600;
+		color: #3d1657;
+		white-space: nowrap;
+		box-shadow: 0 14px 30px rgba(61, 22, 87, 0.16);
+	}
+	.about-chip-icon {
+		width: 30px;
+		height: 30px;
+		border-radius: 10px;
+		display: grid;
+		place-items: center;
+		font-size: 15px;
+	}
+	.about-chip-1 { left: -46px; top: 150px; transform: rotate(-4deg); }
+	.about-chip-2 { right: -40px; bottom: 70px; transform: rotate(3deg); }
+	.about-dot {
+		position: absolute;
+		border-radius: 50%;
+	}
+	.about-dot-1 { width: 70px; height: 70px; right: -14px; top: 40px; background: #f3e8ff; }
+	.about-dot-2 { width: 34px; height: 34px; left: 16px; bottom: -14px; background: #fce7f3; }
+	.about-text .section-title {
+		margin-bottom: 24px;
+	}
+	.about-text p {
+		font-size: 17.5px;
+		line-height: 1.75;
+		color: #383a3c;
+		margin-bottom: 18px;
+	}
+	.about-highlight {
+		color: #9535d7;
+		font-weight: 600;
+	}
+	.about-buttons {
+		display: flex;
+		gap: 14px;
+		margin-top: 30px;
+	}
+	.about-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		border-radius: 9999px;
+		padding: 14px 26px;
+		font-size: 15px;
+		font-weight: 600;
+		transition: opacity 150ms ease;
+	}
+	.about-btn:hover {
+		opacity: 0.85;
+	}
+	.about-btn-primary {
+		background: #9535d7;
+		color: #fff;
+		box-shadow: 0 10px 24px rgba(149, 53, 215, 0.28);
+	}
+	.about-btn-outline {
+		border: 2px solid #9535d7;
+		color: #9535d7;
+	}
+	@media (max-width: 1023px) {
+		.about-inner {
+			grid-template-columns: 1fr;
+			gap: 56px;
+		}
+	}
+	@media (max-width: 600px) {
+		.about {
+			padding: 70px 20px 80px;
+		}
+		.about-frame {
+			width: 300px;
+			height: 370px;
+		}
+		.about-arch {
+			border-radius: 150px 150px 28px 28px;
+		}
+		.about-arch::before {
+			width: 245px;
+			height: 245px;
+			left: 27px;
+			top: 48px;
+		}
+		.about-arch img {
+			width: 320px;
+		}
+		.about-chip {
+			font-size: 12.5px;
+			padding: 10px 12px;
+		}
+		.about-chip-1 { left: -12px; top: 100px; }
+		.about-chip-2 { right: -12px; bottom: 44px; }
+		.about-dot-1 { right: -6px; }
+		.about-buttons {
+			flex-direction: column;
 		}
 	}
 	.about-photo {

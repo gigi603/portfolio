@@ -61,8 +61,7 @@ export default {
       "pullStart": "“Visitors ",
       "pullEnd": "find the right service",
       "pullAfter": ".”"
-    },
-    "eyebrow": "Testimonials"
+    }
   },
   "skills": {
     "title": "What I do",
@@ -81,15 +80,19 @@ export default {
       "description": "I build what I design with HTML, CSS and Tailwind, so the final site matches the mockups.",
       "tags": "HTML / CSS | Tailwind | Launch"
     },
-    "eyebrow": "Skills",
     "subtitle": "From understanding your clients to a live website, one point of contact.",
     "tools": "My tools:"
   },
   "about": {
-    "title": "ABOUT",
-    "p1": "I'm Gilbert, a freelance product designer based in France. I work mostly with independent professionals and small businesses who need a site that feels like them and actually brings in clients.",
+    "title": "About",
     "p2": "My approach is simple: understand the people you want to reach, make the offer easy to grasp, and remove everything that slows down the decision. Because I also code, I can take a project from the first sketch to a live website.",
-    "cv": "Download my CV"
+    "cv": "Download my CV",
+    "p1Start": "I'm Gilbert, a ",
+    "p1Highlight": "freelance product designer",
+    "p1End": " based in Paris. I work mostly with independent professionals and small businesses who need a site that feels like them and actually brings in clients.",
+    "cta": "Let's talk about your project",
+    "chip1": "Design + copywriting",
+    "chip2": "From sketch to live website"
   },
   "case": {
     "client": "Client:",

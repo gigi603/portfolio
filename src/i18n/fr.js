@@ -61,8 +61,7 @@ export default {
       "pullStart": "« Mes visiteurs ",
       "pullEnd": "trouvent le bon accompagnement",
       "pullAfter": ". »"
-    },
-    "eyebrow": "Témoignages"
+    }
   },
   "skills": {
     "title": "Ce que je fais",
@@ -81,15 +80,19 @@ export default {
       "description": "Je développe ce que je conçois en HTML, CSS et Tailwind, pour que le site final soit fidèle aux maquettes.",
       "tags": "HTML / CSS | Tailwind | Mise en ligne"
     },
-    "eyebrow": "Compétences",
     "subtitle": "De la compréhension de vos clients jusqu'au site en ligne, un seul interlocuteur.",
     "tools": "Mes outils :"
   },
   "about": {
-    "title": "À PROPOS",
-    "p1": "Je suis Gilbert, product designer freelance basé en France. Je travaille surtout avec des indépendants et des petites entreprises qui ont besoin d'un site qui leur ressemble et qui leur amène vraiment des clients.",
+    "title": "À propos",
     "p2": "Ma méthode est simple : comprendre les personnes que vous voulez toucher, rendre votre offre facile à saisir et supprimer tout ce qui ralentit la décision. Comme je code aussi, je peux mener un projet du premier croquis jusqu'au site en ligne.",
-    "cv": "Télécharger mon CV"
+    "cv": "Télécharger mon CV",
+    "p1Start": "Je suis Gilbert, ",
+    "p1Highlight": "product designer freelance",
+    "p1End": " basé à Paris. Je travaille surtout avec des indépendants et des petites entreprises qui ont besoin d'un site qui leur ressemble et qui leur amène vraiment des clients.",
+    "cta": "Parlons de votre projet",
+    "chip1": "Design + rédaction",
+    "chip2": "Du croquis au site en ligne"
   },
   "case": {
     "client": "Client :",
