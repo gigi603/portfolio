@@ -629,7 +629,8 @@ export default {
 		overflow: hidden;
 		/* The gradient starts under the testimonial cards, which sit on top of it */
 		margin-top: -110px;
-		padding: 230px 0 220px;
+		/* Bottom padding matches the gap between testimonials and this title */
+		padding: 230px 0 121px;
 		background: linear-gradient(180deg, #fff 0, #eee6ff 200px, #eee6ff calc(100% - 180px), #fff 100%);
 	}
 	.skills-deco {
@@ -773,7 +774,7 @@ export default {
 	}
 	.about {
 		background: #fff;
-		padding: 110px 24px 120px;
+		padding: 0 24px 120px;
 	}
 	.about-inner {
 		max-width: 1240px;
