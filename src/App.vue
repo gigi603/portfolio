@@ -48,8 +48,38 @@ export default {
   src: url('./assets/fonts/Poppins/Poppins-Regular-400.ttf') format('truetype');
   /* Ajoutez les autres formats de police si vous les avez téléchargés (ex. woff, woff2, etc.) */
 }
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 700;
+  src: url('./assets/fonts/Montserrat/static/Montserrat-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 800;
+  src: url('./assets/fonts/Montserrat/static/Montserrat-ExtraBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 500;
+  src: url('./assets/fonts/Poppins/Poppins Medium 500.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 600;
+  src: url('./assets/fonts/Poppins/Poppins SemiBold 600.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 700;
+  src: url('./assets/fonts/Poppins/Poppins-Bold-700.ttf') format('truetype');
+}
 h1, h2, h3 {
   font-family: "Montserrat", sans-serif;
+}
+
+/* Keep anchored sections clear of the sticky navbar */
+[id] {
+  scroll-margin-top: 96px;
 }
 
 p, span, li, a {

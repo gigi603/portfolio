@@ -1,32 +1,30 @@
 <template>
 	<div>
-		<div class="w-full bg-purple-full">
-			<div class="container mx-auto max-w-7xl">	
-				<div class="flex flex-wrap items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-					<div class="md:py-20 card-intro px-6" data-aos="zoom-in">
-						<h1 class="mt-2 mb-4 text-4xl md:text-6xl font-bold leading-normal">
-						{{ $t('hero.hello') }} <br>Gilbert Trinidad
-						</h1>
-						<h2 class="py-5 font-bold text-4xl md:text-5xl" style="color: #9535D8">{{ $t('hero.title') }}</h2>
-						<p class="py-5 text-base" style="color: #383a3c">{{ $t('hero.text') }}</p>
-						<div class="flex flex-col md:flex-row gap-4 mt-6">
-							<a v-if="bookingUrl" :href="bookingUrl" target="_blank" rel="noopener" class="inline-block text-center text-white text-base font-bold px-6 py-4 w-full md:w-auto rounded-full hover:opacity-75" style="background-color: #9535d7;">{{ $t('hero.book') }}</a>
-							<a href="#contact" :class="bookingUrl ? 'btn-outline' : 'text-white'" class="inline-block text-center text-base font-bold px-6 py-4 w-full md:w-auto rounded-full hover:opacity-75" :style="bookingUrl ? '' : 'background-color: #9535d7;'">{{ $t('hero.talk') }}</a>
-						</div>
-						<a href="#testimonials" class="inline-block pt-4 text-sm hover:underline" style="color:#7a7a7a">{{ $t('hero.trusted') }}</a>
-					</div>
-					<div class="card-intro px-6 py-10" data-aos="zoom-in">
-						<div class="hero-mockup">
-							<img src="@/assets/images/projects/SPCoach/SPCoach.png" :alt="$t('hero.mockupAlt')" class="hero-mockup-desktop rounded-2xl shadow-2xl object-cover object-top"/>
-							<img src="@/assets/images/projects/SPCoach/SPCoach-mobile.png" alt="" class="hero-mockup-mobile rounded-2xl shadow-2xl object-cover object-top"/>
-						</div>
-					</div>
+		<section class="hero">
+			<div class="hero-bg" aria-hidden="true">
+				<div class="hero-dots"></div>
+				<div class="hero-glow hero-glow-1"></div>
+				<div class="hero-glow hero-glow-2"></div>
+				<div class="hero-glow hero-glow-3"></div>
+				<div v-for="chip in chips" :key="chip.key" class="hero-chip" :class="chip.position">
+					<span class="hero-chip-icon" :style="{ background: chip.color }">{{ chip.icon }}</span>{{ $t(`hero.chips.${chip.key}`) }}
 				</div>
 			</div>
-		</div>
-		<div class="w-full bg-purple-full">
+			<div class="hero-content" data-aos="zoom-in">
+				<p class="hero-badge"><i></i>{{ $t('hero.available') }}</p>
+				<h1 class="hero-title">{{ $t('hero.h1a') }}<br><em>{{ $t('hero.h1b') }}</em></h1>
+				<p class="hero-lead">{{ $t('hero.text') }}</p>
+				<div class="hero-buttons">
+					<a v-if="bookingUrl" :href="bookingUrl" target="_blank" rel="noopener" class="hero-btn hero-btn-primary">{{ $t('hero.book') }}</a>
+					<a href="#contact" class="hero-btn" :class="bookingUrl ? 'hero-btn-outline' : 'hero-btn-primary'">{{ $t('hero.talk') }}</a>
+				</div>
+				<a href="#testimonials" class="hero-trust">{{ $t('hero.trusted') }}</a>
+			</div>
+		</section>
+		<ProjectStrip/>
+		<div class="w-full bg-purple-full" id="projects">
 			<div class="container mx-auto max-w-7xl pt-10 md:pt-10 px-6">
-				<h2 class="py-8 text-black text-3xl font-bold w-full" id="projects">{{ $t('work.title') }}</h2>
+				<h2 class="py-8 text-black text-3xl font-bold w-full">{{ $t('work.title') }}</h2>
 				<div class="flex gap-6 mx-auto grid grid-cols-1 md:grid-cols-2 pb-10 w-full">
 					<div v-for="(project, index) in projects" :key="index" :class="project.name" class="rounded-3xl border-color-card overflow-hidden bg-white shadow-lg" @click="redirectToProjectPage(project.id)" data-aos="zoom-in">
 						<router-link :to="{ name:'ProjectDetailComponent', params:{ id: project.id } }">
@@ -75,9 +73,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="w-full bg-white">
+		<div class="w-full bg-white" id="about">
 			<div class="container mx-auto max-w-7xl px-6 pb-16">
-				<h2 class="py-8 text-black text-3xl font-bold w-full" id="about">{{ $t('about.title') }}</h2>
+				<h2 class="py-8 text-black text-3xl font-bold w-full">{{ $t('about.title') }}</h2>
 				<div class="flex flex-col md:flex-row items-center gap-10" data-aos="zoom-in">
 					<img src="@/assets/images/gilbert-trinidad-portfolio.png" alt="Gilbert Trinidad" class="about-photo rounded-3xl object-cover"/>
 					<div class="text-lg leading-relaxed" style="color: #383a3c">
@@ -131,6 +129,7 @@
 <script>
 import projects from '../db/projects'
 import { BOOKING_URL } from '../config'
+import ProjectStrip from '../components/ProjectStrip.vue'
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 // optional style for arrows & dots
@@ -141,6 +140,7 @@ export default {
 	name: 'HomeComponent',
 	components: { 
 		VueSlickCarousel,
+		ProjectStrip,
 	},
 	props: {
 		icon: {
@@ -153,6 +153,14 @@ export default {
 			visible: false,
 			projects: projects,
 			bookingUrl: BOOKING_URL,
+			chips: [
+				{ key: 'research', icon: '🔍', color: '#f3e8ff', position: 'chip-left-1' },
+				{ key: 'wireframes', icon: '✏️', color: '#fce7f3', position: 'chip-left-2' },
+				{ key: 'prototyping', icon: '🧩', color: '#ede9fe', position: 'chip-left-3' },
+				{ key: 'ui', icon: '🎨', color: '#e0f2fe', position: 'chip-right-1' },
+				{ key: 'testing', icon: '🧪', color: '#fef3c7', position: 'chip-right-2' },
+				{ key: 'launch', icon: '🚀', color: '#dcfce7', position: 'chip-right-3' },
+			],
 			testimonials: [
 				{ key: 'sophie', projectId: '1', name: 'Sophie Pratt' },
 				{ key: 'melodie', projectId: '2', name: 'Mélodie Yeremian' },
@@ -270,6 +278,185 @@ export default {
 	.card-intro {
 		flex-basis:50%;
 	}
+	.hero {
+		position: relative;
+		overflow: hidden;
+		padding: 48px 24px 40px;
+	}
+	.hero-content {
+		position: relative;
+		max-width: 1040px;
+		margin: 0 auto;
+		text-align: center;
+	}
+	.hero-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		background: #fff;
+		border-radius: 9999px;
+		padding: 6px 14px;
+		font-size: 13px;
+		font-weight: 500;
+		color: #3d1657;
+		margin-bottom: 26px;
+	}
+	.hero-badge i {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: #22c55e;
+		display: inline-block;
+	}
+	.hero-title {
+		font-family: "Montserrat", sans-serif;
+		font-weight: 800;
+		font-size: 56px;
+		line-height: 1.12;
+		letter-spacing: -1px;
+		color: #111;
+	}
+	.hero-title em {
+		font-style: normal;
+		color: #9535d7;
+	}
+	.hero-lead {
+		font-size: 18px;
+		line-height: 1.6;
+		color: #383a3c;
+		max-width: 640px;
+		margin: 22px auto 0;
+	}
+	.hero-buttons {
+		display: flex;
+		gap: 14px;
+		justify-content: center;
+		margin-top: 32px;
+	}
+	.hero-btn {
+		border-radius: 9999px;
+		padding: 15px 28px;
+		font-size: 15px;
+		font-weight: 600;
+		transition: opacity 150ms ease;
+	}
+	.hero-btn:hover {
+		opacity: 0.85;
+	}
+	.hero-btn-primary {
+		background: #9535d7;
+		color: #fff;
+		box-shadow: 0 10px 24px rgba(149, 53, 215, 0.3);
+	}
+	.hero-btn-outline {
+		border: 2px solid #9535d7;
+		color: #9535d7;
+	}
+	.hero-trust {
+		display: inline-block;
+		margin-top: 18px;
+		font-size: 13px;
+		color: #7a7a7a;
+	}
+	.hero-trust:hover {
+		text-decoration: underline;
+	}
+	.hero-bg {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+	}
+	.hero-dots {
+		position: absolute;
+		inset: 0;
+		background-image: radial-gradient(rgba(149, 53, 215, 0.16) 1.2px, transparent 1.2px);
+		background-size: 26px 26px;
+		-webkit-mask-image: linear-gradient(90deg, #000 0, #000 22%, transparent 38%, transparent 62%, #000 78%);
+		mask-image: linear-gradient(90deg, #000 0, #000 22%, transparent 38%, transparent 62%, #000 78%);
+	}
+	.hero-glow {
+		position: absolute;
+		border-radius: 50%;
+		filter: blur(60px);
+	}
+	.hero-glow-1 {
+		width: 420px;
+		height: 420px;
+		left: -120px;
+		top: 0;
+		background: rgba(149, 53, 215, 0.28);
+	}
+	.hero-glow-2 {
+		width: 380px;
+		height: 380px;
+		right: -100px;
+		top: 120px;
+		background: rgba(236, 72, 153, 0.18);
+	}
+	.hero-glow-3 {
+		width: 300px;
+		height: 300px;
+		right: 220px;
+		top: -160px;
+		background: rgba(149, 53, 215, 0.14);
+	}
+	.hero-chip {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		background: #fff;
+		border-radius: 14px;
+		padding: 10px 14px;
+		font-size: 13px;
+		font-weight: 600;
+		color: #3d1657;
+		box-shadow: 0 12px 30px rgba(61, 22, 87, 0.12);
+		animation: chip-float 6s ease-in-out infinite;
+	}
+	.hero-chip-icon {
+		width: 26px;
+		height: 26px;
+		border-radius: 8px;
+		display: grid;
+		place-items: center;
+		font-size: 14px;
+	}
+	.chip-left-1 { left: 6%; top: 120px; --tilt: -6deg; }
+	.chip-left-2 { left: 10%; top: 265px; --tilt: 4deg; animation-delay: -2s; }
+	.chip-left-3 { left: 5%; top: 410px; --tilt: -3deg; animation-delay: -4s; }
+	.chip-right-1 { right: 6%; top: 135px; --tilt: 5deg; animation-delay: -1s; }
+	.chip-right-2 { right: 10%; top: 280px; --tilt: -5deg; animation-delay: -3s; }
+	.chip-right-3 { right: 5%; top: 420px; --tilt: 3deg; animation-delay: -5s; }
+	@keyframes chip-float {
+		0%, 100% { transform: translateY(0) rotate(var(--tilt)); }
+		50% { transform: translateY(-4px) rotate(var(--tilt)); }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.hero-chip {
+			animation: none;
+			transform: rotate(var(--tilt));
+		}
+	}
+	@media (max-width: 900px) {
+		.hero-chip {
+			display: none;
+		}
+	}
+	@media (max-width: 600px) {
+		.hero {
+			padding: 44px 20px 30px;
+		}
+		.hero-title {
+			font-size: 36px;
+		}
+		.hero-lead {
+			font-size: 16px;
+		}
+		.hero-buttons {
+			flex-direction: column;
+		}
+	}
 	.btn-outline {
 		color: #9535d7;
 		border: 2px solid #9535d7;
@@ -282,22 +469,6 @@ export default {
 		font-weight: bold;
 		height: 48px;
 	}
-	.hero-mockup {
-		position: relative;
-		padding: 0 0 48px 48px;
-	}
-	.hero-mockup-desktop {
-		display: block;
-		width: 100%;
-		aspect-ratio: 16 / 10;
-	}
-	.hero-mockup-mobile {
-		position: absolute;
-		left: 0;
-		bottom: 0;
-		width: 26%;
-		aspect-ratio: 9 / 19;
-	}
 	.about-photo {
 		width: 320px;
 		height: 320px;
@@ -309,12 +480,6 @@ export default {
 			flex-basis: 100%; /* ou flex-basis: calc(100% / 2); */
 		}
 
-		.hero-mockup {
-			padding: 0;
-		}
-		.hero-mockup-mobile {
-			display: none;
-		}
 	}
 	@media (max-width: 480px) { /* Taille écran mobile */
 		.item {

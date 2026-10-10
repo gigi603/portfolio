@@ -66,8 +66,8 @@ export default {
   }
   .flag {
     border: 1px solid #e9dcf7;
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     flex-shrink: 0;
     opacity: 0.5;
     transition: opacity 150ms ease, box-shadow 150ms ease;

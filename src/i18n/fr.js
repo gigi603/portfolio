@@ -5,11 +5,17 @@ export default {
     "description": "Product designer freelance. Je conçois des sites clairs et chaleureux pour les coachs, thérapeutes et petites entreprises, pour que leurs clients comprennent l'offre et réservent en quelques clics."
   },
   "nav": {
-    "home": "ACCUEIL",
-    "projects": "PROJETS",
-    "contact": "CONTACT",
-    "about": "À PROPOS",
-    "cv": "CV"
+    "projects": "Projets",
+    "contact": "Me contacter",
+    "about": "À propos",
+    "cv": "CV",
+    "homeLabel": "Gilbert Trinidad, accueil",
+    "services": "Services",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "menu": "Menu",
+    "downloadCv": "Télécharger mon CV",
+    "bookCall": "Réserver un appel gratuit"
   },
   "lang": {
     "fr": "Français",
@@ -22,7 +28,18 @@ export default {
     "book": "Réserver un appel gratuit de 30 min",
     "talk": "Parlons de votre projet",
     "trusted": "Ils m'ont fait confiance : coachs et thérapeutes à Paris",
-    "mockupAlt": "Site SPCoach, version ordinateur et mobile"
+    "mockupAlt": "Site SPCoach, version ordinateur et mobile",
+    "available": "Disponible pour de nouveaux projets",
+    "h1a": "Bonjour, je suis Gilbert,",
+    "h1b": "Product Designer freelance",
+    "chips": {
+      "research": "Recherche UX",
+      "wireframes": "Wireframes",
+      "prototyping": "Prototypage",
+      "ui": "UI design",
+      "testing": "Tests utilisateurs",
+      "launch": "Mise en ligne"
+    }
   },
   "work": {
     "title": "Projets sélectionnés"
@@ -136,5 +153,16 @@ export default {
   "privacy": {
     "title": "Politique de confidentialité",
     "text": "Ce site ne dépose aucun cookie publicitaire. Les informations envoyées via le formulaire de contact (nom, email, message) servent uniquement à vous répondre et ne sont jamais transmises à des tiers."
+  },
+  "strip": {
+    "alt": "Projet {name}, écran {screen}",
+    "label": "Écrans de projets",
+    "screens": {
+      "pricing": "tarifs",
+      "confirmation": "confirmation",
+      "services": "prestations",
+      "shop": "boutique",
+      "home": "accueil"
+    }
   }
 }

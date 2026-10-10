@@ -9,11 +9,17 @@ export default {
     "en": "English"
   },
   "nav": {
-    "home": "HOME",
-    "projects": "PROJECTS",
-    "contact": "CONTACT ME",
-    "about": "ABOUT",
-    "cv": "CV"
+    "projects": "Projects",
+    "contact": "Contact me",
+    "about": "About",
+    "cv": "CV",
+    "homeLabel": "Gilbert Trinidad, home",
+    "services": "Services",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "menu": "Menu",
+    "downloadCv": "Download my CV",
+    "bookCall": "Book a free call"
   },
   "hero": {
     "hello": "Hi, I'm",
@@ -22,7 +28,18 @@ export default {
     "book": "Book a free 30-min call",
     "talk": "Let's talk about your project",
     "trusted": "Trusted by coaches and therapists in Paris",
-    "mockupAlt": "SPCoach website, desktop and mobile"
+    "mockupAlt": "SPCoach website, desktop and mobile",
+    "available": "Available for new projects",
+    "h1a": "Hi, I'm Gilbert,",
+    "h1b": "Freelance Product Designer",
+    "chips": {
+      "research": "UX research",
+      "wireframes": "Wireframes",
+      "prototyping": "Prototyping",
+      "ui": "UI design",
+      "testing": "User testing",
+      "launch": "Launch"
+    }
   },
   "work": {
     "title": "Selected work"
@@ -136,5 +153,16 @@ export default {
   "privacy": {
     "title": "Privacy policy",
     "text": "This website doesn't use advertising cookies. The details you send through the contact form (name, email, message) are only used to reply to you and are never shared with third parties."
+  },
+  "strip": {
+    "alt": "{name} project, {screen} screen",
+    "label": "Project screens",
+    "screens": {
+      "pricing": "pricing",
+      "confirmation": "confirmation",
+      "services": "services",
+      "shop": "shop",
+      "home": "home"
+    }
   }
 }
