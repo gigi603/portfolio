@@ -124,7 +124,18 @@ export default {
         "solution": "Une page unique qui suit les questions du visiteur : qu'est-ce que c'est, est-ce pour moi, comment ça marche, combien ça coûte, qui est-elle. Les tarifs sont clairs, avec le forfait de 8 séances mis en avant et l'économie affichée. Un appel découverte gratuit de 30 minutes facilite le premier contact. Une FAQ détaillée répond aux inquiétudes fréquentes, et des gages de confiance (Sorbonne, Qualiopi, témoignages) rassurent. Les boutons de réservation apparaissent à chaque moment clé.",
         "outcome": "Le site est en ligne et Sophie l'utilise pour présenter ses offres et prendre ses rendez-vous."
       },
-      "type": "Site vitrine · Réservation"
+      "type": "Site vitrine · Réservation",
+      "screens": {
+        "intro": {
+          "title": "Introduction"
+        },
+        "pricing": {
+          "title": "Mes tarifs"
+        },
+        "confirmation": {
+          "title": "Page de confirmation"
+        }
+      }
     },
     "2": {
       "label": "Projet client",
@@ -141,19 +152,58 @@ export default {
         "solution": "Chaque accompagnement a sa propre page, ses détails et sa réservation découverte. Un bouton « Prendre RDV » reste visible partout. Une section « Qui suis-je » personnelle crée la confiance, et une boutique en ligne complète son offre.",
         "outcome": "Le site est en ligne et Mélodie l'utilise pour présenter ses deux accompagnements et prendre ses rendez-vous."
       },
-      "type": "Site vitrine · Boutique"
+      "type": "Site vitrine · Boutique",
+      "screens": {
+        "services": {
+          "title": "Prestations"
+        },
+        "pricing": {
+          "title": "Tarifs"
+        },
+        "shop": {
+          "title": "Boutique"
+        }
+      }
     },
     "3": {
       "label": "Projet conceptuel",
       "hook": "Plateforme de réservation d'hébergements insolites",
       "description": "Atypikhouse est le concept d'une plateforme de location dédiée aux séjours insolites. J'ai conçu l'expérience sur ordinateur et mobile pour aider chacun à trouver une escapade au calme et à la réserver facilement.",
-      "type": "Plateforme web & mobile"
+      "type": "Plateforme web & mobile",
+      "screens": {
+        "homeDesktop": {
+          "title": "Accueil sur ordinateur"
+        },
+        "homeMobile": {
+          "title": "Accueil sur mobile"
+        }
+      }
     },
     "4": {
       "label": "Projet client",
       "hook": "Plateforme de formation avec des cours payés en cryptomonnaie",
       "description": "Unfate est une plateforme de formation née d'une idée simple : tout ce qu'il faut savoir sur un sujet, au même endroit, sans avoir à chercher des morceaux partout sur le web. Les cours se paient en cryptomonnaie. Avec l'équipe fondatrice, j'ai conçu les parcours principaux : connexion, paramètres, entraînement et examens. Le produit a depuis été arrêté.",
-      "type": "Application web"
+      "type": "Application web",
+      "screens": {
+        "login": {
+          "title": "Connexion"
+        },
+        "settings": {
+          "title": "Paramètres"
+        },
+        "practice": {
+          "title": "Entraînement"
+        },
+        "examInstructions": {
+          "title": "Consignes d'examen"
+        },
+        "nextQuestion": {
+          "title": "Question suivante"
+        },
+        "examPassed": {
+          "title": "Examen réussi"
+        }
+      }
     }
   },
   "contact": {
@@ -186,5 +236,10 @@ export default {
       "shop": "boutique",
       "home": "accueil"
     }
+  },
+  "gallery": {
+    "title": "Les écrans",
+    "hint": "Cliquez sur un écran pour l'agrandir",
+    "open": "Agrandir : {title}"
   }
 }

@@ -7,10 +7,9 @@ const projects = [
     img:require("@/assets/images/projects/vignette-spcoach.png"),
     url_website: "http://spcoach.fr/",
     images: [
-      { src:require("@/assets/images/projects/SPCoach/intro-min.png") },
-      { src:require("@/assets/images/projects/SPCoach/mes-tarifs-min.png") },
-      { src:require("@/assets/images/projects/SPCoach/page-de-confirmation-min.png") },
-
+      { key: 'intro', src:require("@/assets/images/projects/gallery/spcoach-intro.jpg") },
+      { key: 'pricing', src:require("@/assets/images/projects/gallery/spcoach-tarifs.jpg") },
+      { key: 'confirmation', src:require("@/assets/images/projects/SPCoach/page-de-confirmation-min.png") },
     ],
   },
   { 
@@ -20,10 +19,9 @@ const projects = [
     img:require("@/assets/images/projects/vignette-melodieyeremian.png"),
     url_website: "https://melodieyeremian.com/",
     images: [
-      { src:require("@/assets/images/projects/MelodieYeremian/melodieyeremian-boutique.png") },
-      { src:require("@/assets/images/projects/MelodieYeremian/melodieyeremian-prestations.png") },
-      { src:require("@/assets/images/projects/MelodieYeremian/melodieyeremian-tarifs.png") },
-
+      { key: 'services', src:require("@/assets/images/projects/gallery/melodie-prestations.jpg") },
+      { key: 'pricing', src:require("@/assets/images/projects/gallery/melodie-tarifs.jpg") },
+      { key: 'shop', src:require("@/assets/images/projects/gallery/melodie-boutique.jpg") },
     ],
   },
   { 
@@ -32,8 +30,8 @@ const projects = [
     url_website:'',
     img:require("@/assets/images/projects/vignette-atypikhouse.png"),
     images: [
-      { src:require("@/assets/images/projects/Atypikhouse/Atypikhouse-home-desktop.png") },
-      { src:require("@/assets/images/projects/Atypikhouse/Atypikhouse-home-mobile.png") },
+      { key: 'homeDesktop', src:require("@/assets/images/projects/gallery/atypikhouse-desktop.jpg") },
+      { key: 'homeMobile', device: 'mobile', src:require("@/assets/images/projects/gallery/atypikhouse-mobile.jpg") },
     ],
   },
   { 
@@ -42,12 +40,12 @@ const projects = [
     url_website:"",
     img:require("@/assets/images/projects/vignette-unfate.png"),
     images: [
-      { src:require("@/assets/images/projects/Login.svg") },
-      { src:require("@/assets/images/projects/Settings.svg") },
-      { src:require("@/assets/images/projects/Exam_Instruction.svg") },
-      { src:require("@/assets/images/projects/Exam_next_question.svg") },
-      { src:require("@/assets/images/projects/Exam_Success.svg") },
-      { src:require("@/assets/images/projects/Practice.svg") },
+      { key: 'login', src:require("@/assets/images/projects/Login.svg") },
+      { key: 'settings', src:require("@/assets/images/projects/Settings.svg") },
+      { key: 'practice', src:require("@/assets/images/projects/Practice.svg") },
+      { key: 'examInstructions', src:require("@/assets/images/projects/Exam_Instruction.svg") },
+      { key: 'nextQuestion', src:require("@/assets/images/projects/Exam_next_question.svg") },
+      { key: 'examPassed', src:require("@/assets/images/projects/Exam_Success.svg") },
     ],
   },
 ]

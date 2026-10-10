@@ -124,7 +124,18 @@ export default {
         "solution": "A single page that follows the visitor's questions: what is it, is it for me, how does it work, how much, who is she. Pricing is clear, with the 8-session package highlighted and the savings shown. A free 30-minute discovery call lowers the barrier to a first contact. A detailed FAQ answers common worries, and trust signals (Sorbonne, Qualiopi, testimonials) reassure. Booking buttons appear at every key moment.",
         "outcome": "The site is live and Sophie uses it to present her offers and take bookings online."
       },
-      "type": "Showcase site · Booking"
+      "type": "Showcase site · Booking",
+      "screens": {
+        "intro": {
+          "title": "Introduction"
+        },
+        "pricing": {
+          "title": "Pricing"
+        },
+        "confirmation": {
+          "title": "Confirmation page"
+        }
+      }
     },
     "2": {
       "label": "Client project",
@@ -141,19 +152,58 @@ export default {
         "solution": "Each service has its own page, details and discovery booking. A \"Book an appointment\" button stays visible throughout. A personal \"About me\" section builds trust, and an online shop extends her offer.",
         "outcome": "The site is live and Mélodie uses it to present both services and take bookings online."
       },
-      "type": "Showcase site · Shop"
+      "type": "Showcase site · Shop",
+      "screens": {
+        "services": {
+          "title": "Services"
+        },
+        "pricing": {
+          "title": "Pricing"
+        },
+        "shop": {
+          "title": "Shop"
+        }
+      }
     },
     "3": {
       "label": "Concept project",
       "hook": "Booking platform for unusual stays",
       "description": "Atypikhouse is a concept for a rental platform dedicated to unusual stays. I designed the desktop and mobile experience to help people find a quiet getaway and book it easily.",
-      "type": "Web & mobile platform"
+      "type": "Web & mobile platform",
+      "screens": {
+        "homeDesktop": {
+          "title": "Home on desktop"
+        },
+        "homeMobile": {
+          "title": "Home on mobile"
+        }
+      }
     },
     "4": {
       "label": "Client project",
       "hook": "Learning platform with crypto-paid courses",
       "description": "Unfate is a learning platform built around one idea: everything you need on a subject in one place, so you don't have to piece it together from across the web. Courses are paid in cryptocurrency. Working with the founding team, I designed the main flows: login, settings, practice and exams. The product has since been discontinued.",
-      "type": "Web app"
+      "type": "Web app",
+      "screens": {
+        "login": {
+          "title": "Sign-in"
+        },
+        "settings": {
+          "title": "Settings"
+        },
+        "practice": {
+          "title": "Practice"
+        },
+        "examInstructions": {
+          "title": "Exam instructions"
+        },
+        "nextQuestion": {
+          "title": "Next question"
+        },
+        "examPassed": {
+          "title": "Exam passed"
+        }
+      }
     }
   },
   "contact": {
@@ -186,5 +236,10 @@ export default {
       "shop": "shop",
       "home": "home"
     }
+  },
+  "gallery": {
+    "title": "Screens",
+    "hint": "Click a screen to enlarge it",
+    "open": "Enlarge: {title}"
   }
 }
