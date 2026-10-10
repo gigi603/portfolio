@@ -42,7 +42,8 @@ export default {
     }
   },
   "work": {
-    "title": "Selected work"
+    "title": "Selected work",
+    "intro": "Two coaching websites I designed and wrote, and two platforms: a concept and a client product."
   },
   "testimonials": {
     "title": "What clients say",
@@ -105,7 +106,8 @@ export default {
         "approach": "I designed the structure and wrote the copy together, so every section answers the next question a visitor is likely to ask. The tone is warm and personal, written in Sophie's own voice.",
         "solution": "A single page that follows the visitor's questions: what is it, is it for me, how does it work, how much, who is she. Pricing is clear, with the 8-session package highlighted and the savings shown. A free 30-minute discovery call lowers the barrier to a first contact. A detailed FAQ answers common worries, and trust signals (Sorbonne, Qualiopi, testimonials) reassure. Booking buttons appear at every key moment.",
         "outcome": "The site is live and Sophie uses it to present her offers and take bookings online."
-      }
+      },
+      "type": "Showcase site · Booking"
     },
     "2": {
       "label": "Client project",
@@ -121,17 +123,20 @@ export default {
         "approach": "I organised the site around two clear paths and wrote copy that stays gentle and personal, in line with Mélodie's practice.",
         "solution": "Each service has its own page, details and discovery booking. A \"Book an appointment\" button stays visible throughout. A personal \"About me\" section builds trust, and an online shop extends her offer.",
         "outcome": "The site is live and Mélodie uses it to present both services and take bookings online."
-      }
+      },
+      "type": "Showcase site · Shop"
     },
     "3": {
       "label": "Concept project",
       "hook": "Booking platform for unusual stays",
-      "description": "Atypikhouse is a concept for a rental platform dedicated to unusual stays. I designed the desktop and mobile experience to help people find a quiet getaway and book it easily."
+      "description": "Atypikhouse is a concept for a rental platform dedicated to unusual stays. I designed the desktop and mobile experience to help people find a quiet getaway and book it easily.",
+      "type": "Web & mobile platform"
     },
     "4": {
       "label": "Client project",
       "hook": "Learning platform with crypto-paid courses",
-      "description": "Unfate is a learning platform built around one idea: everything you need on a subject in one place, so you don't have to piece it together from across the web. Courses are paid in cryptocurrency. Working with the founding team, I designed the main flows: login, settings, practice and exams. The product has since been discontinued."
+      "description": "Unfate is a learning platform built around one idea: everything you need on a subject in one place, so you don't have to piece it together from across the web. Courses are paid in cryptocurrency. Working with the founding team, I designed the main flows: login, settings, practice and exams. The product has since been discontinued.",
+      "type": "Web app"
     }
   },
   "contact": {

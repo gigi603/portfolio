@@ -1,11 +1,18 @@
 <template>
 	<div>
+		<!-- One continuous background behind the navbar, hero, project strip and selected work -->
+		<div class="home-bg">
+		<div class="home-bg-deco" aria-hidden="true">
+			<div class="home-dots"></div>
+			<div class="home-glow home-glow-1"></div>
+			<div class="home-glow home-glow-2"></div>
+			<div class="home-glow home-glow-3"></div>
+			<div class="home-glow home-glow-4"></div>
+			<div class="home-glow home-glow-5"></div>
+			<div class="home-fade"></div>
+		</div>
 		<section class="hero">
 			<div class="hero-bg" aria-hidden="true">
-				<div class="hero-dots"></div>
-				<div class="hero-glow hero-glow-1"></div>
-				<div class="hero-glow hero-glow-2"></div>
-				<div class="hero-glow hero-glow-3"></div>
 				<div v-for="chip in chips" :key="chip.key" class="hero-chip" :class="chip.position">
 					<span class="hero-chip-icon" :style="{ background: chip.color }">{{ chip.icon }}</span>{{ $t(`hero.chips.${chip.key}`) }}
 				</div>
@@ -22,28 +29,15 @@
 			</div>
 		</section>
 		<ProjectStrip/>
-		<div class="w-full bg-purple-full" id="projects">
-			<div class="container mx-auto max-w-7xl pt-10 md:pt-10 px-6">
-				<h2 class="py-8 text-black text-3xl font-bold w-full">{{ $t('work.title') }}</h2>
-				<div class="flex gap-6 mx-auto grid grid-cols-1 md:grid-cols-2 pb-10 w-full">
-					<div v-for="(project, index) in projects" :key="index" :class="project.name" class="rounded-3xl border-color-card overflow-hidden bg-white shadow-lg" @click="redirectToProjectPage(project.id)" data-aos="zoom-in">
-						<router-link :to="{ name:'ProjectDetailComponent', params:{ id: project.id } }">
-							<img :src="project.img" class="mx-auto w-full h-72 md:h-96"/>
-							<div class="px-10 md:px-20 flex w-full">
-								<div class="w-3/4 py-8">
-									<h3 class="font-bold text-3xl text-left">{{project.name}}</h3>
-									<p class="text-left pt-2" style="color:#7a7a7a">{{ $t(`projects.${project.id}.hook`) }}</p>
-								</div>
-								<button class="w-1/4 flex justify-end items-center">
-									<router-link class="w-14 h-14 flex justify-center items-center grid sm:grid-cols-1 justify-center rounded-full bg-black hover:shadow-lg" :to="{ name:'ProjectDetailComponent', params:{ id: project.id } }">
-										<img src="@/assets/icons/arrow-right-fill.svg" class="mx-auto w-8 h-8"> 
-									</router-link>
-								</button>
-							</div>
-						</router-link>
-					</div>
+		<section class="selected-work" id="projects">
+			<div class="container mx-auto max-w-7xl px-6">
+				<h2 class="selected-work-title">{{ $t('work.title') }}</h2>
+				<p v-if="$te('work.intro', 'en')" class="selected-work-intro">{{ $t('work.intro') }}</p>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+					<ProjectCard v-for="project in projects" :key="project.id" :project="project" data-aos="zoom-in"/>
 				</div>
 			</div>
+		</section>
 		</div>
 		<div class="w-full bg-white">
 			<div class="container mx-auto max-w-7xl px-6 pb-16">
@@ -130,6 +124,7 @@
 import projects from '../db/projects'
 import { BOOKING_URL } from '../config'
 import ProjectStrip from '../components/ProjectStrip.vue'
+import ProjectCard from '../components/ProjectCard.vue'
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 // optional style for arrows & dots
@@ -141,6 +136,7 @@ export default {
 	components: { 
 		VueSlickCarousel,
 		ProjectStrip,
+		ProjectCard,
 	},
 	props: {
 		icon: {
@@ -280,7 +276,6 @@ export default {
 	}
 	.hero {
 		position: relative;
-		overflow: hidden;
 		padding: 48px 24px 40px;
 	}
 	.hero-content {
@@ -366,39 +361,63 @@ export default {
 		inset: 0;
 		pointer-events: none;
 	}
-	.hero-dots {
+	.home-bg {
+		position: relative;
+		isolation: isolate;
+		background: #eee6ff;
+		/* Start behind the sticky navbar (16px margin + 64px bar) */
+		margin-top: -80px;
+		padding-top: 80px;
+	}
+	.home-bg-deco {
 		position: absolute;
 		inset: 0;
-		background-image: radial-gradient(rgba(149, 53, 215, 0.16) 1.2px, transparent 1.2px);
+		z-index: -1;
+		overflow: hidden;
+		pointer-events: none;
+	}
+	.home-dots {
+		position: absolute;
+		inset: 0;
+		background-image: radial-gradient(rgba(149, 53, 215, 0.24) 1.7px, transparent 1.7px);
 		background-size: 26px 26px;
 		-webkit-mask-image: linear-gradient(90deg, #000 0, #000 22%, transparent 38%, transparent 62%, #000 78%);
 		mask-image: linear-gradient(90deg, #000 0, #000 22%, transparent 38%, transparent 62%, #000 78%);
 	}
-	.hero-glow {
+	.home-glow {
 		position: absolute;
 		border-radius: 50%;
 		filter: blur(60px);
 	}
-	.hero-glow-1 {
-		width: 420px;
-		height: 420px;
-		left: -120px;
-		top: 0;
-		background: rgba(149, 53, 215, 0.28);
+	.home-glow-1 { width: 420px; height: 420px; left: -120px; top: 80px; background: rgba(149, 53, 215, 0.28); }
+	.home-glow-2 { width: 380px; height: 380px; right: -100px; top: 200px; background: rgba(236, 72, 153, 0.18); }
+	.home-glow-3 { width: 300px; height: 300px; right: 220px; top: -80px; background: rgba(149, 53, 215, 0.14); }
+	.home-glow-4 { width: 520px; height: 520px; left: -160px; top: 1150px; background: rgba(236, 72, 153, 0.14); }
+	.home-glow-5 { width: 560px; height: 560px; right: -180px; top: 1500px; background: rgba(149, 53, 215, 0.2); }
+	.home-fade {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 260px;
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0), #fff);
 	}
-	.hero-glow-2 {
-		width: 380px;
-		height: 380px;
-		right: -100px;
-		top: 120px;
-		background: rgba(236, 72, 153, 0.18);
+	.selected-work {
+		padding: 40px 0 200px;
 	}
-	.hero-glow-3 {
-		width: 300px;
-		height: 300px;
-		right: 220px;
-		top: -160px;
-		background: rgba(149, 53, 215, 0.14);
+	.selected-work-title {
+		font-family: "Montserrat", sans-serif;
+		font-weight: 800;
+		font-size: 34px;
+		color: #111;
+	}
+	.selected-work-intro {
+		font-size: 17px;
+		color: #5b5b66;
+		padding-top: 8px;
+	}
+	.selected-work .grid {
+		margin-top: 30px;
 	}
 	.hero-chip {
 		position: absolute;
