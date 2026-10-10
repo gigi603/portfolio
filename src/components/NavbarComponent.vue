@@ -85,7 +85,6 @@ export default {
   data() {
     return {
       showMenu: false,
-      cvUrl: '/files/Gilbert-Trinidad-CV.pdf',
       bookingUrl: BOOKING_URL,
       activeSection: null,
       scrollFrame: null,
@@ -93,6 +92,9 @@ export default {
     };
   },
   computed: {
+    cvUrl() {
+      return this.$i18n.locale === 'en' ? '/files/Gilbert-Trinidad-Resume.pdf' : '/files/Gilbert-Trinidad-CV.pdf'
+    },
     sectionLinks() {
       return [
         { id: 'projects', key: 'projects' },
