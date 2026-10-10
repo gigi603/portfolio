@@ -1,27 +1,58 @@
 <template>
-  <div class="container mx-auto max-w-7xl px-6 py-12">
+  <div class="container mx-auto max-w-7xl px-6 project-wrapper">
     <template v-for="project in projects">
       <article v-if="project.id == $route.params.id" :key="project.id" class="project-page">
-        <h2 class="font-bold text-2xl"><button @click="$router.go(-1)" class="mr-2" :aria-label="$t('case.back')"><font-awesome-icon icon="fa-solid fa-chevron-left" color="#000" size="sm" /></button> {{ project.name }}</h2>
-        <!-- Reading column for the case study text; the gallery below uses the full width -->
-        <div class="project-text">
-          <p class="pb-2 text-sm font-bold uppercase" style="color: #9535d8;">{{ $t(`projects.${project.id}.label`) }}</p>
-          <template v-if="project.sections">
-            <p class="pb-6 text-2xl font-bold">{{ $t(`projects.${project.id}.tagline`) }}</p>
-            <ul class="pb-6" style="color:#7a7a7a">
-              <li><span class="font-bold text-black">{{ $t('case.client') }}</span> {{ $t(`projects.${project.id}.client`) }}</li>
-              <li><span class="font-bold text-black">{{ $t('case.role') }}</span> {{ $t(`projects.${project.id}.role`) }}</li>
-              <li><span class="font-bold text-black">{{ $t('case.tools') }}</span> {{ $t(`projects.${project.id}.tools`) }}</li>
-            </ul>
-            <div v-for="section in project.sections" :key="section" class="pb-6">
-              <h3 class="font-bold text-xl pb-2">{{ $t(`case.sections.${section}`) }}</h3>
-              <p>{{ $t(`projects.${project.id}.sections.${section}`) }}</p>
+        <h2 class="project-back"><button @click="$router.go(-1)" class="mr-2" :aria-label="$t('case.back')"><font-awesome-icon icon="fa-solid fa-chevron-left" color="#000" size="sm" /></button> {{ project.name }}</h2>
+        <div class="project-columns">
+          <div class="project-main">
+            <p class="project-label">{{ $t(`projects.${project.id}.label`) }}</p>
+            <p v-if="project.sections" class="project-tagline">{{ $t(`projects.${project.id}.tagline`) }}</p>
+            <!-- Below 1024px the summary sits here, before the sections -->
+            <div class="project-mobile-only">
+              <div class="side-card">
+                <h4>{{ $t('case.atAGlance') }}</h4>
+                <dl>
+                  <div v-if="$te(`projects.${project.id}.client`, 'en')"><dt>{{ $t('case.clientLabel') }}</dt><dd>{{ $t(`projects.${project.id}.client`) }}</dd></div>
+                  <div v-if="$te(`projects.${project.id}.role`, 'en')"><dt>{{ $t('case.roleLabel') }}</dt><dd>{{ $t(`projects.${project.id}.role`) }}</dd></div>
+                  <div><dt>{{ $t('case.typeLabel') }}</dt><dd>{{ $t(`projects.${project.id}.type`) }}</dd></div>
+                  <div v-if="$te(`projects.${project.id}.tools`, 'en')"><dt>{{ $t('case.toolsLabel') }}</dt><dd class="side-chips"><span v-for="tool in $t(`projects.${project.id}.tools`).split(', ')" :key="tool">{{ tool }}</span></dd></div>
+                </dl>
+                <a v-if="project.url_website" :href="project.url_website" target="_blank" rel="noopener" class="side-btn side-btn-outline">{{ $t(`projects.${project.id}.visit_label`) }} ↗</a>
+              </div>
             </div>
-          </template>
-          <p v-else class="pb-4">{{ $t(`projects.${project.id}.description`) }}</p>
-          <p v-if="project.url_website != ''" class="py-4"><a :href="project.url_website" target="_blank" class="font-bold text-white px-4 py-2 rounded-full" style="background-color: #9535d8;">{{ $te(`projects.${project.id}.visit_label`, 'en') ? $t(`projects.${project.id}.visit_label`) : $t('case.goTo', { name: project.name }) }}</a></p>
+            <template v-if="project.sections">
+              <div v-for="section in project.sections" :key="section" :id="`section-${section}`" class="project-section">
+                <h3>{{ $t(`case.sections.${section}`) }}</h3>
+                <p>{{ $t(`projects.${project.id}.sections.${section}`) }}</p>
+              </div>
+            </template>
+            <p v-else class="project-section-text">{{ $t(`projects.${project.id}.description`) }}</p>
+          </div>
+          <aside class="project-aside">
+            <div class="project-sticky">
+            <div class="side-card">
+              <h4>{{ $t('case.atAGlance') }}</h4>
+              <dl>
+                <div v-if="$te(`projects.${project.id}.client`, 'en')"><dt>{{ $t('case.clientLabel') }}</dt><dd>{{ $t(`projects.${project.id}.client`) }}</dd></div>
+                <div v-if="$te(`projects.${project.id}.role`, 'en')"><dt>{{ $t('case.roleLabel') }}</dt><dd>{{ $t(`projects.${project.id}.role`) }}</dd></div>
+                <div><dt>{{ $t('case.typeLabel') }}</dt><dd>{{ $t(`projects.${project.id}.type`) }}</dd></div>
+                <div v-if="$te(`projects.${project.id}.tools`, 'en')"><dt>{{ $t('case.toolsLabel') }}</dt><dd class="side-chips"><span v-for="tool in $t(`projects.${project.id}.tools`).split(', ')" :key="tool">{{ tool }}</span></dd></div>
+              </dl>
+              <a v-if="project.url_website" :href="project.url_website" target="_blank" rel="noopener" class="side-btn side-btn-outline">{{ $t(`projects.${project.id}.visit_label`) }} ↗</a>
+            </div>
+            <nav v-if="project.sections" class="side-card side-toc" :aria-label="$t('case.contents')">
+              <h4>{{ $t('case.contents') }}</h4>
+              <a v-for="item in tocItems(project)" :key="item.id" :href="`#${item.id}`" :class="{ active: activeSection === item.id }" @click.prevent="scrollToSection(item.id)"><i></i>{{ item.label }}</a>
+            </nav>
+            <div v-if="bookingUrl" class="side-contact">
+              <b>{{ $t('case.similarTitle') }}</b>
+              <p>{{ $t('case.similarText') }}</p>
+              <a :href="bookingUrl" target="_blank" rel="noopener" class="side-btn side-btn-white">{{ $t('case.similarCta') }}</a>
+            </div>
+            </div>
+          </aside>
         </div>
-            <section class="gallery">
+            <section class="gallery" id="section-screens">
               <div class="gallery-head">
                 <h3>{{ $t('gallery.title') }}</h3>
                 <p>{{ $t('gallery.hint') }}</p>
@@ -56,6 +87,13 @@
                 </div>
               </div>
             </section>
+        <div class="project-mobile-only project-mobile-contact">
+            <div v-if="bookingUrl" class="side-contact">
+              <b>{{ $t('case.similarTitle') }}</b>
+              <p>{{ $t('case.similarText') }}</p>
+              <a :href="bookingUrl" target="_blank" rel="noopener" class="side-btn side-btn-white">{{ $t('case.similarCta') }}</a>
+            </div>
+        </div>
       </article>
     </template>
       <vue-easy-lightbox 
@@ -68,7 +106,10 @@
 </template>
 
 <script>
+// This project runs Vue 2 (beforeDestroy), but the lint config uses Vue 3 rules
+/* eslint-disable vue/no-deprecated-destroyed-lifecycle */
   import projects from '../db/projects'
+  import { BOOKING_URL } from '../config'
 
   export default {
     name: 'ProjectDetailComponent',
@@ -79,6 +120,9 @@
         index: 0,
         projects: projects,
         currentPage: 1,
+        bookingUrl: BOOKING_URL,
+        activeSection: null,
+        scrollFrame: null,
       }
     },
     computed: {
@@ -91,7 +135,38 @@
         return this.currentProject.images.map(img => ({ src: img.src, title: this.screenTitle(this.currentProject, img) }))
       },
     },
+    mounted() {
+      window.addEventListener('scroll', this.onScroll, { passive: true })
+      this.$nextTick(this.updateActiveSection)
+    },
+    beforeDestroy() {
+      window.removeEventListener('scroll', this.onScroll)
+      cancelAnimationFrame(this.scrollFrame)
+    },
     methods: {
+      tocItems(project) {
+        const items = project.sections.map(section => ({ id: `section-${section}`, label: this.$t(`case.sections.${section}`) }))
+        return items.concat({ id: 'section-screens', label: this.$t('gallery.title') })
+      },
+      scrollToSection(id) {
+        const el = document.getElementById(id)
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      },
+      onScroll() {
+        cancelAnimationFrame(this.scrollFrame)
+        this.scrollFrame = requestAnimationFrame(this.updateActiveSection)
+      },
+      // The active entry is the last section whose top has passed a line 35% down the viewport
+      updateActiveSection() {
+        if (!this.currentProject || !this.currentProject.sections) return
+        const line = window.innerHeight * 0.35
+        let active = null
+        this.tocItems(this.currentProject).forEach(item => {
+          const el = document.getElementById(item.id)
+          if (el && el.getBoundingClientRect().top <= line) active = item.id
+        })
+        this.activeSection = active || this.tocItems(this.currentProject)[0].id
+      },
       screenTitle(project, img) {
         return this.$t(`projects.${project.id}.screens.${img.key}.title`)
       },
@@ -120,23 +195,198 @@
   }
 </script>
 <style scoped>
+  .project-wrapper {
+    padding-top: 32px;
+    padding-bottom: 80px;
+  }
   .project-page {
     background: #fff;
+    border-radius: 32px;
+    box-shadow: 0 24px 60px rgba(61, 22, 87, 0.1);
+    padding: 48px 56px 64px;
+  }
+  .project-back {
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 28px;
+  }
+  .project-columns {
+    display: grid;
+    grid-template-columns: minmax(0, 680px) 320px;
+    justify-content: space-between;
+    gap: 64px;
+  }
+  .project-label {
+    color: #9535d8;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .project-tagline {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 30px;
+  }
+  .project-section {
+    margin-bottom: 26px;
+  }
+  .project-section h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .project-section p,
+  .project-section-text {
+    font-size: 16px;
+    line-height: 1.75;
+    color: #383a3c;
+  }
+  .project-sticky {
+    position: sticky;
+    top: 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .side-card {
+    border: 1px solid #ece2f8;
     border-radius: 24px;
-    box-shadow: 0 14px 40px rgba(61, 22, 87, 0.1);
-    padding: 40px;
+    padding: 24px;
+    background: #fbf8ff;
   }
-  .project-text {
-    max-width: 720px;
-    padding-top: 32px;
+  .side-card h4 {
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #7b2cb8;
+    font-weight: 600;
+    margin-bottom: 14px;
   }
-  @media (max-width: 640px) {
+  .side-card dl > div {
+    padding: 10px 0;
+    border-top: 1px solid #f3ecfb;
+  }
+  .side-card dl > div:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+  .side-card dt {
+    font-size: 12.5px;
+    color: #8a8a8a;
+  }
+  .side-card dd {
+    font-size: 14.5px;
+    font-weight: 500;
+    margin-top: 2px;
+  }
+  .side-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .side-chips span {
+    background: #f3e8ff;
+    color: #7b2cb8;
+    border-radius: 9999px;
+    padding: 3px 10px;
+    font-size: 12.5px;
+  }
+  .side-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 9999px;
+    padding: 12px;
+    font-weight: 600;
+    font-size: 14.5px;
+    margin-top: 18px;
+    transition: opacity 150ms ease;
+  }
+  .side-btn:hover {
+    opacity: 0.85;
+  }
+  .side-btn-outline {
+    border: 2px solid #9535d7;
+    color: #9535d7;
+  }
+  .side-toc a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 0;
+    font-size: 14.5px;
+    color: #777;
+  }
+  .side-toc a i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #e2d4f3;
+    flex-shrink: 0;
+  }
+  .side-toc a.active {
+    color: #111;
+    font-weight: 600;
+  }
+  .side-toc a.active i {
+    background: #9535d7;
+    box-shadow: 0 0 0 4px #f0e3ff;
+  }
+  .side-contact {
+    border-radius: 24px;
+    padding: 24px;
+    background: linear-gradient(150deg, #9535d7, #b46be6 60%, #e09bd0);
+    color: #fff;
+    box-shadow: 0 18px 36px rgba(149, 53, 215, 0.28);
+  }
+  .side-contact b {
+    display: block;
+    font-size: 17px;
+    margin-bottom: 6px;
+  }
+  .side-contact p {
+    font-size: 13.5px;
+    line-height: 1.55;
+    opacity: 0.92;
+  }
+  .side-btn-white {
+    background: #fff;
+    color: #7b2cb8;
+    margin-top: 16px;
+  }
+  .project-mobile-only {
+    display: none;
+  }
+  @media (max-width: 1023px) {
+    .project-columns {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .project-aside {
+      display: none;
+    }
+    .project-mobile-only {
+      display: block;
+      margin-bottom: 28px;
+    }
+    .project-mobile-contact {
+      margin: 32px 0 0;
+    }
+  }
+  @media (max-width: 767px) {
     .project-page {
-      padding: 24px;
+      border-radius: 24px;
+      padding: 24px 20px;
+    }
+    .project-tagline {
+      font-size: 22px;
     }
   }
   .gallery {
-    padding-top: 24px;
+    padding-top: 40px;
     padding-bottom: 40px;
   }
   .gallery-head {

@@ -107,7 +107,16 @@ export default {
       "solution": "Solution",
       "outcome": "Résultat"
     },
-    "back": "Retour"
+    "back": "Retour",
+    "atAGlance": "En bref",
+    "clientLabel": "Client",
+    "roleLabel": "Rôle",
+    "typeLabel": "Type",
+    "toolsLabel": "Outils",
+    "contents": "Sommaire",
+    "similarTitle": "Un projet similaire ?",
+    "similarText": "Parlons de votre site lors d'un premier appel gratuit de 30 minutes.",
+    "similarCta": "Réserver un appel"
   },
   "projects": {
     "1": {
