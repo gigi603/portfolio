@@ -43,7 +43,7 @@ export default {
   },
   "work": {
     "title": "Selected work",
-    "intro": "Two coaching websites I designed and wrote, and two platforms: a concept and a client product."
+    "intro": "Two coaching websites I designed, and two platforms: a concept and a client product."
   },
   "testimonials": {
     "title": "What clients say",
@@ -131,13 +131,13 @@ export default {
       "hook": "Two services, one clear path to a discovery call",
       "tagline": "Two services, one clear path to a discovery call",
       "client": "Mélodie Yeremian, career coach and psychopractitioner, Paris and remote",
-      "role": "UX/UI design & UX writing",
+      "role": "UX/UI design",
       "tools": "Figma",
       "visit_label": "Visit melodieyeremian.com",
       "sections": {
         "context": "Mélodie supports people through professional and personal transitions with two distinct services: career assessments (bilan de compétences) and therapeutic support.",
         "challenge": "The two services speak to different needs. Visitors had to find their path quickly, without confusing a career assessment with therapy, and feel confident enough to book a first call.",
-        "approach": "I organised the site around two clear paths and wrote copy that stays gentle and personal, in line with Mélodie's practice.",
+        "approach": "I organised the site around two clear paths, with a calm, gentle design in line with Mélodie's practice.",
         "solution": "Each service has its own page, details and discovery booking. A \"Book an appointment\" button stays visible throughout. A personal \"About me\" section builds trust, and an online shop extends her offer.",
         "outcome": "The site is live and Mélodie uses it to present both services and take bookings online."
       },

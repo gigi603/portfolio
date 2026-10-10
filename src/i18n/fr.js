@@ -43,7 +43,7 @@ export default {
   },
   "work": {
     "title": "Projets sélectionnés",
-    "intro": "Deux sites de coachs dont j'ai conçu le design et les textes, et deux plateformes : un concept et un produit client."
+    "intro": "Deux sites de coachs que j'ai conçus, et deux plateformes : un concept et un produit client."
   },
   "testimonials": {
     "title": "Ce qu'en disent mes clientes",
@@ -131,13 +131,13 @@ export default {
       "hook": "Deux accompagnements, un seul chemin clair vers le rendez-vous découverte",
       "tagline": "Deux accompagnements, un seul chemin clair vers le rendez-vous découverte",
       "client": "Mélodie Yeremian, consultante en bilan de compétences et psychopraticienne, à Paris et à distance",
-      "role": "UX/UI design et UX writing",
+      "role": "UX/UI design",
       "tools": "Figma",
       "visit_label": "Voir melodieyeremian.com",
       "sections": {
         "context": "Mélodie accompagne les personnes dans leurs transitions professionnelles et personnelles, avec deux accompagnements distincts : le bilan de compétences et l'accompagnement thérapeutique.",
         "challenge": "Les deux accompagnements répondent à des besoins différents. Les visiteurs devaient trouver rapidement le leur, sans confondre bilan de compétences et thérapie, et se sentir assez en confiance pour réserver un premier appel.",
-        "approach": "J'ai organisé le site autour de deux parcours clairs, avec des textes doux et personnels, fidèles à la pratique de Mélodie.",
+        "approach": "J'ai organisé le site autour de deux parcours clairs, avec un design doux et apaisant, fidèle à la pratique de Mélodie.",
         "solution": "Chaque accompagnement a sa propre page, ses détails et sa réservation découverte. Un bouton « Prendre RDV » reste visible partout. Une section « Qui suis-je » personnelle crée la confiance, et une boutique en ligne complète son offre.",
         "outcome": "Le site est en ligne et Mélodie l'utilise pour présenter ses deux accompagnements et prendre ses rendez-vous."
       },
