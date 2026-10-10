@@ -4,7 +4,6 @@ import router from './router'
 import i18n from './i18n'
 import './index.css'
 import VShowSlide from 'v-show-slide'
-import VueEasyLightbox from 'vue-easy-lightbox'
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
@@ -21,7 +20,6 @@ library.add(faPaperPlane);
 
 Vue.config.productionTip = false
 Vue.use(VShowSlide)
-Vue.use(VueEasyLightbox)
 Vue.component("FontAwesomeIcon", FontAwesomeIcon);
 
 new Vue({

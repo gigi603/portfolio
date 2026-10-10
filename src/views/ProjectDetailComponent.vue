@@ -96,12 +96,7 @@
         </div>
       </article>
     </template>
-      <vue-easy-lightbox 
-        :visible="visible"
-        :imgs="lightboxImgs"
-        :index="index"
-        @hide="handleHide"
-      ></vue-easy-lightbox>
+      <ScreenViewer :screens="viewerScreens" :index="index" :visible="visible" @hide="handleHide"/>
   </div>
 </template>
 
@@ -110,9 +105,11 @@
 /* eslint-disable vue/no-deprecated-destroyed-lifecycle */
   import projects from '../db/projects'
   import { BOOKING_URL } from '../config'
+  import ScreenViewer from '../components/ScreenViewer.vue'
 
   export default {
     name: 'ProjectDetailComponent',
+    components: { ScreenViewer },
     data: function() {
       return {
         id: this.$route.params.id,
@@ -129,10 +126,16 @@
       currentProject() {
         return projects.find(project => project.id === this.$route.params.id)
       },
-      // Titles go with each image so the viewer shows them full screen
-      lightboxImgs() {
-        if (!this.currentProject) return []
-        return this.currentProject.images.map(img => ({ src: img.src, title: this.screenTitle(this.currentProject, img) }))
+      viewerScreens() {
+        const project = this.currentProject
+        if (!project) return []
+        return project.images.map(img => ({
+          src: img.src,
+          title: this.screenTitle(project, img),
+          caption: this.$te(`projects.${project.id}.screens.${img.key}.caption`, 'en') ? this.$t(`projects.${project.id}.screens.${img.key}.caption`) : '',
+          device: img.device || 'desktop',
+          url: this.domain(project.url_website),
+        }))
       },
     },
     mounted() {

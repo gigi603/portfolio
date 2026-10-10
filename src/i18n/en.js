@@ -251,5 +251,12 @@ export default {
     "title": "Screens",
     "hint": "Click a screen to enlarge it",
     "open": "Enlarge: {title}"
+  },
+  "viewer": {
+    "close": "Close",
+    "previous": "Previous screen",
+    "next": "Next screen",
+    "scrollHint": "Scroll to see the whole page",
+    "work": "Work"
   }
 }

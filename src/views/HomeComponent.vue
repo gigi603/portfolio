@@ -132,29 +132,7 @@
 						</div>
 					</div>
 				</div> -->
-				<!-- <h2 class="py-8 text-black text-3xl font-bold w-full">TRAVAUX</h2>
-				<div class="flex flex-row min-w-0 break-words bg-white w-full shadow-lg border-color-card rounded-3xl">
-					<div class="px-14 py-14 xs:grid-cols-1 sm:grid-cols-1 w-full flex-auto">
-						<div class="slider">
-							<VueSlickCarousel v-bind="settings">
-								<div v-for="(src, index) in imgs" :key="index" data-aos="zoom-in" class="grid xs:col-span-1 sm:col-span-1">
-									<div class="w-80 h-56 grid xs:col-span-1 sm:col-span-1 shadow-md hover:shadow-lg cursor-pointer mx-auto rounded-3xl border-color-card flex justify-center items-center pic" @click="() => showImg(index)">
-										<img :src="src" class="h-52 mx-auto"  alt="">
-									</div>
-								</div>
-							</VueSlickCarousel>	
-							<vue-easy-lightbox
-								:visible="visible"
-								:imgs="imgs"
-								:index="index"
-								@hide="handleHide"
-							></vue-easy-lightbox>					
-							<div class="pt-12 text-center">
-								<button @click="goToPractices()" class="bg-black text-white hover:opacity-75 text-xl px-3 py-3 md:w-2/5 w-1/5 lg:w-1/5 w-full rounded-full m-auto">Consulter</button>
-							</div>
-						</div>
-					</div>
-				</div> -->
+
 
 		<!-- </div>
 	</div> -->
@@ -166,16 +144,11 @@ import projects from '../db/projects'
 import { BOOKING_URL } from '../config'
 import ProjectStrip from '../components/ProjectStrip.vue'
 import ProjectCard from '../components/ProjectCard.vue'
-import VueSlickCarousel from 'vue-slick-carousel'
-import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-// optional style for arrows & dots
-import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 
 export default {
 	name: 'HomeComponent',
 	components: { 
-		VueSlickCarousel,
 		ProjectStrip,
 		ProjectCard,
 	},
@@ -187,7 +160,6 @@ export default {
 	},
 	data: function() {
 		return {
-			visible: false,
 			projects: projects,
 			bookingUrl: BOOKING_URL,
 			chips: [
@@ -202,42 +174,6 @@ export default {
 				{ key: 'sophie', projectId: '1', name: 'Sophie Pratt', initials: 'SP', avatarBg: '#f3e8ff', avatarColor: '#7b2cb8' },
 				{ key: 'melodie', projectId: '2', name: 'Mélodie Yeremian', initials: 'MY', avatarBg: '#fce7f3', avatarColor: '#be185d' },
 			],
-			index: 0,
-			settings: {
-				"dots": true,
-				"focusOnSelect": true,
-				"infinite": true,
-				"speed": 500,
-				"slidesToShow": 3,
-				"slidesToScroll": 3,
-				"touchThreshold": 5,
-				"responsive": [
-					{
-						"breakpoint": 1024,
-						"settings": {
-							"slidesToShow": 3,
-							"slidesToScroll": 3,
-							"infinite": true,
-							"dots": true
-						}
-					},
-					{
-						"breakpoint": 600,
-						"settings": {
-							"slidesToShow": 2,
-							"slidesToScroll": 2,
-							"initialSlide": 2
-						}
-					},
-					{
-					"breakpoint": 480,
-						"settings": {
-							"slidesToShow": 1,
-							"slidesToScroll": 1
-						}
-					}
-				]
-            },
 			skills: [
 				{ key: 'ux', tile: '#f3e8ff', stroke: '#9535d7' },
 				{ key: 'ui', tile: '#fce7f3', stroke: '#db2777' },
@@ -246,12 +182,6 @@ export default {
 			tools: [
 				{ name: 'Figma', color: '#a259ff' },
 				{ name: 'Claude', color: '#d97757' },
-			],
-			imgs: [
-				require("@/assets/images/practices/airmusic-september-2021.png"),
-				require("@/assets/images/practices/profit-estimation.svg"),
-				require("@/assets/images/practices/withdraw-crypto.svg"),
-				require("@/assets/images/practices/edit-profile.svg"),
 			],
 			softwares: [
 				{ name: "Figma", icon:require("@/assets/icons/figma_logo.svg")},
@@ -282,32 +212,6 @@ export default {
 				
 			// }
 		},
-		showImg (index) {
-			this.index = index
-			this.visible = true
-		},
-		handleHide () {
-			this.visible = false
-		},
-		goToPractices(){
-			this.$router.push('/practices'); 
-		},
-		next() {
-            this.$refs.slick.next();
-        },
-
-        prev() {
-            this.$refs.slick.prev();
-        },
-
-        reInit() {
-            // Helpful if you have to deal with v-for to update dynamic lists
-            this.$nextTick(() => {
-                this.$refs.slick.reSlick();
-            });
-        },
-
-        
 	}
   };
 </script>
@@ -961,176 +865,5 @@ export default {
 	.image-container {
 		height: 700px; /* Définissez la hauteur souhaitée pour votre conteneur */
 		overflow: hidden;
-	}
-	/*  */
-	.slick-track{
-		position: relative;
-		top: 11px !important;
-		left: 0;
-		display: block;
-		transform: translateZ(0);
-	}
-	.slick-prev,
-	.slick-next {
-		font-size: 0;
-		line-height: 0;
-		position: absolute;
-		display: block;
-		padding: 0;
-		-webkit-transform: translate(0, -50%);
-		-ms-transform: translate(0, -50%);
-		transform: translate(0, -50%);
-
-		cursor: pointer;
-
-		color: transparent;
-		border: none;
-		outline: none;
-		background: transparent;
-		}
-		.slick-prev:hover,
-		.slick-prev:focus,
-		.slick-next:hover,
-		.slick-next:focus {
-		color: transparent;
-		outline: none;
-		background: transparent;
-	}
-	.slick-prev:hover:before,
-	.slick-prev:focus:before,
-	.slick-next:hover:before,
-	.slick-next:focus:before {
-		opacity: 1;
-	}
-	.slick-prev.slick-disabled:before,
-	.slick-next.slick-disabled:before {
-		opacity: 0.25;
-	}
-
-	.slick-prev:before,
-	.slick-next:before {
-		font-family: 'slick';
-		font-size: 30px;
-		line-height: 0;
-
-		opacity: 0.75;
-		color: black;
-
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-	}
-
-	.slick-prev {
-		left: -25px;
-	}
-	[dir='rtl'] .slick-prev {
-		right: -25px;
-		left: auto;
-	}
-	.slick-prev:before {
-		content: '←';
-	}
-	[dir='rtl'] .slick-prev:before {
-		content: '→';
-	}
-
-	.slick-next {
-		right: -15px;
-	}
-	[dir='rtl'] .slick-next {
-		right: auto;
-		left: -15px;
-	}
-	.slick-next:before {
-		content: '→';
-	}
-	[dir='rtl'] .slick-next:before {
-		content: '←';
-	}
-
-	/* Dots */
-
-	.slick-dots {
-		position: absolute;
-		display: block;
-
-		width: 100%;
-		padding: 0;
-		margin-top: 0.5rem;
-
-		list-style: none;
-
-		text-align: center;
-	}
-	.slick-dots li {
-		position: relative;
-
-		display: inline-block;
-
-		width: 20px;
-		height: 20px;
-		margin: 0 5px;
-		padding: 0;
-
-		cursor: pointer;
-	}
-	.slick-dots li button {
-		font-size: 0;
-		line-height: 0;
-
-		display: block;
-
-		width: 20px;
-		height: 20px;
-		padding: 5px;
-
-		cursor: pointer;
-
-		color: transparent;
-		border: 0;
-		outline: none;
-		background: transparent;
-	}
-	.slick-dots li button:hover,
-	.slick-dots li button:focus {
-		outline: none;
-	}
-	.slick-dots li button:hover:before,
-	.slick-dots li button:focus:before {
-		opacity: 0.25;
-		color: black;
-	}
-	.slick-dots li button:before {
-		font-family: 'slick';
-		font-size: 12px !important;
-		line-height: 12px !important;
-
-		position: absolute;
-		top: 0;
-		left: 0;
-
-		width: 12px !important;
-		height: 12px !important;
-
-		content: '•';
-		text-align: center;
-
-		color: #E3E3E3;
-
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-	}
-	.slick-dots li.slick-active button:before {
-		opacity: 0.75;
-		color: black;
-	}
-	.slick-list {
-		position: relative;
-		height: 250px;
-		display: block;
-		overflow: hidden;
-		margin: 0;
-		padding: 0;
-		transform: translateZ(0);
 	}
 </style>

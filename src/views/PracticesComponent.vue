@@ -7,12 +7,7 @@
           <div v-for="(img, index) in paginatedOrders" :key="index" @click="() => showImg(((currentPage - 1) * perPage) + index)" data-aos="zoom-in" data-aos-once="false" class="item md:h-80 mb-10 mx-4 my-4 shadow-md hover:shadow-lg cursor-pointer rounded-3xl border-color-card flex justify-center items-center">
             <img :src="img" class="h-48 mx-auto" style="max-width:15rem;" alt="" >
           </div>
-          <vue-easy-lightbox 
-            :visible="visible"
-            :imgs="imgs"
-            :index="index"
-            @hide="handleHide"
-          ></vue-easy-lightbox>
+          <ScreenViewer :screens="viewerScreens" :index="index" :visible="visible" @hide="handleHide"/>
         </div>
         <div class="md:px-20 md:pb-10 flex justify-center md:justify-end">
           <PaginationComponent :current="currentPage" :total="total" :per-page="perPage" :key="index" @page-changed="currentPage = $event"/>
@@ -25,11 +20,13 @@
 <script>
 // import '@ocrv/vue-tailwind-pagination/dist/style.css'
 import PaginationComponent from '@/components/PaginationComponent.vue'
+import ScreenViewer from '@/components/ScreenViewer.vue'
 
 export default {
     name: 'PracticesComponent',
     components: {
-        PaginationComponent
+        PaginationComponent,
+        ScreenViewer,
     },
     data: function() {
         return {
@@ -56,6 +53,9 @@ export default {
         }
 	},
     computed: {
+        viewerScreens() {
+            return this.imgs.map((src, i) => ({ src, title: `${this.$t('viewer.work')} ${i + 1}`, device: 'desktop', url: '' }))
+        },
         totalResults() {
             return Object.keys(this.imgs).length
         },

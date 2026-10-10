@@ -251,5 +251,12 @@ export default {
     "title": "Les écrans",
     "hint": "Cliquez sur un écran pour l'agrandir",
     "open": "Agrandir : {title}"
+  },
+  "viewer": {
+    "close": "Fermer",
+    "previous": "Écran précédent",
+    "next": "Écran suivant",
+    "scrollHint": "Faites défiler pour voir toute la page",
+    "work": "Travail"
   }
 }
