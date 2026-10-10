@@ -50,27 +50,40 @@ export default {
     "seeProject": "See the project →",
     "sophie": {
       "job": "Coach and therapist",
-      "quote": "Gilbert designed my website and wrote its copy. He took the time to understand my work and my clients, who are often anxious about taking the first step. The result is a warm, clear site that feels like me and makes booking a session easy."
+      "quote": "Gilbert designed my website and wrote its copy. He took the time to understand my work and my clients, who are often anxious about taking the first step. The result is a warm, clear site that feels like me and makes booking a session easy.",
+      "pullStart": "“A warm, clear site ",
+      "pullEnd": "that feels like me",
+      "pullAfter": ".”"
     },
     "melodie": {
       "job": "Career coach and psychopractitioner",
-      "quote": "My two services, career assessment and therapy, are very different. Gilbert understood that right away and gave each one its own clear path, with words that stay gentle, like my practice. Now visitors find the right service and book a discovery call easily."
-    }
+      "quote": "My two services, career assessment and therapy, are very different. Gilbert understood that right away and gave each one its own clear path, with words that stay gentle, like my practice. Now visitors find the right service and book a discovery call easily.",
+      "pullStart": "“Visitors ",
+      "pullEnd": "find the right service",
+      "pullAfter": ".”"
+    },
+    "eyebrow": "Testimonials"
   },
   "skills": {
     "title": "What I do",
     "ux": {
       "name": "UX Design",
-      "description": "I start with your clients: who they are, what stops them, what they need to decide. Then I structure the journey so the next step is always obvious."
+      "description": "I start with your clients: who they are, what stops them, what they need to decide. Then I structure the journey so the next step is always obvious.",
+      "tags": "UX research | User journeys | Wireframes | User testing"
     },
     "ui": {
       "name": "UI Design",
-      "description": "Visual identity, design system and interfaces for web and mobile, consistent and easy to read."
+      "description": "Visual identity, design system and interfaces for web and mobile, consistent and easy to read.",
+      "tags": "Design system | Figma mockups | Prototyping | Responsive"
     },
     "dev": {
       "name": "Front-end integration",
-      "description": "I build what I design with HTML, CSS and Tailwind, so the final site matches the mockups."
-    }
+      "description": "I build what I design with HTML, CSS and Tailwind, so the final site matches the mockups.",
+      "tags": "HTML / CSS | Tailwind | Launch"
+    },
+    "eyebrow": "Skills",
+    "subtitle": "From understanding your clients to a live website, one point of contact.",
+    "tools": "My tools:"
   },
   "about": {
     "title": "ABOUT",

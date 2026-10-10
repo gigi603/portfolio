@@ -39,34 +39,63 @@
 			</div>
 		</section>
 		</div>
-		<div class="w-full bg-white">
-			<div class="container mx-auto max-w-7xl px-6 pb-16">
-				<h2 class="pb-8 text-black text-3xl font-bold w-full" id="testimonials">{{ $t('testimonials.title') }}</h2>
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-					<div v-for="testimonial in testimonials" :key="testimonial.name" class="rounded-3xl bg-white shadow-lg p-10 flex flex-col" data-aos="zoom-in">
-						<span class="quote-mark" aria-hidden="true">&ldquo;</span>
-						<p class="text-lg flex-grow" style="color: #383a3c">{{ $t(`testimonials.${testimonial.key}.quote`) }}</p>
-						<p class="font-bold pt-6">{{ testimonial.name }}</p>
-						<p style="color:#7a7a7a">{{ $t(`testimonials.${testimonial.key}.job`) }}</p>
-						<router-link :to="{ name:'ProjectDetailComponent', params:{ id: testimonial.projectId } }" class="pt-4 text-sm hover:underline" style="color: #9535d7;">{{ $t('testimonials.seeProject') }}</router-link>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="w-full bg-purple-full">
-			<div class="container mx-auto max-w-7xl px-6 py-16">
-				<h2 class="pb-8 text-black text-3xl font-bold w-full">{{ $t('skills.title') }}</h2>
-				<div class="flex gap-6 mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 w-full">
-					<div v-for="(skill, index) in skills" :key="index" :class="skill.key" class="rounded-3xl overflow-hidden bg-white shadow-lg">
-						<div class="p-8" data-aos="zoom-in">
-							<img :src="skill.icon" class="mx-auto w-16 h-16"/>
-							<h3 class="font-bold text-3xl text-center py-5">{{ $t(`skills.${skill.key}.name`) }}</h3>
-							<p class="text-center" style="color:#7a7a7a">{{ $t(`skills.${skill.key}.description`) }}</p>
+		<section class="testimonials" id="testimonials">
+			<div class="container mx-auto max-w-7xl px-6">
+				<span class="eyebrow">{{ $t('testimonials.eyebrow') }}</span>
+				<h2 class="section-title">{{ $t('testimonials.title') }}</h2>
+				<div class="testimonials-grid">
+					<article v-for="testimonial in testimonials" :key="testimonial.key" class="testimonial" data-aos="zoom-in">
+						<div class="testimonial-icon" aria-hidden="true">
+							<svg width="30" height="24" viewBox="0 0 30 24"><g fill="#9535d7"><circle cx="7.5" cy="15.5" r="7.5"/><path d="M1 15C1 7 5.5 2 12.5 0.5l1 2.6C9 4.6 6.6 8 6.4 12z"/><circle cx="22.5" cy="15.5" r="7.5"/><path d="M16 15C16 7 20.5 2 27.5 0.5l1 2.6C24 4.6 21.6 8 21.4 12z"/></g></svg>
 						</div>
-					</div>
+						<p class="testimonial-pull">{{ $t(`testimonials.${testimonial.key}.pullStart`) }}<em>{{ $t(`testimonials.${testimonial.key}.pullEnd`) }}</em>{{ $t(`testimonials.${testimonial.key}.pullAfter`) }}</p>
+						<p class="testimonial-quote">{{ $t(`testimonials.${testimonial.key}.quote`) }}</p>
+						<div class="testimonial-author">
+							<span class="testimonial-avatar" :style="{ background: testimonial.avatarBg, color: testimonial.avatarColor }" aria-hidden="true">{{ testimonial.initials }}</span>
+							<div>
+								<p class="testimonial-name">{{ testimonial.name }}</p>
+								<p class="testimonial-job">{{ $t(`testimonials.${testimonial.key}.job`) }}</p>
+							</div>
+							<router-link :to="{ name:'ProjectDetailComponent', params:{ id: testimonial.projectId } }" class="testimonial-link">{{ $t('testimonials.seeProject') }}</router-link>
+						</div>
+					</article>
 				</div>
 			</div>
-		</div>
+		</section>
+		<section class="skills">
+			<div class="skills-deco" aria-hidden="true">
+				<div class="skills-glow skills-glow-1"></div>
+				<div class="skills-glow skills-glow-2"></div>
+			</div>
+			<div class="container mx-auto max-w-7xl px-6 skills-inner">
+				<span class="eyebrow">{{ $t('skills.eyebrow') }}</span>
+				<h2 class="section-title">{{ $t('skills.title') }}</h2>
+				<p class="section-lead">{{ $t('skills.subtitle') }}</p>
+				<div class="skills-grid">
+					<article v-for="(skill, index) in skills" :key="skill.key" class="skill" data-aos="zoom-in">
+						<div class="skill-top">
+							<span class="skill-icon" :style="{ background: skill.tile }" aria-hidden="true">
+								<svg width="30" height="30" viewBox="0 0 24 24" fill="none" :stroke="skill.stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<template v-if="skill.key === 'ux'"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="18" cy="16.5" r="2.5"/><path d="M20 18.5l2 2"/></template>
+									<template v-else-if="skill.key === 'ui'"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-4.5-4.5L8 19"/></template>
+									<template v-else><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></template>
+								</svg>
+							</span>
+							<span class="skill-number">0{{ index + 1 }}</span>
+						</div>
+						<h3>{{ $t(`skills.${skill.key}.name`) }}</h3>
+						<p class="skill-description">{{ $t(`skills.${skill.key}.description`) }}</p>
+						<ul class="skill-tags">
+							<li v-for="tag in $t(`skills.${skill.key}.tags`).split(' | ')" :key="tag">{{ tag }}</li>
+						</ul>
+					</article>
+				</div>
+				<div class="tools">
+					{{ $t('skills.tools') }}
+					<span v-for="tool in tools" :key="tool.name" class="tool"><i :style="{ background: tool.color }"></i>{{ tool.name }}</span>
+				</div>
+			</div>
+		</section>
 		<div class="w-full bg-white" id="about">
 			<div class="container mx-auto max-w-7xl px-6 pb-16">
 				<h2 class="py-8 text-black text-3xl font-bold w-full">{{ $t('about.title') }}</h2>
@@ -158,8 +187,8 @@ export default {
 				{ key: 'launch', icon: '🚀', color: '#dcfce7', position: 'chip-right-3' },
 			],
 			testimonials: [
-				{ key: 'sophie', projectId: '1', name: 'Sophie Pratt' },
-				{ key: 'melodie', projectId: '2', name: 'Mélodie Yeremian' },
+				{ key: 'sophie', projectId: '1', name: 'Sophie Pratt', initials: 'SP', avatarBg: '#f3e8ff', avatarColor: '#7b2cb8' },
+				{ key: 'melodie', projectId: '2', name: 'Mélodie Yeremian', initials: 'MY', avatarBg: '#fce7f3', avatarColor: '#be185d' },
 			],
 			index: 0,
 			settings: {
@@ -198,9 +227,13 @@ export default {
 				]
             },
 			skills: [
-				{ icon:require("@/assets/icons/ux-logo.png"), key: "ux", showDetails: true},
-				{ icon:require("@/assets/icons/ui-logo.png"), key: "ui", showDetails: false},
-				{ icon:require("@/assets/icons/dev-logo.png"), key: "dev", showDetails: false},
+				{ key: 'ux', tile: '#f3e8ff', stroke: '#9535d7' },
+				{ key: 'ui', tile: '#fce7f3', stroke: '#db2777' },
+				{ key: 'dev', tile: '#e0f2fe', stroke: '#0284c7' },
+			],
+			tools: [
+				{ name: 'Figma', color: '#a259ff' },
+				{ name: 'Tailwind CSS', color: '#38bdf8' },
 			],
 			imgs: [
 				require("@/assets/images/practices/airmusic-september-2021.png"),
@@ -481,12 +514,252 @@ export default {
 		border: 2px solid #9535d7;
 		background-color: transparent;
 	}
-	.quote-mark {
+	.eyebrow {
+		display: inline-block;
+		font-size: 13px;
+		font-weight: 600;
+		color: #7b2cb8;
+		background: #f3e8ff;
+		border-radius: 9999px;
+		padding: 5px 12px;
+		margin-bottom: 14px;
+	}
+	.section-title {
+		font-family: "Montserrat", sans-serif;
+		font-weight: 800;
+		font-size: 34px;
+		color: #111;
+	}
+	.section-lead {
+		font-size: 17px;
+		color: #5b5b66;
+		margin-top: 10px;
+	}
+	.testimonials {
+		background: #fff;
+		padding-bottom: 100px;
+	}
+	.testimonials-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 28px;
+		margin-top: 40px;
+	}
+	.testimonial {
+		display: flex;
+		flex-direction: column;
+		background: #fff;
+		border: 1px solid #efe6fb;
+		border-radius: 28px;
+		padding: 40px 40px 32px;
+		box-shadow: 0 14px 40px rgba(61, 22, 87, 0.08);
+	}
+	.testimonial-icon {
+		width: 60px;
+		height: 60px;
+		border-radius: 18px;
+		background: #f3e8ff;
+		display: grid;
+		place-items: center;
+		margin-bottom: 24px;
+	}
+	.testimonial-pull {
+		font-family: "Montserrat", sans-serif;
+		font-weight: 800;
+		font-size: 22px;
+		line-height: 1.3;
+		color: #111;
+		margin-bottom: 14px;
+	}
+	.testimonial-pull em {
+		font-style: normal;
 		color: #9535d7;
-		font-size: 72px;
-		line-height: 1;
-		font-weight: bold;
-		height: 48px;
+	}
+	.testimonial-quote {
+		font-size: 16px;
+		line-height: 1.7;
+		color: #4a4a55;
+		flex-grow: 1;
+	}
+	.testimonial-author {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		margin-top: 28px;
+		padding-top: 24px;
+		border-top: 1px solid #f1eaf9;
+	}
+	.testimonial-avatar {
+		flex: 0 0 52px;
+		width: 52px;
+		height: 52px;
+		border-radius: 50%;
+		display: grid;
+		place-items: center;
+		font-family: "Montserrat", sans-serif;
+		font-weight: 800;
+		font-size: 17px;
+	}
+	.testimonial-name {
+		font-size: 16px;
+		font-weight: 600;
+	}
+	.testimonial-job {
+		font-size: 14px;
+		color: #7a7a7a;
+	}
+	.testimonial-link {
+		margin-left: auto;
+		font-size: 13px;
+		font-weight: 600;
+		color: #9535d7;
+		background: #f8f2ff;
+		border-radius: 9999px;
+		padding: 8px 14px;
+		white-space: nowrap;
+	}
+	.testimonial-link:hover {
+		background: #f3e8ff;
+	}
+	.skills {
+		position: relative;
+		overflow: hidden;
+		background: #eee6ff;
+		padding: 100px 0 110px;
+	}
+	.skills::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background-image: radial-gradient(rgba(149, 53, 215, 0.24) 1.7px, transparent 1.7px);
+		background-size: 26px 26px;
+		-webkit-mask-image: linear-gradient(90deg, #000 0, #000 18%, transparent 34%, transparent 66%, #000 82%);
+		mask-image: linear-gradient(90deg, #000 0, #000 18%, transparent 34%, transparent 66%, #000 82%);
+		pointer-events: none;
+	}
+	.skills-deco {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+	}
+	.skills-glow {
+		position: absolute;
+		width: 420px;
+		height: 420px;
+		border-radius: 50%;
+		filter: blur(60px);
+	}
+	.skills-glow-1 { left: -140px; top: 40px; background: rgba(149, 53, 215, 0.22); }
+	.skills-glow-2 { right: -140px; bottom: -60px; background: rgba(236, 72, 153, 0.16); }
+	.skills-inner {
+		position: relative;
+	}
+	.skills-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 28px;
+		margin-top: 44px;
+	}
+	.skill {
+		display: flex;
+		flex-direction: column;
+		background: #fff;
+		border-radius: 28px;
+		padding: 34px 32px 30px;
+		box-shadow: 0 14px 40px rgba(61, 22, 87, 0.1);
+	}
+	.skill-top {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		margin-bottom: 26px;
+	}
+	.skill-icon {
+		width: 64px;
+		height: 64px;
+		border-radius: 20px;
+		display: grid;
+		place-items: center;
+	}
+	.skill-number {
+		font-family: "Montserrat", sans-serif;
+		font-weight: 800;
+		font-size: 15px;
+		color: #d6c3ee;
+	}
+	.skill h3 {
+		font-family: "Montserrat", sans-serif;
+		font-weight: 800;
+		font-size: 23px;
+		margin-bottom: 12px;
+	}
+	.skill-description {
+		font-size: 15.5px;
+		line-height: 1.65;
+		color: #5b5b66;
+		flex-grow: 1;
+	}
+	.skill-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin-top: 22px;
+		list-style: none;
+	}
+	.skill-tags li {
+		font-size: 12.5px;
+		font-weight: 600;
+		padding: 6px 12px;
+		border-radius: 9999px;
+		background: #f6f2fb;
+		color: #4a3b5c;
+	}
+	.tools {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 14px;
+		margin-top: 36px;
+		font-size: 14px;
+		font-weight: 500;
+		color: #6b5b80;
+	}
+	.tool {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		background: #fff;
+		border-radius: 9999px;
+		padding: 8px 16px;
+		box-shadow: 0 4px 14px rgba(61, 22, 87, 0.06);
+		color: #111;
+	}
+	.tool i {
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		display: inline-block;
+	}
+	@media (max-width: 900px) {
+		.testimonials-grid,
+		.skills-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+	@media (max-width: 600px) {
+		.testimonial {
+			padding: 28px 24px;
+		}
+		.testimonial-author {
+			flex-wrap: wrap;
+		}
+		.testimonial-link {
+			margin-left: 66px;
+		}
+		.section-title {
+			font-size: 28px;
+		}
 	}
 	.about-photo {
 		width: 320px;

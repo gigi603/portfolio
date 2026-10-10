@@ -50,27 +50,40 @@ export default {
     "seeProject": "Voir le projet →",
     "sophie": {
       "job": "Coach et thérapeute",
-      "quote": "Gilbert a conçu mon site et en a écrit les textes. Il a pris le temps de comprendre mes accompagnements et mes clients, souvent anxieux à l'idée de faire le premier pas. Le résultat est un site chaleureux et clair, qui me ressemble et qui permet de réserver une séance facilement."
+      "quote": "Gilbert a conçu mon site et en a écrit les textes. Il a pris le temps de comprendre mes accompagnements et mes clients, souvent anxieux à l'idée de faire le premier pas. Le résultat est un site chaleureux et clair, qui me ressemble et qui permet de réserver une séance facilement.",
+      "pullStart": "« Un site chaleureux et clair, ",
+      "pullEnd": "qui me ressemble",
+      "pullAfter": ". »"
     },
     "melodie": {
       "job": "Consultante en bilan de compétences et psychopraticienne",
-      "quote": "Mes deux accompagnements, le bilan de compétences et la thérapie, sont très différents. Gilbert l'a tout de suite compris et a donné à chacun un parcours clair, avec des mots qui restent doux, comme ma pratique. Aujourd'hui, mes visiteurs trouvent le bon accompagnement et réservent facilement un rendez-vous découverte."
-    }
+      "quote": "Mes deux accompagnements, le bilan de compétences et la thérapie, sont très différents. Gilbert l'a tout de suite compris et a donné à chacun un parcours clair, avec des mots qui restent doux, comme ma pratique. Aujourd'hui, mes visiteurs trouvent le bon accompagnement et réservent facilement un rendez-vous découverte.",
+      "pullStart": "« Mes visiteurs ",
+      "pullEnd": "trouvent le bon accompagnement",
+      "pullAfter": ". »"
+    },
+    "eyebrow": "Témoignages"
   },
   "skills": {
     "title": "Ce que je fais",
     "ux": {
       "name": "UX Design",
-      "description": "Je pars de vos clients : qui ils sont, ce qui les freine, ce dont ils ont besoin pour se décider. Puis je construis le parcours pour que l'étape suivante soit toujours évidente."
+      "description": "Je pars de vos clients : qui ils sont, ce qui les freine, ce dont ils ont besoin pour se décider. Puis je construis le parcours pour que l'étape suivante soit toujours évidente.",
+      "tags": "Recherche UX | Parcours | Wireframes | Tests utilisateurs"
     },
     "ui": {
       "name": "UI Design",
-      "description": "Identité visuelle, design system et interfaces web et mobile, cohérents et faciles à lire."
+      "description": "Identité visuelle, design system et interfaces web et mobile, cohérents et faciles à lire.",
+      "tags": "Design system | Maquettes Figma | Prototypage | Responsive"
     },
     "dev": {
       "name": "Intégration front-end",
-      "description": "Je développe ce que je conçois en HTML, CSS et Tailwind, pour que le site final soit fidèle aux maquettes."
-    }
+      "description": "Je développe ce que je conçois en HTML, CSS et Tailwind, pour que le site final soit fidèle aux maquettes.",
+      "tags": "HTML / CSS | Tailwind | Mise en ligne"
+    },
+    "eyebrow": "Compétences",
+    "subtitle": "De la compréhension de vos clients jusqu'au site en ligne, un seul interlocuteur.",
+    "tools": "Mes outils :"
   },
   "about": {
     "title": "À PROPOS",
