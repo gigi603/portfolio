@@ -143,13 +143,13 @@ export default {
       "tagline": "Two services, one clear path to a discovery call",
       "client": "Mélodie Yeremian, career coach and psychopractitioner, Paris and remote",
       "role": "UX/UI design",
-      "tools": "Figma",
+      "tools": "Figma, WordPress, Divi Builder",
       "visit_label": "Visit melodieyeremian.com",
       "sections": {
         "context": "Mélodie supports people through professional and personal transitions with two distinct services: career assessments (bilan de compétences) and therapeutic support.",
         "challenge": "The two services speak to different needs. Visitors had to find their path quickly, without confusing a career assessment with therapy, and feel confident enough to book a first call.",
         "approach": "I organised the site around two clear paths, with a calm, gentle design in line with Mélodie's practice.",
-        "solution": "Each service has its own page, details and discovery booking. A \"Book an appointment\" button stays visible throughout. A personal \"About me\" section builds trust, and an online shop extends her offer.",
+        "solution": "Each service has its own page, details and discovery booking. A \"Book an appointment\" button stays visible throughout. A personal \"About me\" section builds trust, and an online shop extends her offer. At her request, I built the site on WordPress with Divi Builder, so she can work independently and easily take over the site herself.",
         "outcome": "The site is live and Mélodie uses it to present both services and take bookings online."
       },
       "type": "Showcase site · Shop",
