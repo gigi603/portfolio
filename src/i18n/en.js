@@ -2,7 +2,7 @@
 export default {
   "meta": {
     "title": "Gilbert Trinidad, Freelance Product Designer",
-    "description": "Freelance product designer. I design clear, warm websites for coaches, therapists and small businesses, so their clients understand the offer and book in a few clicks."
+    "description": "Freelance product designer. I design clear, warm websites for freelancers and small businesses, so their clients understand the offer and book in a few clicks."
   },
   "lang": {
     "fr": "Français",
@@ -24,7 +24,7 @@ export default {
   "hero": {
     "hello": "Hi, I'm",
     "title": "Freelance Product Designer",
-    "text": "I design clear, warm websites for coaches, therapists and small businesses, so their clients understand the offer and book in a few clicks.",
+    "text": "I design clear, warm websites for freelancers and small businesses, so their clients understand the offer and book in a few clicks.",
     "book": "Book a free 30-min call",
     "talk": "Let's talk about your project",
     "trusted": "Trusted by coaches and therapists in Paris",

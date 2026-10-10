@@ -2,7 +2,7 @@
 export default {
   "meta": {
     "title": "Gilbert Trinidad, Product Designer freelance",
-    "description": "Product designer freelance. Je conçois des sites clairs et chaleureux pour les coachs, thérapeutes et petites entreprises, pour que leurs clients comprennent l'offre et réservent en quelques clics."
+    "description": "Product designer freelance. Je conçois des sites clairs et chaleureux pour des indépendants et petites entreprises, pour que leurs clients comprennent l'offre et réservent en quelques clics."
   },
   "nav": {
     "projects": "Projets",
@@ -24,7 +24,7 @@ export default {
   "hero": {
     "hello": "Bonjour, je suis",
     "title": "Product Designer freelance",
-    "text": "Je conçois des sites clairs et chaleureux pour les coachs, thérapeutes et petites entreprises, pour que leurs clients comprennent l'offre et réservent en quelques clics.",
+    "text": "Je conçois des sites clairs et chaleureux pour des indépendants et petites entreprises, pour que leurs clients comprennent l'offre et réservent en quelques clics.",
     "book": "Réserver un appel gratuit de 30 min",
     "talk": "Parlons de votre projet",
     "trusted": "Ils m'ont fait confiance : coachs et thérapeutes à Paris",
