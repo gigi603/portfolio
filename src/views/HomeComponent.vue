@@ -41,7 +41,7 @@
 		</div>
 		<div class="w-full bg-white">
 			<div class="container mx-auto max-w-7xl px-6 pb-16">
-				<h2 class="py-8 text-black text-3xl font-bold w-full" id="testimonials">{{ $t('testimonials.title') }}</h2>
+				<h2 class="pb-8 text-black text-3xl font-bold w-full" id="testimonials">{{ $t('testimonials.title') }}</h2>
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 					<div v-for="testimonial in testimonials" :key="testimonial.name" class="rounded-3xl bg-white shadow-lg p-10 flex flex-col" data-aos="zoom-in">
 						<span class="quote-mark" aria-hidden="true">&ldquo;</span>
@@ -403,7 +403,7 @@ export default {
 		background: linear-gradient(180deg, rgba(255, 255, 255, 0), #fff);
 	}
 	.selected-work {
-		padding: 40px 0 200px;
+		padding: 40px 0 72px;
 	}
 	.selected-work-title {
 		font-family: "Montserrat", sans-serif;
