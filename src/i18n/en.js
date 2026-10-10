@@ -69,7 +69,7 @@ export default {
     "ux": {
       "name": "UX Design",
       "description": "I start with your clients: who they are, what stops them, what they need to decide. Then I structure the journey so the next step is always obvious.",
-      "tags": "UX research | User journeys | Wireframes | User testing"
+      "tags": "UX research | User journeys | Wireframes"
     },
     "ui": {
       "name": "UI Design",

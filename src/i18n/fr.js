@@ -69,7 +69,7 @@ export default {
     "ux": {
       "name": "UX Design",
       "description": "Je pars de vos clients : qui ils sont, ce qui les freine, ce dont ils ont besoin pour se décider. Puis je construis le parcours pour que l'étape suivante soit toujours évidente.",
-      "tags": "Recherche UX | Parcours | Wireframes | Tests utilisateurs"
+      "tags": "Recherche UX | Parcours | Wireframes"
     },
     "ui": {
       "name": "UI Design",
