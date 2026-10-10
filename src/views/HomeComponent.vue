@@ -403,7 +403,7 @@ export default {
 		background: linear-gradient(180deg, rgba(255, 255, 255, 0), #fff);
 	}
 	.selected-work {
-		padding: 40px 0 72px;
+		padding: 40px 0 150px;
 	}
 	.selected-work-title {
 		font-family: "Montserrat", sans-serif;
