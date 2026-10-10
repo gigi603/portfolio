@@ -233,7 +233,7 @@ export default {
 			],
 			tools: [
 				{ name: 'Figma', color: '#a259ff' },
-				{ name: 'Tailwind CSS', color: '#38bdf8' },
+				{ name: 'Claude', color: '#d97757' },
 			],
 			imgs: [
 				require("@/assets/images/practices/airmusic-september-2021.png"),
