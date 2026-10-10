@@ -1,8 +1,8 @@
 // English texts. French lives in fr.js; any key missing there falls back to this file.
 export default {
   "meta": {
-    "title": "Gilbert Trinidad, Freelance Product Designer",
-    "description": "Freelance product designer. I design clear, warm websites for freelancers and small businesses, so their clients understand the offer and book in a few clicks."
+    "title": "Gilbert Trinidad, Product Designer",
+    "description": "Product designer. I design clear, warm websites for freelancers and small businesses, so their clients understand the offer and book in a few clicks."
   },
   "lang": {
     "fr": "Français",
@@ -23,7 +23,7 @@ export default {
   },
   "hero": {
     "hello": "Hi, I'm",
-    "title": "Freelance Product Designer",
+    "title": "Product Designer",
     "text": "I design clear, warm websites for freelancers and small businesses, so their clients understand the offer and book in a few clicks.",
     "book": "Book a free 30-min call",
     "talk": "Let's talk about your project",
@@ -31,7 +31,7 @@ export default {
     "mockupAlt": "SPCoach website, desktop and mobile",
     "available": "Available for new projects",
     "h1a": "Hi, I'm Gilbert,",
-    "h1b": "Freelance Product Designer",
+    "h1b": "Product Designer",
     "chips": {
       "research": "UX research",
       "wireframes": "Wireframes",
@@ -89,7 +89,7 @@ export default {
     "p2": "My approach is simple: understand the people you want to reach, make the offer easy to grasp, and remove everything that slows down the decision. Because I also code, I can take a project from the first sketch to a live website.",
     "cv": "Download my CV",
     "p1Start": "I'm Gilbert, a ",
-    "p1Highlight": "freelance product designer",
+    "p1Highlight": "product designer",
     "p1End": " based in Paris. I work mostly with independent professionals and small businesses who need a site that feels like them and actually brings in clients.",
     "cta": "Let's talk about your project",
     "chip1": "Design + copywriting",

@@ -1,8 +1,8 @@
 // French texts (default language), from Joe's wording-fr.md. Missing keys fall back to en.js.
 export default {
   "meta": {
-    "title": "Gilbert Trinidad, Product Designer freelance",
-    "description": "Product designer freelance. Je conçois des sites clairs et chaleureux pour des indépendants et petites entreprises, pour que leurs clients comprennent l'offre et réservent en quelques clics."
+    "title": "Gilbert Trinidad, Product Designer",
+    "description": "Product designer. Je conçois des sites clairs et chaleureux pour des indépendants et petites entreprises, pour que leurs clients comprennent l'offre et réservent en quelques clics."
   },
   "nav": {
     "projects": "Projets",
@@ -23,7 +23,7 @@ export default {
   },
   "hero": {
     "hello": "Bonjour, je suis",
-    "title": "Product Designer freelance",
+    "title": "Product Designer",
     "text": "Je conçois des sites clairs et chaleureux pour des indépendants et petites entreprises, pour que leurs clients comprennent l'offre et réservent en quelques clics.",
     "book": "Réserver un appel gratuit de 30 min",
     "talk": "Parlons de votre projet",
@@ -31,7 +31,7 @@ export default {
     "mockupAlt": "Site SPCoach, version ordinateur et mobile",
     "available": "Disponible pour de nouveaux projets",
     "h1a": "Bonjour, je suis Gilbert,",
-    "h1b": "Product Designer freelance",
+    "h1b": "Product Designer",
     "chips": {
       "research": "Recherche UX",
       "wireframes": "Wireframes",
@@ -89,7 +89,7 @@ export default {
     "p2": "Ma méthode est simple : comprendre les personnes que vous voulez toucher, rendre votre offre facile à saisir et supprimer tout ce qui ralentit la décision. Comme je code aussi, je peux mener un projet du premier croquis jusqu'au site en ligne.",
     "cv": "Télécharger mon CV",
     "p1Start": "Je suis Gilbert, ",
-    "p1Highlight": "product designer freelance",
+    "p1Highlight": "product designer",
     "p1End": " basé à Paris. Je travaille surtout avec des indépendants et des petites entreprises qui ont besoin d'un site qui leur ressemble et qui leur amène vraiment des clients.",
     "cta": "Parlons de votre projet",
     "chip1": "Design + rédaction",
