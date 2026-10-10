@@ -42,6 +42,7 @@
 		<section class="testimonials" id="testimonials">
 			<div class="container mx-auto max-w-7xl px-6">
 				<h2 class="section-title">{{ $t('testimonials.title') }}</h2>
+				<p class="section-lead">{{ $t('testimonials.subtitle') }}</p>
 				<div class="testimonials-grid">
 					<article v-for="testimonial in testimonials" :key="testimonial.key" class="testimonial" data-aos="zoom-in">
 						<div class="testimonial-icon" aria-hidden="true">

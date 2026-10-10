@@ -61,7 +61,8 @@ export default {
       "pullStart": "« Mes visiteurs ",
       "pullEnd": "trouvent le bon accompagnement",
       "pullAfter": ". »"
-    }
+    },
+    "subtitle": "Deux coachs parisiennes racontent comment nous avons conçu leur site ensemble."
   },
   "skills": {
     "title": "Ce que je fais",

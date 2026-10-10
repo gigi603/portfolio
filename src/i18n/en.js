@@ -61,7 +61,8 @@ export default {
       "pullStart": "“Visitors ",
       "pullEnd": "find the right service",
       "pullAfter": ".”"
-    }
+    },
+    "subtitle": "Two Paris coaches on how we designed their websites together."
   },
   "skills": {
     "title": "What I do",
