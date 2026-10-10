@@ -1,29 +1,27 @@
 <template>
-  <div class="container mx-auto px-4">
-    <div class="flex flex-wrap px-4">
-      <div class="flex flex-col min-w-0 break-words bg-white drop-shadow-xl w-full my-20 shadow-lg rounded-3xl">
-      <div v-for="(project, index) in projects" :key="index" class="relative flex min-w-0 break-words bg-white w-full shadow-lg rounded-3xl">
-        <div v-if="project.id == $route.params.id ">
-          <div class="pt-10 pl-4 md:pl-20"><h2 class="font-bold text-2xl"><button @click="$router.go(-1)" class="mr-2"><font-awesome-icon icon="fa-solid fa-chevron-left" color="#000" size="sm" /></button> {{ project.name }} </h2></div>
-          <div class="md:px-16 py-10 rounded-3xl">
-            <p class="px-6 pb-2 text-sm font-bold uppercase" style="color: #9535d8;">{{ $t(`projects.${project.id}.label`) }}</p>
-            <template v-if="project.sections">
-              <p class="px-6 pb-6 text-2xl font-bold">{{ $t(`projects.${project.id}.tagline`) }}</p>
-              <ul class="px-6 pb-6" style="color:#7a7a7a">
-                <li><span class="font-bold text-black">{{ $t('case.client') }}</span> {{ $t(`projects.${project.id}.client`) }}</li>
-                <li><span class="font-bold text-black">{{ $t('case.role') }}</span> {{ $t(`projects.${project.id}.role`) }}</li>
-                <li><span class="font-bold text-black">{{ $t('case.tools') }}</span> {{ $t(`projects.${project.id}.tools`) }}</li>
-              </ul>
-              <div v-for="section in project.sections" :key="section" class="px-6 pb-6">
-                <h3 class="font-bold text-xl pb-2">{{ $t(`case.sections.${section}`) }}</h3>
-                <p>{{ $t(`projects.${project.id}.sections.${section}`) }}</p>
-              </div>
-            </template>
-            <p v-else class="px-6 pb-4">
-              {{ $t(`projects.${project.id}.description`) }}
-              </p>
-              <p v-if="project.url_website != ''" class="px-6 py-4"><a :href="project.url_website" target="_blank" class="font-bold text-white px-4 py-2 rounded-full" style="background-color: #9535d8;">{{ $te(`projects.${project.id}.visit_label`, 'en') ? $t(`projects.${project.id}.visit_label`) : $t('case.goTo', { name: project.name }) }}</a></p>
-            <section class="gallery px-6">
+  <div class="container mx-auto max-w-7xl px-6 py-12">
+    <template v-for="project in projects">
+      <article v-if="project.id == $route.params.id" :key="project.id" class="project-page">
+        <h2 class="font-bold text-2xl"><button @click="$router.go(-1)" class="mr-2" :aria-label="$t('case.back')"><font-awesome-icon icon="fa-solid fa-chevron-left" color="#000" size="sm" /></button> {{ project.name }}</h2>
+        <!-- Reading column for the case study text; the gallery below uses the full width -->
+        <div class="project-text">
+          <p class="pb-2 text-sm font-bold uppercase" style="color: #9535d8;">{{ $t(`projects.${project.id}.label`) }}</p>
+          <template v-if="project.sections">
+            <p class="pb-6 text-2xl font-bold">{{ $t(`projects.${project.id}.tagline`) }}</p>
+            <ul class="pb-6" style="color:#7a7a7a">
+              <li><span class="font-bold text-black">{{ $t('case.client') }}</span> {{ $t(`projects.${project.id}.client`) }}</li>
+              <li><span class="font-bold text-black">{{ $t('case.role') }}</span> {{ $t(`projects.${project.id}.role`) }}</li>
+              <li><span class="font-bold text-black">{{ $t('case.tools') }}</span> {{ $t(`projects.${project.id}.tools`) }}</li>
+            </ul>
+            <div v-for="section in project.sections" :key="section" class="pb-6">
+              <h3 class="font-bold text-xl pb-2">{{ $t(`case.sections.${section}`) }}</h3>
+              <p>{{ $t(`projects.${project.id}.sections.${section}`) }}</p>
+            </div>
+          </template>
+          <p v-else class="pb-4">{{ $t(`projects.${project.id}.description`) }}</p>
+          <p v-if="project.url_website != ''" class="py-4"><a :href="project.url_website" target="_blank" class="font-bold text-white px-4 py-2 rounded-full" style="background-color: #9535d8;">{{ $te(`projects.${project.id}.visit_label`, 'en') ? $t(`projects.${project.id}.visit_label`) : $t('case.goTo', { name: project.name }) }}</a></p>
+        </div>
+            <section class="gallery">
               <div class="gallery-head">
                 <h3>{{ $t('gallery.title') }}</h3>
                 <p>{{ $t('gallery.hint') }}</p>
@@ -58,17 +56,14 @@
                 </div>
               </div>
             </section>
-          </div>
-        </div>
-      </div>
-      </div>
+      </article>
+    </template>
       <vue-easy-lightbox 
         :visible="visible"
         :imgs="lightboxImgs"
         :index="index"
         @hide="handleHide"
       ></vue-easy-lightbox>
-    </div>
   </div>
 </template>
 
@@ -125,6 +120,21 @@
   }
 </script>
 <style scoped>
+  .project-page {
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 14px 40px rgba(61, 22, 87, 0.1);
+    padding: 40px;
+  }
+  .project-text {
+    max-width: 720px;
+    padding-top: 32px;
+  }
+  @media (max-width: 640px) {
+    .project-page {
+      padding: 24px;
+    }
+  }
   .gallery {
     padding-top: 24px;
     padding-bottom: 40px;

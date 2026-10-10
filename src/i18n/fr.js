@@ -106,7 +106,8 @@ export default {
       "approach": "Approche",
       "solution": "Solution",
       "outcome": "Résultat"
-    }
+    },
+    "back": "Retour"
   },
   "projects": {
     "1": {

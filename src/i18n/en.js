@@ -106,7 +106,8 @@ export default {
       "approach": "Approach",
       "solution": "Solution",
       "outcome": "Outcome"
-    }
+    },
+    "back": "Back"
   },
   "projects": {
     "1": {
