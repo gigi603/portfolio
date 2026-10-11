@@ -66,7 +66,14 @@ export default {
         await emailjs.send(
           process.env.VUE_APP_EMAILJS_SERVICE_ID,
           process.env.VUE_APP_EMAILJS_TEMPLATE_ID,
-          { from_name: this.form.name, reply_to: this.form.email, message: this.form.message },
+          // Variable names match the EmailJS "Contact Us" template
+          {
+            name: this.form.name,
+            email: this.form.email,
+            title: 'Portfolio',
+            message: this.form.message,
+            time: new Date().toLocaleString('fr-FR'),
+          },
           process.env.VUE_APP_EMAILJS_PUBLIC_KEY
         )
         this.status = 'success'
