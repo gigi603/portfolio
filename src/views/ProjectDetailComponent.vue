@@ -314,7 +314,7 @@
   .side-btn-primary {
     background: #9535d7;
     color: #fff;
-    box-shadow: 0 8px 18px rgba(149, 53, 215, 0.28);
+    box-shadow: 0 10px 24px rgba(149, 53, 215, 0.28);
   }
   .side-toc a {
     display: flex;
