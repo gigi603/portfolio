@@ -17,7 +17,7 @@
                   <div><dt>{{ $t('case.typeLabel') }}</dt><dd>{{ $t(`projects.${project.id}.type`) }}</dd></div>
                   <div v-if="$te(`projects.${project.id}.tools`, 'en')"><dt>{{ $t('case.toolsLabel') }}</dt><dd class="side-chips"><span v-for="tool in $t(`projects.${project.id}.tools`).split(', ')" :key="tool">{{ tool }}</span></dd></div>
                 </dl>
-                <a v-if="project.url_website" :href="project.url_website" target="_blank" rel="noopener" class="side-btn side-btn-outline">{{ $t(`projects.${project.id}.visit_label`) }} ↗</a>
+                <a v-if="project.url_website" :href="project.url_website" target="_blank" rel="noopener" class="side-btn side-btn-primary">{{ $t(`projects.${project.id}.visit_label`) }} ↗</a>
               </div>
             </div>
             <template v-if="project.sections">
@@ -38,7 +38,7 @@
                 <div><dt>{{ $t('case.typeLabel') }}</dt><dd>{{ $t(`projects.${project.id}.type`) }}</dd></div>
                 <div v-if="$te(`projects.${project.id}.tools`, 'en')"><dt>{{ $t('case.toolsLabel') }}</dt><dd class="side-chips"><span v-for="tool in $t(`projects.${project.id}.tools`).split(', ')" :key="tool">{{ tool }}</span></dd></div>
               </dl>
-              <a v-if="project.url_website" :href="project.url_website" target="_blank" rel="noopener" class="side-btn side-btn-outline">{{ $t(`projects.${project.id}.visit_label`) }} ↗</a>
+              <a v-if="project.url_website" :href="project.url_website" target="_blank" rel="noopener" class="side-btn side-btn-primary">{{ $t(`projects.${project.id}.visit_label`) }} ↗</a>
             </div>
             <nav v-if="project.sections" class="side-card side-toc" :aria-label="$t('case.contents')">
               <h4>{{ $t('case.contents') }}</h4>
@@ -311,9 +311,10 @@
   .side-btn:hover {
     opacity: 0.85;
   }
-  .side-btn-outline {
-    border: 2px solid #9535d7;
-    color: #9535d7;
+  .side-btn-primary {
+    background: #9535d7;
+    color: #fff;
+    box-shadow: 0 8px 18px rgba(149, 53, 215, 0.28);
   }
   .side-toc a {
     display: flex;
