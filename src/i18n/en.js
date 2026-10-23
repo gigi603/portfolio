@@ -2,7 +2,7 @@
 export default {
   "meta": {
     "title": "Gilbert Trinidad, Product Designer",
-    "description": "Product designer. I design clear, warm websites for freelancers and small businesses, so their clients understand the offer and book in a few clicks."
+    "description": "AI-native product designer in Paris. I design web products and ship them by directing Claude Code."
   },
   "lang": {
     "fr": "Français",
@@ -24,20 +24,22 @@ export default {
   "hero": {
     "hello": "Hi, I'm",
     "title": "Product Designer",
-    "text": "I design clear, warm websites for freelancers and small businesses, so their clients understand the offer and book in a few clicks.",
+    "text": "I design web products and ship them with Claude Code. I lead the research and the design decisions, direct the AI and check every deliverable.",
+    "seeWork": "See my work",
+    "contact": "Get in touch",
     "book": "Book a free 30-min call",
     "talk": "Let's talk about your project",
     "trusted": "Trusted by coaches and therapists in Paris",
     "mockupAlt": "SPCoach website, desktop and mobile",
-    "available": "Available for new projects",
+    "available": "Open to Product Designer roles · Paris",
     "h1a": "Hi, I'm Gilbert,",
-    "h1b": "Product Designer",
+    "h1b": "AI\u2011native Product Designer",
     "chips": {
       "research": "UX research",
       "wireframes": "Wireframes",
-      "prototyping": "Prototyping",
-      "ui": "UI design",
-      "testing": "User testing",
+      "prototyping": "Code prototypes",
+      "ui": "Design system",
+      "ai": "Claude Code",
       "launch": "Launch"
     }
   },
@@ -67,33 +69,33 @@ export default {
   "skills": {
     "title": "What I do",
     "ux": {
-      "name": "UX Design",
-      "description": "I start with your clients: who they are, what stops them, what they need to decide. Then I structure the journey so the next step is always obvious.",
-      "tags": "UX research | User journeys | Wireframes"
+      "name": "Understand and decide",
+      "description": "I start with users: who they are, what stops them, what they need. Then I choose between options and structure the journey so the next step is always obvious.",
+      "tags": "UX research | User journeys | Trade-offs"
     },
     "ui": {
-      "name": "UI Design",
-      "description": "Visual identity, design system and interfaces for web and mobile, consistent and easy to read.",
-      "tags": "Design system | Figma mockups | Prototyping | Responsive"
+      "name": "Design the system",
+      "description": "A design system kept up to date in Figma and in code, for consistent, readable web and mobile interfaces.",
+      "tags": "Design system | Figma | Responsive | Accessibility"
     },
     "dev": {
-      "name": "Front-end integration",
-      "description": "I build what I design with HTML, CSS and Tailwind, so the final site matches the mockups.",
-      "tags": "HTML / CSS | Tailwind | Launch"
+      "name": "Ship with AI",
+      "description": "Claude Code builds what I design. I set the direction, check every change, and nothing goes live without my sign-off.",
+      "tags": "Claude Code | Vue / Tailwind | Git | Vercel"
     },
-    "subtitle": "From understanding your clients to a live website, one point of contact.",
+    "subtitle": "From the problem to a live product: I decide, AI speeds things up, I check everything.",
     "tools": "My tools:"
   },
   "about": {
     "title": "About",
-    "p2": "My approach is simple: understand the people you want to reach, make the offer easy to grasp, and remove everything that slows down the decision. Because I also code, I can take a project from the first sketch to a live website.",
+    "p2": "My approach: understand users, make the offer easy to grasp, and remove everything that slows down the decision. I show my choices and what I ruled out, not just the result.",
     "cv": "Download my CV",
     "p1Start": "I'm Gilbert, a ",
     "p1Highlight": "product designer",
-    "p1End": " based in Paris. I work mostly with independent professionals and small businesses who need a site that feels like them and actually brings in clients.",
-    "cta": "Let's talk about your project",
+    "p1End": " in Paris with a background in web development. I run my work with Claude like a small product team: research, design, copy, code and testing. I set the direction, make the calls and check every deliverable before it goes live.",
+    "cta": "Get in touch",
     "chip1": "Design + copywriting",
-    "chip2": "From sketch to live website"
+    "chip2": "From problem to live product"
   },
   "case": {
     "client": "Client:",
@@ -217,8 +219,8 @@ export default {
     }
   },
   "contact": {
-    "title": "Let's work together",
-    "subtitle": "Tell me about your project, I'll get back to you shortly.",
+    "title": "Let's talk",
+    "subtitle": "Hiring a product designer? Drop me a line, I'll get back to you shortly.",
     "preferTalk": "Prefer to talk? Book a free 30-min call",
     "or": "or send a message",
     "name": "Name",

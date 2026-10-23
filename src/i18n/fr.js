@@ -2,7 +2,7 @@
 export default {
   "meta": {
     "title": "Gilbert Trinidad, Product Designer",
-    "description": "Product designer. Je conçois des sites clairs et chaleureux pour des indépendants et petites entreprises, pour que leurs clients comprennent l'offre et réservent en quelques clics."
+    "description": "Product designer AI-native à Paris. Je conçois des produits web et je les mets en ligne en dirigeant Claude Code."
   },
   "nav": {
     "projects": "Projets",
@@ -24,20 +24,22 @@ export default {
   "hero": {
     "hello": "Bonjour, je suis",
     "title": "Product Designer",
-    "text": "Je conçois des sites clairs et chaleureux pour des indépendants et petites entreprises, pour que leurs clients comprennent l'offre et réservent en quelques clics.",
+    "text": "Je conçois des produits web et je les mets en ligne avec Claude Code. Je mène la recherche et les décisions de design, je dirige l'IA et je vérifie chaque livrable.",
+    "seeWork": "Voir mes projets",
+    "contact": "Me contacter",
     "book": "Réserver un appel gratuit de 30 min",
     "talk": "Parlons de votre projet",
     "trusted": "Ils m'ont fait confiance : coachs et thérapeutes à Paris",
     "mockupAlt": "Site SPCoach, version ordinateur et mobile",
-    "available": "Disponible pour de nouveaux projets",
+    "available": "Ouvert à un poste de Product Designer · Paris",
     "h1a": "Bonjour, je suis Gilbert,",
-    "h1b": "Product Designer",
+    "h1b": "Product Designer AI\u2011native",
     "chips": {
       "research": "Recherche UX",
       "wireframes": "Wireframes",
-      "prototyping": "Prototypage",
-      "ui": "UI design",
-      "testing": "Tests utilisateurs",
+      "prototyping": "Prototype en code",
+      "ui": "Design system",
+      "ai": "Claude Code",
       "launch": "Mise en ligne"
     }
   },
@@ -67,33 +69,33 @@ export default {
   "skills": {
     "title": "Ce que je fais",
     "ux": {
-      "name": "UX Design",
-      "description": "Je pars de vos clients : qui ils sont, ce qui les freine, ce dont ils ont besoin pour se décider. Puis je construis le parcours pour que l'étape suivante soit toujours évidente.",
-      "tags": "Recherche UX | Parcours | Wireframes"
+      "name": "Comprendre et décider",
+      "description": "Je pars des utilisateurs : qui ils sont, ce qui les freine, ce dont ils ont besoin. Puis je tranche entre les options et je construis le parcours pour que l'étape suivante soit toujours évidente.",
+      "tags": "Recherche UX | Parcours | Arbitrages"
     },
     "ui": {
-      "name": "UI Design",
-      "description": "Identité visuelle, design system et interfaces web et mobile, cohérents et faciles à lire.",
-      "tags": "Design system | Maquettes Figma | Prototypage | Responsive"
+      "name": "Concevoir le système",
+      "description": "Un design system tenu à jour dans Figma et dans le code, pour des interfaces web et mobile cohérentes et faciles à lire.",
+      "tags": "Design system | Figma | Responsive | Accessibilité"
     },
     "dev": {
-      "name": "Intégration front-end",
-      "description": "Je développe ce que je conçois en HTML, CSS et Tailwind, pour que le site final soit fidèle aux maquettes.",
-      "tags": "HTML / CSS | Tailwind | Mise en ligne"
+      "name": "Livrer avec l'IA",
+      "description": "Claude Code développe ce que je conçois. Je fixe la direction, je vérifie chaque changement et rien ne part en ligne sans ma validation.",
+      "tags": "Claude Code | Vue / Tailwind | Git | Vercel"
     },
-    "subtitle": "De la compréhension de vos clients jusqu'au site en ligne, un seul interlocuteur.",
+    "subtitle": "Du problème jusqu'au produit en ligne : je décide, l'IA accélère, je vérifie tout.",
     "tools": "Mes outils :"
   },
   "about": {
     "title": "À propos",
-    "p2": "Ma méthode est simple : comprendre les personnes que vous voulez toucher, rendre votre offre facile à saisir et supprimer tout ce qui ralentit la décision. Comme je code aussi, je peux mener un projet du premier croquis jusqu'au site en ligne.",
+    "p2": "Ma méthode : comprendre les utilisateurs, rendre l'offre facile à saisir et supprimer tout ce qui ralentit la décision. Je montre mes choix et ce que j'ai écarté, pas seulement le résultat.",
     "cv": "Télécharger mon CV",
     "p1Start": "Je suis Gilbert, ",
     "p1Highlight": "product designer",
-    "p1End": " basé à Paris. Je travaille surtout avec des indépendants et des petites entreprises qui ont besoin d'un site qui leur ressemble et qui leur amène vraiment des clients.",
-    "cta": "Parlons de votre projet",
+    "p1End": " à Paris, avec un passé de développeur web. J'organise mon travail avec Claude comme une petite équipe produit : recherche, design, rédaction, code et tests. Je fixe la direction, je tranche et je vérifie chaque livrable avant qu'il parte en ligne.",
+    "cta": "Me contacter",
     "chip1": "Design + rédaction",
-    "chip2": "Du croquis au site en ligne"
+    "chip2": "Du problème au produit en ligne"
   },
   "case": {
     "client": "Client :",
@@ -217,13 +219,13 @@ export default {
     }
   },
   "contact": {
-    "title": "Travaillons ensemble",
-    "subtitle": "Parlez-moi de votre projet, je vous réponds rapidement.",
+    "title": "Échangeons",
+    "subtitle": "Vous recrutez un product designer ? Écrivez-moi, je vous réponds rapidement.",
     "preferTalk": "Vous préférez en parler ? Réservez un appel gratuit de 30 min",
     "or": "ou envoyez-moi un message",
     "name": "Nom",
     "email": "Email",
-    "message": "Parlez-moi de votre projet",
+    "message": "Votre message",
     "send": "Envoyer le message",
     "sending": "Envoi…",
     "success": "Merci ! Je vous réponds sous 48 h.",
