@@ -24,7 +24,7 @@ export default {
   "hero": {
     "hello": "Hi, I'm",
     "title": "Product Designer",
-    "text": "I design web products and ship them with Claude Code. I lead the research and the design decisions, direct the AI and check every deliverable.",
+    "text": "I design web products and ship them with a team of Claude agents I built. I lead the research and the design decisions, direct the AI and check every deliverable.",
     "seeWork": "See my work",
     "contact": "Get in touch",
     "book": "Book a free 30-min call",
@@ -81,7 +81,7 @@ export default {
     "dev": {
       "name": "Ship with AI",
       "description": "Claude Code builds what I design. I set the direction, check every change, and nothing goes live without my sign-off.",
-      "tags": "Claude Code | Vue / Tailwind | Git | Vercel"
+      "tags": "Claude Code | AI agents | Vue / Tailwind | Vercel"
     },
     "subtitle": "From the problem to a live product: I decide, AI speeds things up, I check everything.",
     "tools": "My tools:"
@@ -92,7 +92,7 @@ export default {
     "cv": "Download my CV",
     "p1Start": "I'm Gilbert, a ",
     "p1Highlight": "product designer",
-    "p1End": " in Paris with a background in web development. I run my work with Claude like a small product team: research, design, copy, code and testing. I set the direction, make the calls and check every deliverable before it goes live.",
+    "p1End": " in Paris with a background in web development. I build my own workflow and Claude agents, a small product team: research, design, copy, code and testing. I set the direction, make the calls and check every deliverable before it goes live.",
     "cta": "Get in touch",
     "chip1": "Design + copywriting",
     "chip2": "From problem to live product"

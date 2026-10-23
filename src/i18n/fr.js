@@ -24,7 +24,7 @@ export default {
   "hero": {
     "hello": "Bonjour, je suis",
     "title": "Product Designer",
-    "text": "Je conçois des produits web et je les mets en ligne avec Claude Code. Je mène la recherche et les décisions de design, je dirige l'IA et je vérifie chaque livrable.",
+    "text": "Je conçois des produits web et je les mets en ligne avec une équipe d'agents Claude que j'ai créée. Je mène la recherche et les décisions de design, je dirige l'IA et je vérifie chaque livrable.",
     "seeWork": "Voir mes projets",
     "contact": "Me contacter",
     "book": "Réserver un appel gratuit de 30 min",
@@ -81,7 +81,7 @@ export default {
     "dev": {
       "name": "Livrer avec l'IA",
       "description": "Claude Code développe ce que je conçois. Je fixe la direction, je vérifie chaque changement et rien ne part en ligne sans ma validation.",
-      "tags": "Claude Code | Vue / Tailwind | Git | Vercel"
+      "tags": "Claude Code | Agents IA | Vue / Tailwind | Vercel"
     },
     "subtitle": "Du problème jusqu'au produit en ligne : je décide, l'IA accélère, je vérifie tout.",
     "tools": "Mes outils :"
@@ -92,7 +92,7 @@ export default {
     "cv": "Télécharger mon CV",
     "p1Start": "Je suis Gilbert, ",
     "p1Highlight": "product designer",
-    "p1End": " à Paris, avec un passé de développeur web. J'organise mon travail avec Claude comme une petite équipe produit : recherche, design, rédaction, code et tests. Je fixe la direction, je tranche et je vérifie chaque livrable avant qu'il parte en ligne.",
+    "p1End": " à Paris, avec un passé de développeur web. Je crée moi-même mon workflow et mes agents Claude, une petite équipe produit : recherche, design, rédaction, code et tests. Je fixe la direction, je tranche et je vérifie chaque livrable avant qu'il parte en ligne.",
     "cta": "Me contacter",
     "chip1": "Design + rédaction",
     "chip2": "Du problème au produit en ligne"
