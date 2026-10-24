@@ -241,6 +241,9 @@
     font-weight: 700;
     margin-bottom: 8px;
   }
+  .project-section p {
+    white-space: pre-line;
+  }
   .project-section p,
   .project-section-text {
     font-size: 16px;

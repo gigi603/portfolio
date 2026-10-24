@@ -75,7 +75,7 @@ export default {
     },
     "ui": {
       "name": "Concevoir le système",
-      "description": "Un design system tenu à jour dans Figma et dans le code, pour des interfaces web et mobile cohérentes et faciles à lire.",
+      "description": "Je conçois dans Figma ou directement en code avec Claude, et je tiens un design system à jour pour des interfaces web et mobile cohérentes et faciles à lire.",
       "tags": "Design system | Figma | Responsive | Accessibilité"
     },
     "dev": {
@@ -107,7 +107,9 @@ export default {
       "challenge": "L'enjeu",
       "approach": "Approche",
       "solution": "Solution",
-      "outcome": "Résultat"
+      "outcome": "Résultat",
+      "decisions": "Décisions et compromis",
+      "retro": "Avec le recul"
     },
     "back": "Retour",
     "atAGlance": "En bref",
@@ -152,17 +154,17 @@ export default {
     "2": {
       "label": "Projet client",
       "hook": "Deux accompagnements, un seul chemin clair vers le rendez-vous découverte",
-      "tagline": "Deux accompagnements, un seul chemin clair vers le rendez-vous découverte",
+      "tagline": "Un site créé de zéro, qui donne envie aux visiteurs de contacter Mélodie",
       "client": "Mélodie Yeremian, consultante en bilan de compétences et psychopraticienne, à Paris et à distance",
-      "role": "UX/UI design",
+      "role": "Design dans Figma et création du site (WordPress, Divi)",
       "tools": "Figma, WordPress, Divi Builder",
       "visit_label": "Voir melodieyeremian.com",
       "sections": {
-        "context": "Mélodie accompagne les personnes dans leurs transitions professionnelles et personnelles, avec deux accompagnements distincts : le bilan de compétences et l'accompagnement thérapeutique.",
-        "challenge": "Les deux accompagnements répondent à des besoins différents. Les visiteurs devaient trouver rapidement le leur, sans confondre bilan de compétences et thérapie, et se sentir assez en confiance pour réserver un premier appel.",
-        "approach": "J'ai organisé le site autour de deux parcours clairs, avec un design doux et apaisant, fidèle à la pratique de Mélodie.",
-        "solution": "Chaque accompagnement a sa propre page, ses détails et sa réservation découverte. Un bouton « Prendre RDV » reste visible partout. Une section « Qui suis-je » personnelle crée la confiance, et une boutique en ligne complète son offre. J'ai créé le site sur WordPress avec Divi Builder, à sa demande, pour qu'elle soit autonome et puisse facilement reprendre la main de son côté.",
-        "outcome": "Le site est en ligne et Mélodie l'utilise pour présenter ses deux accompagnements et prendre ses rendez-vous."
+        "context": "Mélodie accompagne les personnes dans leurs transitions professionnelles et personnelles, avec deux accompagnements distincts : le bilan de compétences et l'accompagnement thérapeutique. Elle n'avait pas encore de site internet : tout partait de zéro.",
+        "challenge": "Les deux accompagnements répondent à des besoins très différents. Les visiteurs devaient trouver rapidement le leur, sans confondre bilan et thérapie, et se sentir assez en confiance pour réserver un premier rendez-vous. Deux contraintes cadraient le projet : Mélodie devait pouvoir modifier son site seule, et le ton devait rester doux, fidèle à sa pratique.",
+        "decisions": "1. Deux parcours séparés plutôt qu'une page commune. Chaque accompagnement a sa page, ses détails et sa propre réservation découverte.\n2. WordPress et Divi Builder plutôt qu'un site codé sur mesure. J'ai privilégié l'autonomie de Mélodie, en acceptant moins de liberté dans les détails d'interface.\n3. Traduire les demandes de la cliente en interface. La barre « Prendre RDV » toujours visible, un bouton découverte propre à chaque offre et une boutique discrète venaient de Mélodie. Mon rôle a été de les intégrer sans alourdir le parcours.\n4. Une section « Qui suis-je » personnelle, parce qu'en thérapie comme en bilan, on choisit d'abord une personne.",
+        "outcome": "Le site est en ligne et Mélodie l'utilise pour présenter ses deux accompagnements et prendre ses rendez-vous. Depuis la mise en ligne, des clientes l'ont contactée après avoir découvert son site. Comme elle le dit : « Aujourd'hui, mes visiteurs trouvent le bon accompagnement et réservent facilement un rendez-vous découverte. »",
+        "retro": "Je n'ai pas utilisé l'IA pour créer ce site. Aujourd'hui, je commencerais directement avec Claude plutôt que d'installer et de configurer WordPress à la main. C'est la suite que je prépare : les prochaines modifications du site passeront par Claude."
       },
       "type": "Site vitrine · Boutique",
       "screens": {

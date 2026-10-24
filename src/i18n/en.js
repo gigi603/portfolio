@@ -75,7 +75,7 @@ export default {
     },
     "ui": {
       "name": "Design the system",
-      "description": "A design system kept up to date in Figma and in code, for consistent, readable web and mobile interfaces.",
+      "description": "I design in Figma or directly in code with Claude, and keep a design system up to date for consistent, readable web and mobile interfaces.",
       "tags": "Design system | Figma | Responsive | Accessibility"
     },
     "dev": {
@@ -107,7 +107,9 @@ export default {
       "challenge": "The challenge",
       "approach": "Approach",
       "solution": "Solution",
-      "outcome": "Outcome"
+      "outcome": "Outcome",
+      "decisions": "Decisions and trade-offs",
+      "retro": "Looking back"
     },
     "back": "Back",
     "atAGlance": "At a glance",
@@ -152,17 +154,17 @@ export default {
     "2": {
       "label": "Client project",
       "hook": "Two services, one clear path to a discovery call",
-      "tagline": "Two services, one clear path to a discovery call",
+      "tagline": "A site built from scratch that makes visitors want to contact Mélodie",
       "client": "Mélodie Yeremian, career coach and psychopractitioner, Paris and remote",
-      "role": "UX/UI design",
+      "role": "Design in Figma and site build (WordPress, Divi)",
       "tools": "Figma, WordPress, Divi Builder",
       "visit_label": "Visit melodieyeremian.com",
       "sections": {
-        "context": "Mélodie supports people through professional and personal transitions with two distinct services: career assessments (bilan de compétences) and therapeutic support.",
-        "challenge": "The two services speak to different needs. Visitors had to find their path quickly, without confusing a career assessment with therapy, and feel confident enough to book a first call.",
-        "approach": "I organised the site around two clear paths, with a calm, gentle design in line with Mélodie's practice.",
-        "solution": "Each service has its own page, details and discovery booking. A \"Book an appointment\" button stays visible throughout. A personal \"About me\" section builds trust, and an online shop extends her offer. At her request, I built the site on WordPress with Divi Builder, so she can work independently and easily take over the site herself.",
-        "outcome": "The site is live and Mélodie uses it to present both services and take bookings online."
+        "context": "Mélodie supports people through professional and personal transitions with two distinct services: career assessments (bilan de compétences) and therapeutic support. She had no website yet: everything started from scratch.",
+        "challenge": "The two services meet very different needs. Visitors had to find theirs quickly, without confusing a career assessment with therapy, and feel confident enough to book a first appointment. Two constraints framed the project: Mélodie had to be able to edit her site on her own, and the tone had to stay gentle, true to her practice.",
+        "decisions": "1. Two separate paths rather than one shared page. Each service has its own page, details and discovery booking.\n2. WordPress and Divi Builder rather than a custom-coded site. I put Mélodie's autonomy first and accepted less freedom over interface details.\n3. Turning the client's requests into interface. The always-visible \"Book an appointment\" bar, a discovery button for each service and a low-key shop came from Mélodie. My role was to build them in without weighing down the journey.\n4. A personal \"About me\" section, because in therapy as in career coaching, people choose a person first.",
+        "outcome": "The site is live and Mélodie uses it to present both services and take bookings. Since launch, clients have contacted her after discovering her site. In her words: \"Now visitors find the right service and book a discovery call easily.\"",
+        "retro": "I didn't use AI to build this site. Today I would start directly with Claude instead of installing and setting up WordPress by hand. That's the next step I'm preparing: future changes to the site will go through Claude."
       },
       "type": "Showcase site · Shop",
       "screens": {
