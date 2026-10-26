@@ -22,8 +22,8 @@
 				<h1 class="hero-title">{{ $t('hero.h1a') }}<br><em>{{ $t('hero.h1b') }}</em></h1>
 				<p class="hero-lead">{{ $t('hero.text') }}</p>
 				<div class="hero-buttons">
-					<a v-if="bookingUrl" :href="bookingUrl" target="_blank" rel="noopener" class="hero-btn hero-btn-primary">{{ $t('hero.book') }}</a>
-					<a href="#contact" class="hero-btn" :class="bookingUrl ? 'hero-btn-outline' : 'hero-btn-primary'">{{ $t('hero.talk') }}</a>
+					<a href="#projects" class="hero-btn hero-btn-primary">{{ $t('hero.seeWork') }}</a>
+					<a href="#contact" class="hero-btn hero-btn-outline">{{ $t('hero.contact') }}</a>
 				</div>
 				<a href="#testimonials" class="hero-trust">{{ $t('hero.trusted') }}</a>
 			</div>
@@ -167,7 +167,7 @@ export default {
 				{ key: 'wireframes', icon: '✏️', color: '#fce7f3', position: 'chip-left-2' },
 				{ key: 'prototyping', icon: '🧩', color: '#ede9fe', position: 'chip-left-3' },
 				{ key: 'ui', icon: '🎨', color: '#e0f2fe', position: 'chip-right-1' },
-				{ key: 'testing', icon: '🧪', color: '#fef3c7', position: 'chip-right-2' },
+				{ key: 'ai', icon: '🤖', color: '#fef3c7', position: 'chip-right-2' },
 				{ key: 'launch', icon: '🚀', color: '#dcfce7', position: 'chip-right-3' },
 			],
 			testimonials: [
@@ -181,7 +181,11 @@ export default {
 			],
 			tools: [
 				{ name: 'Figma', color: '#a259ff' },
-				{ name: 'Claude', color: '#d97757' },
+				{ name: 'Claude Code', color: '#d97757' },
+				{ name: 'Vue', color: '#42b883' },
+				{ name: 'Tailwind', color: '#38bdf8' },
+				{ name: 'Git', color: '#f05032' },
+				{ name: 'Vercel', color: '#111111' },
 			],
 			softwares: [
 				{ name: "Figma", icon:require("@/assets/icons/figma_logo.svg")},

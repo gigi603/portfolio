@@ -1,8 +1,8 @@
 // French texts (default language), from Joe's wording-fr.md. Missing keys fall back to en.js.
 export default {
   "meta": {
-    "title": "Gilbert Trinidad, Product Designer",
-    "description": "Product designer. Je conçois des sites clairs et chaleureux pour des indépendants et petites entreprises, pour que leurs clients comprennent l'offre et réservent en quelques clics."
+    "title": "Gilbert Trinidad, Product Designer / Builder",
+    "description": "Product designer / builder à Paris. Je conçois des produits web et je les mets en ligne en dirigeant Claude Code."
   },
   "nav": {
     "projects": "Projets",
@@ -24,20 +24,22 @@ export default {
   "hero": {
     "hello": "Bonjour, je suis",
     "title": "Product Designer",
-    "text": "Je conçois des sites clairs et chaleureux pour des indépendants et petites entreprises, pour que leurs clients comprennent l'offre et réservent en quelques clics.",
+    "text": "Je conçois des produits web et je les mets en ligne avec une équipe d'agents Claude que j'ai créée. Je mène la recherche et les décisions de design, je dirige l'IA et je vérifie chaque livrable.",
+    "seeWork": "Voir mes projets",
+    "contact": "Me contacter",
     "book": "Réserver un appel gratuit de 30 min",
     "talk": "Parlons de votre projet",
     "trusted": "Ils m'ont fait confiance : coachs et thérapeutes à Paris",
     "mockupAlt": "Site SPCoach, version ordinateur et mobile",
-    "available": "Disponible pour de nouveaux projets",
+    "available": "Ouvert à un poste de Product Designer · Paris",
     "h1a": "Bonjour, je suis Gilbert,",
-    "h1b": "Product Designer",
+    "h1b": "Product Designer / Builder",
     "chips": {
       "research": "Recherche UX",
       "wireframes": "Wireframes",
-      "prototyping": "Prototypage",
-      "ui": "UI design",
-      "testing": "Tests utilisateurs",
+      "prototyping": "Prototype en code",
+      "ui": "Design system",
+      "ai": "Claude Code",
       "launch": "Mise en ligne"
     }
   },
@@ -67,33 +69,33 @@ export default {
   "skills": {
     "title": "Ce que je fais",
     "ux": {
-      "name": "UX Design",
-      "description": "Je pars de vos clients : qui ils sont, ce qui les freine, ce dont ils ont besoin pour se décider. Puis je construis le parcours pour que l'étape suivante soit toujours évidente.",
-      "tags": "Recherche UX | Parcours | Wireframes"
+      "name": "Comprendre et décider",
+      "description": "Je pars des utilisateurs : qui ils sont, ce qui les freine, ce dont ils ont besoin. Puis je tranche entre les options et je construis le parcours pour que l'étape suivante soit toujours évidente.",
+      "tags": "Recherche UX | Parcours | Arbitrages"
     },
     "ui": {
-      "name": "UI Design",
-      "description": "Identité visuelle, design system et interfaces web et mobile, cohérents et faciles à lire.",
-      "tags": "Design system | Maquettes Figma | Prototypage | Responsive"
+      "name": "Concevoir le système",
+      "description": "Je pilote Claude connecté à Figma : il génère les wireframes, les maquettes et les prototypes directement dans Figma, sur un design system tenu à jour. Je dirige l'IA et je vérifie chaque livrable.",
+      "tags": "Design system | Claude + Figma | Wireframes | Prototypes"
     },
     "dev": {
-      "name": "Intégration front-end",
-      "description": "Je développe ce que je conçois en HTML, CSS et Tailwind, pour que le site final soit fidèle aux maquettes.",
-      "tags": "HTML / CSS | Tailwind | Mise en ligne"
+      "name": "Livrer avec l'IA",
+      "description": "Claude Code développe ce que je conçois. Je fixe la direction, je vérifie chaque changement et rien ne part en ligne sans ma validation.",
+      "tags": "Claude Code | Agents IA | Vue / Tailwind | Vercel"
     },
-    "subtitle": "De la compréhension de vos clients jusqu'au site en ligne, un seul interlocuteur.",
+    "subtitle": "Du problème jusqu'au produit en ligne : je décide, l'IA accélère, je vérifie tout.",
     "tools": "Mes outils :"
   },
   "about": {
     "title": "À propos",
-    "p2": "Ma méthode est simple : comprendre les personnes que vous voulez toucher, rendre votre offre facile à saisir et supprimer tout ce qui ralentit la décision. Comme je code aussi, je peux mener un projet du premier croquis jusqu'au site en ligne.",
+    "p2": "Ma méthode : comprendre les utilisateurs, rendre l'offre facile à saisir et supprimer tout ce qui ralentit la décision. Je montre mes choix et ce que j'ai écarté, pas seulement le résultat.",
     "cv": "Télécharger mon CV",
     "p1Start": "Je suis Gilbert, ",
     "p1Highlight": "product designer",
-    "p1End": " basé à Paris. Je travaille surtout avec des indépendants et des petites entreprises qui ont besoin d'un site qui leur ressemble et qui leur amène vraiment des clients.",
-    "cta": "Parlons de votre projet",
+    "p1End": " à Paris, avec un passé de développeur web. Je crée moi-même mon workflow et mes agents Claude, une petite équipe produit : recherche, design, rédaction, code et tests. Je fixe la direction, je tranche et je vérifie chaque livrable avant qu'il parte en ligne.",
+    "cta": "Me contacter",
     "chip1": "Design + rédaction",
-    "chip2": "Du croquis au site en ligne"
+    "chip2": "Du problème au produit en ligne"
   },
   "case": {
     "client": "Client :",
@@ -105,7 +107,9 @@ export default {
       "challenge": "L'enjeu",
       "approach": "Approche",
       "solution": "Solution",
-      "outcome": "Résultat"
+      "outcome": "Résultat",
+      "decisions": "Décisions et compromis",
+      "retro": "Avec le recul"
     },
     "back": "Retour",
     "atAGlance": "En bref",
@@ -122,17 +126,17 @@ export default {
     "1": {
       "label": "Projet client",
       "hook": "Le site d'une coach parisienne : de la première visite à la séance réservée",
-      "tagline": "Un site chaleureux et rassurant qui transforme les visiteurs en séances réservées",
+      "tagline": "Un site créé de zéro, grâce auquel des clients contactent Sophie",
       "client": "Sophie Pratt, coach et thérapeute, Paris",
-      "role": "UX/UI design et UX writing",
+      "role": "UX/UI design dans Figma et rédaction des textes",
       "tools": "Figma",
       "visit_label": "Voir spcoach.fr",
       "sections": {
-        "context": "Sophie propose du coaching personnel, du coaching en entreprise et une thérapie de la phobie sociale, à Paris et en ligne. Beaucoup de ses futurs clients appréhendent le premier pas : le site devait d'abord inspirer confiance avant de vendre quoi que ce soit.",
+        "context": "Sophie propose du coaching personnel, du coaching en entreprise et une thérapie de la phobie sociale, à Paris et en ligne. Elle n'avait pas encore de site internet. Beaucoup de ses futurs clients appréhendent le premier pas : le site devait d'abord inspirer confiance avant de vendre quoi que ce soit.",
         "challenge": "Trois offres, trois publics, et des visiteurs qui hésitent à la contacter. Ils devaient comprendre rapidement ce que fait Sophie, si c'est pour eux, comment ça se passe et combien ça coûte, sans se sentir poussés.",
-        "approach": "J'ai conçu la structure et écrit les textes en même temps, pour que chaque section réponde à la question suivante que se pose le visiteur. Le ton est chaleureux et personnel, fidèle à la voix de Sophie.",
-        "solution": "Une page unique qui suit les questions du visiteur : qu'est-ce que c'est, est-ce pour moi, comment ça marche, combien ça coûte, qui est-elle. Les tarifs sont clairs, avec le forfait de 8 séances mis en avant et l'économie affichée. Un appel découverte gratuit de 30 minutes facilite le premier contact. Une FAQ détaillée répond aux inquiétudes fréquentes, et des gages de confiance (Sorbonne, Qualiopi, témoignages) rassurent. Les boutons de réservation apparaissent à chaque moment clé.",
-        "outcome": "Le site est en ligne et Sophie l'utilise pour présenter ses offres et prendre ses rendez-vous."
+        "decisions": "1. Un appel découverte gratuit de 30 minutes. Pour des visiteurs qui appréhendent le premier pas, un échange sans engagement est plus facile à franchir qu'une séance payante.\n2. Le forfait de 8 séances mis en avant. Il est signalé comme l'offre populaire et l'économie est affichée, pour guider vers l'accompagnement complet sans cacher la séance à l'unité.\n3. Une structure qui suit les questions du visiteur : qu'est-ce que c'est, est-ce pour moi, comment ça marche, combien ça coûte, qui est-elle. J'ai écrit les textes en même temps que la structure, avec la participation de Sophie, et la FAQ et les gages de confiance (Sorbonne, Qualiopi) complètent le parcours.\n4. Des maquettes prêtes pour le développement. J'ai conçu le site dans Figma, et un développeur l'a construit sous WordPress à partir de mes maquettes.",
+        "outcome": "Le site est en ligne et Sophie l'utilise pour présenter ses offres et prendre ses rendez-vous. Des clients l'ont contactée grâce au site. Comme elle le dit : « Le résultat est un site chaleureux et clair, qui me ressemble et qui permet de réserver une séance facilement. »",
+        "retro": "Je n'ai pas utilisé l'IA sur ce projet. Aujourd'hui, je referais tout avec Claude, de la conception jusqu'à la mise en ligne."
       },
       "type": "Site vitrine · Réservation",
       "screens": {
@@ -150,17 +154,17 @@ export default {
     "2": {
       "label": "Projet client",
       "hook": "Deux accompagnements, un seul chemin clair vers le rendez-vous découverte",
-      "tagline": "Deux accompagnements, un seul chemin clair vers le rendez-vous découverte",
+      "tagline": "Un site créé de zéro, qui donne envie aux visiteurs de contacter Mélodie",
       "client": "Mélodie Yeremian, consultante en bilan de compétences et psychopraticienne, à Paris et à distance",
-      "role": "UX/UI design",
-      "tools": "Figma, WordPress, Divi Builder",
+      "role": "Design dans Figma et création du site (WordPress, Divi)",
+      "tools": "Figma, WordPress, Divi Builder, Claude",
       "visit_label": "Voir melodieyeremian.com",
       "sections": {
-        "context": "Mélodie accompagne les personnes dans leurs transitions professionnelles et personnelles, avec deux accompagnements distincts : le bilan de compétences et l'accompagnement thérapeutique.",
-        "challenge": "Les deux accompagnements répondent à des besoins différents. Les visiteurs devaient trouver rapidement le leur, sans confondre bilan de compétences et thérapie, et se sentir assez en confiance pour réserver un premier appel.",
-        "approach": "J'ai organisé le site autour de deux parcours clairs, avec un design doux et apaisant, fidèle à la pratique de Mélodie.",
-        "solution": "Chaque accompagnement a sa propre page, ses détails et sa réservation découverte. Un bouton « Prendre RDV » reste visible partout. Une section « Qui suis-je » personnelle crée la confiance, et une boutique en ligne complète son offre. J'ai créé le site sur WordPress avec Divi Builder, à sa demande, pour qu'elle soit autonome et puisse facilement reprendre la main de son côté.",
-        "outcome": "Le site est en ligne et Mélodie l'utilise pour présenter ses deux accompagnements et prendre ses rendez-vous."
+        "context": "Mélodie accompagne les personnes dans leurs transitions professionnelles et personnelles, avec deux accompagnements distincts : le bilan de compétences et l'accompagnement thérapeutique. Elle n'avait pas encore de site internet : tout partait de zéro.",
+        "challenge": "Les deux accompagnements répondent à des besoins très différents. Les visiteurs devaient trouver rapidement le leur, sans confondre bilan et thérapie, et se sentir assez en confiance pour réserver un premier rendez-vous. Deux contraintes cadraient le projet : Mélodie devait pouvoir modifier son site seule, et le ton devait rester doux, fidèle à sa pratique.",
+        "decisions": "1. Deux parcours séparés plutôt qu'une page commune. Chaque accompagnement a sa page, ses détails et sa propre réservation découverte.\n2. WordPress et Divi Builder plutôt qu'un site codé sur mesure. J'ai privilégié l'autonomie de Mélodie, en acceptant moins de liberté dans les détails d'interface.\n3. Traduire les demandes de la cliente en interface. La barre « Prendre RDV » toujours visible, un bouton découverte propre à chaque offre et une boutique discrète venaient de Mélodie. Mon rôle a été de les intégrer sans alourdir le parcours.\n4. Une section « Qui suis-je » personnelle, parce qu'en thérapie comme en bilan, on choisit d'abord une personne.",
+        "outcome": "Le site est en ligne et Mélodie l'utilise pour présenter ses deux accompagnements et prendre ses rendez-vous. Depuis la mise en ligne, des clientes l'ont contactée après avoir découvert son site. Comme elle le dit : « Aujourd'hui, mes visiteurs trouvent le bon accompagnement et réservent facilement un rendez-vous découverte. »",
+        "retro": "Je n'ai pas utilisé l'IA pour créer ce site. Aujourd'hui, je commencerais directement avec Claude plutôt que d'installer et de configurer WordPress à la main. J'ai donc créé un workflow qui relie le site à Claude : les prochaines modifications sur WordPress, Divi et les plugins se feront en le demandant à Claude, sans passer par l'administration WordPress. Il est prêt et en cours d'installation sur le compte Claude de Mélodie, pour qu'elle gère son site en autonomie."
       },
       "type": "Site vitrine · Boutique",
       "screens": {
@@ -217,13 +221,13 @@ export default {
     }
   },
   "contact": {
-    "title": "Travaillons ensemble",
-    "subtitle": "Parlez-moi de votre projet, je vous réponds rapidement.",
+    "title": "Échangeons",
+    "subtitle": "Vous recrutez un product designer ? Écrivez-moi, je vous réponds rapidement.",
     "preferTalk": "Vous préférez en parler ? Réservez un appel gratuit de 30 min",
     "or": "ou envoyez-moi un message",
     "name": "Nom",
     "email": "Email",
-    "message": "Parlez-moi de votre projet",
+    "message": "Votre message",
     "send": "Envoyer le message",
     "sending": "Envoi…",
     "success": "Merci ! Je vous réponds sous 48 h.",

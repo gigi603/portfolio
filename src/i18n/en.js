@@ -1,8 +1,8 @@
 // English texts. French lives in fr.js; any key missing there falls back to this file.
 export default {
   "meta": {
-    "title": "Gilbert Trinidad, Product Designer",
-    "description": "Product designer. I design clear, warm websites for freelancers and small businesses, so their clients understand the offer and book in a few clicks."
+    "title": "Gilbert Trinidad, Product Designer / Builder",
+    "description": "Product designer / builder in Paris. I design web products and ship them by directing Claude Code."
   },
   "lang": {
     "fr": "Français",
@@ -24,20 +24,22 @@ export default {
   "hero": {
     "hello": "Hi, I'm",
     "title": "Product Designer",
-    "text": "I design clear, warm websites for freelancers and small businesses, so their clients understand the offer and book in a few clicks.",
+    "text": "I design web products and ship them with a team of Claude agents I built. I lead the research and the design decisions, direct the AI and check every deliverable.",
+    "seeWork": "See my work",
+    "contact": "Get in touch",
     "book": "Book a free 30-min call",
     "talk": "Let's talk about your project",
     "trusted": "Trusted by coaches and therapists in Paris",
     "mockupAlt": "SPCoach website, desktop and mobile",
-    "available": "Available for new projects",
+    "available": "Open to Product Designer roles · Paris",
     "h1a": "Hi, I'm Gilbert,",
-    "h1b": "Product Designer",
+    "h1b": "Product Designer / Builder",
     "chips": {
       "research": "UX research",
       "wireframes": "Wireframes",
-      "prototyping": "Prototyping",
-      "ui": "UI design",
-      "testing": "User testing",
+      "prototyping": "Code prototypes",
+      "ui": "Design system",
+      "ai": "Claude Code",
       "launch": "Launch"
     }
   },
@@ -67,33 +69,33 @@ export default {
   "skills": {
     "title": "What I do",
     "ux": {
-      "name": "UX Design",
-      "description": "I start with your clients: who they are, what stops them, what they need to decide. Then I structure the journey so the next step is always obvious.",
-      "tags": "UX research | User journeys | Wireframes"
+      "name": "Understand and decide",
+      "description": "I start with users: who they are, what stops them, what they need. Then I choose between options and structure the journey so the next step is always obvious.",
+      "tags": "UX research | User journeys | Trade-offs"
     },
     "ui": {
-      "name": "UI Design",
-      "description": "Visual identity, design system and interfaces for web and mobile, consistent and easy to read.",
-      "tags": "Design system | Figma mockups | Prototyping | Responsive"
+      "name": "Design the system",
+      "description": "I drive Claude connected to Figma: it generates wireframes, mockups and prototypes directly in Figma, on a design system kept up to date. I direct the AI and check every deliverable.",
+      "tags": "Design system | Claude + Figma | Wireframes | Prototypes"
     },
     "dev": {
-      "name": "Front-end integration",
-      "description": "I build what I design with HTML, CSS and Tailwind, so the final site matches the mockups.",
-      "tags": "HTML / CSS | Tailwind | Launch"
+      "name": "Ship with AI",
+      "description": "Claude Code builds what I design. I set the direction, check every change, and nothing goes live without my sign-off.",
+      "tags": "Claude Code | AI agents | Vue / Tailwind | Vercel"
     },
-    "subtitle": "From understanding your clients to a live website, one point of contact.",
+    "subtitle": "From the problem to a live product: I decide, AI speeds things up, I check everything.",
     "tools": "My tools:"
   },
   "about": {
     "title": "About",
-    "p2": "My approach is simple: understand the people you want to reach, make the offer easy to grasp, and remove everything that slows down the decision. Because I also code, I can take a project from the first sketch to a live website.",
+    "p2": "My approach: understand users, make the offer easy to grasp, and remove everything that slows down the decision. I show my choices and what I ruled out, not just the result.",
     "cv": "Download my CV",
     "p1Start": "I'm Gilbert, a ",
     "p1Highlight": "product designer",
-    "p1End": " based in Paris. I work mostly with independent professionals and small businesses who need a site that feels like them and actually brings in clients.",
-    "cta": "Let's talk about your project",
+    "p1End": " in Paris with a background in web development. I build my own workflow and Claude agents, a small product team: research, design, copy, code and testing. I set the direction, make the calls and check every deliverable before it goes live.",
+    "cta": "Get in touch",
     "chip1": "Design + copywriting",
-    "chip2": "From sketch to live website"
+    "chip2": "From problem to live product"
   },
   "case": {
     "client": "Client:",
@@ -105,7 +107,9 @@ export default {
       "challenge": "The challenge",
       "approach": "Approach",
       "solution": "Solution",
-      "outcome": "Outcome"
+      "outcome": "Outcome",
+      "decisions": "Decisions and trade-offs",
+      "retro": "Looking back"
     },
     "back": "Back",
     "atAGlance": "At a glance",
@@ -122,17 +126,17 @@ export default {
     "1": {
       "label": "Client project",
       "hook": "Website for a Paris coach: from first visit to booked session",
-      "tagline": "A warm, reassuring site that turns visitors into booked sessions",
+      "tagline": "A site built from scratch that brings clients to Sophie",
       "client": "Sophie Pratt, coach and therapist, Paris",
-      "role": "UX/UI design & UX writing",
+      "role": "UX/UI design in Figma and copywriting",
       "tools": "Figma",
       "visit_label": "Visit spcoach.fr",
       "sections": {
-        "context": "Sophie offers personal coaching, business coaching and therapy for social anxiety, in Paris and online. Many of her future clients are anxious about taking the first step, so the site had to feel safe before it could sell anything.",
+        "context": "Sophie offers personal coaching, business coaching and therapy for social anxiety, in Paris and online. She had no website yet. Many of her future clients are anxious about taking the first step, so the site had to feel safe before it could sell anything.",
         "challenge": "Three different offers, three different audiences, and visitors who hesitate to reach out. They needed to understand quickly what Sophie does, whether it's for them, how it works and what it costs, without feeling pushed.",
-        "approach": "I designed the structure and wrote the copy together, so every section answers the next question a visitor is likely to ask. The tone is warm and personal, written in Sophie's own voice.",
-        "solution": "A single page that follows the visitor's questions: what is it, is it for me, how does it work, how much, who is she. Pricing is clear, with the 8-session package highlighted and the savings shown. A free 30-minute discovery call lowers the barrier to a first contact. A detailed FAQ answers common worries, and trust signals (Sorbonne, Qualiopi, testimonials) reassure. Booking buttons appear at every key moment.",
-        "outcome": "The site is live and Sophie uses it to present her offers and take bookings online."
+        "decisions": "1. A free 30-minute discovery call. For visitors who dread the first step, a no-commitment chat is easier to take than a paid session.\n2. The 8-session package up front. It is flagged as the popular offer with the saving shown, guiding people towards the full programme without hiding the single session.\n3. A structure that follows the visitor's questions: what is it, is it for me, how does it work, what does it cost, who is she. I wrote the copy alongside the structure, with Sophie's input, and the FAQ and trust signals (Sorbonne, Qualiopi) round out the journey.\n4. Designs ready for development. I designed the site in Figma, and a developer built it on WordPress from my designs.",
+        "outcome": "The site is live and Sophie uses it to present her offers and take bookings. Clients have contacted her thanks to the site. In her words: \"The result is a warm, clear site that feels like me and makes booking a session easy.\"",
+        "retro": "I didn't use AI on this project. Today I would redo it all with Claude, from design to launch."
       },
       "type": "Showcase site · Booking",
       "screens": {
@@ -150,17 +154,17 @@ export default {
     "2": {
       "label": "Client project",
       "hook": "Two services, one clear path to a discovery call",
-      "tagline": "Two services, one clear path to a discovery call",
+      "tagline": "A site built from scratch that makes visitors want to contact Mélodie",
       "client": "Mélodie Yeremian, career coach and psychopractitioner, Paris and remote",
-      "role": "UX/UI design",
-      "tools": "Figma, WordPress, Divi Builder",
+      "role": "Design in Figma and site build (WordPress, Divi)",
+      "tools": "Figma, WordPress, Divi Builder, Claude",
       "visit_label": "Visit melodieyeremian.com",
       "sections": {
-        "context": "Mélodie supports people through professional and personal transitions with two distinct services: career assessments (bilan de compétences) and therapeutic support.",
-        "challenge": "The two services speak to different needs. Visitors had to find their path quickly, without confusing a career assessment with therapy, and feel confident enough to book a first call.",
-        "approach": "I organised the site around two clear paths, with a calm, gentle design in line with Mélodie's practice.",
-        "solution": "Each service has its own page, details and discovery booking. A \"Book an appointment\" button stays visible throughout. A personal \"About me\" section builds trust, and an online shop extends her offer. At her request, I built the site on WordPress with Divi Builder, so she can work independently and easily take over the site herself.",
-        "outcome": "The site is live and Mélodie uses it to present both services and take bookings online."
+        "context": "Mélodie supports people through professional and personal transitions with two distinct services: career assessments (bilan de compétences) and therapeutic support. She had no website yet: everything started from scratch.",
+        "challenge": "The two services meet very different needs. Visitors had to find theirs quickly, without confusing a career assessment with therapy, and feel confident enough to book a first appointment. Two constraints framed the project: Mélodie had to be able to edit her site on her own, and the tone had to stay gentle, true to her practice.",
+        "decisions": "1. Two separate paths rather than one shared page. Each service has its own page, details and discovery booking.\n2. WordPress and Divi Builder rather than a custom-coded site. I put Mélodie's autonomy first and accepted less freedom over interface details.\n3. Turning the client's requests into interface. The always-visible \"Book an appointment\" bar, a discovery button for each service and a low-key shop came from Mélodie. My role was to build them in without weighing down the journey.\n4. A personal \"About me\" section, because in therapy as in career coaching, people choose a person first.",
+        "outcome": "The site is live and Mélodie uses it to present both services and take bookings. Since launch, clients have contacted her after discovering her site. In her words: \"Now visitors find the right service and book a discovery call easily.\"",
+        "retro": "I didn't use AI to build this site. Today I would start directly with Claude instead of installing and setting up WordPress by hand. So I built a workflow that connects the site to Claude: future changes to WordPress, Divi and the plugins are made by asking Claude, without going through the WordPress admin. It's ready and being installed on Mélodie's Claude account, so she can run her site on her own."
       },
       "type": "Showcase site · Shop",
       "screens": {
@@ -217,8 +221,8 @@ export default {
     }
   },
   "contact": {
-    "title": "Let's work together",
-    "subtitle": "Tell me about your project, I'll get back to you shortly.",
+    "title": "Let's talk",
+    "subtitle": "Hiring a product designer? Drop me a line, I'll get back to you shortly.",
     "preferTalk": "Prefer to talk? Book a free 30-min call",
     "or": "or send a message",
     "name": "Name",

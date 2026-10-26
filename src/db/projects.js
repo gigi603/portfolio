@@ -3,7 +3,7 @@ const projects = [
   { 
     id: '1', 
     name: "SPCoach",
-    sections: ['context', 'challenge', 'approach', 'solution', 'outcome'],
+    sections: ['context', 'challenge', 'decisions', 'outcome', 'retro'],
     img:require("@/assets/images/projects/vignette-spcoach.png"),
     url_website: "http://spcoach.fr/",
     images: [
@@ -15,7 +15,7 @@ const projects = [
   { 
     id: '2', 
     name: "Melodie Yeremian",
-    sections: ['context', 'challenge', 'approach', 'solution', 'outcome'],
+    sections: ['context', 'challenge', 'decisions', 'outcome', 'retro'],
     img:require("@/assets/images/projects/vignette-melodieyeremian.png"),
     url_website: "https://melodieyeremian.com/",
     images: [
