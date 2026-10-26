@@ -128,13 +128,13 @@ export default {
       "hook": "Le site d'une coach parisienne : de la première visite à la séance réservée",
       "tagline": "Un site chaleureux et rassurant qui transforme les visiteurs en séances réservées",
       "client": "Sophie Pratt, coach et thérapeute, Paris",
-      "role": "UX/UI design dans Figma, textes co-écrits avec la cliente",
+      "role": "UX/UI design dans Figma et rédaction des textes",
       "tools": "Figma",
       "visit_label": "Voir spcoach.fr",
       "sections": {
         "context": "Sophie propose du coaching personnel, du coaching en entreprise et une thérapie de la phobie sociale, à Paris et en ligne. Beaucoup de ses futurs clients appréhendent le premier pas : le site devait d'abord inspirer confiance avant de vendre quoi que ce soit.",
         "challenge": "Trois offres, trois publics, et des visiteurs qui hésitent à la contacter. Ils devaient comprendre rapidement ce que fait Sophie, si c'est pour eux, comment ça se passe et combien ça coûte, sans se sentir poussés.",
-        "approach": "J'ai conçu la structure dans Figma et travaillé les textes avec Sophie, pour que chaque section réponde à la question suivante que se pose le visiteur. Le ton est chaleureux et personnel, fidèle à la voix de Sophie.",
+        "approach": "J'ai conçu la structure dans Figma et écrit les textes, avec la participation de Sophie, pour que chaque section réponde à la question suivante que se pose le visiteur. Le ton est chaleureux et personnel, fidèle à la voix de Sophie.",
         "solution": "Une page unique qui suit les questions du visiteur : qu'est-ce que c'est, est-ce pour moi, comment ça marche, combien ça coûte, qui est-elle. Les tarifs sont clairs, avec le forfait de 8 séances mis en avant et l'économie affichée. Un appel découverte gratuit de 30 minutes facilite le premier contact. Une FAQ détaillée répond aux inquiétudes fréquentes, et des gages de confiance (Sorbonne, Qualiopi, témoignages) rassurent. Les boutons de réservation apparaissent à chaque moment clé.",
         "outcome": "Le site est en ligne et Sophie l'utilise pour présenter ses offres et prendre ses rendez-vous."
       },

@@ -128,13 +128,13 @@ export default {
       "hook": "Website for a Paris coach: from first visit to booked session",
       "tagline": "A warm, reassuring site that turns visitors into booked sessions",
       "client": "Sophie Pratt, coach and therapist, Paris",
-      "role": "UX/UI design in Figma, copy co-written with the client",
+      "role": "UX/UI design in Figma and copywriting",
       "tools": "Figma",
       "visit_label": "Visit spcoach.fr",
       "sections": {
         "context": "Sophie offers personal coaching, business coaching and therapy for social anxiety, in Paris and online. Many of her future clients are anxious about taking the first step, so the site had to feel safe before it could sell anything.",
         "challenge": "Three different offers, three different audiences, and visitors who hesitate to reach out. They needed to understand quickly what Sophie does, whether it's for them, how it works and what it costs, without feeling pushed.",
-        "approach": "I designed the structure in Figma and worked on the copy with Sophie, so every section answers the next question a visitor is likely to ask. The tone is warm and personal, written in Sophie's own voice.",
+        "approach": "I designed the structure in Figma and wrote the copy, with Sophie's input, so every section answers the next question a visitor is likely to ask. The tone is warm and personal, written in Sophie's own voice.",
         "solution": "A single page that follows the visitor's questions: what is it, is it for me, how does it work, how much, who is she. Pricing is clear, with the 8-session package highlighted and the savings shown. A free 30-minute discovery call lowers the barrier to a first contact. A detailed FAQ answers common worries, and trust signals (Sorbonne, Qualiopi, testimonials) reassure. Booking buttons appear at every key moment.",
         "outcome": "The site is live and Sophie uses it to present her offers and take bookings online."
       },
