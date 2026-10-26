@@ -75,8 +75,8 @@ export default {
     },
     "ui": {
       "name": "Design the system",
-      "description": "I design in Figma or directly in code with Claude, and keep a design system up to date for consistent, readable web and mobile interfaces.",
-      "tags": "Design system | Figma | Responsive | Accessibility"
+      "description": "I drive Claude connected to Figma: it generates wireframes, mockups and prototypes directly in Figma, on a design system kept up to date. I direct the AI and check every deliverable.",
+      "tags": "Design system | Claude + Figma | Wireframes | Prototypes"
     },
     "dev": {
       "name": "Ship with AI",
