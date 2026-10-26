@@ -126,17 +126,17 @@ export default {
     "1": {
       "label": "Projet client",
       "hook": "Le site d'une coach parisienne : de la première visite à la séance réservée",
-      "tagline": "Un site chaleureux et rassurant qui transforme les visiteurs en séances réservées",
+      "tagline": "Un site créé de zéro, grâce auquel des clients contactent Sophie",
       "client": "Sophie Pratt, coach et thérapeute, Paris",
       "role": "UX/UI design dans Figma et rédaction des textes",
       "tools": "Figma",
       "visit_label": "Voir spcoach.fr",
       "sections": {
-        "context": "Sophie propose du coaching personnel, du coaching en entreprise et une thérapie de la phobie sociale, à Paris et en ligne. Beaucoup de ses futurs clients appréhendent le premier pas : le site devait d'abord inspirer confiance avant de vendre quoi que ce soit.",
+        "context": "Sophie propose du coaching personnel, du coaching en entreprise et une thérapie de la phobie sociale, à Paris et en ligne. Elle n'avait pas encore de site internet. Beaucoup de ses futurs clients appréhendent le premier pas : le site devait d'abord inspirer confiance avant de vendre quoi que ce soit.",
         "challenge": "Trois offres, trois publics, et des visiteurs qui hésitent à la contacter. Ils devaient comprendre rapidement ce que fait Sophie, si c'est pour eux, comment ça se passe et combien ça coûte, sans se sentir poussés.",
-        "approach": "J'ai conçu la structure dans Figma et écrit les textes, avec la participation de Sophie, pour que chaque section réponde à la question suivante que se pose le visiteur. Le ton est chaleureux et personnel, fidèle à la voix de Sophie.",
-        "solution": "Une page unique qui suit les questions du visiteur : qu'est-ce que c'est, est-ce pour moi, comment ça marche, combien ça coûte, qui est-elle. Les tarifs sont clairs, avec le forfait de 8 séances mis en avant et l'économie affichée. Un appel découverte gratuit de 30 minutes facilite le premier contact. Une FAQ détaillée répond aux inquiétudes fréquentes, et des gages de confiance (Sorbonne, Qualiopi, témoignages) rassurent. Les boutons de réservation apparaissent à chaque moment clé.",
-        "outcome": "Le site est en ligne et Sophie l'utilise pour présenter ses offres et prendre ses rendez-vous."
+        "decisions": "1. Un appel découverte gratuit de 30 minutes. Pour des visiteurs qui appréhendent le premier pas, un échange sans engagement est plus facile à franchir qu'une séance payante.\n2. Le forfait de 8 séances mis en avant. Il est signalé comme l'offre populaire et l'économie est affichée, pour guider vers l'accompagnement complet sans cacher la séance à l'unité.\n3. Une structure qui suit les questions du visiteur : qu'est-ce que c'est, est-ce pour moi, comment ça marche, combien ça coûte, qui est-elle. J'ai écrit les textes en même temps que la structure, avec la participation de Sophie, et la FAQ et les gages de confiance (Sorbonne, Qualiopi) complètent le parcours.\n4. Des maquettes prêtes pour le développement. J'ai conçu le site dans Figma, et un développeur l'a construit sous WordPress à partir de mes maquettes.",
+        "outcome": "Le site est en ligne et Sophie l'utilise pour présenter ses offres et prendre ses rendez-vous. Des clients l'ont contactée grâce au site. Comme elle le dit : « Le résultat est un site chaleureux et clair, qui me ressemble et qui permet de réserver une séance facilement. »",
+        "retro": "Je n'ai pas utilisé l'IA sur ce projet. Aujourd'hui, je referais tout avec Claude, de la conception jusqu'à la mise en ligne."
       },
       "type": "Site vitrine · Réservation",
       "screens": {

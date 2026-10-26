@@ -3,7 +3,7 @@ const projects = [
   { 
     id: '1', 
     name: "SPCoach",
-    sections: ['context', 'challenge', 'approach', 'solution', 'outcome'],
+    sections: ['context', 'challenge', 'decisions', 'outcome', 'retro'],
     img:require("@/assets/images/projects/vignette-spcoach.png"),
     url_website: "http://spcoach.fr/",
     images: [

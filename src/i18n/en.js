@@ -126,17 +126,17 @@ export default {
     "1": {
       "label": "Client project",
       "hook": "Website for a Paris coach: from first visit to booked session",
-      "tagline": "A warm, reassuring site that turns visitors into booked sessions",
+      "tagline": "A site built from scratch that brings clients to Sophie",
       "client": "Sophie Pratt, coach and therapist, Paris",
       "role": "UX/UI design in Figma and copywriting",
       "tools": "Figma",
       "visit_label": "Visit spcoach.fr",
       "sections": {
-        "context": "Sophie offers personal coaching, business coaching and therapy for social anxiety, in Paris and online. Many of her future clients are anxious about taking the first step, so the site had to feel safe before it could sell anything.",
+        "context": "Sophie offers personal coaching, business coaching and therapy for social anxiety, in Paris and online. She had no website yet. Many of her future clients are anxious about taking the first step, so the site had to feel safe before it could sell anything.",
         "challenge": "Three different offers, three different audiences, and visitors who hesitate to reach out. They needed to understand quickly what Sophie does, whether it's for them, how it works and what it costs, without feeling pushed.",
-        "approach": "I designed the structure in Figma and wrote the copy, with Sophie's input, so every section answers the next question a visitor is likely to ask. The tone is warm and personal, written in Sophie's own voice.",
-        "solution": "A single page that follows the visitor's questions: what is it, is it for me, how does it work, how much, who is she. Pricing is clear, with the 8-session package highlighted and the savings shown. A free 30-minute discovery call lowers the barrier to a first contact. A detailed FAQ answers common worries, and trust signals (Sorbonne, Qualiopi, testimonials) reassure. Booking buttons appear at every key moment.",
-        "outcome": "The site is live and Sophie uses it to present her offers and take bookings online."
+        "decisions": "1. A free 30-minute discovery call. For visitors who dread the first step, a no-commitment chat is easier to take than a paid session.\n2. The 8-session package up front. It is flagged as the popular offer with the saving shown, guiding people towards the full programme without hiding the single session.\n3. A structure that follows the visitor's questions: what is it, is it for me, how does it work, what does it cost, who is she. I wrote the copy alongside the structure, with Sophie's input, and the FAQ and trust signals (Sorbonne, Qualiopi) round out the journey.\n4. Designs ready for development. I designed the site in Figma, and a developer built it on WordPress from my designs.",
+        "outcome": "The site is live and Sophie uses it to present her offers and take bookings. Clients have contacted her thanks to the site. In her words: \"The result is a warm, clear site that feels like me and makes booking a session easy.\"",
+        "retro": "I didn't use AI on this project. Today I would redo it all with Claude, from design to launch."
       },
       "type": "Showcase site · Booking",
       "screens": {
