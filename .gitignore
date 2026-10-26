@@ -22,3 +22,7 @@ pnpm-debug.log*
 *.sln
 *.sw?
 node_modules
+
+# Claude Code : fichiers personnels, jamais versionnés
+CLAUDE.local.md
+.claude/settings.local.json
