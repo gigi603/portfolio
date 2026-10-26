@@ -1,8 +1,8 @@
 // English texts. French lives in fr.js; any key missing there falls back to this file.
 export default {
   "meta": {
-    "title": "Gilbert Trinidad, Product Designer",
-    "description": "AI-native product designer in Paris. I design web products and ship them by directing Claude Code."
+    "title": "Gilbert Trinidad, Product Designer / Builder",
+    "description": "Product designer / builder in Paris. I design web products and ship them by directing Claude Code."
   },
   "lang": {
     "fr": "Français",
@@ -33,7 +33,7 @@ export default {
     "mockupAlt": "SPCoach website, desktop and mobile",
     "available": "Open to Product Designer roles · Paris",
     "h1a": "Hi, I'm Gilbert,",
-    "h1b": "AI\u2011native Product Designer",
+    "h1b": "Product Designer / Builder",
     "chips": {
       "research": "UX research",
       "wireframes": "Wireframes",

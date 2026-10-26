@@ -1,8 +1,8 @@
 // French texts (default language), from Joe's wording-fr.md. Missing keys fall back to en.js.
 export default {
   "meta": {
-    "title": "Gilbert Trinidad, Product Designer",
-    "description": "Product designer AI-native à Paris. Je conçois des produits web et je les mets en ligne en dirigeant Claude Code."
+    "title": "Gilbert Trinidad, Product Designer / Builder",
+    "description": "Product designer / builder à Paris. Je conçois des produits web et je les mets en ligne en dirigeant Claude Code."
   },
   "nav": {
     "projects": "Projets",
@@ -33,7 +33,7 @@ export default {
     "mockupAlt": "Site SPCoach, version ordinateur et mobile",
     "available": "Ouvert à un poste de Product Designer · Paris",
     "h1a": "Bonjour, je suis Gilbert,",
-    "h1b": "Product Designer AI\u2011native",
+    "h1b": "Product Designer / Builder",
     "chips": {
       "research": "Recherche UX",
       "wireframes": "Wireframes",
