@@ -157,14 +157,14 @@ export default {
       "tagline": "Un site créé de zéro, qui donne envie aux visiteurs de contacter Mélodie",
       "client": "Mélodie Yeremian, consultante en bilan de compétences et psychopraticienne, à Paris et à distance",
       "role": "Design dans Figma et création du site (WordPress, Divi)",
-      "tools": "Figma, WordPress, Divi Builder",
+      "tools": "Figma, WordPress, Divi Builder, Claude",
       "visit_label": "Voir melodieyeremian.com",
       "sections": {
         "context": "Mélodie accompagne les personnes dans leurs transitions professionnelles et personnelles, avec deux accompagnements distincts : le bilan de compétences et l'accompagnement thérapeutique. Elle n'avait pas encore de site internet : tout partait de zéro.",
         "challenge": "Les deux accompagnements répondent à des besoins très différents. Les visiteurs devaient trouver rapidement le leur, sans confondre bilan et thérapie, et se sentir assez en confiance pour réserver un premier rendez-vous. Deux contraintes cadraient le projet : Mélodie devait pouvoir modifier son site seule, et le ton devait rester doux, fidèle à sa pratique.",
         "decisions": "1. Deux parcours séparés plutôt qu'une page commune. Chaque accompagnement a sa page, ses détails et sa propre réservation découverte.\n2. WordPress et Divi Builder plutôt qu'un site codé sur mesure. J'ai privilégié l'autonomie de Mélodie, en acceptant moins de liberté dans les détails d'interface.\n3. Traduire les demandes de la cliente en interface. La barre « Prendre RDV » toujours visible, un bouton découverte propre à chaque offre et une boutique discrète venaient de Mélodie. Mon rôle a été de les intégrer sans alourdir le parcours.\n4. Une section « Qui suis-je » personnelle, parce qu'en thérapie comme en bilan, on choisit d'abord une personne.",
         "outcome": "Le site est en ligne et Mélodie l'utilise pour présenter ses deux accompagnements et prendre ses rendez-vous. Depuis la mise en ligne, des clientes l'ont contactée après avoir découvert son site. Comme elle le dit : « Aujourd'hui, mes visiteurs trouvent le bon accompagnement et réservent facilement un rendez-vous découverte. »",
-        "retro": "Je n'ai pas utilisé l'IA pour créer ce site. Aujourd'hui, je commencerais directement avec Claude plutôt que d'installer et de configurer WordPress à la main. C'est la suite que je prépare : les prochaines modifications du site passeront par Claude."
+        "retro": "Je n'ai pas utilisé l'IA pour créer ce site. Aujourd'hui, je commencerais directement avec Claude plutôt que d'installer et de configurer WordPress à la main. J'ai donc créé un workflow qui relie le site à Claude : les prochaines modifications sur WordPress, Divi et les plugins se feront en le demandant à Claude, sans passer par l'administration WordPress. Il est prêt et en cours d'installation sur le compte Claude de Mélodie, pour qu'elle gère son site en autonomie."
       },
       "type": "Site vitrine · Boutique",
       "screens": {

@@ -157,14 +157,14 @@ export default {
       "tagline": "A site built from scratch that makes visitors want to contact Mélodie",
       "client": "Mélodie Yeremian, career coach and psychopractitioner, Paris and remote",
       "role": "Design in Figma and site build (WordPress, Divi)",
-      "tools": "Figma, WordPress, Divi Builder",
+      "tools": "Figma, WordPress, Divi Builder, Claude",
       "visit_label": "Visit melodieyeremian.com",
       "sections": {
         "context": "Mélodie supports people through professional and personal transitions with two distinct services: career assessments (bilan de compétences) and therapeutic support. She had no website yet: everything started from scratch.",
         "challenge": "The two services meet very different needs. Visitors had to find theirs quickly, without confusing a career assessment with therapy, and feel confident enough to book a first appointment. Two constraints framed the project: Mélodie had to be able to edit her site on her own, and the tone had to stay gentle, true to her practice.",
         "decisions": "1. Two separate paths rather than one shared page. Each service has its own page, details and discovery booking.\n2. WordPress and Divi Builder rather than a custom-coded site. I put Mélodie's autonomy first and accepted less freedom over interface details.\n3. Turning the client's requests into interface. The always-visible \"Book an appointment\" bar, a discovery button for each service and a low-key shop came from Mélodie. My role was to build them in without weighing down the journey.\n4. A personal \"About me\" section, because in therapy as in career coaching, people choose a person first.",
         "outcome": "The site is live and Mélodie uses it to present both services and take bookings. Since launch, clients have contacted her after discovering her site. In her words: \"Now visitors find the right service and book a discovery call easily.\"",
-        "retro": "I didn't use AI to build this site. Today I would start directly with Claude instead of installing and setting up WordPress by hand. That's the next step I'm preparing: future changes to the site will go through Claude."
+        "retro": "I didn't use AI to build this site. Today I would start directly with Claude instead of installing and setting up WordPress by hand. So I built a workflow that connects the site to Claude: future changes to WordPress, Divi and the plugins are made by asking Claude, without going through the WordPress admin. It's ready and being installed on Mélodie's Claude account, so she can run her site on her own."
       },
       "type": "Showcase site · Shop",
       "screens": {
