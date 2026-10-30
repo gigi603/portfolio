@@ -146,8 +146,8 @@
 						<img v-if="light" class="art-about-photo" :src="art.photos.sourire" alt="Gilbert Trinidad, souriant">
 						<img v-else src="@/assets/images/gilbert-portrait.png" alt="Gilbert Trinidad">
 					</div>
-					<div class="about-chip about-chip-1" aria-hidden="true"><span class="about-chip-icon" style="background: #f3e8ff"><DanceIcon v-if="pisteData && !light" :name="pisteData.icons.about[0]" :size="16"/><template v-else>✏️</template></span>{{ $t('about.chip1') }}</div>
-					<div class="about-chip about-chip-2" aria-hidden="true"><span class="about-chip-icon" style="background: #e0f2fe"><DanceIcon v-if="pisteData && !light" :name="pisteData.icons.about[1]" :size="16" color="#0284c7"/><template v-else>💻</template></span>{{ $t('about.chip2') }}</div>
+					<div v-if="!light" class="about-chip about-chip-1" aria-hidden="true"><span class="about-chip-icon" style="background: #f3e8ff"><DanceIcon v-if="pisteData && !light" :name="pisteData.icons.about[0]" :size="16"/><template v-else>✏️</template></span>{{ $t('about.chip1') }}</div>
+					<div v-if="!light" class="about-chip about-chip-2" aria-hidden="true"><span class="about-chip-icon" style="background: #e0f2fe"><DanceIcon v-if="pisteData && !light" :name="pisteData.icons.about[1]" :size="16" color="#0284c7"/><template v-else>💻</template></span>{{ $t('about.chip2') }}</div>
 				</div>
 				<div class="about-text">
 					<p v-if="pisteData && !light" class="piste-eyebrow"><DanceIcon :name="pisteData.icons.eyebrows.about" :size="15"/>{{ pisteData.eyebrows.about }}</p>
@@ -306,7 +306,7 @@ export default {
 				map: require('@/assets/images/danse/carte-paris.png'),
 				moonwalk: require('@/assets/images/danse/moonwalk.png'),
 				mapSpots: require('@/assets/images/danse/carte-paris-spots.png'),
-				photos: { sourire: require('@/assets/images/danse/photo-sourire-detoure.png'), fontaine: require('@/assets/images/danse/photo-fontaine.jpg') },
+				photos: { sourire: require('@/assets/images/danse/photo-apropos.png'), fontaine: require('@/assets/images/danse/photo-fontaine.jpg') },
 				objects: {
 					casque: require('@/assets/images/danse/casque.png'),
 					vinyle: require('@/assets/images/danse/vinyle.png'),
@@ -439,8 +439,8 @@ export default {
 	.art-plate p { font-size: 14.5px; line-height: 1.6; color: #5b5b66; margin-top: 4px; }
 	.art-plate .art-plate-design { color: #9535d7; font-weight: 600; margin-top: 10px; }
 	.art-plate-design svg { display: inline-block; vertical-align: -2px; margin-right: 6px; }
-	.about-arch .art-about-photo { width: auto; height: 500px; left: 0; transform: none; }
-	@media (max-width: 600px) { .about-arch .art-about-photo { height: 340px; } .piste-home-l .about-chip-1 { top: 6px; left: -18px; } }
+	.about-arch .art-about-photo { width: auto; height: 480px; left: -40px; transform: none; }
+	@media (max-width: 600px) { .about-arch .art-about-photo { height: 330px; left: -30px; } .piste-home-l .about-chip-1 { top: 6px; left: -18px; } }
 	@media (max-width: 768px) { .piste-dance.piste-dance-l { padding-top: 90px; } .piste-dance .art-moonwalk { height: 80px; } }
 	.art-real { width: 360px; margin: 36px auto 8px; background: #fff; padding: 12px 12px 16px; border-radius: 22px; box-shadow: 0 14px 36px rgba(149, 53, 215, .14); transform: rotate(-2deg); }
 	.art-real img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px; }
