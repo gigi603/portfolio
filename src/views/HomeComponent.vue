@@ -431,8 +431,8 @@ export default {
 	.art-plate p { font-size: 14.5px; line-height: 1.6; color: #5b5b66; margin-top: 4px; }
 	.art-plate .art-plate-design { color: #9535d7; font-weight: 600; margin-top: 10px; }
 	.art-plate-design svg { display: inline-block; vertical-align: -2px; margin-right: 6px; }
-	.about-arch .art-about-photo { width: auto; height: 560px; left: -70px; bottom: -10px; transform: none; }
-	@media (max-width: 600px) { .about-arch .art-about-photo { height: 385px; left: -48px; bottom: -6px; } .piste-home-l .about-chip-1 { top: 6px; left: -18px; } }
+	.about-arch .art-about-photo { width: auto; height: 560px; left: -18px; bottom: -10px; transform: none; }
+	@media (max-width: 600px) { .about-arch .art-about-photo { height: 385px; left: -12px; bottom: -6px; } .piste-home-l .about-chip-1 { top: 6px; left: -18px; } }
 	@media (max-width: 768px) { .piste-dance.piste-dance-l { padding-top: 90px; } .piste-dance .art-moonwalk { height: 80px; } }
 	/* Hors écran compact (piste allégée) : photo + 3 mouvements sur une ligne */
 	.art-compact { display: grid; grid-template-columns: 280px 1fr; gap: 28px; align-items: center; margin-top: 36px; }
