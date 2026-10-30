@@ -174,11 +174,15 @@
 				<h2 class="section-title">{{ pisteData.dance.title }}</h2>
 				<template v-if="flow">
 					<p class="art-dance-intro">{{ pisteData.dance.text }}</p>
-					<figure v-if="light" class="art-real">
-						<img :src="art.photos.fontaine" alt="Gilbert devant la fontaine des Innocents à Paris, en baskets">
-						<figcaption><span>En vrai</span>Fontaine des Innocents · Paris</figcaption>
-					</figure>
-					<p class="art-subtitle">Planche de mouvements · hip-hop &amp; breaking</p>
+					<div :class="{ 'art-compact': light }">
+					<div v-if="light" class="art-compact-photo">
+						<figure class="art-real">
+							<img :src="art.photos.fontaine" alt="Gilbert devant la fontaine des Innocents à Paris, en baskets">
+							<figcaption><span>En vrai</span>Fontaine des Innocents · Paris</figcaption>
+						</figure>
+						<p class="art-spots"><DanceIcon name="pas" :size="15"/><b>Mes spots :</b> quai Saint-Bernard, La Felicità, la BnF</p>
+					</div>
+					<p v-else class="art-subtitle">Planche de mouvements · hip-hop &amp; breaking</p>
 					<div class="art-plates">
 						<article v-for="(move, i) in shownMoves" :key="move.name" class="art-plate">
 							<span class="art-plate-number">0{{ i + 1 }}</span>
@@ -188,20 +192,8 @@
 							<p class="art-plate-design"><DanceIcon name="flow" :size="14"/>{{ move.design }}</p>
 						</article>
 					</div>
-					<div v-if="light" class="art-map">
-						<img :src="art.mapSpots" alt="Carte illustrée de Paris avec mes spots de danse">
-						<div class="art-map-text">
-							<p class="art-subtitle">Étude de terrain · Paris</p>
-							<h3>Mes spots de danse</h3>
-							<p>Je m'entraîne surtout chez moi. Dehors, mes spots sont rive gauche, du hip-hop au rock, que j'ai testé en débutant.</p>
-							<ul>
-								<li><span>1</span>Quai Saint-Bernard · 5e · rock en association</li>
-								<li><span>2</span>La Felicità · 13e · soirée rock 6 temps</li>
-								<li><span>3</span>Bibliothèque François-Mitterrand · 13e · hip-hop</li>
-							</ul>
-						</div>
 					</div>
-					<div v-else-if="!light" class="art-map">
+					<div v-if="!light" class="art-map">
 						<img :src="art.map" alt="Carte illustrée de Paris avec mes spots de danse">
 						<div class="art-map-text">
 							<p class="art-subtitle">Étude de terrain · Paris</p>
@@ -442,6 +434,18 @@ export default {
 	.about-arch .art-about-photo { width: auto; height: 480px; left: -40px; transform: none; }
 	@media (max-width: 600px) { .about-arch .art-about-photo { height: 330px; left: -30px; } .piste-home-l .about-chip-1 { top: 6px; left: -18px; } }
 	@media (max-width: 768px) { .piste-dance.piste-dance-l { padding-top: 90px; } .piste-dance .art-moonwalk { height: 80px; } }
+	/* Hors écran compact (piste allégée) : photo + 3 mouvements sur une ligne */
+	.art-compact { display: grid; grid-template-columns: 280px 1fr; gap: 28px; align-items: center; margin-top: 36px; }
+	.art-compact .art-real { width: 100%; margin: 0; }
+	.art-compact .art-real figcaption { font-size: 12.5px; white-space: normal; flex-wrap: wrap; text-align: center; }
+	.art-compact .art-plates { margin-top: 0; gap: 16px; }
+	.art-compact .art-plate { padding: 18px 18px 20px; }
+	.art-compact .art-plate img { height: 150px; }
+	.art-compact .art-plate h3 { font-size: 17px; }
+	.art-compact .art-plate p { font-size: 13.5px; }
+	.art-spots { margin-top: 18px; font-size: 13.5px; line-height: 1.5; color: #5b5b66; text-align: center; }
+	.art-spots svg { display: inline-block; vertical-align: -3px; margin-right: 6px; }
+	.art-spots b { color: #2a1340; }
 	.art-real { width: 360px; margin: 36px auto 8px; background: #fff; padding: 12px 12px 16px; border-radius: 22px; box-shadow: 0 14px 36px rgba(149, 53, 215, .14); transform: rotate(-2deg); }
 	.art-real img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px; }
 	.art-real figcaption { margin-top: 12px; font-size: 14px; color: #383a3c; display: flex; align-items: center; justify-content: center; gap: 8px; white-space: nowrap; }
@@ -526,6 +530,11 @@ export default {
 		.art-hero-dancer { display: none; }
 		.art-hero-dancer-mobile { display: block !important; width: 200px; margin: 0 auto 6px; }
 		.art-plates { grid-template-columns: 1fr; }
+		.art-compact { grid-template-columns: 1fr; }
+		.art-compact .art-real { max-width: 300px; margin: 0 auto; }
+		/* Sur mobile, les 3 mouvements défilent à l'horizontale pour garder la section courte */
+		.art-compact .art-plates { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
+		.art-compact .art-plate { scroll-snap-align: start; }
 		.art-steps::before { left: 30px; }
 		.art-step { grid-template-columns: 1fr; gap: 16px; padding-left: 74px; }
 		.art-step-reverse .art-step-visual { order: 0; }
