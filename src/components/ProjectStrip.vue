@@ -41,13 +41,13 @@ export default {
     return {
       // Face-free screens only
       cards: [
-        { projectId: '2', name: 'Melodie Yeremian', screen: 'services', src: require('@/assets/images/projects/MelodieYeremian/melodieyeremian-prestations.png') },
-        { projectId: '1', name: 'SPCoach', screen: 'pricing', src: require('@/assets/images/projects/SPCoach/mes-tarifs-min.png') },
-        { projectId: '3', name: 'Atypikhouse', screen: 'home', src: require('@/assets/images/projects/vignette-atypikhouse.png') },
-        { projectId: '2', name: 'Melodie Yeremian', screen: 'pricing', src: require('@/assets/images/projects/MelodieYeremian/melodieyeremian-tarifs.png') },
-        { projectId: '4', name: 'Unfate', screen: 'home', src: require('@/assets/images/projects/vignette-unfate.png') },
+        { projectId: '2', name: 'Melodie Yeremian', screen: 'services', src: require('@/assets/images/projects/MelodieYeremian/melodieyeremian-prestations.webp') },
+        { projectId: '1', name: 'SPCoach', screen: 'pricing', src: require('@/assets/images/projects/SPCoach/mes-tarifs-min.webp') },
+        { projectId: '3', name: 'Atypikhouse', screen: 'home', src: require('@/assets/images/projects/vignette-atypikhouse.webp') },
+        { projectId: '2', name: 'Melodie Yeremian', screen: 'pricing', src: require('@/assets/images/projects/MelodieYeremian/melodieyeremian-tarifs.webp') },
+        { projectId: '4', name: 'Unfate', screen: 'home', src: require('@/assets/images/projects/vignette-unfate.webp') },
         { projectId: '1', name: 'SPCoach', screen: 'confirmation', src: require('@/assets/images/projects/SPCoach/page-de-confirmation-min.png') },
-        { projectId: '2', name: 'Melodie Yeremian', screen: 'shop', src: require('@/assets/images/projects/MelodieYeremian/melodieyeremian-boutique.png') },
+        { projectId: '2', name: 'Melodie Yeremian', screen: 'shop', src: require('@/assets/images/projects/MelodieYeremian/melodieyeremian-boutique.webp') },
       ],
       paused: false,
       frame: null,

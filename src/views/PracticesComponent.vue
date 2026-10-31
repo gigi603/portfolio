@@ -34,7 +34,7 @@ export default {
             index: 0,
             imgs: [
                 require("@/assets/images/practices/project-estimate.svg"),
-                require("@/assets/images/practices/airmusic-september-2021.png"),
+                require("@/assets/images/practices/airmusic-september-2021.webp"),
                 require("@/assets/images/practices/profit-estimation.svg"),
                 require("@/assets/images/practices/withdraw-crypto.svg"),
                 require("@/assets/images/practices/edit-profile.svg"), 

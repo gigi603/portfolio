@@ -1,6 +1,6 @@
 <template>
     <footer id="contact" style="background-color:#3d1657">
-        <div v-if="piste" class="flex justify-center pt-8"><img v-if="piste === 'a' || piste === 'l'" :src="require('@/assets/images/danse/danseur-trace.png')" alt="" style="width:180px"><span v-else class="footer-illu"><DanceIllustration :piste="piste" :size="84"/></span></div>
+        <div v-if="piste" class="flex justify-center pt-8"><img loading="lazy" v-if="piste === 'a' || piste === 'l'" :src="require('@/assets/images/danse/danseur-trace.webp')" alt="" style="width:180px"><span v-else class="footer-illu"><DanceIllustration :piste="piste" :size="84"/></span></div>
         <h3 class="text-center text-white text-2xl font-bold pt-6 px-6">{{ $t('contact.title') }}</h3>
         <p class="text-center px-6 pt-2 pb-4" style="color:lightgray;">{{ $t('contact.subtitle') }}</p>
         <div class="max-w-xl mx-auto px-6 pb-6">

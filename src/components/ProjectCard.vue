@@ -1,7 +1,7 @@
 <template>
   <router-link :to="{ name: 'ProjectDetailComponent', params: { id: project.id } }" class="project-card">
     <div class="project-card-image">
-      <img :src="project.img" alt="">
+      <img loading="lazy" :src="project.img" alt="">
     </div>
     <div class="project-card-body">
       <div class="project-card-text">
