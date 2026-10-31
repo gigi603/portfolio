@@ -1,8 +1,9 @@
 <template>
   <div class="container mx-auto max-w-7xl px-6 project-wrapper">
+    <NotFoundComponent v-if="!currentProject"/>
     <template v-for="project in projects">
       <article v-if="project.id == $route.params.id" :key="project.id" class="project-page">
-        <h2 class="project-back"><button @click="$router.go(-1)" class="mr-2" :aria-label="$t('case.back')"><font-awesome-icon icon="fa-solid fa-chevron-left" color="#000" size="sm" /></button> {{ project.name }}</h2>
+        <h1 class="project-back"><button @click="$router.go(-1)" class="mr-2" :aria-label="$t('case.back')"><font-awesome-icon icon="fa-solid fa-chevron-left" color="#000" size="sm" /></button> {{ project.name }}</h1>
         <div class="project-columns">
           <div class="project-main">
             <p class="project-label">{{ $t(`projects.${project.id}.label`) }}</p>
@@ -127,10 +128,11 @@
   import projects from '../db/projects'
   import { BOOKING_URL } from '../config'
   import ScreenViewer from '../components/ScreenViewer.vue'
+  import NotFoundComponent from './NotFoundComponent.vue'
 
   export default {
     name: 'ProjectDetailComponent',
-    components: { ScreenViewer },
+    components: { ScreenViewer, NotFoundComponent },
     data: function() {
       return {
         id: this.$route.params.id,

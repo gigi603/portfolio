@@ -278,5 +278,11 @@ export default {
     "next": "Écran suivant",
     "scrollHint": "Faites défiler pour voir toute la page",
     "work": "Travail"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "text": "Cette page n'existe pas ou a été déplacée.",
+    "projects": "Voir mes projets",
+    "home": "Retour à l'accueil"
   }
 }

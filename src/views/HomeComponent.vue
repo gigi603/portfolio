@@ -39,7 +39,7 @@
 		<ProjectStrip/>
 		<section class="selected-work" id="projects">
 			<div class="container mx-auto max-w-7xl px-6">
-				<img v-if="piste === 'a'" class="art-sticker art-sticker-work" :src="art.objects.casque" alt="">
+				<img loading="lazy" v-if="piste === 'a'" class="art-sticker art-sticker-work" :src="art.objects.casque" alt="">
 				<p v-if="pisteData && !light" class="piste-eyebrow"><DanceIcon :name="pisteData.icons.eyebrows.work" :size="15"/>{{ pisteData.eyebrows.work }}</p>
 				<h2 class="selected-work-title">{{ $t('work.title') }}</h2>
 				<p v-if="$te('work.intro', 'en')" class="selected-work-intro">{{ $t('work.intro') }}</p>
@@ -51,7 +51,7 @@
 		</div>
 		<section class="testimonials" id="testimonials">
 			<div class="container mx-auto max-w-7xl px-6">
-				<img v-if="piste === 'a'" class="art-sticker art-sticker-testimonials" :src="art.objects.vinyle" alt="">
+				<img loading="lazy" v-if="piste === 'a'" class="art-sticker art-sticker-testimonials" :src="art.objects.vinyle" alt="">
 				<p v-if="pisteData && !light" class="piste-eyebrow"><DanceIcon :name="pisteData.icons.eyebrows.testimonials" :size="15"/>{{ pisteData.eyebrows.testimonials }}</p>
 				<h2 class="section-title">{{ $t('testimonials.title') }}</h2>
 				<p class="section-lead">{{ $t('testimonials.subtitle') }}</p>
@@ -81,18 +81,18 @@
 				<div class="skills-glow skills-glow-2"></div>
 			</div>
 			<div class="container mx-auto max-w-7xl px-6 skills-inner">
-				<img v-if="piste === 'a'" class="art-sticker art-sticker-skills" :src="art.objects.enceinte" alt="">
+				<img loading="lazy" v-if="piste === 'a'" class="art-sticker art-sticker-skills" :src="art.objects.enceinte" alt="">
 				<p v-if="pisteData" class="piste-eyebrow"><DanceIcon :name="pisteData.icons.eyebrows.skills" :size="15"/>{{ pisteData.eyebrows.skills }}</p>
 				<h2 class="section-title">{{ $t('skills.title') }}</h2>
 				<p class="section-lead">{{ $t('skills.subtitle') }}</p>
 				<ol v-if="methode === 'fil'" class="art-steps">
 					<li v-for="(skill, index) in skills" :key="skill.key" class="art-step" :class="{ 'art-step-reverse': index % 2 }">
 						<div class="art-step-node" aria-hidden="true">
-							<img :src="methodArt.nodes[index]" alt="">
+							<img loading="lazy" :src="methodArt.nodes[index]" alt="">
 							<span>{{ index + 1 }}</span>
 						</div>
 						<div class="art-step-visual">
-							<img :src="methodArt.scenes[index]" :alt="methodArt.alts[index]">
+							<img loading="lazy" :src="methodArt.scenes[index]" :alt="methodArt.alts[index]">
 						</div>
 						<div class="art-step-text">
 							<p class="art-step-label">{{ $t('skills.count') }} {{ index + 1 }} · {{ $t(`skills.${skill.key}.step`) }}</p>
@@ -106,10 +106,10 @@
 				</ol>
 				<div v-else class="skills-grid">
 					<article v-for="(skill, index) in skills" :key="skill.key" class="skill" data-aos="zoom-in">
-						<img v-if="piste === 'a' && art.skillPoses[index]" class="art-skill-pose" :src="art.skillPoses[index]" alt="">
+						<img loading="lazy" v-if="piste === 'a' && art.skillPoses[index]" class="art-skill-pose" :src="art.skillPoses[index]" alt="">
 						<div class="skill-top">
 							<span v-if="methode === 'icones' || methode === 'discussion'" class="skill-icon art-skill-icon" :style="{ background: skill.tile }" aria-hidden="true">
-								<img :src="methodIcons[index]" alt="">
+								<img loading="lazy" :src="methodIcons[index]" alt="">
 							</span>
 							<span v-else class="skill-icon" :style="{ background: skill.tile }" aria-hidden="true">
 								<DanceIcon v-if="pisteData && !light" :name="pisteData.icons.skills[index] || 'basket'" :size="30" :color="skill.stroke"/>
@@ -139,13 +139,13 @@
 		<section class="about" id="about">
 			<div class="about-inner">
 				<div class="about-frame" data-aos="zoom-in">
-					<img v-if="piste === 'a'" class="art-about art-about-baskets" :src="art.objects.baskets" alt="">
-					<img v-if="piste === 'a'" class="art-about art-about-cap" :src="art.objects.casquette" alt="">
+					<img loading="lazy" v-if="piste === 'a'" class="art-about art-about-baskets" :src="art.objects.baskets" alt="">
+					<img loading="lazy" v-if="piste === 'a'" class="art-about art-about-cap" :src="art.objects.casquette" alt="">
 					<span class="about-dot about-dot-1" aria-hidden="true"></span>
 					<span class="about-dot about-dot-2" aria-hidden="true"></span>
 					<div class="about-arch">
-						<img v-if="light" class="art-about-photo" :src="art.photos.sourire" alt="Gilbert Trinidad, souriant">
-						<img v-else src="@/assets/images/gilbert-portrait.png" alt="Gilbert Trinidad">
+						<img loading="lazy" v-if="light" class="art-about-photo" :src="art.photos.sourire" alt="Gilbert Trinidad, souriant">
+						<img loading="lazy" v-else src="@/assets/images/gilbert-portrait.webp" alt="Gilbert Trinidad">
 					</div>
 					<div v-if="!light" class="about-chip about-chip-1" aria-hidden="true"><span class="about-chip-icon" style="background: #f3e8ff"><DanceIcon v-if="pisteData && !light" :name="pisteData.icons.about[0]" :size="16"/><template v-else>✏️</template></span>{{ $t('about.chip1') }}</div>
 					<div v-if="!light" class="about-chip about-chip-2" aria-hidden="true"><span class="about-chip-icon" style="background: #e0f2fe"><DanceIcon v-if="pisteData && !light" :name="pisteData.icons.about[1]" :size="16" color="#0284c7"/><template v-else>💻</template></span>{{ $t('about.chip2') }}</div>
@@ -166,7 +166,7 @@
 			</div>
 		</section>
 		<section v-if="pisteData" class="piste-dance" :class="'piste-dance-' + piste">
-			<div v-if="flow" class="piste-divider-wave" aria-hidden="true"><img v-for="(frame, i) in moonwalkFrames" v-show="light" :key="'mw' + i" class="art-moonwalk" :class="{ 'art-moonwalk-trail': i }" :src="art.moonwalk" :style="{ left: frame.x + '%', top: frame.y + 'px', '--o': frame.o, animationDelay: (3 - i) * 0.25 + 's' }" alt=""><svg viewBox="0 0 1200 40" preserveAspectRatio="none"><path d="M0 20 C 150 0, 300 40, 450 20 S 750 0, 900 20 S 1100 40, 1200 20" stroke="#9535d7" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div>
+			<div v-if="flow" class="piste-divider-wave" aria-hidden="true"><img loading="lazy" v-for="(frame, i) in moonwalkFrames" v-show="light" :key="'mw' + i" class="art-moonwalk" :class="{ 'art-moonwalk-trail': i }" :src="art.moonwalk" :style="{ left: frame.x + '%', top: frame.y + 'px', '--o': frame.o, animationDelay: (3 - i) * 0.25 + 's' }" alt=""><svg viewBox="0 0 1200 40" preserveAspectRatio="none"><path d="M0 20 C 150 0, 300 40, 450 20 S 750 0, 900 20 S 1100 40, 1200 20" stroke="#9535d7" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div>
 			<div v-if="piste === 'b'" class="piste-steps" aria-hidden="true"><span v-for="n in 8" :key="n" :style="{ transform: 'rotate(' + (n % 2 ? -12 : 12) + 'deg) translateY(' + (n % 2 ? 0 : -8) + 'px)' }"><DanceIcon name="pas" :size="26"/><b>{{ n }}</b></span></div>
 			<div v-if="piste === 'c'" class="piste-eq" aria-hidden="true"><i v-for="n in 24" :key="n" :style="{ height: (10 + ((n * 37) % 34)) + 'px' }"></i></div>
 			<div class="piste-dance-inner">
@@ -178,7 +178,7 @@
 					<div :class="{ 'art-compact': light }">
 					<div v-if="light" class="art-compact-photo">
 						<figure class="art-real">
-							<img :src="art.photos.fontaine" alt="Gilbert devant la fontaine des Innocents à Paris, en baskets">
+							<img loading="lazy" :src="art.photos.fontaine" alt="Gilbert devant la fontaine des Innocents à Paris, en baskets">
 							<figcaption><span>En vrai</span>Fontaine des Innocents · Paris</figcaption>
 						</figure>
 						<p class="art-spots"><DanceIcon name="pas" :size="15"/><b>Mes spots :</b> quai Saint-Bernard, La Felicità, la BnF</p>
@@ -187,7 +187,7 @@
 					<div class="art-plates">
 						<article v-for="(move, i) in shownMoves" :key="move.name" class="art-plate">
 							<span class="art-plate-number">0{{ i + 1 }}</span>
-							<img :src="move.img" :alt="move.name">
+							<img loading="lazy" :src="move.img" :alt="move.name">
 							<h3>{{ move.name }}</h3>
 							<p>{{ move.text }}</p>
 							<p class="art-plate-design"><DanceIcon name="flow" :size="14"/>{{ move.design }}</p>
@@ -195,7 +195,7 @@
 					</div>
 					</div>
 					<div v-if="!light" class="art-map">
-						<img :src="art.map" alt="Carte illustrée de Paris avec mes spots de danse">
+						<img loading="lazy" :src="art.map" alt="Carte illustrée de Paris avec mes spots de danse">
 						<div class="art-map-text">
 							<p class="art-subtitle">Étude de terrain · Paris</p>
 							<h3>Mes spots de danse</h3>
@@ -279,16 +279,16 @@ export default {
 			pisteTag: PISTE_TAG,
 			methodArt: {
 				nodes: [
-					require('@/assets/images/danse/icone-discussion.png'),
-					require('@/assets/images/danse/icone-bulle.png'),
-					require('@/assets/images/danse/icone-repete.png'),
-					require('@/assets/images/danse/icone-scene.png'),
+					require('@/assets/images/danse/icone-discussion.webp'),
+					require('@/assets/images/danse/icone-bulle.webp'),
+					require('@/assets/images/danse/icone-repete.webp'),
+					require('@/assets/images/danse/icone-scene.webp'),
 				],
 				scenes: [
-					require('@/assets/images/danse/scene-ecoute.png'),
-					require('@/assets/images/danse/scene-imagine.png'),
-					require('@/assets/images/danse/scene-repete.png'),
-					require('@/assets/images/danse/scene-scene.png'),
+					require('@/assets/images/danse/scene-ecoute.webp'),
+					require('@/assets/images/danse/scene-imagine.webp'),
+					require('@/assets/images/danse/scene-repete.webp'),
+					require('@/assets/images/danse/scene-scene.webp'),
 				],
 				alts: [
 					'Gilbert sur scène, la main au menton, écoute deux personnes lui expliquer leur besoin',
@@ -298,31 +298,31 @@ export default {
 				],
 			},
 			art: {
-				dancer: require('@/assets/images/danse/danseur-trace.png'),
-				map: require('@/assets/images/danse/carte-paris.png'),
+				dancer: require('@/assets/images/danse/danseur-trace.webp'),
+				map: require('@/assets/images/danse/carte-paris.webp'),
 				moonwalk: require('@/assets/images/danse/moonwalk.png'),
-				mapSpots: require('@/assets/images/danse/carte-paris-spots.png'),
-				photos: { sourire: require('@/assets/images/danse/photo-apropos.png'), fontaine: require('@/assets/images/danse/photo-fontaine.jpg') },
+				mapSpots: require('@/assets/images/danse/carte-paris-spots.webp'),
+				photos: { sourire: require('@/assets/images/danse/photo-apropos.webp'), fontaine: require('@/assets/images/danse/photo-fontaine.webp') },
 				objects: {
-					casque: require('@/assets/images/danse/casque.png'),
-					vinyle: require('@/assets/images/danse/vinyle.png'),
+					casque: require('@/assets/images/danse/casque.webp'),
+					vinyle: require('@/assets/images/danse/vinyle.webp'),
 					enceinte: require('@/assets/images/danse/enceinte.png'),
-					baskets: require('@/assets/images/danse/baskets.png'),
-					casquette: require('@/assets/images/danse/casquette.png'),
+					baskets: require('@/assets/images/danse/baskets.webp'),
+					casquette: require('@/assets/images/danse/casquette.webp'),
 				},
 				skillPoses: [
 					require('@/assets/images/danse/toprock.png'),
 					require('@/assets/images/danse/popping.png'),
-					require('@/assets/images/danse/locking.png'),
+					require('@/assets/images/danse/locking.webp'),
 				],
 			},
 			moves: [
 				{ name: 'Toprock', img: require('@/assets/images/danse/toprock.png'), text: 'Les pas debout qui ouvrent un passage et posent le style.', design: 'En design : la première impression.' },
-				{ name: 'Running man', img: require('@/assets/images/danse/running-man.png'), text: 'Courir sur place, sans jamais casser le rythme.', design: 'En design : itérer sans perdre le cap.' },
+				{ name: 'Running man', img: require('@/assets/images/danse/running-man.webp'), text: 'Courir sur place, sans jamais casser le rythme.', design: 'En design : itérer sans perdre le cap.' },
 				{ name: 'Popping', img: require('@/assets/images/danse/popping.png'), text: 'Contracter un muscle pile sur le temps, comme une vague.', design: 'En design : le micro-détail qui claque.' },
 				{ name: 'Baby freeze', img: require('@/assets/images/danse/baby-freeze.png'), text: "Tenir l'équilibre à l'envers, sans trembler.", design: 'En design : le compromis qui tient.' },
-				{ name: 'Six-step', img: require('@/assets/images/danse/six-step.png'), text: 'Le pas de base au sol, six appuis en cercle.', design: "En design : la méthode qu'on répète." },
-				{ name: 'Locking point', img: require('@/assets/images/danse/locking.png'), text: 'Le point final, bras tendu vers le ciel.', design: 'En design : livrer.' },
+				{ name: 'Six-step', img: require('@/assets/images/danse/six-step.webp'), text: 'Le pas de base au sol, six appuis en cercle.', design: "En design : la méthode qu'on répète." },
+				{ name: 'Locking point', img: require('@/assets/images/danse/locking.webp'), text: 'Le point final, bras tendu vers le ciel.', design: 'En design : livrer.' },
 			],
 			pisteData: CURRENT,
 			bookingUrl: BOOKING_URL,
@@ -371,9 +371,9 @@ export default {
 			const first = this.methode === 'discussion' ? 'icone-discussion' : 'icone-yeux-fermes'
 			return [
 				require(`@/assets/images/danse/${first}.png`),
-				require('@/assets/images/danse/icone-bulle.png'),
-				require('@/assets/images/danse/icone-repete.png'),
-				require('@/assets/images/danse/icone-scene.png'),
+				require('@/assets/images/danse/icone-bulle.webp'),
+				require('@/assets/images/danse/icone-repete.webp'),
+				require('@/assets/images/danse/icone-scene.webp'),
 			]
 		},
 		// Silhouettes du moonwalk : x en % de la vague, y = hauteur du tracé à cet endroit, o = opacité
