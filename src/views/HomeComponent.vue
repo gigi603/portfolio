@@ -95,7 +95,7 @@
 							<img :src="methodArt.scenes[index]" :alt="methodArt.alts[index]">
 						</div>
 						<div class="art-step-text">
-							<p class="art-step-label">Temps {{ index + 1 }} · {{ methodArt.labels[index] }}</p>
+							<p class="art-step-label">{{ $t('skills.count') }} {{ index + 1 }} · {{ $t(`skills.${skill.key}.step`) }}</p>
 							<h3>{{ $t(`skills.${skill.key}.name`) }}</h3>
 							<p class="skill-description">{{ $t(`skills.${skill.key}.description`) }}</p>
 							<ul class="skill-tags">
@@ -106,16 +106,17 @@
 				</ol>
 				<div v-else class="skills-grid">
 					<article v-for="(skill, index) in skills" :key="skill.key" class="skill" data-aos="zoom-in">
-						<img v-if="piste === 'a'" class="art-skill-pose" :src="art.skillPoses[index]" alt="">
+						<img v-if="piste === 'a' && art.skillPoses[index]" class="art-skill-pose" :src="art.skillPoses[index]" alt="">
 						<div class="skill-top">
 							<span v-if="methode === 'icones' || methode === 'discussion'" class="skill-icon art-skill-icon" :style="{ background: skill.tile }" aria-hidden="true">
 								<img :src="methodIcons[index]" alt="">
 							</span>
 							<span v-else class="skill-icon" :style="{ background: skill.tile }" aria-hidden="true">
-								<DanceIcon v-if="pisteData && !light" :name="pisteData.icons.skills[index]" :size="30" :color="skill.stroke"/>
+								<DanceIcon v-if="pisteData && !light" :name="pisteData.icons.skills[index] || 'basket'" :size="30" :color="skill.stroke"/>
 								<svg v-if="!pisteData || light" width="30" height="30" viewBox="0 0 24 24" fill="none" :stroke="skill.stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 									<template v-if="skill.key === 'ux'"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="18" cy="16.5" r="2.5"/><path d="M20 18.5l2 2"/></template>
 									<template v-else-if="skill.key === 'ui'"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-4.5-4.5L8 19"/></template>
+									<template v-else-if="skill.key === 'test'"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></template>
 									<template v-else><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></template>
 								</svg>
 							</span>
@@ -280,19 +281,21 @@ export default {
 				nodes: [
 					require('@/assets/images/danse/icone-discussion.png'),
 					require('@/assets/images/danse/icone-bulle.png'),
+					require('@/assets/images/danse/icone-repete.png'),
 					require('@/assets/images/danse/icone-scene.png'),
 				],
 				scenes: [
 					require('@/assets/images/danse/scene-ecoute.png'),
 					require('@/assets/images/danse/scene-imagine.png'),
+					require('@/assets/images/danse/scene-repete.png'),
 					require('@/assets/images/danse/scene-scene.png'),
 				],
 				alts: [
 					'Gilbert sur scène, la main au menton, écoute deux personnes lui expliquer leur besoin',
 					'Gilbert seul sur scène imagine la chorégraphie, dessinée dans une bulle au-dessus de sa tête',
+					'Gilbert répète un mouvement face au miroir d\'un studio, à côté d\'une liste de points cochés',
 					'Gilbert danse sur scène devant le public',
 				],
-				labels: ['Écouter', 'Imaginer la choré', 'Monter sur scène'],
 			},
 			art: {
 				dancer: require('@/assets/images/danse/danseur-trace.png'),
@@ -338,6 +341,7 @@ export default {
 			skills: [
 				{ key: 'ux', tile: '#f3e8ff', stroke: '#9535d7' },
 				{ key: 'ui', tile: '#fce7f3', stroke: '#db2777' },
+				{ key: 'test', tile: '#ede9fe', stroke: '#7c3aed' },
 				{ key: 'dev', tile: '#e0f2fe', stroke: '#0284c7' },
 			],
 			tools: [
@@ -368,6 +372,7 @@ export default {
 			return [
 				require(`@/assets/images/danse/${first}.png`),
 				require('@/assets/images/danse/icone-bulle.png'),
+				require('@/assets/images/danse/icone-repete.png'),
 				require('@/assets/images/danse/icone-scene.png'),
 			]
 		},
@@ -916,7 +921,7 @@ export default {
 	}
 	.skills-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 		gap: 28px;
 		margin-top: 44px;
 	}

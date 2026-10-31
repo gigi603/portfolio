@@ -67,18 +67,28 @@ export default {
     "subtitle": "Deux coachs parisiennes racontent comment nous avons conçu leur site ensemble."
   },
   "skills": {
+    "count": "Temps",
     "title": "Ce que je fais",
     "ux": {
+      "step": "Écouter",
       "name": "Comprendre et décider",
       "description": "Je pars des utilisateurs : qui ils sont, ce qui les freine, ce dont ils ont besoin. Puis je tranche entre les options et je construis un parcours qui les aide pas à pas, pour que l'étape suivante soit toujours évidente.",
       "tags": "Recherche UX | Parcours | Arbitrages"
     },
     "ui": {
+      "step": "Imaginer la choré",
       "name": "Concevoir le système",
       "description": "Je pilote Claude connecté à Figma : il génère les wireframes, les maquettes et les prototypes directement dans Figma, sur un design system tenu à jour pour que chaque écran trouve le bon rythme. Je dirige l'IA et je vérifie chaque livrable.",
       "tags": "Design system | Claude + Figma | Wireframes | Prototypes"
     },
+    "test": {
+      "step": "Répéter",
+      "name": "Tester et ajuster",
+      "description": "Je définis ce qu'il faut vérifier, et mes agents QA et accessibilité le contrôlent : liens, traductions FR/EN, contrastes, navigation au clavier. Je relis chaque point sur mobile et sur ordinateur, puis je tranche ce qui doit être corrigé avant la mise en ligne.",
+      "tags": "QA | Accessibilité | Agents Claude | Revue mobile"
+    },
     "dev": {
+      "step": "Monter sur scène",
       "name": "Automatiser la production",
       "description": "Claude Code développe ce que je conçois. Je fixe la direction, je suis chaque changement de près et rien ne part en ligne sans ma validation : un bon suivi aboutit à une bonne mise en scène.",
       "tags": "Claude Code | Agents IA | Vue / Tailwind | Vercel"

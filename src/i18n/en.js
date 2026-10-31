@@ -67,18 +67,28 @@ export default {
     "subtitle": "Two Paris coaches on how we designed their websites together."
   },
   "skills": {
+    "count": "Count",
     "title": "What I do",
     "ux": {
+      "step": "Listen",
       "name": "Understand and decide",
       "description": "I start with users: who they are, what holds them back, what they need. Then I choose between options and build a journey that guides them step by step, so the next move is always obvious.",
       "tags": "UX research | User journeys | Trade-offs"
     },
     "ui": {
+      "step": "Picture the choreo",
       "name": "Design the system",
       "description": "I drive Claude connected to Figma: it generates wireframes, mockups and prototypes directly in Figma, on an up-to-date design system so every screen finds the right rhythm. I direct the AI and check every deliverable.",
       "tags": "Design system | Claude + Figma | Wireframes | Prototypes"
     },
+    "test": {
+      "step": "Rehearse",
+      "name": "Test and refine",
+      "description": "I define what needs checking, and my QA and accessibility agents check it: links, FR/EN translations, contrast, keyboard navigation. I review each point on mobile and desktop, then decide what must be fixed before launch.",
+      "tags": "QA | Accessibility | Claude agents | Mobile review"
+    },
     "dev": {
+      "step": "Take the stage",
       "name": "Automate the build",
       "description": "Claude Code builds what I design. I set the direction, follow every change closely, and nothing goes live without my sign-off: good follow-through leads to good staging.",
       "tags": "Claude Code | AI agents | Vue / Tailwind | Vercel"
