@@ -1,6 +1,6 @@
 <template>
 <div class="container mx-auto max-w-7xl competences-bloc py-10 px-6">
-        <h2 class="py-8 text-black text-3xl font-bold w-full" id="projects">{{ $t('work.title') }}</h2>
+        <h1 class="py-8 text-black text-3xl font-bold w-full" id="projects">{{ $t('work.title') }}</h1>
         <p v-if="$te('work.intro', 'en')" class="pb-8" style="font-size: 17px; color: #5b5b66;">{{ $t('work.intro') }}</p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mb-10">
             <ProjectCard v-for="project in projects" :key="project.id" :project="project" data-aos="zoom-in"/>
