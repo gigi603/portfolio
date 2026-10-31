@@ -98,6 +98,10 @@ export default {
     "chip2": "Du problème au produit en ligne"
   },
   "case": {
+    "resultLabel": "Résultat",
+    "contactTitle": "Envie d'en parler ?",
+    "contactText": "Je vous explique mes choix et ce que j'ai écarté sur ce projet.",
+    "nextLabel": "Projet suivant",
     "client": "Client :",
     "role": "Rôle :",
     "tools": "Outils :",
@@ -127,6 +131,7 @@ export default {
       "label": "Projet client",
       "hook": "Le site d'une coach parisienne : de la première visite à la séance réservée",
       "tagline": "Un site créé de zéro, grâce auquel des clients contactent Sophie",
+      "result": "Des clients contactent Sophie via le site",
       "client": "Sophie Pratt, coach et thérapeute, Paris",
       "role": "UX/UI design dans Figma et rédaction des textes",
       "tools": "Figma",
@@ -155,6 +160,7 @@ export default {
       "label": "Projet client",
       "hook": "Deux accompagnements, un seul chemin clair vers le rendez-vous découverte",
       "tagline": "Un site créé de zéro, qui donne envie aux visiteurs de contacter Mélodie",
+      "result": "Des clients contactent Mélodie via le site",
       "client": "Mélodie Yeremian, consultante en bilan de compétences et psychopraticienne, à Paris et à distance",
       "role": "Design dans Figma et création du site (WordPress, Divi)",
       "tools": "Figma, WordPress, Divi Builder, Claude",

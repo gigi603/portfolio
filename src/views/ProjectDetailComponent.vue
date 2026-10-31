@@ -14,6 +14,7 @@
                 <dl>
                   <div v-if="$te(`projects.${project.id}.client`, 'en')"><dt>{{ $t('case.clientLabel') }}</dt><dd>{{ $t(`projects.${project.id}.client`) }}</dd></div>
                   <div v-if="$te(`projects.${project.id}.role`, 'en')"><dt>{{ $t('case.roleLabel') }}</dt><dd>{{ $t(`projects.${project.id}.role`) }}</dd></div>
+                  <div v-if="$te(`projects.${project.id}.result`, 'en')" class="side-result"><dt>{{ $t('case.resultLabel') }}</dt><dd>{{ $t(`projects.${project.id}.result`) }}</dd></div>
                   <div><dt>{{ $t('case.typeLabel') }}</dt><dd>{{ $t(`projects.${project.id}.type`) }}</dd></div>
                   <div v-if="$te(`projects.${project.id}.tools`, 'en')"><dt>{{ $t('case.toolsLabel') }}</dt><dd class="side-chips"><span v-for="tool in $t(`projects.${project.id}.tools`).split(', ')" :key="tool">{{ tool }}</span></dd></div>
                 </dl>
@@ -35,6 +36,7 @@
               <dl>
                 <div v-if="$te(`projects.${project.id}.client`, 'en')"><dt>{{ $t('case.clientLabel') }}</dt><dd>{{ $t(`projects.${project.id}.client`) }}</dd></div>
                 <div v-if="$te(`projects.${project.id}.role`, 'en')"><dt>{{ $t('case.roleLabel') }}</dt><dd>{{ $t(`projects.${project.id}.role`) }}</dd></div>
+                <div v-if="$te(`projects.${project.id}.result`, 'en')" class="side-result"><dt>{{ $t('case.resultLabel') }}</dt><dd>{{ $t(`projects.${project.id}.result`) }}</dd></div>
                 <div><dt>{{ $t('case.typeLabel') }}</dt><dd>{{ $t(`projects.${project.id}.type`) }}</dd></div>
                 <div v-if="$te(`projects.${project.id}.tools`, 'en')"><dt>{{ $t('case.toolsLabel') }}</dt><dd class="side-chips"><span v-for="tool in $t(`projects.${project.id}.tools`).split(', ')" :key="tool">{{ tool }}</span></dd></div>
               </dl>
@@ -87,6 +89,25 @@
                 </div>
               </div>
             </section>
+        <section class="case-end">
+          <div class="case-contact">
+            <b>{{ $t('case.contactTitle') }}</b>
+            <p>{{ $t('case.contactText') }}</p>
+            <div class="case-btns">
+              <router-link :to="{ path: '/', hash: '#contact' }" class="case-btn case-btn-white">{{ $t('about.cta') }}</router-link>
+              <a :href="cvUrl" target="_blank" rel="noopener" class="case-btn case-btn-ghost">{{ $t('about.cv') }}</a>
+            </div>
+          </div>
+          <router-link v-if="nextProject(project)" :to="`/project/${nextProject(project).id}`" class="case-next">
+            <img :src="nextProject(project).img" alt="">
+            <span class="case-next-text">
+              <small>{{ $t('case.nextLabel') }}</small>
+              <b>{{ nextProject(project).name }}</b>
+              <span v-if="$te(`projects.${nextProject(project).id}.hook`, 'en')">{{ $t(`projects.${nextProject(project).id}.hook`) }}</span>
+            </span>
+            <span class="case-next-arrow" aria-hidden="true">→</span>
+          </router-link>
+        </section>
         <div class="project-mobile-only project-mobile-contact">
             <div v-if="bookingUrl" class="side-contact">
               <b>{{ $t('case.similarTitle') }}</b>
@@ -123,6 +144,9 @@
       }
     },
     computed: {
+      cvUrl() {
+        return this.$i18n.locale === 'en' ? '/files/Gilbert-Trinidad-Resume.pdf' : '/files/Gilbert-Trinidad-CV.pdf'
+      },
       currentProject() {
         return projects.find(project => project.id === this.$route.params.id)
       },
@@ -147,6 +171,10 @@
       cancelAnimationFrame(this.scrollFrame)
     },
     methods: {
+      nextProject(project) {
+        const i = projects.findIndex(p => p.id === project.id)
+        return projects[(i + 1) % projects.length]
+      },
       tocItems(project) {
         const items = project.sections.map(section => ({ id: `section-${section}`, label: this.$t(`case.sections.${section}`) }))
         return items.concat({ id: 'section-screens', label: this.$t('gallery.title') })
@@ -609,4 +637,31 @@
 .zoom-leave-to {
   transform: scale(0.9);
 }
+
+  /* Fin d'étude de cas : contact + projet suivant */
+  .side-result dd { color: #9535d7; font-weight: 600; }
+  .case-end { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+  .case-contact { background: linear-gradient(135deg, #9535d7, #b46be6); color: #fff; border-radius: 28px; padding: 32px; box-shadow: 0 18px 40px rgba(149, 53, 215, .25); }
+  .case-contact b { display: block; font-family: Montserrat, sans-serif; font-size: 24px; margin-bottom: 8px; }
+  .case-contact p { margin: 0 0 22px; opacity: .92; line-height: 1.6; }
+  .case-btns { display: flex; flex-wrap: wrap; gap: 12px; }
+  .case-btn { display: inline-block; border-radius: 999px; padding: 12px 22px; font-weight: 600; font-size: 15px; transition: transform .2s; }
+  .case-btn:hover { transform: translateY(-2px); }
+  .case-btn-white { background: #fff; color: #9535d7; }
+  .case-btn-ghost { border: 2px solid rgba(255,255,255,.7); color: #fff; }
+  .case-next { display: grid; grid-template-columns: 140px 1fr auto; align-items: center; gap: 20px; background: #fff; border-radius: 28px; padding: 20px; box-shadow: 0 18px 40px rgba(149, 53, 215, .12); color: #1f1f2e; transition: transform .2s, box-shadow .2s; }
+  .case-next:hover { transform: translateY(-3px); box-shadow: 0 22px 48px rgba(149, 53, 215, .2); }
+  .case-next img { width: 140px; height: 140px; object-fit: cover; border-radius: 20px; }
+  .case-next-text small { display: block; color: #9535d7; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; font-size: 12px; margin-bottom: 6px; }
+  .case-next-text b { display: block; font-family: Montserrat, sans-serif; font-size: 22px; margin-bottom: 6px; }
+  .case-next-text span { color: #5b5b6b; font-size: 14px; line-height: 1.5; }
+  .case-next-arrow { width: 48px; height: 48px; border-radius: 50%; background: #f3e8fc; color: #9535d7; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+  @media (max-width: 900px) {
+    .case-end { grid-template-columns: 1fr; margin-top: 40px; }
+    .case-contact { padding: 26px; }
+    .case-next { grid-template-columns: 88px 1fr auto; gap: 14px; padding: 14px; }
+    .case-next img { width: 88px; height: 88px; border-radius: 16px; }
+    .case-next-text b { font-size: 18px; }
+    .case-next-arrow { width: 40px; height: 40px; }
+  }
 </style>

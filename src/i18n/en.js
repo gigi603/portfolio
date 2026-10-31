@@ -98,6 +98,10 @@ export default {
     "chip2": "From problem to live product"
   },
   "case": {
+    "resultLabel": "Outcome",
+    "contactTitle": "Want to talk about it?",
+    "contactText": "I'll walk you through my choices and what I set aside on this project.",
+    "nextLabel": "Next project",
     "client": "Client:",
     "role": "Role:",
     "tools": "Tools:",
@@ -127,6 +131,7 @@ export default {
       "label": "Client project",
       "hook": "Website for a Paris coach: from first visit to booked session",
       "tagline": "A site built from scratch that brings clients to Sophie",
+      "result": "Clients now reach Sophie through the site",
       "client": "Sophie Pratt, coach and therapist, Paris",
       "role": "UX/UI design in Figma and copywriting",
       "tools": "Figma",
@@ -155,6 +160,7 @@ export default {
       "label": "Client project",
       "hook": "Two services, one clear path to a discovery call",
       "tagline": "A site built from scratch that makes visitors want to contact Mélodie",
+      "result": "Clients now reach Mélodie through the site",
       "client": "Mélodie Yeremian, career coach and psychopractitioner, Paris and remote",
       "role": "Design in Figma and site build (WordPress, Divi)",
       "tools": "Figma, WordPress, Divi Builder, Claude",
