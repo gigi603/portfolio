@@ -222,9 +222,10 @@ export default {
     overflow: hidden;
     box-shadow: 0 40px 90px rgba(0, 0, 0, 0.45);
   }
+  /* The frame shrinks to short captures instead of leaving a white band below them */
   .viewer-frame-desktop {
     width: min(1040px, 76vw);
-    height: 72vh;
+    max-height: 72vh;
     border-radius: 20px;
   }
   .viewer-frame-mobile {
@@ -264,6 +265,9 @@ export default {
   }
   .viewer-scroll {
     flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: rgba(149, 53, 215, 0.45) transparent;
@@ -275,9 +279,12 @@ export default {
     background: rgba(149, 53, 215, 0.45);
     border-radius: 3px;
   }
+  /* Centred when shorter than the frame (phone frame), top-aligned and scrollable when taller */
   .viewer-scroll img {
     width: 100%;
     display: block;
+    flex-shrink: 0;
+    margin: auto 0;
   }
   .viewer-hint {
     position: absolute;
@@ -363,7 +370,7 @@ export default {
   @media (max-width: 767px) {
     .viewer-frame-desktop {
       width: 92vw;
-      height: 62vh;
+      max-height: 62vh;
     }
     .viewer-frame-mobile {
       height: 66vh;

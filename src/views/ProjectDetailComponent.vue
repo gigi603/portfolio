@@ -642,7 +642,10 @@
 
   /* Fin d'étude de cas : contact + projet suivant */
   .side-result dd { color: #9535d7; font-weight: 600; }
-  .case-end { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+  .case-end { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; margin-top: 56px; }
+  /* Let both cards shrink below their content width on very small screens */
+  .case-end > * { min-width: 0; }
+  .case-next-text { min-width: 0; overflow-wrap: anywhere; }
   .case-contact { background: linear-gradient(135deg, #9535d7, #b46be6); color: #fff; border-radius: 28px; padding: 32px; box-shadow: 0 18px 40px rgba(149, 53, 215, .25); }
   .case-contact b { display: block; font-family: Montserrat, sans-serif; font-size: 24px; margin-bottom: 8px; }
   .case-contact p { margin: 0 0 22px; opacity: .92; line-height: 1.6; }
@@ -659,11 +662,19 @@
   .case-next-text span { color: #5b5b6b; font-size: 14px; line-height: 1.5; }
   .case-next-arrow { width: 48px; height: 48px; border-radius: 50%; background: #f3e8fc; color: #9535d7; display: flex; align-items: center; justify-content: center; font-size: 22px; }
   @media (max-width: 900px) {
-    .case-end { grid-template-columns: 1fr; margin-top: 40px; }
+    .case-end { grid-template-columns: minmax(0, 1fr); margin-top: 40px; }
     .case-contact { padding: 26px; }
     .case-next { grid-template-columns: 88px 1fr auto; gap: 14px; padding: 14px; }
     .case-next img { width: 88px; height: 88px; border-radius: 16px; }
     .case-next-text b { font-size: 18px; }
     .case-next-arrow { width: 40px; height: 40px; }
+  }
+  @media (max-width: 400px) {
+    .case-contact { padding: 22px 20px; }
+    .case-btns { flex-direction: column; }
+    .case-btn { text-align: center; }
+    .case-next { grid-template-columns: 64px minmax(0, 1fr) auto; gap: 12px; padding: 12px; }
+    .case-next img { width: 64px; height: 64px; border-radius: 14px; }
+    .case-next-arrow { width: 36px; height: 36px; }
   }
 </style>
