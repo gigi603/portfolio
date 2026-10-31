@@ -70,17 +70,17 @@ export default {
     "title": "Ce que je fais",
     "ux": {
       "name": "Comprendre et décider",
-      "description": "Je pars des utilisateurs : qui ils sont, ce qui les freine, ce dont ils ont besoin. Puis je tranche entre les options et je construis le parcours pour que l'étape suivante soit toujours évidente.",
+      "description": "Je pars des utilisateurs : qui ils sont, ce qui les freine, ce dont ils ont besoin. Puis je tranche entre les options et je construis un parcours qui les aide pas à pas, pour que l'étape suivante soit toujours évidente.",
       "tags": "Recherche UX | Parcours | Arbitrages"
     },
     "ui": {
       "name": "Concevoir le système",
-      "description": "Je pilote Claude connecté à Figma : il génère les wireframes, les maquettes et les prototypes directement dans Figma, sur un design system tenu à jour. Je dirige l'IA et je vérifie chaque livrable.",
+      "description": "Je pilote Claude connecté à Figma : il génère les wireframes, les maquettes et les prototypes directement dans Figma, sur un design system tenu à jour pour que chaque écran trouve le bon rythme. Je dirige l'IA et je vérifie chaque livrable.",
       "tags": "Design system | Claude + Figma | Wireframes | Prototypes"
     },
     "dev": {
       "name": "Livrer avec l'IA",
-      "description": "Claude Code développe ce que je conçois. Je fixe la direction, je vérifie chaque changement et rien ne part en ligne sans ma validation.",
+      "description": "Claude Code développe ce que je conçois. Je fixe la direction, je suis chaque changement de près et rien ne part en ligne sans ma validation : un bon suivi aboutit à une bonne mise en scène.",
       "tags": "Claude Code | Agents IA | Vue / Tailwind | Vercel"
     },
     "subtitle": "Du problème jusqu'au produit en ligne : je décide, l'IA accélère, je vérifie tout.",
