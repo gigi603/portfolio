@@ -408,7 +408,13 @@ export default {
 </script>
 
 <style>
-	.art-hero-dancer { position: absolute; left: calc(50% + 400px); top: 40px; width: 300px; }
+	/* Never past the right edge: on 769–1400px screens it caused horizontal scroll */
+	.art-hero-dancer { position: absolute; left: min(calc(50% + 400px), calc(100% - 320px)); top: 40px; width: 300px; }
+	/* Not enough room beside the title: show the dancer above it instead, like on mobile */
+	@media (max-width: 1359px) {
+		.art-hero-dancer { display: none; }
+		.art-hero-dancer-mobile { display: block !important; width: 200px; margin: 0 auto 6px; }
+	}
 	.piste-home-a .chip-right-1, .piste-home-a .chip-right-2, .piste-home-a .chip-right-3, .piste-home-l .chip-right-1, .piste-home-l .chip-right-2, .piste-home-l .chip-right-3 { display: none; }
 	.piste-home-a .selected-work .container, .piste-home-a .testimonials .container, .piste-home-a .skills-inner { position: relative; }
 	.art-sticker { position: absolute; width: 130px; filter: drop-shadow(0 10px 18px rgba(61, 22, 87, .15)); pointer-events: none; }
@@ -450,7 +456,7 @@ export default {
 	.art-real { width: 360px; margin: 36px auto 8px; background: #fff; padding: 12px 12px 16px; border-radius: 22px; box-shadow: 0 14px 36px rgba(149, 53, 215, .14); transform: rotate(-2deg); }
 	.art-real img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px; }
 	.art-real figcaption { margin-top: 12px; font-size: 14px; color: #383a3c; display: flex; align-items: center; justify-content: center; gap: 8px; white-space: nowrap; }
-	.art-real figcaption span { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #db2777; background: #fce7f3; padding: 4px 10px; border-radius: 99px; }
+	.art-real figcaption span { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #be185d; background: #fce7f3; padding: 4px 10px; border-radius: 99px; }
 	.art-map { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; align-items: center; margin-top: 44px; background: #fff; border-radius: 28px; padding: 28px; text-align: left; box-shadow: 0 10px 30px rgba(149, 53, 215, .08); }
 	.art-map img { width: 100%; }
 	.art-home { grid-template-columns: 1fr 1.3fr; }
@@ -645,6 +651,7 @@ export default {
 	.hero-bg {
 		position: absolute;
 		inset: 0;
+		overflow: hidden;
 		pointer-events: none;
 	}
 	.home-bg {
