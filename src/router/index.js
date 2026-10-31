@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeComponent from '../views/HomeComponent.vue'
-//dazda
+import { setPageRoute } from '../i18n'
 
 Vue.use(VueRouter)
 
@@ -31,6 +31,12 @@ const routes = [
     path: '/politique',
     name: 'PolitiqueComponent',
     component: () => import('../views/PolitiqueComponent.vue')
+  },
+  // Must stay last: any unknown URL shows the 404 page
+  {
+    path: '*',
+    name: 'NotFoundComponent',
+    component: () => import('../views/NotFoundComponent.vue')
   }
 ]
 
@@ -48,5 +54,8 @@ const router = new VueRouter({
     return savedPosition || { x: 0, y: 0 }
   }
 })
+
+// Each page gets its own tab title (see setPageRoute in src/i18n)
+router.afterEach(to => setPageRoute(to))
 
 export default router

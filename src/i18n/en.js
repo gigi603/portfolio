@@ -278,5 +278,11 @@ export default {
     "next": "Next screen",
     "scrollHint": "Scroll to see the whole page",
     "work": "Work"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "This page doesn't exist or has moved.",
+    "projects": "See my projects",
+    "home": "Back to home"
   }
 }
