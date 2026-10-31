@@ -79,7 +79,7 @@ export default {
       "tags": "Design system | Claude + Figma | Wireframes | Prototypes"
     },
     "dev": {
-      "name": "Livrer avec l'IA",
+      "name": "Automatiser la production",
       "description": "Claude Code développe ce que je conçois. Je fixe la direction, je suis chaque changement de près et rien ne part en ligne sans ma validation : un bon suivi aboutit à une bonne mise en scène.",
       "tags": "Claude Code | Agents IA | Vue / Tailwind | Vercel"
     },
@@ -92,7 +92,7 @@ export default {
     "cv": "Télécharger mon CV",
     "p1Start": "Je suis Gilbert, ",
     "p1Highlight": "product designer",
-    "p1End": " à Paris, avec un passé de développeur web. Je crée moi-même mon workflow et mes agents Claude, une petite équipe produit : recherche, design, rédaction, code et tests. Je fixe la direction, je tranche et je vérifie chaque livrable avant qu'il parte en ligne.",
+    "p1End": " à Paris, avec un passé de développeur web. Je crée moi-même mon workflow et mes agents Claude, une petite équipe produit : recherche, design, rédaction, code et tests. C'est moi qui mène la danse : je fixe la direction, je tranche et je vérifie chaque livrable avant qu'il parte en ligne.",
     "cta": "Me contacter",
     "chip1": "Design + rédaction",
     "chip2": "Du problème au produit en ligne"
