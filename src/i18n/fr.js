@@ -78,7 +78,7 @@ export default {
     "ui": {
       "step": "Imaginer la choré",
       "name": "Concevoir le système",
-      "description": "Je pilote Claude connecté à Figma : il génère les wireframes, les maquettes et les prototypes directement dans Figma, sur un design system tenu à jour pour que chaque écran trouve le bon rythme. Je dirige l'IA et je vérifie chaque livrable.",
+      "description": "Je pilote Claude connecté à Figma : il génère les wireframes, les maquettes et les prototypes directement dans Figma, sur un design system tenu à jour pour que chaque écran trouve le bon rythme.",
       "tags": "Design system | Claude + Figma | Wireframes | Prototypes"
     },
     "test": {

@@ -78,7 +78,7 @@ export default {
     "ui": {
       "step": "Picture the choreo",
       "name": "Design the system",
-      "description": "I drive Claude connected to Figma: it generates wireframes, mockups and prototypes directly in Figma, on an up-to-date design system so every screen finds the right rhythm. I direct the AI and check every deliverable.",
+      "description": "I drive Claude connected to Figma: it generates wireframes, mockups and prototypes directly in Figma, on an up-to-date design system so every screen finds the right rhythm.",
       "tags": "Design system | Claude + Figma | Wireframes | Prototypes"
     },
     "test": {
