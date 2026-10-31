@@ -1,5 +1,6 @@
 <template>
     <footer id="contact" style="background-color:#3d1657">
+        <div v-if="piste" class="flex justify-center pt-8"><img v-if="piste === 'a' || piste === 'l'" :src="require('@/assets/images/danse/danseur-trace.png')" alt="" style="width:180px"><span v-else class="footer-illu"><DanceIllustration :piste="piste" :size="84"/></span></div>
         <h3 class="text-center text-white text-2xl font-bold pt-6 px-6">{{ $t('contact.title') }}</h3>
         <p class="text-center px-6 pt-2 pb-4" style="color:lightgray;">{{ $t('contact.subtitle') }}</p>
         <div class="max-w-xl mx-auto px-6 pb-6">
@@ -44,14 +45,18 @@
 <script>
 import emailjs from '@emailjs/browser'
 import { BOOKING_URL } from '../config'
+import DanceIllustration from './DanceIllustration.vue'
+import { CURRENT, PISTE } from '../pistes'
 
 export default {
   name: 'FooterComponent',
+  components: { DanceIllustration },
   data() {
     return {
       form: { name: '', email: '', message: '', website: '' },
       status: 'idle',
       bookingUrl: BOOKING_URL,
+      piste: CURRENT ? PISTE : '',
     }
   },
   methods: {
@@ -87,6 +92,7 @@ export default {
 </script>
 
 <style scoped>
+.footer-illu { background: #fff; border-radius: 28px; padding: 10px; display: inline-flex; }
   .honeypot {
     position: absolute;
     left: -9999px;

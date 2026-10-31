@@ -70,17 +70,17 @@ export default {
     "title": "What I do",
     "ux": {
       "name": "Understand and decide",
-      "description": "I start with users: who they are, what stops them, what they need. Then I choose between options and structure the journey so the next step is always obvious.",
+      "description": "I start with users: who they are, what holds them back, what they need. Then I choose between options and build a journey that guides them step by step, so the next move is always obvious.",
       "tags": "UX research | User journeys | Trade-offs"
     },
     "ui": {
       "name": "Design the system",
-      "description": "I drive Claude connected to Figma: it generates wireframes, mockups and prototypes directly in Figma, on a design system kept up to date. I direct the AI and check every deliverable.",
+      "description": "I drive Claude connected to Figma: it generates wireframes, mockups and prototypes directly in Figma, on an up-to-date design system so every screen finds the right rhythm. I direct the AI and check every deliverable.",
       "tags": "Design system | Claude + Figma | Wireframes | Prototypes"
     },
     "dev": {
       "name": "Ship with AI",
-      "description": "Claude Code builds what I design. I set the direction, check every change, and nothing goes live without my sign-off.",
+      "description": "Claude Code builds what I design. I set the direction, follow every change closely, and nothing goes live without my sign-off: good follow-through leads to good staging.",
       "tags": "Claude Code | AI agents | Vue / Tailwind | Vercel"
     },
     "subtitle": "From the problem to a live product: I decide, AI speeds things up, I check everything.",
@@ -98,6 +98,10 @@ export default {
     "chip2": "From problem to live product"
   },
   "case": {
+    "resultLabel": "Outcome",
+    "contactTitle": "Want to talk about it?",
+    "contactText": "I'll walk you through my choices and what I set aside on this project.",
+    "nextLabel": "Next project",
     "client": "Client:",
     "role": "Role:",
     "tools": "Tools:",
@@ -127,6 +131,7 @@ export default {
       "label": "Client project",
       "hook": "Website for a Paris coach: from first visit to booked session",
       "tagline": "A site built from scratch that brings clients to Sophie",
+      "result": "Clients now reach Sophie through the site",
       "client": "Sophie Pratt, coach and therapist, Paris",
       "role": "UX/UI design in Figma and copywriting",
       "tools": "Figma",
@@ -155,6 +160,7 @@ export default {
       "label": "Client project",
       "hook": "Two services, one clear path to a discovery call",
       "tagline": "A site built from scratch that makes visitors want to contact Mélodie",
+      "result": "Clients now reach Mélodie through the site",
       "client": "Mélodie Yeremian, career coach and psychopractitioner, Paris and remote",
       "role": "Design in Figma and site build (WordPress, Divi)",
       "tools": "Figma, WordPress, Divi Builder, Claude",

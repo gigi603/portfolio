@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import i18n from './i18n'
+import { applyPisteMessages } from './pistes'
 import './index.css'
 import VShowSlide from 'v-show-slide'
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -18,6 +19,7 @@ library.add(faChevronUp);
 library.add(faChevronLeft);
 library.add(faPaperPlane);
 
+applyPisteMessages(i18n)
 Vue.config.productionTip = false
 Vue.use(VShowSlide)
 Vue.component("FontAwesomeIcon", FontAwesomeIcon);
