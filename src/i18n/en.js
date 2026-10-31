@@ -79,7 +79,7 @@ export default {
       "tags": "Design system | Claude + Figma | Wireframes | Prototypes"
     },
     "dev": {
-      "name": "Ship with AI",
+      "name": "Automate the build",
       "description": "Claude Code builds what I design. I set the direction, follow every change closely, and nothing goes live without my sign-off: good follow-through leads to good staging.",
       "tags": "Claude Code | AI agents | Vue / Tailwind | Vercel"
     },
@@ -92,7 +92,7 @@ export default {
     "cv": "Download my CV",
     "p1Start": "I'm Gilbert, a ",
     "p1Highlight": "product designer",
-    "p1End": " in Paris with a background in web development. I build my own workflow and Claude agents, a small product team: research, design, copy, code and testing. I set the direction, make the calls and check every deliverable before it goes live.",
+    "p1End": " in Paris with a background in web development. I build my own workflow and Claude agents, a small product team: research, design, copy, code and testing. I take the lead: I set the direction, make the calls and check every deliverable before it goes live.",
     "cta": "Get in touch",
     "chip1": "Design + copywriting",
     "chip2": "From problem to live product"
