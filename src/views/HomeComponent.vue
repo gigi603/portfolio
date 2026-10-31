@@ -22,7 +22,7 @@
 				</div>
 			</div>
 			<div class="hero-content" data-aos="zoom-in">
-				<p v-if="piste" class="piste-tag">{{ pisteData.name }}</p>
+				<p v-if="piste && pisteTag" class="piste-tag">{{ pisteData.name }}</p>
 				<img v-if="flow" class="art-hero-dancer-mobile" style="display:none" :src="art.dancer" alt="">
 				<p class="hero-badge"><i></i>{{ $t('hero.available') }}</p>
 				<p v-if="pisteData && pisteData.count" class="piste-count">{{ pisteData.count }}</p>
@@ -253,7 +253,7 @@ import ProjectStrip from '../components/ProjectStrip.vue'
 import ProjectCard from '../components/ProjectCard.vue'
 import DanceIcon from '../components/DanceIcon.vue'
 import DanceIllustration from '../components/DanceIllustration.vue'
-import { PISTE, CURRENT, METHODE } from '../pistes'
+import { PISTE, PISTE_TAG, CURRENT, METHODE } from '../pistes'
 
 
 export default {
@@ -275,6 +275,7 @@ export default {
 			projects: projects,
 			piste: CURRENT ? PISTE : '',
 			methode: CURRENT ? METHODE : '',
+			pisteTag: PISTE_TAG,
 			methodArt: {
 				nodes: [
 					require('@/assets/images/danse/icone-discussion.png'),

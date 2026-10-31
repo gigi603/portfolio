@@ -1,5 +1,9 @@
-// Maquettes d'identité danse (Léa) : ?piste=a|b|c sur l'accueil. Ne pas fusionner tel quel.
-export const PISTE = (new URLSearchParams(window.location.search).get('piste') || '').toLowerCase()
+// Identité danse (Léa) : piste « l » par défaut ; ?piste=a|b|c gardés pour comparaison.
+// Piste A allégée publiée par défaut (Gilbert, 31/10). ?piste=aucune revient au site sans danse.
+const PARAM = (new URLSearchParams(window.location.search).get('piste') || 'l').toLowerCase()
+export const PISTE = PARAM === 'aucune' ? '' : PARAM
+// L'étiquette de comparaison n'apparaît que si une piste est demandée dans l'URL
+export const PISTE_TAG = new URLSearchParams(window.location.search).has('piste')
 
 export const PISTES = {
   a: {
