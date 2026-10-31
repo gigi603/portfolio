@@ -1,7 +1,7 @@
 module.exports = {
-  content: [
+  // Tailwind 2 syntax (`content` is Tailwind 3 and was ignored, shipping a 2.6 MB stylesheet)
+  purge: [
     "./public/**/*.html",
-    "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
