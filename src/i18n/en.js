@@ -84,8 +84,8 @@ export default {
     "proto": {
       "step": "Step into the cypher",
       "name": "User-test the prototypes",
-      "description": "I put my prototypes in front of real users: I give them 2 or 3 tasks, watch where they hesitate, and adjust before anything gets built. The circle's reaction tells me whether the journey holds up.",
-      "tags": "User testing | Figma prototypes | Iterations"
+      "description": "I put my prototypes in front of real users, on a video call or through a simple link: the prototype opens right in the browser, with nothing to install. I watch where they hesitate and adjust before anything gets built. The circle's reaction tells me whether the journey holds up.",
+      "tags": "User testing | Figma prototypes | Zoom | Iterations"
     },
     "test": {
       "step": "Rehearse",

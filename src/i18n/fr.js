@@ -84,8 +84,8 @@ export default {
     "proto": {
       "step": "Entrer dans le cercle",
       "name": "Faire tester les prototypes",
-      "description": "Je fais tester mes prototypes à de vrais utilisateurs : je leur donne 2 ou 3 tâches, j'observe où ils hésitent, et j'ajuste avant de développer. La réaction du cercle me dit si le parcours tient.",
-      "tags": "Tests utilisateurs | Prototypes Figma | Itérations"
+      "description": "Je fais tester mes prototypes à de vrais utilisateurs, en visio ou par un simple lien : le prototype s'ouvre directement sur un site, sans rien à installer. J'observe où ils hésitent et j'ajuste avant de développer. La réaction du cercle me dit si le parcours tient.",
+      "tags": "Tests utilisateurs | Prototypes Figma | Zoom | Itérations"
     },
     "test": {
       "step": "Répéter",
