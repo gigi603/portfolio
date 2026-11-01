@@ -49,31 +49,6 @@
 			</div>
 		</section>
 		</div>
-		<section class="testimonials" id="testimonials">
-			<div class="container mx-auto max-w-7xl px-6">
-				<img loading="lazy" v-if="piste === 'a'" class="art-sticker art-sticker-testimonials" :src="art.objects.vinyle" alt="">
-				<p v-if="pisteData && !light" class="piste-eyebrow"><DanceIcon :name="pisteData.icons.eyebrows.testimonials" :size="15"/>{{ pisteData.eyebrows.testimonials }}</p>
-				<h2 class="section-title">{{ $t('testimonials.title') }}</h2>
-				<p class="section-lead">{{ $t('testimonials.subtitle') }}</p>
-				<div class="testimonials-grid">
-					<article v-for="testimonial in testimonials" :key="testimonial.key" class="testimonial" data-aos="zoom-in">
-						<div class="testimonial-icon" aria-hidden="true">
-							<svg width="30" height="24" viewBox="0 0 30 24"><g fill="#9535d7"><circle cx="7.5" cy="15.5" r="7.5"/><path d="M1 15C1 7 5.5 2 12.5 0.5l1 2.6C9 4.6 6.6 8 6.4 12z"/><circle cx="22.5" cy="15.5" r="7.5"/><path d="M16 15C16 7 20.5 2 27.5 0.5l1 2.6C24 4.6 21.6 8 21.4 12z"/></g></svg>
-						</div>
-						<p class="testimonial-pull">{{ $t(`testimonials.${testimonial.key}.pullStart`) }}<em>{{ $t(`testimonials.${testimonial.key}.pullEnd`) }}</em>{{ $t(`testimonials.${testimonial.key}.pullAfter`) }}</p>
-						<p class="testimonial-quote">{{ $t(`testimonials.${testimonial.key}.quote`) }}</p>
-						<div class="testimonial-author">
-							<span class="testimonial-avatar" :style="{ background: testimonial.avatarBg, color: testimonial.avatarColor }" aria-hidden="true">{{ testimonial.initials }}</span>
-							<div>
-								<p class="testimonial-name">{{ testimonial.name }}</p>
-								<p class="testimonial-job">{{ $t(`testimonials.${testimonial.key}.job`) }}</p>
-							</div>
-							<router-link :to="{ name:'ProjectDetailComponent', params:{ id: testimonial.projectId } }" class="testimonial-link">{{ $t('testimonials.seeProject') }}</router-link>
-						</div>
-					</article>
-				</div>
-			</div>
-		</section>
 		<section class="skills">
 			<div class="skills-deco" aria-hidden="true">
 				<div class="skills-dots"></div>
@@ -116,6 +91,7 @@
 								<svg v-if="!pisteData || light" width="30" height="30" viewBox="0 0 24 24" fill="none" :stroke="skill.stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 									<template v-if="skill.key === 'ux'"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="18" cy="16.5" r="2.5"/><path d="M20 18.5l2 2"/></template>
 									<template v-else-if="skill.key === 'ui'"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-4.5-4.5L8 19"/></template>
+									<template v-else-if="skill.key === 'proto'"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18h2"/></template>
 									<template v-else-if="skill.key === 'test'"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></template>
 									<template v-else><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></template>
 								</svg>
@@ -229,6 +205,31 @@
 				</div>
 			</div>
 		</section>
+		<section class="testimonials" id="testimonials">
+			<div class="container mx-auto max-w-7xl px-6">
+				<img loading="lazy" v-if="piste === 'a'" class="art-sticker art-sticker-testimonials" :src="art.objects.vinyle" alt="">
+				<p v-if="pisteData && !light" class="piste-eyebrow"><DanceIcon :name="pisteData.icons.eyebrows.testimonials" :size="15"/>{{ pisteData.eyebrows.testimonials }}</p>
+				<h2 class="section-title">{{ $t('testimonials.title') }}</h2>
+				<p class="section-lead">{{ $t('testimonials.subtitle') }}</p>
+				<div class="testimonials-grid">
+					<article v-for="testimonial in testimonials" :key="testimonial.key" class="testimonial" data-aos="zoom-in">
+						<div class="testimonial-icon" aria-hidden="true">
+							<svg width="30" height="24" viewBox="0 0 30 24"><g fill="#9535d7"><circle cx="7.5" cy="15.5" r="7.5"/><path d="M1 15C1 7 5.5 2 12.5 0.5l1 2.6C9 4.6 6.6 8 6.4 12z"/><circle cx="22.5" cy="15.5" r="7.5"/><path d="M16 15C16 7 20.5 2 27.5 0.5l1 2.6C24 4.6 21.6 8 21.4 12z"/></g></svg>
+						</div>
+						<p class="testimonial-pull">{{ $t(`testimonials.${testimonial.key}.pullStart`) }}<em>{{ $t(`testimonials.${testimonial.key}.pullEnd`) }}</em>{{ $t(`testimonials.${testimonial.key}.pullAfter`) }}</p>
+						<p class="testimonial-quote">{{ $t(`testimonials.${testimonial.key}.quote`) }}</p>
+						<div class="testimonial-author">
+							<span class="testimonial-avatar" :style="{ background: testimonial.avatarBg, color: testimonial.avatarColor }" aria-hidden="true">{{ testimonial.initials }}</span>
+							<div>
+								<p class="testimonial-name">{{ testimonial.name }}</p>
+								<p class="testimonial-job">{{ $t(`testimonials.${testimonial.key}.job`) }}</p>
+							</div>
+							<router-link :to="{ name:'ProjectDetailComponent', params:{ id: testimonial.projectId } }" class="testimonial-link">{{ $t('testimonials.seeProject') }}</router-link>
+						</div>
+					</article>
+				</div>
+			</div>
+		</section>
 		<!-- <div class="w-full bg-purple-full">
 			<div class="container mx-auto max-w-7xl pb-10 px-6">
 				<h2 class="py-8 text-black text-3xl font-bold  w-full">TOOLS</h2>
@@ -281,18 +282,21 @@ export default {
 				nodes: [
 					require('@/assets/images/danse/icone-discussion.webp'),
 					require('@/assets/images/danse/icone-bulle.webp'),
+					require('@/assets/images/danse/icone-cercle.webp'),
 					require('@/assets/images/danse/icone-repete.webp'),
 					require('@/assets/images/danse/icone-scene.webp'),
 				],
 				scenes: [
 					require('@/assets/images/danse/scene-ecoute.webp'),
 					require('@/assets/images/danse/scene-imagine.webp'),
+					require('@/assets/images/danse/scene-cercle.webp'),
 					require('@/assets/images/danse/scene-repete.webp'),
 					require('@/assets/images/danse/scene-scene.webp'),
 				],
 				alts: [
 					'Gilbert sur scène, la main au menton, écoute deux personnes lui expliquer leur besoin',
 					'Gilbert seul sur scène imagine la chorégraphie, dessinée dans une bulle au-dessus de sa tête',
+					'Gilbert, au centre d\'un cercle de danseurs, leur montre un prototype sur son téléphone ; ils réagissent',
 					'Gilbert répète un mouvement face au miroir d\'un studio, à côté d\'une liste de points cochés',
 					'Gilbert danse sur scène devant le public',
 				],
@@ -341,6 +345,7 @@ export default {
 			skills: [
 				{ key: 'ux', tile: '#f3e8ff', stroke: '#9535d7' },
 				{ key: 'ui', tile: '#fce7f3', stroke: '#db2777' },
+				{ key: 'proto', tile: '#fdf2f8', stroke: '#be185d' },
 				{ key: 'test', tile: '#ede9fe', stroke: '#7c3aed' },
 				{ key: 'dev', tile: '#e0f2fe', stroke: '#0284c7' },
 			],
@@ -372,6 +377,7 @@ export default {
 			return [
 				require(`@/assets/images/danse/${first}.png`),
 				require('@/assets/images/danse/icone-bulle.webp'),
+				require('@/assets/images/danse/icone-cercle.webp'),
 				require('@/assets/images/danse/icone-repete.webp'),
 				require('@/assets/images/danse/icone-scene.webp'),
 			]
@@ -552,7 +558,8 @@ export default {
 		.art-step-reverse .art-step-visual { order: 0; }
 		.art-step-node { left: 30px; top: 40px; width: 60px; height: 60px; }
 		.art-step-node img { width: 46px; height: 46px; }
-		.art-step-visual img { height: 200px; }
+		.art-step-visual { padding: 12px; border-radius: 24px; }
+		.art-step-visual img { height: 130px; }
 		.art-map { grid-template-columns: 1fr; }
 		.art-sticker { width: 84px; right: 0; }
 		.art-about-baskets { width: 110px; left: -10px; }
@@ -793,8 +800,9 @@ export default {
 	.testimonials {
 		position: relative;
 		z-index: 1;
-		/* White, except the bottom 110px where the skills gradient starts under the cards */
-		background: linear-gradient(180deg, #fff calc(100% - 110px), transparent calc(100% - 110px));
+		/* Placed just before the contact: plain white, with room above the dark contact block */
+		background: #fff;
+		padding-bottom: 110px;
 	}
 	.testimonials-grid {
 		display: grid;
@@ -881,10 +889,8 @@ export default {
 	.skills {
 		position: relative;
 		overflow: hidden;
-		/* The gradient starts under the testimonial cards, which sit on top of it */
-		margin-top: -110px;
-		/* Bottom padding matches the gap between testimonials and this title */
-		padding: 230px 0 121px;
+		/* Follows the projects, whose background already fades to white */
+		padding: 100px 0 121px;
 		background: linear-gradient(180deg, #fff 0, #eee6ff 200px, #eee6ff calc(100% - 180px), #fff 100%);
 	}
 	.skills-deco {

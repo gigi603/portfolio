@@ -81,6 +81,12 @@ export default {
       "description": "Je pilote Claude connecté à Figma : il génère les wireframes, les maquettes et les prototypes directement dans Figma, sur un design system tenu à jour pour que chaque écran trouve le bon rythme.",
       "tags": "Design system | Claude + Figma | Wireframes | Prototypes"
     },
+    "proto": {
+      "step": "Entrer dans le cercle",
+      "name": "Faire tester les prototypes",
+      "description": "Je fais tester mes prototypes à de vrais utilisateurs : je leur donne 2 ou 3 tâches, j'observe où ils hésitent, et j'ajuste avant de développer. La réaction du cercle me dit si le parcours tient.",
+      "tags": "Tests utilisateurs | Prototypes Figma | Itérations"
+    },
     "test": {
       "step": "Répéter",
       "name": "Tester et ajuster",
