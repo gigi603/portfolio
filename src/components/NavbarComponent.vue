@@ -19,7 +19,7 @@
             class="link"
             :class="{ active: activeSection === link.id }"
           >{{ $t(`nav.${link.key}`) }}</router-link>
-          <a :href="cvUrl" target="_blank" rel="noopener" class="link link-cv">
+          <a :href="cvUrl" download class="link link-cv">
             {{ $t('nav.cv') }}
             <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-5-5m5 5l5-5M5 20h14" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -57,7 +57,7 @@
           </router-link>
         </li>
         <li>
-          <a :href="cvUrl" target="_blank" rel="noopener">
+          <a :href="cvUrl" download>
             {{ $t('nav.downloadCv') }}<span aria-hidden="true">↓</span>
           </a>
         </li>

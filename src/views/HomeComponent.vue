@@ -133,7 +133,7 @@
 					<p>{{ $t('about.p2') }}</p>
 					<div class="about-buttons">
 						<a href="#contact" class="about-btn about-btn-primary">{{ $t('about.cta') }}</a>
-						<a :href="cvUrl" target="_blank" rel="noopener" class="about-btn about-btn-outline">
+						<a :href="cvUrl" download class="about-btn about-btn-outline">
 							{{ $t('about.cv') }}
 							<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-5-5m5 5l5-5M5 20h14" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
 						</a>

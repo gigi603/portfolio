@@ -96,7 +96,7 @@
             <p>{{ $t('case.contactText') }}</p>
             <div class="case-btns">
               <router-link :to="{ path: '/', hash: '#contact' }" class="case-btn case-btn-white">{{ $t('about.cta') }}</router-link>
-              <a :href="cvUrl" target="_blank" rel="noopener" class="case-btn case-btn-ghost">{{ $t('about.cv') }}</a>
+              <a :href="cvUrl" download class="case-btn case-btn-ghost">{{ $t('about.cv') }}</a>
             </div>
           </div>
           <router-link v-if="nextProject(project)" :to="`/project/${nextProject(project).id}`" class="case-next">
