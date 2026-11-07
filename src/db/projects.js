@@ -37,7 +37,19 @@ const projects = [
   { 
     id: '4', 
     name: "Unfate",
+    sections: ['context', 'challenge', 'decisions', 'evolution', 'outcome', 'retro'],
     url_website:"",
+    // V1 (with the founder) next to V2 (rebuilt with Claude in Figma), shown inside the "evolution" section
+    evolution: {
+      pairs: [
+        { key: 'login', before: require("@/assets/images/projects/unfate/v1-connexion.webp"), after: require("@/assets/images/projects/unfate/v2-connexion.webp") },
+        { key: 'register', before: require("@/assets/images/projects/unfate/v1-inscription.webp"), after: require("@/assets/images/projects/unfate/v2-inscription.webp") },
+      ],
+      extras: [
+        { key: 'system', src: require("@/assets/images/projects/unfate/v2-fondations.webp") },
+        { key: 'lesson', tall: true, src: require("@/assets/images/projects/unfate/v2-lecon-4.webp") },
+      ],
+    },
     img:require("@/assets/images/projects/vignette-unfate.webp"),
     images: [
       { key: 'login', src:require("@/assets/images/projects/Login.svg") },

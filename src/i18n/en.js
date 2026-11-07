@@ -129,8 +129,11 @@ export default {
       "solution": "Solution",
       "outcome": "Outcome",
       "decisions": "Decisions and trade-offs",
+      "evolution": "From V1 to V2",
       "retro": "Looking back"
     },
+    "evoBefore": "V1",
+    "evoAfter": "V2",
     "back": "Back",
     "atAGlance": "At a glance",
     "clientLabel": "Client",
@@ -216,10 +219,41 @@ export default {
       }
     },
     "4": {
-      "label": "Client project",
-      "hook": "Learning platform with crypto-paid courses",
-      "description": "Unfate is a learning platform built around one idea: everything you need on a subject in one place, so you don't have to piece it together from across the web. Courses are paid in cryptocurrency. Working with the founding team, I designed the main flows: login, settings, practice and exams. The product has since been discontinued.",
-      "type": "Web app",
+      "label": "Client project · personal V2",
+      "hook": "An online learning platform, then its design system rebuilt with Claude",
+      "tagline": "A platform where teachers and companies publish their courses, and its V2 rebuilt on a design system",
+      "result": "V1 designed with the founder; V2: 64 screens moved onto a design system, 13 screens added",
+      "client": "Unfate's founder, who started the project",
+      "role": "Product design in Figma: moodboard, mockups and prototype; V2 on my own initiative",
+      "tools": "Figma, Claude",
+      "type": "Online learning platform",
+      "description": "Unfate is a learning platform where teachers and companies publish their courses. We started with crypto. I designed the V1 with the founder, then rebuilt a V2 on a design system with Claude.",
+      "sections": {
+        "context": "Unfate started as its founder's idea: a learning platform where teachers or companies publish their courses, with everything you need on a subject in one place. To begin, we focused on a single field, crypto, with a first course on decentralised finance (DeFi) in six steps. We worked together in a shared Figma file, where the moodboard, mockups and prototype were discussed as we went.",
+        "challenge": "DeFi is intimidating: technical vocabulary, abstract concepts, fear of making a mistake with your money. The platform had to make the subject approachable, keep learners motivated from one lesson to the next and check what they had retained. It also had to stay generic enough to welcome other subjects and other teachers later on.",
+        "decisions": "1. A path that is always visible. Each course is split into numbered lessons, with a progress bar (\"3/6 completed\") and the next steps locked, so learners always know where they are and what comes next.\n2. Practise before being assessed. A practice page comes before the exam, which opens with clear instructions, shows one question at a time and ends with the results and a certificate.\n3. A catalogue built for several teachers. Course cards show the teacher, and learners find their ongoing, favourite and completed courses.\n4. Frictionless sign-up. Sign in with Google or by email, so learners reach their first course quickly.",
+        "evolution": "The product was discontinued. I later picked up the Figma file on my own initiative, to see how far I could go by directing Claude connected to Figma.\n1. Audit the V1. Claude listed the inconsistencies: 72 text style combinations, two fonts mixed (Inter and Roboto), a missing icon font.\n2. Build the design system. Under my direction, Claude created 34 base colours, 23 semantic tokens, 39 text styles, spacing, shadows and 20 components, then applied them to the 64 screens without changing how they look. I had every screen compared with the V1 and the prototype links checked, then signed off the result.\n3. Go further thanks to the system. On that base, we added 13 screens: redesigned sign-in and sign-up, and lessons 4 and 5 of the course.",
+        "outcome": "The V1 set out the platform's flows with the founder: catalogue, lessons, practice, exam and certificate. The V2 was not released, it is personal work. It shows what a design system changes: a new screen is built from existing components instead of starting from scratch, which makes it possible to add courses and teachers without losing consistency.",
+        "retro": "I would set up the design system from the start, before the screens: it would have avoided the 72 text variants and made the platform easier to open to subjects other than crypto."
+      },
+      "evolution": {
+        "login": {
+          "title": "Sign-in",
+          "caption": "Labels above the fields, a \"show password\" button, sign-in with a crypto wallet and a subtitle about picking up your lessons."
+        },
+        "register": {
+          "title": "Sign-up",
+          "caption": "The benefit comes first (\"free, about a minute\"), password rules show before any error, and the V2 adds email verification and a welcome screen."
+        },
+        "system": {
+          "title": "Design system",
+          "caption": "The foundations Claude built under my direction: colours, semantic tokens, text styles, spacing and shadows."
+        },
+        "lesson": {
+          "title": "New lesson: Liquidity Pools",
+          "caption": "A lesson added from the components: diagram, worked example, risk table and key takeaways, with course progress on the right."
+        }
+      },
       "screens": {
         "login": {
           "title": "Sign-in"
