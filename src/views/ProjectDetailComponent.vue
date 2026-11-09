@@ -26,6 +26,31 @@
               <div v-for="section in project.sections" :key="section" :id="`section-${section}`" class="project-section">
                 <h3>{{ $t(`case.sections.${section}`) }}</h3>
                 <p>{{ $t(`projects.${project.id}.sections.${section}`) }}</p>
+                <div v-if="section === 'evolution' && project.evolution" class="evo">
+                  <figure v-for="pair in project.evolution.pairs" :key="pair.key" class="evo-pair">
+                    <div class="evo-row">
+                      <button type="button" class="evo-shot" :aria-label="$t('gallery.open', { title: evoTitle(project, pair.key, 'before') })" @click="showEvo(pair.key, 'before')">
+                        <span class="evo-badge evo-badge-v1">{{ $t('case.evoBefore') }}</span>
+                        <img :src="pair.before" :alt="evoTitle(project, pair.key, 'before')" loading="lazy">
+                      </button>
+                      <span class="evo-arrow" aria-hidden="true">→</span>
+                      <button type="button" class="evo-shot" :aria-label="$t('gallery.open', { title: evoTitle(project, pair.key, 'after') })" @click="showEvo(pair.key, 'after')">
+                        <span class="evo-badge evo-badge-v2">{{ $t('case.evoAfter') }}</span>
+                        <img :src="pair.after" :alt="evoTitle(project, pair.key, 'after')" loading="lazy">
+                      </button>
+                    </div>
+                    <figcaption><b>{{ $t(`projects.${project.id}.evolution.${pair.key}.title`) }}</b> {{ $t(`projects.${project.id}.evolution.${pair.key}.caption`) }}</figcaption>
+                  </figure>
+                  <div class="evo-extras">
+                    <figure v-for="extra in project.evolution.extras" :key="extra.key" class="evo-extra">
+                      <button type="button" class="evo-shot" :class="{ 'evo-shot-tall': extra.tall }" :aria-label="$t('gallery.open', { title: $t(`projects.${project.id}.evolution.${extra.key}.title`) })" @click="showEvo(extra.key)">
+                        <span class="evo-badge evo-badge-v2">{{ $t('case.evoAfter') }}</span>
+                        <img :src="extra.src" :alt="$t(`projects.${project.id}.evolution.${extra.key}.title`)" loading="lazy">
+                      </button>
+                      <figcaption><b>{{ $t(`projects.${project.id}.evolution.${extra.key}.title`) }}</b> {{ $t(`projects.${project.id}.evolution.${extra.key}.caption`) }}</figcaption>
+                    </figure>
+                  </div>
+                </div>
               </div>
             </template>
             <p v-else class="project-section-text">{{ $t(`projects.${project.id}.description`) }}</p>
@@ -155,13 +180,14 @@
       viewerScreens() {
         const project = this.currentProject
         if (!project) return []
-        return project.images.map(img => ({
+        const screens = project.images.map(img => ({
           src: img.src,
           title: this.screenTitle(project, img),
           caption: this.$te(`projects.${project.id}.screens.${img.key}.caption`, 'en') ? this.$t(`projects.${project.id}.screens.${img.key}.caption`) : '',
           device: img.device || 'desktop',
           url: this.domain(project.url_website),
         }))
+        return screens.concat(this.evoScreens(project))
       },
     },
     mounted() {
@@ -199,6 +225,40 @@
           if (el && el.getBoundingClientRect().top <= line) active = item.id
         })
         this.activeSection = active || this.tocItems(this.currentProject)[0].id
+      },
+      // V1/V2 images of the "evolution" section, appended after the gallery screens in the viewer
+      evoScreens(project) {
+        if (!project.evolution) return []
+        const base = `projects.${project.id}.evolution`
+        const list = []
+        project.evolution.pairs.forEach(pair => {
+          ['before', 'after'].forEach(side => list.push({
+            id: `${pair.key}-${side}`,
+            src: pair[side],
+            title: this.evoTitle(project, pair.key, side),
+            caption: this.$t(`${base}.${pair.key}.caption`),
+            device: 'desktop',
+            url: '',
+          }))
+        })
+        project.evolution.extras.forEach(extra => list.push({
+          id: extra.key,
+          src: extra.src,
+          title: `${this.$t('case.evoAfter')} · ${this.$t(`${base}.${extra.key}.title`)}`,
+          caption: this.$t(`${base}.${extra.key}.caption`),
+          device: 'desktop',
+          url: '',
+        }))
+        return list
+      },
+      evoTitle(project, key, side) {
+        return `${this.$t(side === 'before' ? 'case.evoBefore' : 'case.evoAfter')} · ${this.$t(`projects.${project.id}.evolution.${key}.title`)}`
+      },
+      showEvo(key, side) {
+        const project = this.currentProject
+        const id = side ? `${key}-${side}` : key
+        const i = this.evoScreens(project).findIndex(screen => screen.id === id)
+        this.showImg(project.images.length + i)
       },
       screenTitle(project, img) {
         return this.$t(`projects.${project.id}.screens.${img.key}.title`)
@@ -676,5 +736,119 @@
     .case-next { grid-template-columns: 64px minmax(0, 1fr) auto; gap: 12px; padding: 12px; }
     .case-next img { width: 64px; height: 64px; border-radius: 14px; }
     .case-next-arrow { width: 36px; height: 36px; }
+  }
+  /* V1 -> V2 comparison inside the "evolution" section */
+  .evo {
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .evo-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+  }
+  .evo-arrow {
+    color: #9535d8;
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .evo-shot {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 1px solid #ece2f8;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 10px 24px rgba(61, 22, 87, 0.08);
+    cursor: zoom-in;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .evo-shot:hover,
+  .evo-shot:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px rgba(61, 22, 87, 0.14);
+  }
+  .evo-shot img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+  }
+  .evo-row .evo-shot {
+    aspect-ratio: 16 / 9;
+  }
+  .evo-shot-tall {
+    aspect-ratio: 4 / 5;
+  }
+  .evo-shot-tall img {
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  .evo-badge {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 9999px;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    z-index: 1;
+  }
+  .evo-badge-v1 {
+    background: #5b5e63;
+  }
+  .evo-badge-v2 {
+    background: #9535d8;
+  }
+  .evo figcaption {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #5b5e63;
+  }
+  .evo figcaption b {
+    color: #1b1b1f;
+  }
+  .evo-extras {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .evo-extras .evo-shot:not(.evo-shot-tall) {
+    aspect-ratio: 4 / 5;
+  }
+  .evo-extras .evo-shot img {
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  @media (max-width: 767px) {
+    .evo-row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .evo-arrow {
+      justify-self: center;
+      transform: rotate(90deg);
+    }
+    .evo-extras {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .evo-shot {
+      transition: none;
+    }
+    .evo-shot:hover,
+    .evo-shot:focus-visible {
+      transform: none;
+    }
   }
 </style>

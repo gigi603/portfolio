@@ -129,8 +129,11 @@ export default {
       "solution": "Solution",
       "outcome": "Résultat",
       "decisions": "Décisions et compromis",
+      "evolution": "De la V1 à la V2",
       "retro": "Avec le recul"
     },
+    "evoBefore": "V1",
+    "evoAfter": "V2",
     "back": "Retour",
     "atAGlance": "En bref",
     "clientLabel": "Client",
@@ -202,10 +205,41 @@ export default {
       }
     },
     "4": {
-      "label": "Projet client",
-      "hook": "Plateforme de formation avec des cours payés en cryptomonnaie",
-      "description": "Unfate est une plateforme de formation née d'une idée simple : tout ce qu'il faut savoir sur un sujet, au même endroit, sans avoir à chercher des morceaux partout sur le web. Les cours se paient en cryptomonnaie. Avec l'équipe fondatrice, j'ai conçu les parcours principaux : connexion, paramètres, entraînement et examens. Le produit a depuis été arrêté.",
-      "type": "Application web",
+      "label": "Projet client · V2 personnelle",
+      "hook": "Une plateforme de cours en ligne, puis son design system reconstruit avec Claude",
+      "tagline": "Une plateforme où professeurs et entreprises publient leurs cours, et sa V2 reconstruite sur un design system",
+      "result": "V1 conçue avec le fondateur ; V2 : 64 écrans passés sur un design system, 33 écrans ajoutés",
+      "client": "Le fondateur d'Unfate, porteur du projet",
+      "role": "Product design dans Figma : moodboard, maquettes et prototype ; V2 à mon initiative",
+      "tools": "Figma, Claude",
+      "type": "Plateforme d'apprentissage en ligne",
+      "description": "Unfate est une plateforme d'enseignement où professeurs et entreprises mettent leurs cours à disposition. Nous avons commencé par la crypto. J'ai conçu la V1 avec le fondateur, puis reconstruit une V2 sur un design system avec Claude.",
+      "sections": {
+        "context": "Unfate est né de l'idée de son fondateur : une plateforme d'enseignement où des professeurs ou des entreprises mettent leurs cours à disposition, avec tout ce qu'il faut savoir sur un sujet au même endroit. Pour démarrer, nous nous sommes concentrés sur un seul domaine, la crypto, avec un premier cours sur la finance décentralisée (DeFi) en six étapes. Nous travaillions ensemble dans un fichier Figma partagé : moodboard, maquettes et prototype y étaient commentés au fil de l'eau.",
+        "challenge": "La DeFi intimide : vocabulaire technique, notions abstraites, peur de se tromper avec son argent. La plateforme devait rendre ce sujet abordable, garder l'apprenant motivé d'une leçon à l'autre et vérifier ce qu'il a retenu. Elle devait aussi rester assez générique pour accueillir plus tard d'autres sujets et d'autres formateurs.",
+        "decisions": "1. Un parcours toujours visible. Chaque cours se découpe en leçons numérotées, avec une barre de progression (« 3/6 completed ») et les étapes suivantes verrouillées : l'apprenant sait toujours où il en est et ce qui l'attend.\n2. S'entraîner avant d'être évalué. Une page d'entraînement précède l'examen, qui commence par des consignes claires, présente une question à la fois et se termine par les résultats et un certificat.\n3. Un catalogue pensé pour plusieurs formateurs. Les cartes de cours affichent le professeur, et l'apprenant retrouve ses cours en cours, favoris et terminés.\n4. Une inscription sans friction. Connexion avec Google ou par email, pour que l'apprenant arrive vite à son premier cours.",
+        "evolution": "Le produit a été arrêté. J'ai ensuite repris le fichier Figma de moi-même, pour voir jusqu'où je pouvais aller en dirigeant Claude connecté à Figma.\n1. Auditer la V1. Claude a relevé les incohérences : 72 combinaisons de styles de texte, deux polices mélangées (Inter et Roboto), une police d'icônes manquante.\n2. Construire le design system. Sous ma direction, Claude a créé 34 couleurs de base, 23 tokens sémantiques, 39 styles de texte, les espacements, les ombres et 20 composants, puis les a appliqués aux 64 écrans sans changer leur apparence. J'ai fait comparer chaque écran à la V1 et vérifier les liens du prototype, puis j'ai validé le résultat.\n3. Aller plus loin grâce au système. Sur cette base, nous avons ajouté 33 écrans : connexion et inscription repensées, des versions mobiles, et un cours complet découpé en chapitres de deux ou trois leçons, chacune avec son état « terminé ». Les mêmes règles valent partout : la leçon en cours est en bleu, elle passe au vert une fois terminée, et la suivante ne s'active que lorsqu'on y arrive.",
+        "outcome": "La V1 a posé les parcours de la plateforme avec le fondateur : catalogue, leçons, entraînement, examen et certificat. La V2 n'a pas été mise en ligne, c'est un travail personnel. Elle montre ce qu'un design system change : un nouvel écran se construit avec des composants existants au lieu de repartir de zéro, ce qui rend possible d'ajouter des cours et des formateurs sans perdre la cohérence.",
+        "retro": "Je poserais le design system dès le départ, avant les écrans : il aurait évité les 72 variantes de texte et rendu la plateforme plus facile à ouvrir à d'autres sujets que la crypto."
+      },
+      "evolution": {
+        "login": {
+          "title": "Connexion",
+          "caption": "Libellés visibles au-dessus des champs, bouton « afficher le mot de passe », connexion avec un wallet crypto et un sous-titre qui parle de reprendre ses leçons."
+        },
+        "register": {
+          "title": "Inscription",
+          "caption": "Le bénéfice est annoncé (« gratuit, une minute »), les critères du mot de passe s'affichent avant l'erreur, et la V2 ajoute la vérification de l'email et un écran de bienvenue."
+        },
+        "system": {
+          "title": "Design system",
+          "caption": "Les fondations créées par Claude sous ma direction : couleurs, tokens sémantiques, styles de texte, espacements et ombres."
+        },
+        "lesson": {
+          "title": "Nouvelle leçon : Liquidity Pools",
+          "caption": "Une leçon ajoutée grâce aux composants : schéma, exemple chiffré, tableau des risques et points clés, avec la progression du cours à droite."
+        }
+      },
       "screens": {
         "login": {
           "title": "Connexion"
