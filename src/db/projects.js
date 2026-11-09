@@ -6,6 +6,8 @@ const projects = [
     // Shown first on a full-width card in the project grid
     featured: true,
     url_website:"",
+    // Figma prototype, flow « 1 · Landing (desktop) »; the file must be shared as « Anyone with the link can view »
+    prototype_url: "https://www.figma.com/proto/1uOzOEze6fvcB7TqYQsuZZ/unfate?node-id=2-56&starting-point-node-id=2%3A56&scaling=scale-down-width&content-scaling=fixed&show-proto-sidebar=1",
     img:require("@/assets/images/projects/vignette-unfate.webp"),
     images: [
       { key: 'login', src:require("@/assets/images/projects/Login.svg") },

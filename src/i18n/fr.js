@@ -122,6 +122,9 @@ export default {
     "role": "Rôle :",
     "tools": "Outils :",
     "goTo": "Voir {name}",
+    "tryPrototype": "Tester {name}",
+    "newTab": "(s'ouvre dans un nouvel onglet)",
+    "prototypeHint": "Prototype Figma interactif, plus confortable sur ordinateur",
     "sections": {
       "context": "Contexte",
       "challenge": "L'enjeu",

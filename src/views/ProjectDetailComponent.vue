@@ -20,6 +20,10 @@
                   <div v-if="$te(`projects.${project.id}.tools`, 'en')"><dt>{{ $t('case.toolsLabel') }}</dt><dd class="side-chips"><span v-for="tool in $t(`projects.${project.id}.tools`).split(', ')" :key="tool">{{ tool }}</span></dd></div>
                 </dl>
                 <a v-if="project.url_website" :href="project.url_website" target="_blank" rel="noopener" class="side-btn side-btn-primary">{{ $t(`projects.${project.id}.visit_label`) }} ↗</a>
+              <template v-if="project.prototype_url">
+                <a :href="project.prototype_url" target="_blank" rel="noopener" class="side-btn side-btn-primary">{{ $t('case.tryPrototype', { name: project.name }) }} ↗<span class="sr-only"> {{ $t('case.newTab') }}</span></a>
+                <p class="side-btn-hint">{{ $t('case.prototypeHint') }}</p>
+              </template>
               </div>
             </div>
             <template v-if="project.sections">
@@ -42,6 +46,10 @@
                 <div v-if="$te(`projects.${project.id}.tools`, 'en')"><dt>{{ $t('case.toolsLabel') }}</dt><dd class="side-chips"><span v-for="tool in $t(`projects.${project.id}.tools`).split(', ')" :key="tool">{{ tool }}</span></dd></div>
               </dl>
               <a v-if="project.url_website" :href="project.url_website" target="_blank" rel="noopener" class="side-btn side-btn-primary">{{ $t(`projects.${project.id}.visit_label`) }} ↗</a>
+              <template v-if="project.prototype_url">
+                <a :href="project.prototype_url" target="_blank" rel="noopener" class="side-btn side-btn-primary">{{ $t('case.tryPrototype', { name: project.name }) }} ↗<span class="sr-only"> {{ $t('case.newTab') }}</span></a>
+                <p class="side-btn-hint">{{ $t('case.prototypeHint') }}</p>
+              </template>
             </div>
             <nav v-if="project.sections" class="side-card side-toc" :aria-label="$t('case.contents')">
               <h4>{{ $t('case.contents') }}</h4>
@@ -343,6 +351,12 @@
   }
   .side-btn:hover {
     opacity: 0.85;
+  }
+  .side-btn-hint {
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: #777;
+    text-align: center;
   }
   .side-btn-primary {
     background: #9535d7;
