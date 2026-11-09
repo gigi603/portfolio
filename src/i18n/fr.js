@@ -206,7 +206,7 @@ export default {
     },
     "4": {
       "label": "Projet client · V2 personnelle",
-      "hook": "Une plateforme de cours en ligne, puis son design system reconstruit avec Claude",
+      "hook": "Une plateforme de cours en ligne qui relie un professeur à ses élèves, une entreprise à ses salariés ou un expert à tout particulier qui veut apprendre. Nous avons commencé par les cryptomonnaies et leur fonctionnement, mais elle est ouverte à tout type de cours.",
       "tagline": "Une plateforme où professeurs et entreprises publient leurs cours, et sa V2 reconstruite sur un design system",
       "result": "V1 conçue avec le fondateur ; V2 : 64 écrans passés sur un design system, 33 écrans ajoutés",
       "client": "Le fondateur d'Unfate, porteur du projet",
