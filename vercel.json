@@ -3,9 +3,22 @@
     {
       "source": "/files/(.*)\\.pdf",
       "headers": [
-        { "key": "Content-Disposition", "value": "attachment" },
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+        {
+          "key": "Content-Disposition",
+          "value": "attachment"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/project/3",
+      "destination": "/projects",
+      "permanent": true
     }
   ]
 }

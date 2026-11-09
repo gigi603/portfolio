@@ -45,7 +45,7 @@ export default {
   },
   "work": {
     "title": "Projets sélectionnés",
-    "intro": "Deux sites de coachs que j'ai conçus, et deux plateformes : un concept et un produit client."
+    "intro": "Une plateforme de formation pour un client, et deux sites de coachs que j'ai conçus."
   },
   "testimonials": {
     "title": "Ce qu'en disent mes clientes",
@@ -198,20 +198,6 @@ export default {
         },
         "shop": {
           "title": "Boutique"
-        }
-      }
-    },
-    "3": {
-      "label": "Projet conceptuel",
-      "hook": "Plateforme de réservation d'hébergements insolites",
-      "description": "Atypikhouse est le concept d'une plateforme de location dédiée aux séjours insolites. J'ai conçu l'expérience sur ordinateur et mobile pour aider chacun à trouver une escapade au calme et à la réserver facilement.",
-      "type": "Plateforme web & mobile",
-      "screens": {
-        "homeDesktop": {
-          "title": "Accueil sur ordinateur"
-        },
-        "homeMobile": {
-          "title": "Accueil sur mobile"
         }
       }
     },

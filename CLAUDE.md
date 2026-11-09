@@ -1,6 +1,6 @@
 # Portfolio de Gilbert Trinidad
 
-Site personnel de Gilbert Trinidad, Product Designer / Builder à Paris : il présente Gilbert et ses projets (SPCoach, Mélodie Yeremian, Atypikhouse, Unfate). Site en ligne : gilbert-trinidad.com.
+Site personnel de Gilbert Trinidad, Product Designer / Builder à Paris : il présente Gilbert et ses projets (Unfate, SPCoach, Mélodie Yeremian ; Atypikhouse a été retiré le 2026-11-09). Site en ligne : gilbert-trinidad.com.
 
 Gilbert ne code pas : il dirige Claude, qui écrit tout le code, et il valide chaque livrable. Réponds-lui en français, simplement, sans jargon technique inutile.
 

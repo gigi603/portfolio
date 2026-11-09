@@ -45,7 +45,7 @@ export default {
   },
   "work": {
     "title": "Selected work",
-    "intro": "Two coaching websites I designed, and two platforms: a concept and a client product."
+    "intro": "A learning platform for a client, and two coaching websites I designed."
   },
   "testimonials": {
     "title": "What clients say",
@@ -198,20 +198,6 @@ export default {
         },
         "shop": {
           "title": "Shop"
-        }
-      }
-    },
-    "3": {
-      "label": "Concept project",
-      "hook": "Booking platform for unusual stays",
-      "description": "Atypikhouse is a concept for a rental platform dedicated to unusual stays. I designed the desktop and mobile experience to help people find a quiet getaway and book it easily.",
-      "type": "Web & mobile platform",
-      "screens": {
-        "homeDesktop": {
-          "title": "Home on desktop"
-        },
-        "homeMobile": {
-          "title": "Home on mobile"
         }
       }
     },
