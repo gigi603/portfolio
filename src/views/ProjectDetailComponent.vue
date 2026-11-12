@@ -4,10 +4,40 @@
     <template v-for="project in projects">
       <article v-if="project.id == $route.params.id" :key="project.id" class="project-page">
         <h1 class="project-back"><button @click="$router.go(-1)" class="mr-2" :aria-label="$t('case.back')"><font-awesome-icon icon="fa-solid fa-chevron-left" color="#000" size="sm" /></button> {{ project.name }}</h1>
+        <!-- Projects with a coded demo: intro then demo first, the case study follows -->
+        <template v-if="project.demo">
+          <p class="project-label">{{ $t(`projects.${project.id}.label`) }}</p>
+          <p class="project-tagline">{{ $t(`projects.${project.id}.tagline`) }}</p>
+          <!-- Coded demo of the product (Unfate), shown right after the intro so visitors try it before reading: live window on large screens, video on phones -->
+          <section v-if="project.demo" class="demo" id="section-demo" aria-labelledby="demo-title">
+            <div class="demo-head">
+              <p class="demo-kicker">{{ $t('demo.kicker') }}</p>
+              <h3 id="demo-title">{{ $t('demo.title') }}</h3>
+              <p class="demo-text">{{ $t(`projects.${project.id}.demo.text`) }}</p>
+              <ul class="demo-steps">
+                <li v-for="n in 3" :key="n"><span>{{ n }}</span>{{ $t(`projects.${project.id}.demo.step${n}`) }}</li>
+              </ul>
+            </div>
+            <div class="demo-window">
+              <div class="demo-window-bar" aria-hidden="true"><i></i><i></i><i></i><span>{{ domain('https://gilbert-trinidad.com') }}{{ project.demo.path }}</span></div>
+              <div class="demo-screen">
+                <iframe v-if="showLiveDemo" :src="`${project.demo.path}?embed=1`" :title="$t('demo.frameTitle', { name: project.name })" loading="lazy" class="demo-frame"></iframe>
+                <video v-else :key="demoVideo(project).src" class="demo-video" :class="{ 'demo-video-phone': isPhone }" :poster="demoVideo(project).poster" autoplay muted loop playsinline preload="metadata" :aria-label="$t('demo.videoLabel', { name: project.name })">
+                  <source :src="demoVideo(project).src" type="video/mp4">
+                </video>
+              </div>
+            </div>
+            <div class="demo-actions">
+              <a :href="project.demo.path" class="case-btn demo-btn">{{ $t('demo.open') }}</a>
+              <a :href="demoVideo(project).src" download class="demo-link">{{ $t('demo.download') }}</a>
+            </div>
+            <p class="demo-disclaimer">{{ $t('demo.disclaimer') }}</p>
+          </section>
+        </template>
         <div class="project-columns">
           <div class="project-main">
-            <p class="project-label">{{ $t(`projects.${project.id}.label`) }}</p>
-            <p v-if="project.sections" class="project-tagline">{{ $t(`projects.${project.id}.tagline`) }}</p>
+            <p v-if="!project.demo" class="project-label">{{ $t(`projects.${project.id}.label`) }}</p>
+            <p v-if="project.sections && !project.demo" class="project-tagline">{{ $t(`projects.${project.id}.tagline`) }}</p>
             <!-- Below 1024px the summary sits here, before the sections -->
             <div class="project-mobile-only">
               <div class="side-card">
@@ -20,6 +50,7 @@
                   <div v-if="$te(`projects.${project.id}.tools`, 'en')"><dt>{{ $t('case.toolsLabel') }}</dt><dd class="side-chips"><span v-for="tool in $t(`projects.${project.id}.tools`).split(', ')" :key="tool">{{ tool }}</span></dd></div>
                 </dl>
                 <a v-if="project.url_website" :href="project.url_website" target="_blank" rel="noopener" class="side-btn side-btn-primary">{{ $t(`projects.${project.id}.visit_label`) }} ↗</a>
+                <a v-if="project.demo" :href="project.demo.path" class="side-btn side-btn-primary">{{ $t('demo.cta') }} →</a>
               </div>
             </div>
             <template v-if="project.sections">
@@ -67,6 +98,7 @@
                 <div v-if="$te(`projects.${project.id}.tools`, 'en')"><dt>{{ $t('case.toolsLabel') }}</dt><dd class="side-chips"><span v-for="tool in $t(`projects.${project.id}.tools`).split(', ')" :key="tool">{{ tool }}</span></dd></div>
               </dl>
               <a v-if="project.url_website" :href="project.url_website" target="_blank" rel="noopener" class="side-btn side-btn-primary">{{ $t(`projects.${project.id}.visit_label`) }} ↗</a>
+                <a v-if="project.demo" :href="project.demo.path" class="side-btn side-btn-primary">{{ $t('demo.cta') }} →</a>
             </div>
             <nav v-if="project.sections" class="side-card side-toc" :aria-label="$t('case.contents')">
               <h4>{{ $t('case.contents') }}</h4>
@@ -115,31 +147,6 @@
                 </div>
               </div>
             </section>
-        <!-- Coded demo of the product (Unfate): live window on large screens, video + full-screen button everywhere -->
-        <section v-if="project.demo" class="demo" id="section-demo" aria-labelledby="demo-title">
-          <div class="demo-head">
-            <p class="demo-kicker">{{ $t('demo.kicker') }}</p>
-            <h3 id="demo-title">{{ $t('demo.title') }}</h3>
-            <p class="demo-text">{{ $t(`projects.${project.id}.demo.text`) }}</p>
-            <ul class="demo-steps">
-              <li v-for="n in 3" :key="n"><span>{{ n }}</span>{{ $t(`projects.${project.id}.demo.step${n}`) }}</li>
-            </ul>
-          </div>
-          <div class="demo-window">
-            <div class="demo-window-bar" aria-hidden="true"><i></i><i></i><i></i><span>{{ domain('https://gilbert-trinidad.com') }}{{ project.demo.path }}</span></div>
-            <div class="demo-screen">
-              <iframe v-if="showLiveDemo" :src="`${project.demo.path}?embed=1`" :title="$t('demo.frameTitle', { name: project.name })" loading="lazy" class="demo-frame"></iframe>
-              <video v-else :key="demoVideo(project).src" class="demo-video" :class="{ 'demo-video-phone': isPhone }" :poster="demoVideo(project).poster" autoplay muted loop playsinline preload="metadata" :aria-label="$t('demo.videoLabel', { name: project.name })">
-                <source :src="demoVideo(project).src" type="video/mp4">
-              </video>
-            </div>
-          </div>
-          <div class="demo-actions">
-            <a :href="project.demo.path" class="case-btn demo-btn">{{ $t('demo.open') }}</a>
-            <a :href="demoVideo(project).src" download class="demo-link">{{ $t('demo.download') }}</a>
-          </div>
-          <p class="demo-disclaimer">{{ $t('demo.disclaimer') }}</p>
-        </section>
         <section class="case-end">
           <div class="case-contact">
             <b>{{ $t('case.contactTitle') }}</b>
@@ -243,7 +250,7 @@
       tocItems(project) {
         const items = project.sections.map(section => ({ id: `section-${section}`, label: this.$t(`case.sections.${section}`) }))
         const all = items.concat({ id: 'section-screens', label: this.$t('gallery.title') })
-        return project.demo ? all.concat({ id: 'section-demo', label: this.$t('demo.title') }) : all
+        return project.demo ? [{ id: 'section-demo', label: this.$t('demo.title') }].concat(all) : all
       },
       scrollToSection(id) {
         const el = document.getElementById(id)
@@ -356,6 +363,7 @@
     margin-bottom: 8px;
   }
   .project-tagline {
+    max-width: 820px;
     font-size: 26px;
     font-weight: 700;
     line-height: 1.35;
@@ -894,6 +902,12 @@
   .demo {
     padding: 40px 0 56px;
   }
+  /* Demo right after the intro: tighter top, a line separates it from the case study */
+  .project-tagline + .demo {
+    padding-top: 0;
+    margin-bottom: 48px;
+    border-bottom: 1px solid #ece6f5;
+  }
   .demo-head {
     max-width: 760px;
     margin-bottom: 28px;
@@ -932,6 +946,7 @@
     gap: 10px;
   }
   .demo-steps span {
+    flex-shrink: 0;
     display: inline-grid;
     place-items: center;
     width: 26px;

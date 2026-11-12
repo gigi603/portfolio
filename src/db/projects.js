@@ -19,12 +19,11 @@ const projects = [
     // V1 (with the founder) next to V2 (rebuilt with Claude in Figma), shown inside the "evolution" section
     evolution: {
       pairs: [
-        { key: 'login', before: require("@/assets/images/projects/unfate/v1-connexion.webp"), after: require("@/assets/images/projects/unfate/v2-connexion.webp") },
-        { key: 'register', before: require("@/assets/images/projects/unfate/v1-inscription.webp"), after: require("@/assets/images/projects/unfate/v2-inscription.webp") },
+        { key: 'lesson', before: require("@/assets/images/projects/unfate/v1-lecon.webp"), after: require("@/assets/images/projects/unfate/v2-lecon.webp") },
+        { key: 'certificate', before: require("@/assets/images/projects/unfate/v1-certificat.webp"), after: require("@/assets/images/projects/unfate/v2-certificat.webp") },
       ],
       extras: [
         { key: 'system', src: require("@/assets/images/projects/unfate/v2-fondations.webp") },
-        { key: 'lesson', tall: true, src: require("@/assets/images/projects/unfate/v2-lecon-4.webp") },
       ],
     },
     img:require("@/assets/images/projects/vignette-unfate.webp"),

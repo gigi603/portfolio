@@ -152,7 +152,8 @@ export default {
     "videoLabel": "Video of the {name} demo: log in, lesson, progress and exam",
     "open": "Open the demo full screen",
     "download": "Download the video",
-    "disclaimer": "A demo rebuilt in code from the V2 design. It runs in your browser with no server and no real account: nothing is saved, and everything resets when you reload the page."
+    "cta": "Try the demo",
+    "disclaimer": "A demo rebuilt in code from the V2 design. It runs in your browser with no server and no real account: nothing is saved, and everything resets when you reload the page. Like this site, it is available in English and French."
   },
   "projects": {
     "1": {
@@ -218,7 +219,7 @@ export default {
         "text": "I had Claude code a working version of the V2 from my Figma design. I directed every screen and checked it on desktop and on mobile. You can log in, follow the lessons, watch your progress move and take the exam.",
         "step1": "Log in with “Fill in for me”",
         "step2": "Read a lesson and mark it as completed",
-        "step3": "Take the 10-question exam"
+        "step3": "Take the 50-question exam, or let the demo answer for you"
       },
       "label": "Client project · personal V2",
       "hook": "An online learning platform that connects a teacher with their students, a company with its employees, or an expert with anyone who wants to learn.",
@@ -238,21 +239,17 @@ export default {
         "retro": "I would set up the design system from the start, before the screens: it would have avoided the 72 text variants and made the platform easier to open to subjects other than crypto."
       },
       "evolution": {
-        "login": {
-          "title": "Sign-in",
-          "caption": "Labels above the fields, a \"show password\" button, sign-in with a crypto wallet and a subtitle about picking up your lessons."
+        "lesson": {
+          "title": "Lesson",
+          "caption": "In the V1, each lesson was one long page and the outline on the right only showed six steps. In the V2, the course is split into chapters of two or three lessons: the outline opens chapter by chapter, the current lesson is blue and turns green once completed."
         },
-        "register": {
-          "title": "Sign-up",
-          "caption": "The benefit comes first (\"free, about a minute\"), password rules show before any error, and the V2 adds email verification and a welcome screen."
+        "certificate": {
+          "title": "Certificate",
+          "caption": "In the V1, the certificate was a long text with a list of skills. In the V2, it fits on one card: the learner's name, the course, the date, the score and a certificate number, on a band in the course's colours."
         },
         "system": {
           "title": "Design system",
           "caption": "The foundations Claude built under my direction: colours, semantic tokens, text styles, spacing and shadows."
-        },
-        "lesson": {
-          "title": "New lesson: Liquidity Pools",
-          "caption": "A lesson added from the components: diagram, worked example, risk table and key takeaways, with course progress on the right."
         }
       },
       "screens": {

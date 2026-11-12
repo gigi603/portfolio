@@ -152,7 +152,8 @@ export default {
     "videoLabel": "Vidéo de la démo de {name} : connexion, leçon, progression et examen",
     "open": "Ouvrir la démo en plein écran",
     "download": "Télécharger la vidéo",
-    "disclaimer": "Démo recréée en code à partir de la maquette V2. Elle tourne dans votre navigateur, sans serveur ni vrai compte : rien n'est enregistré et tout repart à zéro quand vous rechargez la page. L'application est en anglais, comme le produit."
+    "cta": "Tester la démo",
+    "disclaimer": "Démo recréée en code à partir de la maquette V2. Elle tourne dans votre navigateur, sans serveur ni vrai compte : rien n'est enregistré et tout repart à zéro quand vous rechargez la page. Comme ce site, elle existe en français et en anglais."
   },
   "projects": {
     "1": {
@@ -216,9 +217,9 @@ export default {
     "4": {
       "demo": {
         "text": "J'ai fait coder par Claude une version qui fonctionne de la V2, à partir de ma maquette Figma. J'ai dirigé chaque écran et je l'ai vérifiée sur ordinateur et sur téléphone. Vous pouvez vous connecter, suivre les leçons, voir votre progression avancer et passer l'examen.",
-        "step1": "Connectez-vous avec « Fill in for me »",
+        "step1": "Connectez-vous avec « Remplir pour moi »",
         "step2": "Lisez une leçon et marquez-la terminée",
-        "step3": "Passez l'examen de 10 questions"
+        "step3": "Passez l'examen de 50 questions, ou laissez la démo répondre pour vous"
       },
       "label": "Projet client · V2 personnelle",
       "hook": "Une plateforme de cours en ligne qui relie un professeur à ses élèves, une entreprise à ses salariés ou un expert à tout particulier qui veut apprendre.",
@@ -238,21 +239,17 @@ export default {
         "retro": "Je poserais le design system dès le départ, avant les écrans : il aurait évité les 72 variantes de texte et rendu la plateforme plus facile à ouvrir à d'autres sujets que la crypto."
       },
       "evolution": {
-        "login": {
-          "title": "Connexion",
-          "caption": "Libellés visibles au-dessus des champs, bouton « afficher le mot de passe », connexion avec un wallet crypto et un sous-titre qui parle de reprendre ses leçons."
+        "lesson": {
+          "title": "Leçon",
+          "caption": "En V1, chaque leçon était une longue page et le plan à droite ne montrait que six étapes. En V2, le cours est découpé en chapitres de deux ou trois leçons : le plan s'ouvre chapitre par chapitre, la leçon en cours est en bleu et passe au vert une fois terminée."
         },
-        "register": {
-          "title": "Inscription",
-          "caption": "Le bénéfice est annoncé (« gratuit, une minute »), les critères du mot de passe s'affichent avant l'erreur, et la V2 ajoute la vérification de l'email et un écran de bienvenue."
+        "certificate": {
+          "title": "Certificat",
+          "caption": "En V1, le certificat était un long texte avec une liste de compétences. En V2, il tient sur une carte : le nom de l'apprenant, le cours, la date, le score et un numéro de certificat, sur un bandeau aux couleurs du cours."
         },
         "system": {
           "title": "Design system",
           "caption": "Les fondations créées par Claude sous ma direction : couleurs, tokens sémantiques, styles de texte, espacements et ombres."
-        },
-        "lesson": {
-          "title": "Nouvelle leçon : Liquidity Pools",
-          "caption": "Une leçon ajoutée grâce aux composants : schéma, exemple chiffré, tableau des risques et points clés, avec la progression du cours à droite."
         }
       },
       "screens": {
