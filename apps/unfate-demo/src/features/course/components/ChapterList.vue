@@ -1,12 +1,20 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { chapters, lessonsOfChapter } from '../data/course'
 import { useProgressStore } from '../stores/progress'
 import { examRoute, lessonRoute } from '../routes'
-import { faCheck, faLock } from '@/shared/icons'
+import { faCheck, faChevronDown, faLock } from '@/shared/icons'
 
 // Overview of the course on the course page: every chapter, lesson state and the exam
 defineProps<{ examPassMark: number; examQuestions: number }>()
 const progress = useProgressStore()
+
+// Every chapter starts unfolded; its arrow folds or unfolds its lessons
+const collapsed = ref(new Set<number>())
+function toggle(chapterIndex: number): void {
+  if (collapsed.value.has(chapterIndex)) collapsed.value.delete(chapterIndex)
+  else collapsed.value.add(chapterIndex)
+}
 
 function lessonState(index: number): 'done' | 'open' | 'locked' {
   if (progress.isDone(index)) return 'done'
@@ -23,8 +31,15 @@ function chapterState(chapterIndex: number): 'done' | 'current' | 'locked' {
 <template>
   <ol class="chapters">
     <li v-for="(chapter, c) in chapters" :key="chapter.title">
-      <h2 class="chapter-title"><span class="num" :class="`is-${chapterState(c)}`">{{ c + 1 }}</span>{{ chapter.title }}<span v-if="chapterState(c) === 'done'" class="badge"><FontAwesomeIcon :icon="faCheck" /> Completed</span></h2>
-      <ul>
+      <h2 class="chapter-title">
+        <button type="button" class="chapter-toggle" :aria-expanded="!collapsed.has(c)" :aria-controls="`course-chapter-${c}`" @click="toggle(c)">
+          <span class="num" :class="`is-${chapterState(c)}`">{{ c + 1 }}</span>
+          <span>{{ chapter.title }}</span>
+          <span v-if="chapterState(c) === 'done'" class="badge"><FontAwesomeIcon :icon="faCheck" /> Completed</span>
+          <FontAwesomeIcon :icon="faChevronDown" class="arrow" :class="{ 'is-closed': collapsed.has(c) }" />
+        </button>
+      </h2>
+      <ul v-show="!collapsed.has(c)" :id="`course-chapter-${c}`">
         <li v-for="lesson in lessonsOfChapter(c)" :key="lesson.index">
           <RouterLink v-if="lessonState(lesson.index) !== 'locked'" :to="lessonRoute(lesson.index)" class="row" :class="{ 'is-done': lessonState(lesson.index) === 'done' }">
             <span class="state" :class="`is-${lessonState(lesson.index)}`"><FontAwesomeIcon v-if="lessonState(lesson.index) === 'done'" :icon="faCheck" /></span>
@@ -60,6 +75,11 @@ function chapterState(chapterIndex: number): 'done' | 'current' | 'locked' {
 .num { display: inline-grid; place-items: center; flex: none; width: 26px; height: 26px; border-radius: 50%; border: 2px solid #c8cedb; font-size: 12px; font-weight: 700; color: var(--uf-muted); }
 .num.is-done { border-color: var(--uf-green); color: var(--uf-green-dark); }
 /* Completed chapter: the title stays as is, a green "Completed" label sits on its right */
+.chapter-toggle { display: flex; align-items: center; gap: 12px; width: 100%; padding: 4px 14px 4px 0; font: inherit; color: inherit; text-align: left; border-radius: 10px; }
+.chapter-toggle:hover .arrow { color: var(--uf-blue-dark); }
+/* Arrow down while the lessons show, turned to the right once they are hidden */
+.arrow { margin-left: auto; font-size: 14px; color: var(--uf-muted); transition: transform .2s; }
+.arrow.is-closed { transform: rotate(-90deg); }
 .badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; background: var(--uf-green-soft); color: var(--uf-green-dark); font-size: 12px; font-weight: 700; }
 .num.is-current { border-color: var(--uf-blue); color: var(--uf-blue-dark); }
 .row { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 14px; border-radius: 10px; border: 1.5px solid transparent; font-size: 15px; text-decoration: none; transition: background-color .15s, border-color .15s; }
