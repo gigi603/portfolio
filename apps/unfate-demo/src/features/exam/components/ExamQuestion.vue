@@ -70,16 +70,16 @@ legend { padding: 0; margin-bottom: 18px; width: 100%; }
 .answer input { position: absolute; opacity: 0; pointer-events: none; }
 /* Focus ring for keyboard users only, not after a mouse click */
 .answer:has(input:focus-visible) { outline: 3px solid var(--uf-blue); outline-offset: 2px; }
-/* Radio dot: grey ring, then the same selected blue dot as the current lesson in the outline */
+/* Radio dot: empty grey ring, filled in black once chosen */
 .radio { flex: none; width: 20px; height: 20px; border-radius: 50%; border: 2px solid #b4b9c8; background: #fff; transition: border-color .15s; }
 /* Chosen but not validated yet: neutral (green and red only tell right or wrong after "Validate") */
-.answer.is-selected { color: var(--uf-text); font-weight: 600; border-color: var(--uf-blue); }
-.answer.is-selected .radio { border-color: var(--uf-blue); background: radial-gradient(circle, var(--uf-blue) 0 38%, #fff 44%); }
+.answer.is-selected { color: var(--uf-text); font-weight: 600; border-color: var(--uf-text); }
+.answer.is-selected .radio { border-color: var(--uf-text); background: radial-gradient(circle, var(--uf-text) 0 38%, #fff 44%); }
 .answer.is-right { background: var(--uf-green-bg); color: var(--uf-green-dark); font-weight: 600; border-color: var(--uf-green); }
 /* After validation the ring takes the answer's colour; only the answer the learner picked keeps its dot */
 .answer.is-right .radio, .answer.is-wrong .radio { border-color: currentColor; }
 .answer:has(input:checked) .radio { background: radial-gradient(circle, currentColor 0 38%, #fff 44%); }
-.answer.is-selected:has(input:checked) .radio { background: radial-gradient(circle, var(--uf-blue) 0 38%, #fff 44%); }
+.answer.is-selected:has(input:checked) .radio { background: radial-gradient(circle, var(--uf-text) 0 38%, #fff 44%); }
 .answer.is-wrong { background: var(--uf-red-bg); color: var(--uf-red-dark); border-color: var(--uf-red); }
 .answer-icon { margin-left: auto; font-size: 18px; }
 .feedback { min-height: 24px; font-weight: 600; margin-top: 6px; }
