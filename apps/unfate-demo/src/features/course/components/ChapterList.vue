@@ -23,7 +23,7 @@ function chapterState(chapterIndex: number): 'done' | 'current' | 'locked' {
 <template>
   <ol class="chapters">
     <li v-for="(chapter, c) in chapters" :key="chapter.title">
-      <h2 class="chapter-title" :class="{ 'is-done': chapterState(c) === 'done' }"><span class="num" :class="`is-${chapterState(c)}`">{{ c + 1 }}</span>{{ chapter.title }}</h2>
+      <h2 class="chapter-title"><span class="num" :class="`is-${chapterState(c)}`">{{ c + 1 }}</span>{{ chapter.title }}<span v-if="chapterState(c) === 'done'" class="badge"><FontAwesomeIcon :icon="faCheck" /> Completed</span></h2>
       <ul>
         <li v-for="lesson in lessonsOfChapter(c)" :key="lesson.index">
           <RouterLink v-if="lessonState(lesson.index) !== 'locked'" :to="lessonRoute(lesson.index)" class="row" :class="{ 'is-done': lessonState(lesson.index) === 'done' }">
@@ -40,7 +40,7 @@ function chapterState(chapterIndex: number): 'done' | 'current' | 'locked' {
       </ul>
     </li>
     <li>
-      <h2 class="chapter-title" :class="{ 'is-done': progress.examPassed }"><span class="num" :class="progress.examPassed ? 'is-done' : progress.allLessonsDone ? 'is-current' : 'is-locked'">{{ chapters.length + 1 }}</span>Exam</h2>
+      <h2 class="chapter-title"><span class="num" :class="progress.examPassed ? 'is-done' : progress.allLessonsDone ? 'is-current' : 'is-locked'">{{ chapters.length + 1 }}</span>Exam<span v-if="progress.examPassed" class="badge"><FontAwesomeIcon :icon="faCheck" /> Completed</span></h2>
       <RouterLink v-if="progress.allLessonsDone" :to="examRoute()" class="row" :class="{ 'is-done': progress.examPassed }">
         <span class="state" :class="progress.examPassed ? 'is-done' : 'is-open'"><FontAwesomeIcon v-if="progress.examPassed" :icon="faCheck" /></span>
         <span class="name">{{ examQuestions }} questions · pass mark {{ examPassMark }}</span>
@@ -58,10 +58,9 @@ function chapterState(chapterIndex: number): 'done' | 'current' | 'locked' {
 .chapters ul { display: grid; gap: 6px; }
 .chapter-title { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 16px; margin-bottom: 8px; }
 .num { display: inline-grid; place-items: center; flex: none; width: 26px; height: 26px; border-radius: 50%; border: 2px solid #c8cedb; font-size: 12px; font-weight: 700; color: var(--uf-muted); }
-.num.is-done { background: var(--uf-green-dark); border-color: var(--uf-green-dark); color: #fff; }
-/* Completed chapter: all green, like the completed lessons */
-.chapter-title { padding: 8px 14px; border-radius: 10px; border: 1.5px solid transparent; }
-.chapter-title.is-done { color: var(--uf-green-dark); background: var(--uf-green-soft); border-color: var(--uf-green-border); }
+.num.is-done { border-color: var(--uf-green); color: var(--uf-green-dark); }
+/* Completed chapter: the title stays as is, a green "Completed" label sits on its right */
+.badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; background: var(--uf-green-soft); color: var(--uf-green-dark); font-size: 12px; font-weight: 700; }
 .num.is-current { border-color: var(--uf-blue); color: var(--uf-blue-dark); }
 .row { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 14px; border-radius: 10px; border: 1.5px solid transparent; font-size: 15px; text-decoration: none; transition: background-color .15s, border-color .15s; }
 a.row:hover { background: var(--uf-blue-bg); }
