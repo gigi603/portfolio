@@ -66,7 +66,10 @@ function chapterLocked(chapterIndex: number): boolean {
               :class="{ 'is-current': lesson.index === currentLesson, 'is-done': progress.isDone(lesson.index) }"
               :aria-current="lesson.index === currentLesson ? 'page' : undefined"
             >
-              <FontAwesomeIcon :icon="progress.isDone(lesson.index) ? faCircleCheck : faCircle" />
+              <FontAwesomeIcon v-if="progress.isDone(lesson.index)" :icon="faCircleCheck" />
+              <!-- Lesson being read: a selected blue dot, like a checked radio button -->
+              <span v-else-if="lesson.index === currentLesson" class="dot is-selected" aria-hidden="true"></span>
+              <FontAwesomeIcon v-else :icon="faCircle" />
               <span>{{ lesson.title }}<span v-if="progress.isDone(lesson.index)" class="sr-only">{{ t('course.completedSr') }}</span></span>
             </RouterLink>
             <span v-else class="lesson is-locked">
@@ -118,6 +121,8 @@ ul { margin: 4px 0 8px 14px; display: grid; gap: 4px; }
 .lesson { display: flex; gap: 8px; align-items: center; width: 100%; padding: 6px 8px; font-size: 12px; font-weight: 600; color: var(--uf-muted); text-decoration: none; border-radius: 8px; border: 1.5px solid transparent; transition: background-color .15s, border-color .15s; }
 a.lesson:hover { background: var(--uf-blue-bg); }
 .lesson.is-current { color: var(--uf-blue-dark); }
+.dot { flex: none; width: 1em; height: 1em; border-radius: 50%; }
+.dot.is-selected { border: 2px solid var(--uf-blue); background: radial-gradient(circle, var(--uf-blue) 0 40%, #fff 44%); box-shadow: 0 0 0 3px var(--uf-blue-bg); }
 .lesson.is-locked { color: var(--uf-soft); }
 /* Completed lesson: title in the same green as its check icon, inside a light green frame */
 .lesson.is-done { color: var(--uf-green-dark); background: var(--uf-green-soft); border-color: var(--uf-green-border); }
