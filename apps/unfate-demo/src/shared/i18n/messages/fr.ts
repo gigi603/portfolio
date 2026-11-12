@@ -117,6 +117,7 @@ const fr: typeof en = {
     markDone: 'Terminé',
     done: 'Leçon terminée',
     next: 'Leçon suivante',
+    nextChapter: 'Chapitre suivant',
     toExam: 'Passer à l’examen',
     toastLesson: 'Leçon terminée',
     toastChapter: 'Chapitre {n} terminé !',

@@ -22,6 +22,9 @@ const current = computed(() => lessons.value[index.value]!)
 const chapter = computed(() => chapters.value[current.value.chapter]!)
 const isLast = computed(() => index.value === lessons.value.length - 1)
 const done = computed(() => progress.isDone(index.value))
+// Last lesson of its chapter (but not of the course): the next step is a new chapter
+const endsChapter = computed(() => !isLast.value && lessons.value[index.value + 1]?.chapter !== current.value.chapter)
+const nextLabel = computed(() => t(isLast.value ? 'lesson.toExam' : endsChapter.value ? 'lesson.nextChapter' : 'lesson.next'))
 
 // Opening any lesson starts the course: it shows in "Ongoing" right away, not only after a first completion
 onMounted(() => progress.start())
@@ -46,7 +49,7 @@ async function goNext(): Promise<void> {
     <div class="actions actions-split">
       <BaseButton v-if="!done" @click="complete">{{ t('lesson.markDone') }} <FontAwesomeIcon :icon="faCircleCheck" /></BaseButton>
       <p v-else class="done"><FontAwesomeIcon :icon="faCircleCheck" /> {{ t('lesson.done') }}</p>
-      <BaseButton :disabled="!done" @click="goNext">{{ t(isLast ? 'lesson.toExam' : 'lesson.next') }} <FontAwesomeIcon :icon="faCircleArrowRight" /></BaseButton>
+      <BaseButton :disabled="!done" @click="goNext">{{ nextLabel }} <FontAwesomeIcon :icon="faCircleArrowRight" /></BaseButton>
     </div>
   </section>
 </template>

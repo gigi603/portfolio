@@ -116,6 +116,7 @@ export default {
     markDone: 'Completed',
     done: 'Lesson completed',
     next: 'Next Lesson',
+    nextChapter: 'Next Chapter',
     toExam: 'Go to the exam',
     toastLesson: 'Lesson completed',
     toastChapter: 'Chapter {n} completed!',
