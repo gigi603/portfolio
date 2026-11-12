@@ -14,7 +14,6 @@ const exam = useExamStore()
 const { chapters } = useCourse()
 const lang = computed(() => locale.value as Locale)
 
-const progressPercent = computed(() => ((exam.current + 1) / exam.paper.length) * 100)
 const feedback = computed(() => {
   if (!exam.checked) return ''
   return exam.isRight ? t('exam.right') : t('exam.wrong')
@@ -31,9 +30,6 @@ function answerState(index: number): string {
   <div class="card">
     <p class="count">{{ t('exam.count', { n: exam.current + 1, total: exam.paper.length }) }}</p>
     <p class="topic">{{ t('common.chapter', { n: exam.question.chapter + 1 }) }} · {{ chapters[exam.question.chapter]?.title }}</p>
-    <div class="bar" role="progressbar" :aria-label="t('exam.progress')" aria-valuemin="1" :aria-valuemax="exam.paper.length" :aria-valuenow="exam.current + 1">
-      <span :style="{ width: `${progressPercent}%` }"></span>
-    </div>
     <fieldset>
       <legend><h1 class="question" tabindex="-1" data-page-heading>{{ exam.question.text[lang] }}</h1></legend>
       <label v-for="(answer, index) in exam.question.answers[lang]" :key="answer" class="answer" :class="answerState(index)">
@@ -59,9 +55,7 @@ function answerState(index: number): string {
 
 <style scoped>
 .count { text-align: center; font-weight: 700; }
-.topic { text-align: center; font-size: 13px; color: var(--uf-muted); margin-top: 4px; }
-.bar { height: 8px; max-width: 360px; margin: 14px auto 28px; background: var(--uf-green-bg); border-radius: 8px; overflow: hidden; }
-.bar span { display: block; height: 100%; background: var(--uf-green); border-radius: 8px; transition: width .3s; }
+.topic { text-align: center; font-size: 13px; color: var(--uf-muted); margin: 4px 0 28px; }
 fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 legend { padding: 0; margin-bottom: 18px; width: 100%; }
 .question { font-size: clamp(19px, 2.4vw, 22px); font-weight: 700; line-height: 1.4; }

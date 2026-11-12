@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import BaseButton from '@/shared/ui/BaseButton.vue'
+import DemoShortcut from '@/shared/ui/DemoShortcut.vue'
 import { ChapterList, LessonBanner, useCourse, useProgressStore } from '@/features/course'
 import { PASS_MARK, questions } from '@/features/exam'
 import { useToast } from '@/shared/composables/useToast'
@@ -34,15 +35,10 @@ function completeAll(): void {
       </div>
     </div>
     <!-- Demo-only shortcut, clearly labelled, so a recruiter can reach the exam quickly -->
-    <aside v-if="!progress.allLessonsDone" class="shortcut">
-      <p><b>{{ t('course.shortcutTitle') }}</b> {{ t('course.shortcutText') }}</p>
-      <BaseButton variant="ghost" @click="completeAll">{{ t('course.shortcutButton') }}</BaseButton>
-    </aside>
+    <DemoShortcut v-if="!progress.allLessonsDone" :title="t('course.shortcutTitle')" :text="t('course.shortcutText')" :action="t('course.shortcutButton')" @run="completeAll" />
   </section>
 </template>
 
 <style scoped>
 .lead { font-size: 17px; line-height: 1.75; }
-.shortcut { margin-top: 24px; padding: 18px 20px; border-radius: 14px; border: 2px dashed #9ccaf7; background: #f5faff; display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; font-size: 14px; line-height: 1.6; }
-.shortcut p { flex: 1 1 300px; }
 </style>

@@ -70,6 +70,16 @@ export const useExamStore = defineStore('exam', () => {
     step.value = target
   }
 
+  /** Demo-only shortcut: answers every question correctly and jumps to the score */
+  function answerAllForDemo(): void {
+    if (step.value !== 'question') paper.value = drawPaper()
+    answers.value = paper.value.map(q => q.correct)
+    current.value = paper.value.length - 1
+    selected.value = null
+    checked.value = false
+    step.value = 'score'
+  }
+
   function reset(): void {
     step.value = 'intro'
     current.value = 0
@@ -78,5 +88,5 @@ export const useExamStore = defineStore('exam', () => {
     answers.value = []
   }
 
-  return { paper, step, current, selected, checked, answers, question, isLastQuestion, rightAnswers, score, passed, isRight, start, select, check, next, show, reset }
+  return { paper, step, current, selected, checked, answers, question, isLastQuestion, rightAnswers, score, passed, isRight, start, select, check, next, show, answerAllForDemo, reset }
 })

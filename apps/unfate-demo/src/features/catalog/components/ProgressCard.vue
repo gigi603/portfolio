@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { faCircleArrowRight, faPen } from '@/shared/icons'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { faCircleArrowRight, faPen, faTrophy } from '@/shared/icons'
 import SegmentedBar from '@/shared/ui/SegmentedBar.vue'
 import { cardColors } from '../data/catalog'
 import { usePreferencesStore } from '../stores/preferences'
@@ -8,7 +8,9 @@ import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
-defineProps<{ title: string; image: string; lessonsDone: number; total: number }>()
+const props = defineProps<{ title: string; image: string; lessonsDone: number; total: number }>()
+// Every lesson done: the exam step appears at the end of the bar. The course moves to "Completed" only once the exam is passed.
+const examStep = computed(() => props.total > 0 && props.lessonsDone >= props.total)
 const emit = defineEmits<{ continue: [] }>()
 
 const preferences = usePreferencesStore()
@@ -32,13 +34,16 @@ onBeforeUnmount(() => document.removeEventListener('click', closeOnOutsideClick)
       <img :src="image" alt="" class="thumb" />
       <div>
         <p class="title">{{ title }}</p>
-        <p class="sub">{{ t('catalog.lessonsCompleted', { done: lessonsDone, total }) }}</p>
+        <p class="sub">{{ examStep ? t('catalog.examToPass') : t('catalog.lessonsCompleted', { done: lessonsDone, total }) }}</p>
       </div>
       <button type="button" class="pencil" :aria-label="t('catalog.changeColor')" :aria-expanded="paletteOpen" @click.stop="paletteOpen = !paletteOpen">
         <FontAwesomeIcon :icon="faPen" />
       </button>
     </div>
-    <SegmentedBar class="bar" :value="lessonsDone" :total="total" :label="t('common.courseProgress')" />
+    <div class="bar">
+      <SegmentedBar class="lessons" :value="lessonsDone" :total="total" :label="t('common.courseProgress')" />
+      <span v-if="examStep" class="exam-step"><FontAwesomeIcon :icon="faTrophy" /> {{ t('common.exam') }}</span>
+    </div>
     <div v-if="paletteOpen" class="palette" @click.stop>
       <button
         v-for="color in cardColors"
@@ -52,7 +57,7 @@ onBeforeUnmount(() => document.removeEventListener('click', closeOnOutsideClick)
         @click="pick(color.id)"
       ></button>
     </div>
-    <button type="button" class="go" @click="emit('continue')">{{ t('common.continue') }} <FontAwesomeIcon :icon="faCircleArrowRight" /></button>
+    <button type="button" class="go" @click="emit('continue')">{{ examStep ? t('exam.start') : t('common.continue') }} <FontAwesomeIcon :icon="faCircleArrowRight" /></button>
   </div>
 </template>
 
@@ -63,7 +68,10 @@ onBeforeUnmount(() => document.removeEventListener('click', closeOnOutsideClick)
 .title { font-weight: 700; font-size: 13px; line-height: 1.3; }
 .sub { font-size: 12px; opacity: .9; margin-top: 2px; }
 .pencil { position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; border-radius: 50%; background: rgb(255 255 255 / 25%); color: inherit; display: grid; place-items: center; font-size: 12px; }
-.bar { margin: 14px 0 12px; }
+.bar { display: flex; align-items: center; gap: 6px; margin: 14px 0 12px; }
+.lessons { flex: 1; }
+/* Exam step, still to pass: an outlined pill with the trophy, after the 11 lesson segments */
+.exam-step { flex: none; display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: 999px; border: 1.5px dashed currentColor; font-size: 11px; font-weight: 700; line-height: 1.4; }
 .go { display: inline-flex; gap: 8px; align-items: center; font-weight: 700; font-size: 13px; color: inherit; }
 .palette { position: absolute; z-index: 5; top: 46px; right: 8px; display: flex; gap: 8px; padding: 10px; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgb(20 20 43 / 18%); }
 .swatch { width: 26px; height: 26px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 1px #d6d8e7; }

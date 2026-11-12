@@ -90,6 +90,7 @@ const fr: typeof en = {
     removed: 'Retiré de vos favoris',
     comingSoon: 'Bientôt disponible',
     lessonsCompleted: '{done}/{total} leçons terminées',
+    examToPass: 'Leçons terminées · examen à réussir',
     changeColor: 'Changer la couleur de la carte',
     colors: { green: 'Vert', blue: 'Bleu', yellow: 'Jaune', purple: 'Violet', orange: 'Orange', pink: 'Rose' },
     upcoming: {
@@ -170,6 +171,8 @@ const fr: typeof en = {
     hasCompleted: 'a terminé le cours',
     certificateMeta: 'Score {score}/100 · {date}',
     seeCompleted: 'Voir mes cours terminés',
+    shortcutText: 'Ce raccourci n’existe que dans la démo : il répond aux {n} questions à votre place pour voir directement le résultat final.',
+    shortcutButton: 'Répondre à tout pour moi',
   },
   settings: {
     title: 'Paramètres',

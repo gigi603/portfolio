@@ -94,4 +94,13 @@ describe('exam store', () => {
     expect(exam.answers).toHaveLength(0)
     expect(exam.paper.map(q => q.text.en)).not.toEqual(firstOrder)
   })
+
+  it('demo shortcut answers every question right and shows the score', () => {
+    const exam = useExamStore()
+    exam.answerAllForDemo()
+    expect(exam.step).toBe('score')
+    expect(exam.answers).toHaveLength(50)
+    expect(exam.score).toBe(100)
+    expect(exam.passed).toBe(true)
+  })
 })
