@@ -21,7 +21,7 @@ function completeAll(): void {
 <template>
   <section class="page">
     <RouterLink :to="{ name: 'catalog' }" class="back-link"><FontAwesomeIcon :icon="faChevronLeft" /> All courses</RouterLink>
-    <LessonBanner :title="course.title" :subtitle="`${lessons.length} lessons · ${chapters.length} chapters + exam · ${course.duration}`" :image="course.image" />
+    <LessonBanner :title="course.title" :subtitle="`${lessons.length} lessons · ${chapters.length} chapters + exam · ${course.duration}`" :image="course.image" top :progress="progress.started && !progress.examPassed ? { done: progress.lessonsDone, total: lessons.length } : undefined" />
     <div class="card">
       <p class="lead">{{ course.description }}</p>
       <ChapterList :exam-pass-mark="PASS_MARK" :exam-questions="questions.length" />

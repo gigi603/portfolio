@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BaseButton from '@/shared/ui/BaseButton.vue'
-import SegmentedBar from '@/shared/ui/SegmentedBar.vue'
+import ProgressLine from '@/shared/ui/ProgressLine.vue'
 import { faCircleArrowRight, faClock, faCoins, faStar, faStarOutline } from '@/shared/icons'
 
 defineProps<{
@@ -29,7 +29,7 @@ const emit = defineEmits<{ open: []; toggleFavorite: [] }>()
       <p class="course-meta"><FontAwesomeIcon :icon="faCoins" /> {{ price }}</p>
       <template v-if="progress">
         <p class="course-meta course-left">{{ progress.total - progress.done }} {{ progress.total - progress.done === 1 ? 'lesson' : 'lessons' }} left</p>
-        <SegmentedBar class="course-bar" :value="progress.done" :total="progress.total" label="Course progress" />
+        <ProgressLine class="course-bar" :value="progress.done" :total="progress.total" label="Course progress" />
       </template>
     </div>
     <button
@@ -56,7 +56,7 @@ const emit = defineEmits<{ open: []; toggleFavorite: [] }>()
 .course-title { font-size: clamp(28px, 3.8vw, 44px); font-weight: 800; line-height: 1.12; max-width: 540px; margin-bottom: 6px; text-shadow: 0 2px 12px rgb(0 0 0 / 12%); }
 .course-meta { color: rgb(255 255 255 / 88%); display: flex; gap: 8px; align-items: center; }
 .course-left { margin-top: 4px; font-weight: 600; }
-.course-bar { width: 184px; padding: 3px; border-radius: 9px; background: #fff; --bar-gap: 2px; --bar-height: 8px; --bar-radius: 5px; --bar-track: #e6e8f0; --bar-fill: var(--uf-green); box-shadow: 0 4px 14px rgb(20 20 43 / 12%); }
+.course-bar { margin-top: 6px; }
 .star { position: absolute; top: 24px; right: 24px; width: 44px; height: 44px; border-radius: 50%; font-size: 22px; color: rgb(255 255 255 / 80%); }
 .star:hover, .star.is-on { color: #ffd23f; }
 .course-action { position: absolute; left: 24px; bottom: 24px; }
