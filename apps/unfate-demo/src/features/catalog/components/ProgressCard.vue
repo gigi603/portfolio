@@ -72,7 +72,10 @@ onBeforeUnmount(() => document.removeEventListener('click', closeOnOutsideClick)
 .lessons { flex: 1; }
 /* Exam step, still to pass: an outlined pill with the trophy, after the 11 lesson segments */
 .exam-step { flex: none; display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: 999px; border: 1.5px dashed currentColor; font-size: 11px; font-weight: 700; line-height: 1.4; }
-.go { display: inline-flex; gap: 8px; align-items: center; font-weight: 700; font-size: 13px; color: inherit; }
+/* Same translucent "glass" button as on the course banners, so it reads as a button.
+   Text keeps the card's text colour: white, or dark on the yellow and orange cards for contrast. */
+.go { display: inline-flex; gap: 8px; align-items: center; padding: 10px 14px; border-radius: 8px; background: rgb(255 255 255 / 28%); backdrop-filter: blur(8px); font-weight: 800; font-size: 13px; color: inherit; transition: background-color .15s; }
+.go:hover { background: rgb(255 255 255 / 40%); }
 .palette { position: absolute; z-index: 5; top: 46px; right: 8px; display: flex; gap: 8px; padding: 10px; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgb(20 20 43 / 18%); }
 .swatch { width: 26px; height: 26px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 1px #d6d8e7; }
 .swatch.is-on { box-shadow: 0 0 0 2px var(--uf-text); }
