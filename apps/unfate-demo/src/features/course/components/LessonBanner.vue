@@ -12,7 +12,7 @@ withDefaults(defineProps<{
   teacher?: string
   minutes?: number
   /** Course banner only: lessons done, shown once the course is started */
-  progress?: { done: number; total: number }
+  progress?: { done: number; total: number; text?: string }
   /** Title at the top of the banner (course details) instead of the bottom */
   top?: boolean
 }>(), { teacher: undefined, minutes: undefined, progress: undefined, top: false })
@@ -25,8 +25,8 @@ withDefaults(defineProps<{
       <h1 tabindex="-1" data-page-heading>{{ title }}</h1>
       <p class="banner-subtitle">{{ subtitle }}</p>
       <template v-if="progress">
-        <p class="banner-left">{{ t('common.lessonsLeft', { n: progress.total - progress.done }, progress.total - progress.done) }}</p>
-        <ProgressLine :value="progress.done" :total="progress.total" :label="t('common.courseProgress')" />
+        <p class="banner-left">{{ progress.text ?? t('common.lessonsLeft', { n: progress.total - progress.done }, progress.total - progress.done) }}</p>
+        <ProgressLine :value="progress.done" :total="progress.total" :label="progress.text ? t('common.exam') : t('common.courseProgress')" />
       </template>
     </div>
     <p v-if="minutes" class="banner-time"><FontAwesomeIcon :icon="faClock" /> {{ t('common.minutes', { n: minutes }) }}</p>

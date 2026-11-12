@@ -8,7 +8,7 @@ import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
-const props = defineProps<{ title: string; image: string; lessonsDone: number; total: number }>()
+const props = defineProps<{ title: string; image: string; lessonsDone: number; total: number; actionLabel?: string; exam?: { done: number; total: number } | null }>()
 // Every lesson done: the exam step appears at the end of the bar. The course moves to "Completed" only once the exam is passed.
 const examStep = computed(() => props.total > 0 && props.lessonsDone >= props.total)
 const emit = defineEmits<{ continue: [] }>()
@@ -34,7 +34,7 @@ onBeforeUnmount(() => document.removeEventListener('click', closeOnOutsideClick)
       <img :src="image" alt="" class="thumb" />
       <div>
         <p class="title">{{ title }}</p>
-        <p class="sub">{{ examStep ? t('catalog.examToPass') : t('catalog.lessonsCompleted', { done: lessonsDone, total }) }}</p>
+        <p class="sub">{{ exam ? t('common.examProgress', exam) : examStep ? t('catalog.examToPass') : t('catalog.lessonsCompleted', { done: lessonsDone, total }) }}</p>
       </div>
       <button type="button" class="pencil" :aria-label="t('catalog.changeColor')" :aria-expanded="paletteOpen" @click.stop="paletteOpen = !paletteOpen">
         <FontAwesomeIcon :icon="faPen" />
@@ -42,7 +42,7 @@ onBeforeUnmount(() => document.removeEventListener('click', closeOnOutsideClick)
     </div>
     <div class="bar">
       <SegmentedBar class="lessons" :value="lessonsDone" :total="total" :label="t('common.courseProgress')" />
-      <span v-if="examStep" class="exam-step"><FontAwesomeIcon :icon="faTrophy" /> {{ t('common.exam') }}</span>
+      <span v-if="examStep" class="exam-step"><FontAwesomeIcon :icon="faTrophy" /> {{ exam ? `${exam.done}/${exam.total}` : t('common.exam') }}</span>
     </div>
     <div v-if="paletteOpen" class="palette" @click.stop>
       <button
@@ -57,7 +57,7 @@ onBeforeUnmount(() => document.removeEventListener('click', closeOnOutsideClick)
         @click="pick(color.id)"
       ></button>
     </div>
-    <button type="button" class="go" @click="emit('continue')">{{ examStep ? t('exam.start') : t('common.continue') }} <FontAwesomeIcon :icon="faCircleArrowRight" /></button>
+    <button type="button" class="go" @click="emit('continue')">{{ actionLabel ?? (examStep ? t('exam.start') : t('common.continue')) }} <FontAwesomeIcon :icon="faCircleArrowRight" /></button>
   </div>
 </template>
 

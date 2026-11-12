@@ -16,7 +16,7 @@ defineProps<{
   actionLabel: string
   favorite: boolean
   /** Shown once the course is started (Figma: Ongoing card) */
-  progress?: { done: number; total: number }
+  progress?: { done: number; total: number; text?: string }
 }>()
 
 const emit = defineEmits<{ open: []; toggleFavorite: [] }>()
@@ -31,8 +31,8 @@ const emit = defineEmits<{ open: []; toggleFavorite: [] }>()
       <p class="course-meta"><FontAwesomeIcon :icon="faClock" /> {{ duration }}</p>
       <p class="course-meta"><FontAwesomeIcon :icon="faCoins" /> {{ price }}</p>
       <template v-if="progress">
-        <p class="course-meta course-left">{{ t('common.lessonsLeft', { n: progress.total - progress.done }, progress.total - progress.done) }}</p>
-        <ProgressLine class="course-bar" :value="progress.done" :total="progress.total" :label="t('common.courseProgress')" />
+        <p class="course-meta course-left">{{ progress.text ?? t('common.lessonsLeft', { n: progress.total - progress.done }, progress.total - progress.done) }}</p>
+        <ProgressLine class="course-bar" :value="progress.done" :total="progress.total" :label="progress.text ? t('common.exam') : t('common.courseProgress')" />
       </template>
     </div>
     <button

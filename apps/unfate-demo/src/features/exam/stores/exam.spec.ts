@@ -103,4 +103,18 @@ describe('exam store', () => {
     expect(exam.score).toBe(100)
     expect(exam.passed).toBe(true)
   })
+
+  it('keeps the attempt when the learner leaves, and resumes at the same question', () => {
+    const exam = useExamStore()
+    exam.start()
+    for (let i = 0; i < 3; i++) { exam.select(exam.paper[i]!.correct); exam.check(); exam.next() }
+    const order = exam.paper.map(q => q.text.en)
+    exam.show('intro')
+    expect(exam.ongoing).toBe(true)
+    expect(exam.answeredCount).toBe(3)
+    exam.resume()
+    expect(exam.step).toBe('question')
+    expect(exam.current).toBe(3)
+    expect(exam.paper.map(q => q.text.en)).toEqual(order)
+  })
 })

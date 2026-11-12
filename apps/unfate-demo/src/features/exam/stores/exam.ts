@@ -25,8 +25,11 @@ export const useExamStore = defineStore('exam', () => {
   const selected = ref<number | null>(null)
   const checked = ref(false)
   const answers = ref<number[]>([])
+  /** An attempt is under way (started, score not reached yet): leaving keeps it, to resume at the same question */
+  const ongoing = ref(false)
 
   const question = computed(() => paper.value[current.value]!)
+  const answeredCount = computed(() => answers.value.length)
   const isLastQuestion = computed(() => current.value === paper.value.length - 1)
   const rightAnswers = computed(() => paper.value.filter((q, i) => answers.value[i] === q.correct).length)
   /** Score out of 100 */
@@ -42,6 +45,12 @@ export const useExamStore = defineStore('exam', () => {
     selected.value = null
     checked.value = false
     answers.value = []
+    ongoing.value = true
+  }
+
+  /** Back to the question where the learner left the exam */
+  function resume(): void {
+    if (ongoing.value) step.value = 'question'
   }
 
   function select(answer: number): void {
@@ -58,6 +67,7 @@ export const useExamStore = defineStore('exam', () => {
   function next(): void {
     if (!checked.value) return
     if (isLastQuestion.value) {
+      ongoing.value = false
       step.value = 'score'
       return
     }
@@ -77,10 +87,12 @@ export const useExamStore = defineStore('exam', () => {
     current.value = paper.value.length - 1
     selected.value = null
     checked.value = false
+    ongoing.value = false
     step.value = 'score'
   }
 
   function reset(): void {
+    ongoing.value = false
     step.value = 'intro'
     current.value = 0
     selected.value = null
@@ -88,5 +100,5 @@ export const useExamStore = defineStore('exam', () => {
     answers.value = []
   }
 
-  return { paper, step, current, selected, checked, answers, question, isLastQuestion, rightAnswers, score, passed, isRight, start, select, check, next, show, answerAllForDemo, reset }
+  return { paper, step, current, selected, checked, answers, ongoing, answeredCount, question, isLastQuestion, rightAnswers, score, passed, isRight, start, resume, select, check, next, show, answerAllForDemo, reset }
 })

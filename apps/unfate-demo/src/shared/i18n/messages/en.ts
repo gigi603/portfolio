@@ -17,6 +17,7 @@ export default {
     chapter: 'Chapter {n}',
     exam: 'Exam',
     minutes: '{n} min',
+    examProgress: 'Exam · {done}/{total} questions',
   },
   login: {
     title: 'Log in',
@@ -142,6 +143,9 @@ export default {
     certificateWord: 'certificate',
     previous: 'Previous lesson',
     start: 'Take the exam',
+    resume: 'Resume the exam',
+    resumeAt: 'You stopped at question {n}/{total}. Your answers are kept.',
+    restart: 'Start over',
     count: 'Question {n}/{total}',
     progress: 'Exam progress',
     validate: 'Validate my answer',

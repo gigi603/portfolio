@@ -18,6 +18,7 @@ const fr: typeof en = {
     chapter: 'Chapitre {n}',
     exam: 'Examen',
     minutes: '{n} min',
+    examProgress: 'Examen · {done}/{total} questions',
   },
   login: {
     title: 'Connexion',
@@ -143,6 +144,9 @@ const fr: typeof en = {
     certificateWord: 'certificat',
     previous: 'Leçon précédente',
     start: 'Passer l’examen',
+    resume: 'Reprendre l’examen',
+    resumeAt: 'Vous vous êtes arrêté à la question {n}/{total}. Vos réponses sont gardées.',
+    restart: 'Recommencer à zéro',
     count: 'Question {n}/{total}',
     progress: 'Progression de l’examen',
     validate: 'Valider ma réponse',

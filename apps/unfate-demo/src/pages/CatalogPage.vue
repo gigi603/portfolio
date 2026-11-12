@@ -5,6 +5,7 @@ import { CourseCard, ProgressCard, UpcomingCourseCard, upcomingCourses, usePrefe
 import { useCourse, useProgressStore } from '@/features/course'
 import { useToast } from '@/shared/composables/useToast'
 import { useContinueCourse } from '@/shared/composables/useContinueCourse'
+import { useCourseStatus } from '@/shared/composables/useCourseStatus'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -34,7 +35,9 @@ const showMainCourse = computed(() => {
 const visibleUpcoming = computed(() => (props.filter === 'all' ? upcomingCourses.filter(c => matches(t(`catalog.upcoming.${c.id}.title`))) : []))
 const isEmpty = computed(() => !showMainCourse.value && visibleUpcoming.value.length === 0)
 const emptyMessage = computed(() => (query.value ? t('catalog.noMatch', { query: preferences.search.trim() }) : t(`catalog.empty.${props.filter}`)))
-const actionLabel = computed(() => t(progress.examPassed ? 'catalog.review' : progress.started ? 'common.continue' : 'catalog.getStarted'))
+const { banner, examProgress, actionLabel: courseAction } = useCourseStatus()
+// Not started: "Get Started" (catalog wording); then the same label as the course page (continue, take or resume the exam, review)
+const actionLabel = computed(() => (progress.started || progress.examPassed ? courseAction.value : t('catalog.getStarted')))
 
 function toggleFavorite(): void {
   preferences.toggleFavorite()
@@ -54,6 +57,8 @@ function toggleFavorite(): void {
       :image="course.image"
       :lessons-done="progress.lessonsDone"
       :total="lessons.length"
+      :exam="examProgress"
+      :action-label="examProgress ? t('exam.resume') : undefined"
       @continue="continueCourse"
     />
 
@@ -70,7 +75,7 @@ function toggleFavorite(): void {
       :teacher="course.teacher"
       :action-label="actionLabel"
       :favorite="preferences.favorite"
-      :progress="progress.started && !progress.examPassed ? { done: progress.lessonsDone, total: lessons.length } : undefined"
+      :progress="banner"
       @open="router.push({ name: 'course' })"
       @toggle-favorite="toggleFavorite"
     />

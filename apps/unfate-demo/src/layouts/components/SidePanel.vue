@@ -5,6 +5,7 @@ import { CourseOutline, useCourse, useProgressStore } from '@/features/course'
 import { DonateCard, ProgressCard } from '@/features/catalog'
 import { useToast } from '@/shared/composables/useToast'
 import { useContinueCourse } from '@/shared/composables/useContinueCourse'
+import { useCourseStatus } from '@/shared/composables/useCourseStatus'
 import AccountMenu from './AccountMenu.vue'
 import { useI18n } from 'vue-i18n'
 
@@ -16,6 +17,7 @@ const progress = useProgressStore()
 const toast = useToast()
 const continueCourse = useContinueCourse(router)
 const { course, lessons } = useCourse()
+const { examProgress } = useCourseStatus()
 
 const learning = computed(() => ['course', 'lesson', 'exam'].includes(String(route.name)))
 </script>
@@ -33,6 +35,8 @@ const learning = computed(() => ['course', 'lesson', 'exam'].includes(String(rou
           :image="course.image"
           :lessons-done="progress.lessonsDone"
           :total="lessons.length"
+          :exam="examProgress"
+          :action-label="examProgress ? t('exam.resume') : undefined"
           @continue="continueCourse"
         />
         <p v-else-if="progress.examPassed" class="muted">{{ t('side.done') }}</p>
