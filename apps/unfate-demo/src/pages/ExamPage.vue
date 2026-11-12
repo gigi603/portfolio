@@ -39,7 +39,7 @@ watch(() => [exam.step, exam.current], () => {
     <ExamScore v-else-if="exam.step === 'score'" :score="exam.score" :pass-mark="PASS_MARK" :course-title="course.title" @results="exam.show('results')" @certificate="exam.show('certificate')" @retry="exam.start()" />
     <ExamResults v-else-if="exam.step === 'results'" :paper="exam.paper" :answers="exam.answers" :score="exam.score" :passed="passed" @back="exam.show('score')" @retry="exam.start()" />
     <template v-else>
-      <CertificateCard :name="session.fullName" :course-title="course.title" :score="exam.score" :date="today" />
+      <CertificateCard :name="session.fullName" :course-title="course.title" :score="exam.score" :date="today" :image="course.image" number="UF-DEFI-0001" />
       <div class="actions">
         <BaseButton @click="router.push({ name: 'completed' })">{{ t('exam.seeCompleted') }} <FontAwesomeIcon :icon="faCircleArrowRight" /></BaseButton>
       </div>
