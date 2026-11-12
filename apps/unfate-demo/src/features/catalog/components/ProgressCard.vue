@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { faCircleArrowRight, faPen } from '@/shared/icons'
+import SegmentedBar from '@/shared/ui/SegmentedBar.vue'
 import { cardColors } from '../data/catalog'
 import { usePreferencesStore } from '../stores/preferences'
 
@@ -34,9 +35,7 @@ onBeforeUnmount(() => document.removeEventListener('click', closeOnOutsideClick)
         <FontAwesomeIcon :icon="faPen" />
       </button>
     </div>
-    <div class="bar" role="progressbar" aria-label="Course progress" aria-valuemin="0" :aria-valuemax="total" :aria-valuenow="lessonsDone">
-      <span v-for="n in total" :key="n" :class="{ 'is-on': n <= lessonsDone }"></span>
-    </div>
+    <SegmentedBar class="bar" :value="lessonsDone" :total="total" label="Course progress" />
     <div v-if="paletteOpen" class="palette" @click.stop>
       <button
         v-for="color in cardColors"
@@ -61,9 +60,7 @@ onBeforeUnmount(() => document.removeEventListener('click', closeOnOutsideClick)
 .title { font-weight: 700; font-size: 13px; line-height: 1.3; }
 .sub { font-size: 12px; opacity: .9; margin-top: 2px; }
 .pencil { position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; border-radius: 50%; background: rgb(255 255 255 / 25%); color: inherit; display: grid; place-items: center; font-size: 12px; }
-.bar { display: grid; grid-template-columns: repeat(11, 1fr); gap: 3px; margin: 14px 0 12px; }
-.bar span { height: 7px; border-radius: 4px; background: rgb(255 255 255 / 30%); }
-.bar span.is-on { background: currentColor; }
+.bar { margin: 14px 0 12px; }
 .go { display: inline-flex; gap: 8px; align-items: center; font-weight: 700; font-size: 13px; color: inherit; }
 .palette { position: absolute; z-index: 5; top: 46px; right: 8px; display: flex; gap: 8px; padding: 10px; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgb(20 20 43 / 18%); }
 .swatch { width: 26px; height: 26px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 1px #d6d8e7; }

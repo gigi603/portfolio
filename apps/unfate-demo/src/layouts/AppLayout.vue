@@ -26,12 +26,15 @@ watch(
   <div class="layout">
     <MainNav />
     <main ref="main" class="main">
-      <div class="topbar">
-        <UnfateLogo class="top-logo" :size="26" />
-        <SearchField />
-        <AccountMenu class="top-account" compact />
+      <!-- Centred column, like the 800 px content of the Figma screens: even outer margins on wide screens -->
+      <div class="main-inner">
+        <div class="topbar">
+          <UnfateLogo class="top-logo" :size="26" />
+          <SearchField />
+          <AccountMenu class="top-account" compact />
+        </div>
+        <RouterView />
       </div>
-      <RouterView />
     </main>
     <SidePanel />
   </div>
@@ -40,6 +43,7 @@ watch(
 <style scoped>
 .layout { display: grid; grid-template-columns: 220px minmax(0, 1fr) 280px; height: 100%; }
 .main { background: var(--uf-bg); overflow-y: auto; padding: 28px clamp(20px, 3vw, 40px) 48px; }
+.main-inner { max-width: 840px; margin-inline: auto; }
 .topbar { display: flex; align-items: center; gap: 16px; margin-bottom: 26px; }
 .top-logo, .top-account { display: none; }
 @media (max-width: 1180px) {

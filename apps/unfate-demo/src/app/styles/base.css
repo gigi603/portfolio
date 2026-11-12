@@ -13,6 +13,8 @@
   --uf-green-strong: #1f9d66;
   --uf-green-dark: #18804f;
   --uf-green-bg: #e3f8ee;
+  --uf-green-soft: #effbf5;
+  --uf-green-border: #bfe9d3;
   --uf-red: #e5484d;
   --uf-red-dark: #b1242a;
   --uf-red-bg: #fdecec;
@@ -40,7 +42,7 @@ a { color: inherit; }
 
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .card { background: #fff; border-radius: var(--uf-radius); padding: clamp(20px, 3.4vw, 34px); box-shadow: var(--uf-shadow); }
-.page { max-width: 820px; }
+.page { width: 100%; }
 .page-title { font-size: 18px; font-weight: 700; margin-bottom: 22px; }
 .actions { display: flex; justify-content: center; gap: 16px; margin-top: 24px; flex-wrap: wrap; }
 .actions-split { justify-content: space-between; }

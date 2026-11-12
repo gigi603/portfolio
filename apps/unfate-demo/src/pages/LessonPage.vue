@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import BaseButton from '@/shared/ui/BaseButton.vue'
 import { LessonBanner, LessonBody, chapters, course, examRoute, lessonRoute, lessons, lessonsOfChapter, useProgressStore } from '@/features/course'
@@ -18,6 +18,9 @@ const current = computed(() => lessons[index.value]!)
 const chapter = computed(() => chapters[current.value.chapter]!)
 const isLast = computed(() => index.value === lessons.length - 1)
 const done = computed(() => progress.isDone(index.value))
+
+// Opening any lesson starts the course: it shows in "Ongoing" right away, not only after a first completion
+onMounted(() => progress.start())
 
 function complete(): void {
   progress.completeLesson(index.value)

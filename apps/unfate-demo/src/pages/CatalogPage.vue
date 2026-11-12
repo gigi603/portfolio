@@ -73,6 +73,7 @@ function toggleFavorite(): void {
       :teacher="course.teacher"
       :action-label="actionLabel"
       :favorite="preferences.favorite"
+      :progress="progress.started && !progress.examPassed ? { done: progress.lessonsDone, total: lessons.length } : undefined"
       @open="router.push({ name: 'course' })"
       @toggle-favorite="toggleFavorite"
     />
@@ -84,7 +85,6 @@ function toggleFavorite(): void {
 </template>
 
 <style scoped>
-.catalog { max-width: 880px; }
 .main-course { margin-bottom: 30px; }
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
 .empty { padding: 32px; border-radius: var(--uf-radius); background: #fff; color: var(--uf-muted); text-align: center; }
