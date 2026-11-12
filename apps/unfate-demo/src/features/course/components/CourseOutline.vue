@@ -122,7 +122,7 @@ ul { margin: 4px 0 8px 14px; display: grid; gap: 4px; }
 a.lesson:hover { background: var(--uf-blue-bg); }
 .lesson.is-current { color: var(--uf-blue-dark); }
 .dot { flex: none; width: 1em; height: 1em; border-radius: 50%; }
-.dot.is-selected { border: 2px solid var(--uf-blue); background: radial-gradient(circle, var(--uf-blue) 0 40%, #fff 44%); box-shadow: 0 0 0 3px var(--uf-blue-bg); }
+.dot.is-selected { border: 2px solid var(--uf-blue); background: radial-gradient(circle, var(--uf-blue) 0 40%, #fff 44%); }
 .lesson.is-locked { color: var(--uf-soft); }
 /* Completed lesson: title in the same green as its check icon, inside a light green frame */
 .lesson.is-done { color: var(--uf-green-dark); background: var(--uf-green-soft); border-color: var(--uf-green-border); }
