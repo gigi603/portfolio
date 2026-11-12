@@ -38,3 +38,12 @@ export interface Course {
   teacher: string
   description: string
 }
+
+/** Course texts in one language */
+export type CourseText = Course
+
+/** Everything a language needs: the course card texts and the chapters with their lessons */
+export interface CourseContent {
+  course: CourseText
+  chapters: Chapter[]
+}

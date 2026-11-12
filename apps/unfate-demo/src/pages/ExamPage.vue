@@ -2,17 +2,21 @@
 import { computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { CertificateCard, ExamIntro, ExamQuestion, ExamResults, ExamScore, PASS_MARK, questions, useExamStore } from '@/features/exam'
-import { course, lessonRoute, lessons, useProgressStore } from '@/features/course'
+import { lessonRoute, lessons, useCourse, useProgressStore } from '@/features/course'
 import { useSessionStore } from '@/features/auth'
 import BaseButton from '@/shared/ui/BaseButton.vue'
 import { faChevronLeft, faCircleArrowRight } from '@/shared/icons'
+import { useI18n } from 'vue-i18n'
+
+const { t, locale } = useI18n()
 
 const router = useRouter()
 const exam = useExamStore()
 const progress = useProgressStore()
 const session = useSessionStore()
 
-const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+const { course } = useCourse()
+const today = computed(() => new Date().toLocaleDateString(locale.value === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }))
 const passed = computed(() => exam.score >= PASS_MARK)
 
 // Passing the exam completes the course (6/6 steps, "Completed" list)
@@ -26,7 +30,7 @@ watch(() => [exam.step, exam.current], () => {
 
 <template>
   <section class="page">
-    <RouterLink :to="{ name: 'course' }" class="back-link"><FontAwesomeIcon :icon="faChevronLeft" /> Exam</RouterLink>
+    <RouterLink :to="{ name: 'course' }" class="back-link"><FontAwesomeIcon :icon="faChevronLeft" /> {{ t('exam.back') }}</RouterLink>
     <ExamIntro v-if="exam.step === 'intro'" :question-count="questions.length" :pass-mark="PASS_MARK" @start="exam.start()" @back="router.push(lessonRoute(lessons.length - 1))" />
     <ExamQuestion v-else-if="exam.step === 'question'" @leave="exam.show('intro')" />
     <ExamScore v-else-if="exam.step === 'score'" :score="exam.score" :pass-mark="PASS_MARK" :course-title="course.title" @results="exam.show('results')" @certificate="exam.show('certificate')" @retry="exam.start()" />
@@ -34,7 +38,7 @@ watch(() => [exam.step, exam.current], () => {
     <template v-else>
       <CertificateCard :name="session.fullName" :course-title="course.title" :score="exam.score" :date="today" />
       <div class="actions">
-        <BaseButton @click="router.push({ name: 'completed' })">See my completed courses <FontAwesomeIcon :icon="faCircleArrowRight" /></BaseButton>
+        <BaseButton @click="router.push({ name: 'completed' })">{{ t('exam.seeCompleted') }} <FontAwesomeIcon :icon="faCircleArrowRight" /></BaseButton>
       </div>
     </template>
   </section>

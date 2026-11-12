@@ -2,6 +2,9 @@
 import { useRoute, useRouter } from 'vue-router'
 import { usePreferencesStore } from '@/features/catalog'
 import { faMagnifyingGlass } from '@/shared/icons'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const preferences = usePreferencesStore()
 const route = useRoute()
@@ -16,8 +19,8 @@ async function onInput(): Promise<void> {
 <template>
   <div class="search" role="search">
     <FontAwesomeIcon :icon="faMagnifyingGlass" class="icon" />
-    <label for="search" class="sr-only">Search courses</label>
-    <input id="search" v-model="preferences.search" type="search" placeholder="Search" autocomplete="off" @input="onInput" />
+    <label for="search" class="sr-only">{{ t('search.label') }}</label>
+    <input id="search" v-model="preferences.search" type="search" :placeholder="t('search.placeholder')" autocomplete="off" @input="onInput" />
   </div>
 </template>
 

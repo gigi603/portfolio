@@ -4,6 +4,9 @@ import { faCircleArrowRight, faPen } from '@/shared/icons'
 import SegmentedBar from '@/shared/ui/SegmentedBar.vue'
 import { cardColors } from '../data/catalog'
 import { usePreferencesStore } from '../stores/preferences'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 defineProps<{ title: string; image: string; lessonsDone: number; total: number }>()
 const emit = defineEmits<{ continue: [] }>()
@@ -29,13 +32,13 @@ onBeforeUnmount(() => document.removeEventListener('click', closeOnOutsideClick)
       <img :src="image" alt="" class="thumb" />
       <div>
         <p class="title">{{ title }}</p>
-        <p class="sub">{{ lessonsDone }}/{{ total }} lessons completed</p>
+        <p class="sub">{{ t('catalog.lessonsCompleted', { done: lessonsDone, total }) }}</p>
       </div>
-      <button type="button" class="pencil" aria-label="Change the card colour" :aria-expanded="paletteOpen" @click.stop="paletteOpen = !paletteOpen">
+      <button type="button" class="pencil" :aria-label="t('catalog.changeColor')" :aria-expanded="paletteOpen" @click.stop="paletteOpen = !paletteOpen">
         <FontAwesomeIcon :icon="faPen" />
       </button>
     </div>
-    <SegmentedBar class="bar" :value="lessonsDone" :total="total" label="Course progress" />
+    <SegmentedBar class="bar" :value="lessonsDone" :total="total" :label="t('common.courseProgress')" />
     <div v-if="paletteOpen" class="palette" @click.stop>
       <button
         v-for="color in cardColors"
@@ -44,12 +47,12 @@ onBeforeUnmount(() => document.removeEventListener('click', closeOnOutsideClick)
         class="swatch"
         :class="{ 'is-on': preferences.cardColorId === color.id }"
         :style="{ background: color.background }"
-        :aria-label="color.label"
+        :aria-label="t(`catalog.colors.${color.id}`)"
         :aria-pressed="preferences.cardColorId === color.id"
         @click="pick(color.id)"
       ></button>
     </div>
-    <button type="button" class="go" @click="emit('continue')">Continue <FontAwesomeIcon :icon="faCircleArrowRight" /></button>
+    <button type="button" class="go" @click="emit('continue')">{{ t('common.continue') }} <FontAwesomeIcon :icon="faCircleArrowRight" /></button>
   </div>
 </template>
 

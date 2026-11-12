@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 // Continuous progress bar on images (Figma: course card and course banner):
 // a translucent white track, filled in solid white.
@@ -8,7 +11,7 @@ const percent = computed(() => (props.total > 0 ? Math.min(100, Math.round((prop
 </script>
 
 <template>
-  <div class="progress-line" role="progressbar" :aria-label="label" aria-valuemin="0" :aria-valuemax="total" :aria-valuenow="value" :aria-valuetext="`${value} of ${total}`">
+  <div class="progress-line" role="progressbar" :aria-label="label" aria-valuemin="0" :aria-valuemax="total" :aria-valuenow="value" :aria-valuetext="t('common.valueOf', { value, total })">
     <span class="fill" :style="{ width: `${percent}%` }"></span>
   </div>
 </template>

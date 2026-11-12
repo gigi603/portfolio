@@ -2,6 +2,9 @@
 import BaseButton from '@/shared/ui/BaseButton.vue'
 import ProgressLine from '@/shared/ui/ProgressLine.vue'
 import { faCircleArrowRight, faClock, faCoins, faStar, faStarOutline } from '@/shared/icons'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 defineProps<{
   title: string
@@ -28,8 +31,8 @@ const emit = defineEmits<{ open: []; toggleFavorite: [] }>()
       <p class="course-meta"><FontAwesomeIcon :icon="faClock" /> {{ duration }}</p>
       <p class="course-meta"><FontAwesomeIcon :icon="faCoins" /> {{ price }}</p>
       <template v-if="progress">
-        <p class="course-meta course-left">{{ progress.total - progress.done }} {{ progress.total - progress.done === 1 ? 'lesson' : 'lessons' }} left</p>
-        <ProgressLine class="course-bar" :value="progress.done" :total="progress.total" label="Course progress" />
+        <p class="course-meta course-left">{{ t('common.lessonsLeft', { n: progress.total - progress.done }, progress.total - progress.done) }}</p>
+        <ProgressLine class="course-bar" :value="progress.done" :total="progress.total" :label="t('common.courseProgress')" />
       </template>
     </div>
     <button
@@ -37,7 +40,7 @@ const emit = defineEmits<{ open: []; toggleFavorite: [] }>()
       class="star"
       :class="{ 'is-on': favorite }"
       :aria-pressed="favorite"
-      :aria-label="favorite ? 'Remove from favorites' : 'Add to favorites'"
+      :aria-label="favorite ? t('catalog.removeFavorite') : t('catalog.addFavorite')"
       @click="emit('toggleFavorite')"
     >
       <FontAwesomeIcon :icon="favorite ? faStar : faStarOutline" />

@@ -1,15 +1,21 @@
+<script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+</script>
+
 <template>
   <!-- Diagram "How a pool works" (Figma: Schéma · Fonctionnement d'un pool) -->
   <figure class="flow">
-    <figcaption class="flow-title">How a pool works</figcaption>
+    <figcaption class="flow-title">{{ t('lesson.poolTitle') }}</figcaption>
     <div class="flow-row">
-      <div class="node"><b>Trader</b><span>swaps ETH ⇄ USDC</span></div>
-      <div class="arrow"><span>trades against the pool</span></div>
-      <div class="node node-pool"><b>ETH / USDC pool</b><span class="tokens"><i>10 ETH</i><i>20,000 USDC</i></span><span>x × y = k</span></div>
-      <div class="arrow arrow-back"><span>deposits both tokens</span></div>
-      <div class="node"><b>Liquidity provider</b><span>gets LP tokens + a share of fees</span></div>
+      <div class="node"><b>{{ t('lesson.poolTrader') }}</b><span>{{ t('lesson.poolTraderText') }}</span></div>
+      <div class="arrow"><span>{{ t('lesson.poolTrades') }}</span></div>
+      <div class="node node-pool"><b>{{ t('lesson.poolName') }}</b><span class="tokens"><i>10 ETH</i><i>{{ t('lesson.poolUsdc') }}</i></span><span>x × y = k</span></div>
+      <div class="arrow arrow-back"><span>{{ t('lesson.poolDeposits') }}</span></div>
+      <div class="node"><b>{{ t('lesson.poolProvider') }}</b><span>{{ t('lesson.poolProviderText') }}</span></div>
     </div>
-    <p class="note">Each swap pays a 0.3% fee that stays in the pool and is shared between LPs.</p>
+    <p class="note">{{ t('lesson.poolNote') }}</p>
   </figure>
 </template>
 

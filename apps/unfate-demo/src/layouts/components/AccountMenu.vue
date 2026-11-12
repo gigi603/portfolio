@@ -6,6 +6,9 @@ import { useToast } from '@/shared/composables/useToast'
 import { useDemoReset } from '@/shared/composables/useDemoReset'
 import alex from '@/assets/images/alex.webp'
 import { faChevronDown, faGear, faRightFromBracket, faRotateLeft, faWallet } from '@/shared/icons'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 // Account menu (Figma: Menu profil), opened from the avatar in the header
 withDefaults(defineProps<{ compact?: boolean }>(), { compact: false })
@@ -31,7 +34,7 @@ function onKeydown(event: KeyboardEvent): void {
 
 function toggleWallet(): void {
   session.toggleWallet()
-  toast.show(session.walletConnected ? 'Wallet connected' : 'Wallet disconnected')
+  toast.show(session.walletConnected ? t('account.walletConnected') : t('account.walletDisconnected'))
   close()
 }
 
@@ -65,16 +68,16 @@ onBeforeUnmount(() => {
         <span class="name">{{ session.fullName }}</span>
         <FontAwesomeIcon :icon="faChevronDown" class="chevron" />
       </template>
-      <span v-else class="sr-only">Account menu</span>
+      <span v-else class="sr-only">{{ t('account.menu') }}</span>
     </button>
     <div v-if="open" class="menu">
       <p class="name">{{ session.fullName }}</p>
       <p class="email">{{ session.profile.email }}</p>
-      <p v-if="session.walletConnected" class="wallet"><FontAwesomeIcon :icon="faWallet" /> Wallet connected <span>0x7a3F…92cE</span></p>
-      <button type="button" class="item" @click="toggleWallet"><FontAwesomeIcon :icon="faWallet" /> {{ session.walletConnected ? 'Disconnect wallet' : 'Connect wallet' }}</button>
-      <RouterLink :to="{ name: 'settings' }" class="item" @click="close"><FontAwesomeIcon :icon="faGear" /> Settings</RouterLink>
-      <button type="button" class="item" @click="logout"><FontAwesomeIcon :icon="faRightFromBracket" /> Log out</button>
-      <button type="button" class="item item-reset" @click="restart"><FontAwesomeIcon :icon="faRotateLeft" /> Restart the demo</button>
+      <p v-if="session.walletConnected" class="wallet"><FontAwesomeIcon :icon="faWallet" /> {{ t('account.walletConnected') }} <span>0x7a3F…92cE</span></p>
+      <button type="button" class="item" @click="toggleWallet"><FontAwesomeIcon :icon="faWallet" /> {{ session.walletConnected ? t('account.disconnectWallet') : t('account.connectWallet') }}</button>
+      <RouterLink :to="{ name: 'settings' }" class="item" @click="close"><FontAwesomeIcon :icon="faGear" /> {{ t('account.settings') }}</RouterLink>
+      <button type="button" class="item" @click="logout"><FontAwesomeIcon :icon="faRightFromBracket" /> {{ t('account.logout') }}</button>
+      <button type="button" class="item item-reset" @click="restart"><FontAwesomeIcon :icon="faRotateLeft" /> {{ t('account.restart') }}</button>
     </div>
   </div>
 </template>

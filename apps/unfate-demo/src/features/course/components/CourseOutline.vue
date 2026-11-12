@@ -1,15 +1,20 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { chapters, course, lessons, lessonsOfChapter } from '../data/course'
+import { lessons } from '../data/course'
+import { useCourse } from '../composables/useCourse'
 import { useProgressStore } from '../stores/progress'
 import { examRoute, lessonRoute } from '../routes'
 import { faCheck, faChevronDown, faCircle, faCircleCheck, faLock, faTrophy } from '@/shared/icons'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 // Right panel while learning: steps completed, then each chapter as an accordion.
 // Clicking a chapter only unfolds its lessons; the page changes only when a lesson is clicked.
 const progress = useProgressStore()
 const route = useRoute()
+const { course, chapters, lessonsOfChapter } = useCourse()
 
 const currentLesson = computed(() => (route.name === 'lesson' ? Number(route.params.lesson) - 1 : null))
 const currentChapter = computed(() => (currentLesson.value === null ? null : (lessons[currentLesson.value]?.chapter ?? null)))
@@ -33,9 +38,9 @@ function chapterLocked(chapterIndex: number): boolean {
 </script>
 
 <template>
-  <nav class="outline" aria-label="Course outline">
+  <nav class="outline" :aria-label="t('course.outline')">
     <p class="course-title">{{ course.title }}</p>
-    <p class="count">{{ progress.stepsDone }}/{{ progress.totalSteps }} COMPLETED <FontAwesomeIcon :icon="faTrophy" :class="progress.examPassed ? 'text-green' : 'text-soft'" /></p>
+    <p class="count">{{ t('course.stepsCompleted', { done: progress.stepsDone, total: progress.totalSteps }) }} <FontAwesomeIcon :icon="faTrophy" :class="progress.examPassed ? 'text-green' : 'text-soft'" /></p>
     <div class="segments" aria-hidden="true"><span v-for="n in progress.totalSteps" :key="n" :class="{ 'is-on': n <= progress.stepsDone }"></span></div>
     <ol>
       <li v-for="(chapter, c) in chapters" :key="chapter.title">
@@ -62,11 +67,11 @@ function chapterLocked(chapterIndex: number): boolean {
               :aria-current="lesson.index === currentLesson ? 'page' : undefined"
             >
               <FontAwesomeIcon :icon="progress.isDone(lesson.index) ? faCircleCheck : faCircle" />
-              <span>{{ lesson.title }}<span v-if="progress.isDone(lesson.index)" class="sr-only">, completed</span></span>
+              <span>{{ lesson.title }}<span v-if="progress.isDone(lesson.index)" class="sr-only">{{ t('course.completedSr') }}</span></span>
             </RouterLink>
             <span v-else class="lesson is-locked">
               <FontAwesomeIcon :icon="faLock" />
-              <span>{{ lesson.title }}<span class="sr-only">, locked</span></span>
+              <span>{{ lesson.title }}<span class="sr-only">{{ t('course.lockedSr') }}</span></span>
             </span>
           </li>
         </ul>
@@ -78,7 +83,7 @@ function chapterLocked(chapterIndex: number): boolean {
           class="chapter"
           :class="{ 'is-done': progress.examPassed, 'is-current': route.name === 'exam', 'is-locked': !progress.allLessonsDone }"
         >
-          <span class="num">{{ chapters.length + 1 }}</span><span class="label">Exam</span>
+          <span class="num">{{ chapters.length + 1 }}</span><span class="label">{{ t('common.exam') }}</span>
           <FontAwesomeIcon v-if="progress.examPassed" :icon="faCheck" class="text-green" />
           <FontAwesomeIcon v-else-if="!progress.allLessonsDone" :icon="faLock" class="text-soft" />
         </component>

@@ -7,7 +7,7 @@ describe('validateProfile', () => {
   })
 
   it('rejects an empty name or a malformed email', () => {
-    expect(validateProfile({ firstName: ' ', lastName: 'Jones', email: 'alex@example.com' })).toMatch(/name/)
-    expect(validateProfile({ firstName: 'Alex', lastName: 'Jones', email: 'alex@' })).toMatch(/email/)
+    expect(validateProfile({ firstName: ' ', lastName: 'Jones', email: 'alex@example.com' })).toBe('name')
+    expect(validateProfile({ firstName: 'Alex', lastName: 'Jones', email: 'alex@' })).toBe('email')
   })
 })

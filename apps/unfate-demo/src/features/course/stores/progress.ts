@@ -1,6 +1,6 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
-import { chapters, lessons, lessonsOfChapter } from '../data/course'
+import { chapterCount, lessons, lessonsOfChapter } from '../data/course'
 
 /** Course progress. Kept in memory only, like the Figma prototype: a reload starts over. */
 export const useProgressStore = defineStore('progress', () => {
@@ -15,10 +15,10 @@ export const useProgressStore = defineStore('progress', () => {
     const index = done.value.indexOf(false)
     return index === -1 ? null : index
   })
-  const chaptersDone = computed(() => chapters.filter((_, c) => isChapterDone(c)).length)
+  const chaptersDone = computed(() => Array.from({ length: chapterCount }, (_, c) => c).filter(isChapterDone).length)
   /** Steps shown as "n/6 COMPLETED": the 5 chapters plus the exam */
   const stepsDone = computed(() => chaptersDone.value + (examPassed.value ? 1 : 0))
-  const totalSteps = chapters.length + 1
+  const totalSteps = chapterCount + 1
 
   function isDone(index: number): boolean {
     return done.value[index] === true

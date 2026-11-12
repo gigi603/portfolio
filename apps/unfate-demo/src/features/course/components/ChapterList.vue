@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { chapters, lessonsOfChapter } from '../data/course'
+import { useCourse } from '../composables/useCourse'
 import { useProgressStore } from '../stores/progress'
 import { examRoute, lessonRoute } from '../routes'
 import { faCheck, faChevronDown, faLock } from '@/shared/icons'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 // Overview of the course on the course page: every chapter, lesson state and the exam
 defineProps<{ examPassMark: number; examQuestions: number }>()
 const progress = useProgressStore()
+const { chapters, lessonsOfChapter } = useCourse()
 
 // Every chapter starts unfolded; its arrow folds or unfolds its lessons
 const collapsed = ref(new Set<number>())
@@ -35,7 +39,7 @@ function chapterState(chapterIndex: number): 'done' | 'current' | 'locked' {
         <button type="button" class="chapter-toggle" :aria-expanded="!collapsed.has(c)" :aria-controls="`course-chapter-${c}`" @click="toggle(c)">
           <span class="num" :class="`is-${chapterState(c)}`">{{ c + 1 }}</span>
           <span>{{ chapter.title }}</span>
-          <span v-if="chapterState(c) === 'done'" class="badge"><FontAwesomeIcon :icon="faCheck" /> Completed</span>
+          <span v-if="chapterState(c) === 'done'" class="badge"><FontAwesomeIcon :icon="faCheck" /> {{ t('common.completed') }}</span>
           <FontAwesomeIcon :icon="faChevronDown" class="arrow" :class="{ 'is-closed': collapsed.has(c) }" />
         </button>
       </h2>
@@ -43,26 +47,26 @@ function chapterState(chapterIndex: number): 'done' | 'current' | 'locked' {
         <li v-for="lesson in lessonsOfChapter(c)" :key="lesson.index">
           <RouterLink v-if="lessonState(lesson.index) !== 'locked'" :to="lessonRoute(lesson.index)" class="row" :class="{ 'is-done': lessonState(lesson.index) === 'done' }">
             <span class="state" :class="`is-${lessonState(lesson.index)}`"><FontAwesomeIcon v-if="lessonState(lesson.index) === 'done'" :icon="faCheck" /></span>
-            <span class="name">{{ lesson.title }}<span class="sr-only">{{ lessonState(lesson.index) === 'done' ? ', completed' : '' }}</span></span>
-            <span class="min">{{ lesson.minutes }} min</span>
+            <span class="name">{{ lesson.title }}<span class="sr-only">{{ lessonState(lesson.index) === 'done' ? t('course.completedSr') : '' }}</span></span>
+            <span class="min">{{ t('common.minutes', { n: lesson.minutes }) }}</span>
           </RouterLink>
           <p v-else class="row is-locked">
             <span class="state is-locked"><FontAwesomeIcon :icon="faLock" /></span>
-            <span class="name">{{ lesson.title }}<span class="sr-only">, locked</span></span>
-            <span class="min">{{ lesson.minutes }} min</span>
+            <span class="name">{{ lesson.title }}<span class="sr-only">{{ t('course.lockedSr') }}</span></span>
+            <span class="min">{{ t('common.minutes', { n: lesson.minutes }) }}</span>
           </p>
         </li>
       </ul>
     </li>
     <li>
-      <h2 class="chapter-title"><span class="num" :class="progress.examPassed ? 'is-done' : progress.allLessonsDone ? 'is-current' : 'is-locked'">{{ chapters.length + 1 }}</span>Exam<span v-if="progress.examPassed" class="badge"><FontAwesomeIcon :icon="faCheck" /> Completed</span></h2>
+      <h2 class="chapter-title"><span class="num" :class="progress.examPassed ? 'is-done' : progress.allLessonsDone ? 'is-current' : 'is-locked'">{{ chapters.length + 1 }}</span>{{ t('common.exam') }}<span v-if="progress.examPassed" class="badge"><FontAwesomeIcon :icon="faCheck" /> {{ t('common.completed') }}</span></h2>
       <RouterLink v-if="progress.allLessonsDone" :to="examRoute()" class="row" :class="{ 'is-done': progress.examPassed }">
         <span class="state" :class="progress.examPassed ? 'is-done' : 'is-open'"><FontAwesomeIcon v-if="progress.examPassed" :icon="faCheck" /></span>
-        <span class="name">{{ examQuestions }} questions · pass mark {{ examPassMark }}</span>
+        <span class="name">{{ t('course.examRow', { n: examQuestions, mark: examPassMark }) }}</span>
       </RouterLink>
       <p v-else class="row is-locked">
         <span class="state is-locked"><FontAwesomeIcon :icon="faLock" /></span>
-        <span class="name">{{ examQuestions }} questions · opens when every lesson is completed</span>
+        <span class="name">{{ t('course.examLocked', { n: examQuestions }) }}</span>
       </p>
     </li>
   </ol>

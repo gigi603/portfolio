@@ -1,17 +1,20 @@
 <script setup lang="ts">
 import UnfateLogo from '@/shared/ui/UnfateLogo.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 defineProps<{ name: string; courseTitle: string; score: number; date: string }>()
 </script>
 
 <template>
-  <section class="certificate" aria-label="Certificate of completion">
+  <section class="certificate" :aria-label="t('exam.certificate')">
     <UnfateLogo :size="26" />
-    <p class="kicker">Certificate of completion</p>
+    <p class="kicker">{{ t('exam.certificate') }}</p>
     <h1 class="name" tabindex="-1" data-page-heading>{{ name }}</h1>
-    <p>has completed the course</p>
+    <p>{{ t('exam.hasCompleted') }}</p>
     <p class="course">{{ courseTitle }}</p>
-    <p class="meta">Score {{ score }}/100 · {{ date }}</p>
+    <p class="meta">{{ t('exam.certificateMeta', { score, date }) }}</p>
   </section>
 </template>
 

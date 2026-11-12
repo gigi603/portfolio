@@ -6,7 +6,7 @@ import { drawPaper, useExamStore } from './exam'
 /** Answers every question of the current paper, getting `wrongAnswers` of them wrong */
 function answerAll(exam: ReturnType<typeof useExamStore>, wrongAnswers: number) {
   exam.paper.forEach((question, i) => {
-    exam.select(i < wrongAnswers ? (question.correct + 1) % question.answers.length : question.correct)
+    exam.select(i < wrongAnswers ? (question.correct + 1) % question.answers.en.length : question.correct)
     exam.check()
     exam.next()
   })
@@ -28,11 +28,15 @@ describe('question bank', () => {
       expect(questions.filter(q => q.chapter === chapter)).toHaveLength(QUESTIONS_PER_CHAPTER)
     }
     questions.forEach(q => {
-      expect(q.answers).toHaveLength(4)
-      expect(new Set(q.answers).size).toBe(4)
-      expect(q.answers[q.correct]).toBeDefined()
+      for (const lang of ['en', 'fr'] as const) {
+        expect(q.text[lang]).toBeTruthy()
+        expect(q.answers[lang]).toHaveLength(4)
+        expect(new Set(q.answers[lang]).size).toBe(4)
+        expect(q.answers[lang][q.correct]).toBeDefined()
+      }
     })
-    expect(new Set(questions.map(q => q.text)).size).toBe(50)
+    expect(new Set(questions.map(q => q.text.en)).size).toBe(50)
+    expect(new Set(questions.map(q => q.text.fr)).size).toBe(50)
   })
 })
 
@@ -40,16 +44,17 @@ describe('drawPaper', () => {
   it('asks every question once, in a shuffled order, and keeps the right answer right', () => {
     const paper = drawPaper(seeded(42))
     expect(paper).toHaveLength(questions.length)
-    expect(new Set(paper.map(q => q.text))).toEqual(new Set(questions.map(q => q.text)))
-    expect(paper.map(q => q.text)).not.toEqual(questions.map(q => q.text))
+    expect(new Set(paper.map(q => q.text.en))).toEqual(new Set(questions.map(q => q.text.en)))
+    expect(paper.map(q => q.text.en)).not.toEqual(questions.map(q => q.text.en))
     paper.forEach(q => {
-      const original = questions.find(o => o.text === q.text)!
-      expect(q.answers[q.correct]).toBe(original.answers[original.correct])
+      const original = questions.find(o => o.text.en === q.text.en)!
+      expect(q.answers.en[q.correct]).toBe(original.answers.en[original.correct])
+      expect(q.answers.fr[q.correct]).toBe(original.answers.fr[original.correct])
     })
   })
 
   it('gives a different order on each attempt', () => {
-    expect(drawPaper(seeded(1)).map(q => q.text)).not.toEqual(drawPaper(seeded(2)).map(q => q.text))
+    expect(drawPaper(seeded(1)).map(q => q.text.en)).not.toEqual(drawPaper(seeded(2)).map(q => q.text.en))
   })
 })
 
@@ -80,13 +85,13 @@ describe('exam store', () => {
   it('fails under the pass mark, and a retry starts from scratch with a new order', () => {
     const exam = useExamStore()
     exam.start(seeded(7))
-    const firstOrder = exam.paper.map(q => q.text)
+    const firstOrder = exam.paper.map(q => q.text.en)
     answerAll(exam, 11)
     expect(exam.score).toBe(78)
     expect(exam.passed).toBe(false)
     exam.start(seeded(8))
     expect(exam.current).toBe(0)
     expect(exam.answers).toHaveLength(0)
-    expect(exam.paper.map(q => q.text)).not.toEqual(firstOrder)
+    expect(exam.paper.map(q => q.text.en)).not.toEqual(firstOrder)
   })
 })

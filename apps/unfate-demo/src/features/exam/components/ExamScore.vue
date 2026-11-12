@@ -2,6 +2,9 @@
 import { computed } from 'vue'
 import BaseButton from '@/shared/ui/BaseButton.vue'
 import { faAward, faChartSimple, faRotateLeft } from '@/shared/icons'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const props = defineProps<{ score: number; passMark: number; courseTitle: string }>()
 const emit = defineEmits<{ results: []; certificate: []; retry: [] }>()
@@ -13,7 +16,7 @@ const dashOffset = computed(() => RING_LENGTH - (RING_LENGTH * props.score) / 10
 
 <template>
   <div class="card score-card">
-    <h1 class="big-title" tabindex="-1" data-page-heading>Exam Score</h1>
+    <h1 class="big-title" tabindex="-1" data-page-heading>{{ t('exam.scoreTitle') }}</h1>
     <div class="score">
       <div class="ring-wrap">
         <svg viewBox="0 0 120 120" class="ring" aria-hidden="true">
@@ -23,18 +26,18 @@ const dashOffset = computed(() => RING_LENGTH - (RING_LENGTH * props.score) / 10
         <p class="ring-value" aria-hidden="true">{{ score }}</p>
       </div>
       <p class="message" :class="{ 'is-fail': !passed }">
-        <template v-if="passed"><b>Congratulations!</b> You passed the test with a score of <b>{{ score }}</b>.</template>
-        <template v-else><b>Almost there.</b> You scored <b>{{ score }}</b>. You need {{ passMark }} to pass.</template>
+        <template v-if="passed"><b>{{ t('exam.congrats') }}</b> {{ t('exam.passed', { score }) }}</template>
+        <template v-else><b>{{ t('exam.almost') }}</b> {{ t('exam.failed', { score, mark: passMark }) }}</template>
       </p>
     </div>
     <p class="lead">
-      {{ passed ? `You did it! You are now competent in ${courseTitle}. Your certificate is ready.` : 'Review your answers, reread the lessons you need, then try again.' }}
+      {{ passed ? t('exam.passedLead', { course: courseTitle }) : t('exam.failedLead') }}
     </p>
   </div>
   <div class="actions actions-split">
-    <BaseButton variant="secondary" @click="emit('results')">Show my results <FontAwesomeIcon :icon="faChartSimple" /></BaseButton>
-    <BaseButton v-if="passed" variant="success" @click="emit('certificate')">Show my certificate <FontAwesomeIcon :icon="faAward" /></BaseButton>
-    <BaseButton v-else @click="emit('retry')">Try again <FontAwesomeIcon :icon="faRotateLeft" /></BaseButton>
+    <BaseButton variant="secondary" @click="emit('results')">{{ t('exam.showResults') }} <FontAwesomeIcon :icon="faChartSimple" /></BaseButton>
+    <BaseButton v-if="passed" variant="success" @click="emit('certificate')">{{ t('exam.showCertificate') }} <FontAwesomeIcon :icon="faAward" /></BaseButton>
+    <BaseButton v-else @click="emit('retry')">{{ t('exam.retry') }} <FontAwesomeIcon :icon="faRotateLeft" /></BaseButton>
   </div>
 </template>
 

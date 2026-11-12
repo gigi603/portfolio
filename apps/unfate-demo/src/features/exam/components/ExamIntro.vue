@@ -2,6 +2,9 @@
 import BaseButton from '@/shared/ui/BaseButton.vue'
 import confetti from '@/assets/images/exam-confetti.webp'
 import { faCircleArrowLeft, faCircleCheck } from '@/shared/icons'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 defineProps<{ questionCount: number; passMark: number }>()
 const emit = defineEmits<{ start: []; back: [] }>()
@@ -9,14 +12,17 @@ const emit = defineEmits<{ start: []; back: [] }>()
 
 <template>
   <div class="card intro">
-    <h1 class="big-title" tabindex="-1" data-page-heading>Exam</h1>
+    <h1 class="big-title" tabindex="-1" data-page-heading>{{ t('exam.title') }}</h1>
     <img :src="confetti" alt="" class="intro-img" />
-    <p class="lead"><span class="text-blue">Congratulations!</span> You finished all the lessons and learned a lot. Now is the time to test your knowledge with an exam composed of {{ questionCount }} questions. They cover the 5 chapters and come in a new random order each time.</p>
-    <p class="lead">If you <span class="text-blue">score {{ passMark }} or above</span>, you get your <span class="text-blue">certificate</span>.</p>
+    <p class="lead"><span class="text-blue">{{ t('exam.congrats') }}</span> {{ t('exam.intro', { n: questionCount }) }}</p>
+    <i18n-t keypath="exam.passIntro" tag="p" class="lead" scope="global">
+      <template #score><span class="text-blue">{{ t('exam.passScore', { mark: passMark }) }}</span></template>
+      <template #certificate><span class="text-blue">{{ t('exam.certificateWord') }}</span></template>
+    </i18n-t>
   </div>
   <div class="actions actions-split">
-    <BaseButton variant="secondary" @click="emit('back')"><FontAwesomeIcon :icon="faCircleArrowLeft" /> Previous lesson</BaseButton>
-    <BaseButton @click="emit('start')">Take the exam <FontAwesomeIcon :icon="faCircleCheck" /></BaseButton>
+    <BaseButton variant="secondary" @click="emit('back')"><FontAwesomeIcon :icon="faCircleArrowLeft" /> {{ t('exam.previous') }}</BaseButton>
+    <BaseButton @click="emit('start')">{{ t('exam.start') }} <FontAwesomeIcon :icon="faCircleCheck" /></BaseButton>
   </div>
 </template>
 

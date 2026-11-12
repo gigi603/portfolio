@@ -3,34 +3,39 @@ import BaseButton from '@/shared/ui/BaseButton.vue'
 import { computed } from 'vue'
 import { faCircleArrowLeft, faCircleCheck, faCircleXmark, faRotateLeft } from '@/shared/icons'
 import type { Question } from '../data/questions'
+import type { Locale } from '@/shared/i18n'
+import { useI18n } from 'vue-i18n'
+
+const { t, locale } = useI18n()
 
 const props = defineProps<{ paper: Question[]; answers: number[]; score: number; passed: boolean }>()
 const emit = defineEmits<{ back: []; retry: [] }>()
 
 const isRight = (index: number) => props.answers[index] === props.paper[index]?.correct
+const lang = computed(() => locale.value as Locale)
 const rightCount = computed(() => props.paper.filter((_, i) => isRight(i)).length)
 </script>
 
 <template>
   <div class="card">
-    <h1 class="big-title" tabindex="-1" data-page-heading>My results · {{ score }}/100</h1>
-    <p class="summary">{{ rightCount }} right answers out of {{ paper.length }}.</p>
+    <h1 class="big-title" tabindex="-1" data-page-heading>{{ t('exam.resultsTitle', { score }) }}</h1>
+    <p class="summary">{{ t('exam.summary', { right: rightCount, total: paper.length }) }}</p>
     <ol class="results">
-      <li v-for="(question, i) in paper" :key="question.text" :class="isRight(i) ? 'is-ok' : 'is-ko'">
+      <li v-for="(question, i) in paper" :key="question.text.en" :class="isRight(i) ? 'is-ok' : 'is-ko'">
         <FontAwesomeIcon :icon="isRight(i) ? faCircleCheck : faCircleXmark" class="icon" />
         <div>
-          <p class="q">{{ question.text }}</p>
+          <p class="q">{{ question.text[lang] }}</p>
           <p>
-            <span class="sr-only">{{ isRight(i) ? 'Right.' : 'Wrong.' }}</span>
-            Your answer: {{ question.answers[answers[i] ?? -1] ?? '—' }}<template v-if="!isRight(i)"> · Right answer: <b>{{ question.answers[question.correct] }}</b></template>
+            <span class="sr-only">{{ isRight(i) ? t('exam.rightSr') : t('exam.wrongSr') }}</span>
+            {{ t('exam.yourAnswer') }} {{ question.answers[lang][answers[i] ?? -1] ?? '—' }}<template v-if="!isRight(i)"> · {{ t('exam.rightAnswer') }} <b>{{ question.answers[lang][question.correct] }}</b></template>
           </p>
         </div>
       </li>
     </ol>
   </div>
   <div class="actions actions-split">
-    <BaseButton variant="secondary" @click="emit('back')"><FontAwesomeIcon :icon="faCircleArrowLeft" /> Back to my score</BaseButton>
-    <BaseButton v-if="!passed" @click="emit('retry')">Try again <FontAwesomeIcon :icon="faRotateLeft" /></BaseButton>
+    <BaseButton variant="secondary" @click="emit('back')"><FontAwesomeIcon :icon="faCircleArrowLeft" /> {{ t('exam.backToScore') }}</BaseButton>
+    <BaseButton v-if="!passed" @click="emit('retry')">{{ t('exam.retry') }} <FontAwesomeIcon :icon="faRotateLeft" /></BaseButton>
   </div>
 </template>
 

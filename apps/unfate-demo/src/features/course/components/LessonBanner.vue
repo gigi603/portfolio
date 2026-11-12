@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import ProgressLine from '@/shared/ui/ProgressLine.vue'
 import { faClock } from '@/shared/icons'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 withDefaults(defineProps<{
   title: string
@@ -22,11 +25,11 @@ withDefaults(defineProps<{
       <h1 tabindex="-1" data-page-heading>{{ title }}</h1>
       <p class="banner-subtitle">{{ subtitle }}</p>
       <template v-if="progress">
-        <p class="banner-left">{{ progress.total - progress.done }} {{ progress.total - progress.done === 1 ? 'lesson' : 'lessons' }} left</p>
-        <ProgressLine :value="progress.done" :total="progress.total" label="Course progress" />
+        <p class="banner-left">{{ t('common.lessonsLeft', { n: progress.total - progress.done }, progress.total - progress.done) }}</p>
+        <ProgressLine :value="progress.done" :total="progress.total" :label="t('common.courseProgress')" />
       </template>
     </div>
-    <p v-if="minutes" class="banner-time"><FontAwesomeIcon :icon="faClock" /> {{ minutes }}mins</p>
+    <p v-if="minutes" class="banner-time"><FontAwesomeIcon :icon="faClock" /> {{ t('common.minutes', { n: minutes }) }}</p>
     <img v-if="teacher" :src="teacher" alt="" class="banner-teacher" />
   </header>
 </template>

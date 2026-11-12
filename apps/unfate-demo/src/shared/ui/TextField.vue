@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { computed, ref, useId } from 'vue'
 import { faEye, faEyeSlash } from '@/shared/icons'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 // Text field of the Unfate design system (Figma component Champ/Auth)
 const props = withDefaults(defineProps<{
@@ -35,7 +38,7 @@ const inputType = computed(() => (props.type === 'password' && revealed.value ? 
         v-if="type === 'password'"
         type="button"
         class="field-toggle"
-        :aria-label="revealed ? 'Hide password' : 'Show password'"
+        :aria-label="revealed ? t('login.hidePassword') : t('login.showPassword')"
         :aria-pressed="revealed"
         @click="revealed = !revealed"
       >

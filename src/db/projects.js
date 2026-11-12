@@ -7,13 +7,14 @@ const projects = [
     featured: true,
     sections: ['context', 'challenge', 'decisions', 'evolution', 'outcome', 'retro'],
     url_website:"",
-    // Coded demo of the V2: separate Vue 3 app in apps/unfate-demo, built into public/demo/unfate + recordings in public/videos
+    // Coded demo of the V2: separate Vue 3 app in apps/unfate-demo, built into public/demo/unfate + recordings in public/videos.
+    // One recording per language: {locale} becomes fr or en.
     demo: {
       path: '/demo/unfate/',
-      video: '/videos/unfate-demo.mp4',
-      poster: '/videos/unfate-demo.jpg',
-      videoMobile: '/videos/unfate-demo-mobile.mp4',
-      posterMobile: '/videos/unfate-demo-mobile.jpg',
+      video: '/videos/unfate-demo-{locale}.mp4',
+      poster: '/videos/unfate-demo-{locale}.jpg',
+      videoMobile: '/videos/unfate-demo-mobile-{locale}.mp4',
+      posterMobile: '/videos/unfate-demo-mobile-{locale}.jpg',
     },
     // V1 (with the founder) next to V2 (rebuilt with Claude in Figma), shown inside the "evolution" section
     evolution: {

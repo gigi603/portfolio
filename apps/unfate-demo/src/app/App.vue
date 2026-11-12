@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import AppToast from '@/shared/ui/AppToast.vue'
 import { useEmbed } from '@/shared/composables/useEmbed'
-import { usePortfolioLocale } from '@/shared/composables/usePortfolioLocale'
+import { useI18n } from 'vue-i18n'
 
 const { embedded } = useEmbed()
-const { locale, t } = usePortfolioLocale()
+const { t } = useI18n()
 </script>
 
 <template>
   <div class="shell">
     <!-- Portfolio bar: hidden when the demo is shown inside the case study window -->
-    <header v-if="!embedded" class="portfolio-bar" :lang="locale">
-      <a href="/project/4#section-demo" class="portfolio-back">← {{ t.back }}</a>
-      <p class="portfolio-note">{{ t.note }}</p>
+    <header v-if="!embedded" class="portfolio-bar">
+      <a href="/project/4#section-demo" class="portfolio-back">← {{ t('portfolio.back') }}</a>
+      <p class="portfolio-note">{{ t('portfolio.note') }}</p>
     </header>
     <div class="app">
       <RouterView />

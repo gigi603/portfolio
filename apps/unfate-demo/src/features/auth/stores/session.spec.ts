@@ -7,7 +7,7 @@ describe('session store', () => {
 
   it('asks for both fields', () => {
     const session = useSessionStore()
-    expect(session.login('', '')).toEqual({ ok: false, error: 'Please enter your email and password.' })
+    expect(session.login('', '')).toEqual({ ok: false, error: 'empty' })
     expect(session.loggedIn).toBe(false)
   })
 

@@ -229,11 +229,12 @@
       cancelAnimationFrame(this.scrollFrame)
     },
     methods: {
-      // Phones get the vertical recording, other screens the desktop one
+      // Phones get the vertical recording, other screens the desktop one, in the language of the site
       demoVideo(project) {
+        const inLocale = path => path.replace('{locale}', this.$i18n.locale === 'en' ? 'en' : 'fr')
         return this.isPhone
-          ? { src: project.demo.videoMobile, poster: project.demo.posterMobile }
-          : { src: project.demo.video, poster: project.demo.poster }
+          ? { src: inLocale(project.demo.videoMobile), poster: inLocale(project.demo.posterMobile) }
+          : { src: inLocale(project.demo.video), poster: inLocale(project.demo.poster) }
       },
       nextProject(project) {
         const i = projects.findIndex(p => p.id === project.id)

@@ -5,13 +5,13 @@ import { shuffle } from '../lib/shuffle'
 
 export type ExamStep = 'intro' | 'question' | 'score' | 'results' | 'certificate'
 
-/** A new exam paper: every question in a random order, and the answers of each question shuffled too */
+/** A new exam paper: every question in a random order, and the answers of each question shuffled too (the same way in both languages, so switching language mid-exam keeps the answers) */
 export function drawPaper(random: () => number = Math.random): Question[] {
   return shuffle(questions, random).map(question => {
-    const order = shuffle(question.answers.map((_, index) => index), random)
+    const order = shuffle(question.answers.en.map((_, index) => index), random)
     return {
       ...question,
-      answers: order.map(index => question.answers[index]!),
+      answers: { en: order.map(index => question.answers.en[index]!), fr: order.map(index => question.answers.fr[index]!) },
       correct: order.indexOf(question.correct),
     }
   })

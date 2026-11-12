@@ -3,15 +3,18 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import UnfateLogo from '@/shared/ui/UnfateLogo.vue'
 import { faCircleCheck, faFolderOpen, faGear, faLayerGroup, faStar } from '@/shared/icons'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const route = useRoute()
 
 const items = [
-  { name: 'catalog', label: 'All courses', icon: faLayerGroup },
-  { name: 'ongoing', label: 'Ongoing', icon: faFolderOpen },
-  { name: 'favorites', label: 'Favorites', icon: faStar },
-  { name: 'completed', label: 'Completed', icon: faCircleCheck },
-  { name: 'settings', label: 'Settings', icon: faGear },
+  { name: 'catalog', icon: faLayerGroup },
+  { name: 'ongoing', icon: faFolderOpen },
+  { name: 'favorites', icon: faStar },
+  { name: 'completed', icon: faCircleCheck },
+  { name: 'settings', icon: faGear },
 ] as const
 
 // Course, lesson and exam pages belong to "All courses"
@@ -19,13 +22,13 @@ const activeName = computed(() => (['course', 'lesson', 'exam'].includes(String(
 </script>
 
 <template>
-  <nav class="nav" aria-label="Main">
+  <nav class="nav" :aria-label="t('nav.main')">
     <UnfateLogo class="nav-logo" />
     <ul>
       <li v-for="item in items" :key="item.name">
         <RouterLink :to="{ name: item.name }" class="nav-item" :class="{ 'is-active': activeName === item.name }" :aria-current="activeName === item.name ? 'page' : undefined">
           <FontAwesomeIcon :icon="item.icon" class="nav-icon" />
-          <span>{{ item.label }}</span>
+          <span>{{ t(`nav.${item.name}`) }}</span>
         </RouterLink>
       </li>
     </ul>

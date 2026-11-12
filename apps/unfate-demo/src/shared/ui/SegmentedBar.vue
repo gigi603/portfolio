@@ -1,11 +1,14 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 // Progress split into one segment per lesson (Figma: "Barre segmentée (leçons)").
 // Colours come from the parent through --bar-track and --bar-fill.
 defineProps<{ value: number; total: number; label: string }>()
 </script>
 
 <template>
-  <div class="segmented-bar" role="progressbar" :aria-label="label" aria-valuemin="0" :aria-valuemax="total" :aria-valuenow="value" :aria-valuetext="`${value} of ${total}`">
+  <div class="segmented-bar" role="progressbar" :aria-label="label" aria-valuemin="0" :aria-valuemax="total" :aria-valuenow="value" :aria-valuetext="t('common.valueOf', { value, total })">
     <span v-for="n in total" :key="n" :class="{ 'is-on': n <= value }"></span>
   </div>
 </template>

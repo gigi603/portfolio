@@ -3,9 +3,13 @@ import { mount } from '@vue/test-utils'
 import { createPinia } from 'pinia'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import LoginForm from './LoginForm.vue'
+import { i18n } from '@/shared/i18n'
+
+// The texts checked below are the English ones
+i18n.global.locale.value = 'en'
 
 function mountForm() {
-  return mount(LoginForm, { global: { plugins: [createPinia()], components: { FontAwesomeIcon } } })
+  return mount(LoginForm, { global: { plugins: [createPinia(), i18n], components: { FontAwesomeIcon } } })
 }
 
 describe('LoginForm', () => {

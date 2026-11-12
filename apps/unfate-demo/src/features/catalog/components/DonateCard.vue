@@ -2,6 +2,9 @@
 import BaseButton from '@/shared/ui/BaseButton.vue'
 import donateImage from '@/assets/images/donate.webp'
 import { faHeart } from '@/shared/icons'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const emit = defineEmits<{ donate: [] }>()
 </script>
@@ -9,8 +12,8 @@ const emit = defineEmits<{ donate: [] }>()
 <template>
   <div class="donate">
     <img :src="donateImage" alt="" />
-    <p>Help Us Create More</p>
-    <BaseButton variant="glass" class="donate-btn" @click="emit('donate')">Donate <FontAwesomeIcon :icon="faHeart" /></BaseButton>
+    <p>{{ t('side.donate') }}</p>
+    <BaseButton variant="glass" class="donate-btn" @click="emit('donate')">{{ t('side.donateButton') }} <FontAwesomeIcon :icon="faHeart" /></BaseButton>
   </div>
 </template>
 

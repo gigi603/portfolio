@@ -10,7 +10,9 @@ export interface Profile {
   email: string
 }
 
-export type LoginResult = { ok: true } | { ok: false; error: string }
+/** Login errors are codes: the form shows them in the current language */
+export type LoginError = 'empty' | 'mismatch'
+export type LoginResult = { ok: true } | { ok: false; error: LoginError }
 
 const defaultProfile = (): Profile => ({ firstName: 'Alex', lastName: 'Jones', email: DEMO_ACCOUNT.email })
 
@@ -22,9 +24,9 @@ export const useSessionStore = defineStore('session', () => {
   const fullName = computed(() => `${profile.value.firstName} ${profile.value.lastName}`.trim())
 
   function login(email: string, password: string): LoginResult {
-    if (!email.trim() || !password) return { ok: false, error: 'Please enter your email and password.' }
+    if (!email.trim() || !password) return { ok: false, error: 'empty' }
     const matches = email.trim().toLowerCase() === profile.value.email.toLowerCase() && password === DEMO_ACCOUNT.password
-    if (!matches) return { ok: false, error: 'Incorrect email or password. Use the demo account below.' }
+    if (!matches) return { ok: false, error: 'mismatch' }
     loggedIn.value = true
     return { ok: true }
   }

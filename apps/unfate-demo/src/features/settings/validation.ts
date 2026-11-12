@@ -2,9 +2,11 @@ import type { Profile } from '@/features/auth'
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-/** Returns an error message, or null when the profile can be saved */
-export function validateProfile(profile: Profile): string | null {
-  if (!profile.firstName.trim() || !profile.lastName.trim()) return 'Please fill in your first and last name.'
-  if (!EMAIL_PATTERN.test(profile.email.trim())) return 'Please enter a valid email address.'
+export type ProfileError = 'name' | 'email'
+
+/** Returns what is wrong (shown as settings.errorName / settings.errorEmail), or null when the profile can be saved */
+export function validateProfile(profile: Profile): ProfileError | null {
+  if (!profile.firstName.trim() || !profile.lastName.trim()) return 'name'
+  if (!EMAIL_PATTERN.test(profile.email.trim())) return 'email'
   return null
 }

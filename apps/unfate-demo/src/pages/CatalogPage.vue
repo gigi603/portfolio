@@ -2,9 +2,12 @@
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { CourseCard, ProgressCard, UpcomingCourseCard, upcomingCourses, usePreferencesStore, type CatalogFilter } from '@/features/catalog'
-import { course, lessons, useProgressStore } from '@/features/course'
+import { useCourse, useProgressStore } from '@/features/course'
 import { useToast } from '@/shared/composables/useToast'
 import { useContinueCourse } from '@/shared/composables/useContinueCourse'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const props = defineProps<{ filter: CatalogFilter }>()
 
@@ -14,19 +17,13 @@ const progress = useProgressStore()
 const toast = useToast()
 const continueCourse = useContinueCourse(router)
 
-const titles: Record<CatalogFilter, string> = { all: 'All courses', ongoing: 'Ongoing', favorites: 'Favorites', completed: 'Completed' }
-const emptyMessages: Record<CatalogFilter, string> = {
-  all: 'No course.',
-  ongoing: 'No course in progress yet. Start one from All courses.',
-  favorites: 'No favorites yet. Tap the star on a course to keep it here.',
-  completed: 'No completed course yet. Pass the exam to see your course here.',
-}
+const { course, lessons } = useCourse()
 
 const query = computed(() => preferences.search.trim().toLowerCase())
-const matches = (title: string) => !query.value || title.toLowerCase().includes(query.value) || (title === course.title && 'defi'.includes(query.value))
+const matches = (title: string) => !query.value || title.toLowerCase().includes(query.value) || (title === course.value.title && 'defi'.includes(query.value))
 
 const showMainCourse = computed(() => {
-  if (!matches(course.title)) return false
+  if (!matches(course.value.title)) return false
   switch (props.filter) {
     case 'ongoing': return progress.started && !progress.examPassed
     case 'favorites': return preferences.favorite
@@ -34,20 +31,20 @@ const showMainCourse = computed(() => {
     default: return true
   }
 })
-const visibleUpcoming = computed(() => (props.filter === 'all' ? upcomingCourses.filter(c => matches(c.title)) : []))
+const visibleUpcoming = computed(() => (props.filter === 'all' ? upcomingCourses.filter(c => matches(t(`catalog.upcoming.${c.id}.title`))) : []))
 const isEmpty = computed(() => !showMainCourse.value && visibleUpcoming.value.length === 0)
-const emptyMessage = computed(() => (query.value ? `No course matches “${preferences.search.trim()}”.` : emptyMessages[props.filter]))
-const actionLabel = computed(() => (progress.examPassed ? 'Review' : progress.started ? 'Continue' : 'Get Started'))
+const emptyMessage = computed(() => (query.value ? t('catalog.noMatch', { query: preferences.search.trim() }) : t(`catalog.empty.${props.filter}`)))
+const actionLabel = computed(() => t(progress.examPassed ? 'catalog.review' : progress.started ? 'common.continue' : 'catalog.getStarted'))
 
 function toggleFavorite(): void {
   preferences.toggleFavorite()
-  toast.show(preferences.favorite ? 'Added to your favorites' : 'Removed from your favorites')
+  toast.show(t(preferences.favorite ? 'catalog.added' : 'catalog.removed'))
 }
 </script>
 
 <template>
   <section class="catalog" aria-labelledby="catalog-title">
-    <h1 id="catalog-title" class="page-title" tabindex="-1" data-page-heading>{{ titles[filter] }}</h1>
+    <h1 id="catalog-title" class="page-title" tabindex="-1" data-page-heading>{{ t(`catalog.titles.${filter}`) }}</h1>
 
     <!-- On tablets and phones the right panel is hidden: the progress card moves here -->
     <ProgressCard
@@ -66,7 +63,7 @@ function toggleFavorite(): void {
       v-if="showMainCourse"
       class="main-course"
       :title="course.title"
-      :meta="`${lessons.length} lessons - ${course.level}`"
+      :meta="t('catalog.meta', { n: lessons.length, level: course.level })"
       :duration="course.duration"
       :price="course.price"
       :image="course.image"

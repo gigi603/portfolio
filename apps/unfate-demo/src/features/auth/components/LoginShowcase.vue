@@ -1,17 +1,20 @@
 <script setup lang="ts">
 import panel from '@/assets/images/login-panel.webp'
 import courseImage from '@/assets/images/course-defi.webp'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 </script>
 
 <template>
   <!-- Decorative right half of the login screen (Figma: Login V2) -->
   <div class="showcase" aria-hidden="true">
     <img :src="panel" alt="" class="showcase-bg" />
-    <p class="claim">Learn the Future</p>
+    <p class="claim">{{ t('login.claim') }}</p>
     <div class="teaser">
       <div>
-        <p class="teaser-title">DeFi Basics</p>
-        <p class="teaser-text">Everything you know to set yourself for success.</p>
+        <p class="teaser-title">{{ t('login.teaserTitle') }}</p>
+        <p class="teaser-text">{{ t('login.teaserText') }}</p>
       </div>
       <img :src="courseImage" alt="" />
     </div>

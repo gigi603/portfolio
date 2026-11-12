@@ -6,6 +6,7 @@ import MainNav from './components/MainNav.vue'
 import SearchField from './components/SearchField.vue'
 import SidePanel from './components/SidePanel.vue'
 import AccountMenu from './components/AccountMenu.vue'
+import LanguageSwitcher from '@/shared/ui/LanguageSwitcher.vue'
 
 // Shell of the signed-in app: navigation, header, page, and the right panel (Figma: All Courses)
 const route = useRoute()
@@ -31,6 +32,7 @@ watch(
         <div class="topbar">
           <UnfateLogo class="top-logo" :size="26" />
           <SearchField />
+          <LanguageSwitcher class="top-language" />
           <AccountMenu class="top-account" compact />
         </div>
         <RouterView />
@@ -46,9 +48,10 @@ watch(
 .main-inner { max-width: 840px; margin-inline: auto; }
 .topbar { display: flex; align-items: center; gap: 16px; margin-bottom: 26px; }
 .top-logo, .top-account { display: none; }
+.top-language { margin-left: auto; }
 @media (max-width: 1180px) {
   .layout { grid-template-columns: 200px minmax(0, 1fr); }
-  .top-account { display: block; margin-left: auto; }
+  .top-account { display: block; }
 }
 @media (max-width: 760px) {
   .layout { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; }

@@ -2,16 +2,22 @@
 import { computed } from 'vue'
 import BaseButton from '@/shared/ui/BaseButton.vue'
 import { faCircleArrowLeft, faCircleArrowRight, faCircleCheck, faCircleXmark } from '@/shared/icons'
-import { chapters } from '@/features/course'
+import { useCourse } from '@/features/course'
+import type { Locale } from '@/shared/i18n'
 import { useExamStore } from '../stores/exam'
+import { useI18n } from 'vue-i18n'
+
+const { t, locale } = useI18n()
 
 const emit = defineEmits<{ leave: [] }>()
 const exam = useExamStore()
+const { chapters } = useCourse()
+const lang = computed(() => locale.value as Locale)
 
 const progressPercent = computed(() => ((exam.current + 1) / exam.paper.length) * 100)
 const feedback = computed(() => {
   if (!exam.checked) return ''
-  return exam.isRight ? 'Correct!' : 'Not quite. The right answer is highlighted in green.'
+  return exam.isRight ? t('exam.right') : t('exam.wrong')
 })
 
 function answerState(index: number): string {
@@ -23,14 +29,14 @@ function answerState(index: number): string {
 
 <template>
   <div class="card">
-    <p class="count">Question {{ exam.current + 1 }}/{{ exam.paper.length }}</p>
-    <p class="topic">Chapter {{ exam.question.chapter + 1 }} · {{ chapters[exam.question.chapter]?.title }}</p>
-    <div class="bar" role="progressbar" aria-label="Exam progress" aria-valuemin="1" :aria-valuemax="exam.paper.length" :aria-valuenow="exam.current + 1">
+    <p class="count">{{ t('exam.count', { n: exam.current + 1, total: exam.paper.length }) }}</p>
+    <p class="topic">{{ t('common.chapter', { n: exam.question.chapter + 1 }) }} · {{ chapters[exam.question.chapter]?.title }}</p>
+    <div class="bar" role="progressbar" :aria-label="t('exam.progress')" aria-valuemin="1" :aria-valuemax="exam.paper.length" :aria-valuenow="exam.current + 1">
       <span :style="{ width: `${progressPercent}%` }"></span>
     </div>
     <fieldset>
-      <legend><h1 class="question" tabindex="-1" data-page-heading>{{ exam.question.text }}</h1></legend>
-      <label v-for="(answer, index) in exam.question.answers" :key="answer" class="answer" :class="answerState(index)">
+      <legend><h1 class="question" tabindex="-1" data-page-heading>{{ exam.question.text[lang] }}</h1></legend>
+      <label v-for="(answer, index) in exam.question.answers[lang]" :key="answer" class="answer" :class="answerState(index)">
         <input type="radio" name="answer" :value="index" :checked="exam.selected === index" :disabled="exam.checked" @change="exam.select(index)" />
         <span>{{ answer }}</span>
         <FontAwesomeIcon v-if="exam.checked && index === exam.question.correct" :icon="faCircleCheck" class="answer-icon" />
@@ -40,12 +46,12 @@ function answerState(index: number): string {
     <p class="feedback" role="status">{{ feedback }}</p>
   </div>
   <div class="actions actions-split">
-    <BaseButton variant="secondary" @click="emit('leave')"><FontAwesomeIcon :icon="faCircleArrowLeft" /> Leave the exam</BaseButton>
+    <BaseButton variant="secondary" @click="emit('leave')"><FontAwesomeIcon :icon="faCircleArrowLeft" /> {{ t('exam.leave') }}</BaseButton>
     <BaseButton v-if="!exam.checked" variant="success" :disabled="exam.selected === null" @click="exam.check()">
-      Validate my answer <FontAwesomeIcon :icon="faCircleCheck" />
+      {{ t('exam.validate') }} <FontAwesomeIcon :icon="faCircleCheck" />
     </BaseButton>
     <BaseButton v-else @click="exam.next()">
-      {{ exam.isLastQuestion ? 'See my score' : 'Next question' }} <FontAwesomeIcon :icon="faCircleArrowRight" />
+      {{ exam.isLastQuestion ? t('exam.seeScore') : t('exam.next') }} <FontAwesomeIcon :icon="faCircleArrowRight" />
     </BaseButton>
   </div>
 </template>

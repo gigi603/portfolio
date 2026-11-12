@@ -1,18 +1,22 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import BaseButton from '@/shared/ui/BaseButton.vue'
 import TextField from '@/shared/ui/TextField.vue'
-import { validateProfile } from '../validation'
+import { validateProfile, type ProfileError } from '../validation'
 import type { Profile } from '@/features/auth'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const props = defineProps<{ profile: Profile; avatar: string }>()
 const emit = defineEmits<{ save: [profile: Profile] }>()
 
 const draft = reactive<Profile>({ ...props.profile })
-const error = ref('')
+const error = ref<ProfileError | null>(null)
+const errorText = computed(() => (error.value === 'name' ? t('settings.errorName') : error.value === 'email' ? t('settings.errorEmail') : ''))
 
 function submit(): void {
-  error.value = validateProfile(draft) ?? ''
+  error.value = validateProfile(draft)
   if (!error.value) emit('save', { ...draft })
 }
 </script>
@@ -27,12 +31,12 @@ function submit(): void {
       </div>
     </div>
     <div class="grid">
-      <TextField v-model.trim="draft.firstName" label="First name" autocomplete="given-name" />
-      <TextField v-model.trim="draft.lastName" label="Last name" autocomplete="family-name" />
-      <TextField v-model.trim="draft.email" class="full" label="Email" type="email" autocomplete="email" :invalid="!!error" described-by="profile-error" />
+      <TextField v-model.trim="draft.firstName" :label="t('settings.firstName')" autocomplete="given-name" />
+      <TextField v-model.trim="draft.lastName" :label="t('settings.lastName')" autocomplete="family-name" />
+      <TextField v-model.trim="draft.email" class="full" :label="t('settings.email')" type="email" autocomplete="email" :invalid="!!error" described-by="profile-error" />
     </div>
-    <p id="profile-error" class="error" role="alert">{{ error }}</p>
-    <BaseButton type="submit">Save informations</BaseButton>
+    <p id="profile-error" class="error" role="alert">{{ errorText }}</p>
+    <BaseButton type="submit">{{ t('settings.save') }}</BaseButton>
   </form>
 </template>
 

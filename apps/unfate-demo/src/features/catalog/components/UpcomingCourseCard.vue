@@ -2,6 +2,9 @@
 import BaseButton from '@/shared/ui/BaseButton.vue'
 import { faClock, faCoins } from '@/shared/icons'
 import type { UpcomingCourse } from '../data/catalog'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 defineProps<{ course: UpcomingCourse }>()
 </script>
@@ -10,12 +13,12 @@ defineProps<{ course: UpcomingCourse }>()
   <article class="upcoming" :class="{ 'is-dotted': !course.image }">
     <img v-if="course.image" :src="course.image" alt="" class="upcoming-bg" />
     <div class="upcoming-body">
-      <h2 class="upcoming-title">{{ course.title }}</h2>
-      <p>{{ course.meta }}</p>
+      <h2 class="upcoming-title">{{ t(`catalog.upcoming.${course.id}.title`) }}</h2>
+      <p>{{ t(`catalog.upcoming.${course.id}.meta`) }}</p>
       <p class="upcoming-meta"><FontAwesomeIcon :icon="faClock" /> {{ course.duration }}</p>
       <p class="upcoming-meta"><FontAwesomeIcon :icon="faCoins" /> {{ course.price }}</p>
     </div>
-    <BaseButton variant="glass" class="upcoming-badge" disabled>Coming Soon</BaseButton>
+    <BaseButton variant="glass" class="upcoming-badge" disabled>{{ t('catalog.comingSoon') }}</BaseButton>
   </article>
 </template>
 
