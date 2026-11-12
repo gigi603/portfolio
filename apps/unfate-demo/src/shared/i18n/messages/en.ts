@@ -90,6 +90,7 @@ export default {
     removed: 'Removed from your favorites',
     comingSoon: 'Coming Soon',
     lessonsCompleted: '{done}/{total} lessons completed',
+    certificateEarned: 'Certificate earned',
     examToPass: 'All lessons done · exam to pass',
     changeColor: 'Change the card colour',
     colors: { green: 'Green', blue: 'Blue', yellow: 'Yellow', purple: 'Purple', orange: 'Orange', pink: 'Pink' },

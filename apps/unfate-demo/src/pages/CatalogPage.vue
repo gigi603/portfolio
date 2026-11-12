@@ -76,6 +76,7 @@ function toggleFavorite(): void {
       :action-label="actionLabel"
       :favorite="preferences.favorite"
       :progress="banner"
+      :completed="progress.examPassed"
       @open="router.push({ name: 'course' })"
       @toggle-favorite="toggleFavorite"
     />

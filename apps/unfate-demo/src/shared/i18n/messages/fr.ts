@@ -91,6 +91,7 @@ const fr: typeof en = {
     removed: 'Retiré de vos favoris',
     comingSoon: 'Bientôt disponible',
     lessonsCompleted: '{done}/{total} leçons terminées',
+    certificateEarned: 'Certificat obtenu',
     examToPass: 'Leçons terminées · examen à réussir',
     changeColor: 'Changer la couleur de la carte',
     colors: { green: 'Vert', blue: 'Bleu', yellow: 'Jaune', purple: 'Violet', orange: 'Orange', pink: 'Rose' },

@@ -39,10 +39,13 @@ const activeName = computed(() => (['course', 'lesson', 'exam'].includes(String(
 .nav { padding: 32px 0 24px 40px; }
 .nav-logo { margin-bottom: 52px; }
 ul { display: flex; flex-direction: column; gap: 14px; }
-.nav-item { position: relative; display: flex; align-items: center; gap: 14px; padding: 12px 0; color: #8a90a6; font-weight: 600; font-size: 15px; text-decoration: none; }
-.nav-item:hover { color: var(--uf-text); }
-.nav-item.is-active { color: var(--uf-text); font-weight: 700; }
-.nav-item.is-active::after { content: ''; position: absolute; right: 0; top: 8px; bottom: 8px; width: 3px; background: var(--uf-text); border-radius: 3px; }
+/* Selected tab: light blue pill, blue icon and text, bold, plus a blue bar on the left.
+   Not selected: grey, regular. Hover: a light grey pill, clearly different from the selected one. */
+ul { gap: 6px; }
+.nav-item { position: relative; display: flex; align-items: center; gap: 14px; margin: 0 20px 0 -14px; padding: 12px 14px; border-radius: 12px; color: #8a90a6; font-weight: 500; font-size: 15px; text-decoration: none; transition: background-color .15s, color .15s; }
+.nav-item:hover { color: var(--uf-text); background: #f4f5f9; }
+.nav-item.is-active { color: var(--uf-blue-dark); background: var(--uf-blue-bg); font-weight: 700; }
+.nav-item.is-active::before { content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 4px; background: var(--uf-blue); border-radius: 0 4px 4px 0; }
 .nav-icon { width: 18px; }
 @media (max-width: 1180px) {
   .nav { padding-left: 28px; }
@@ -52,9 +55,10 @@ ul { display: flex; flex-direction: column; gap: 14px; }
   .nav-logo { display: none; }
   ul { flex-direction: row; gap: 0; }
   li { flex: 1; }
-  .nav-item { flex-direction: column; gap: 4px; padding: 10px 2px 12px; font-size: 11px; text-align: center; }
-  .nav-item.is-active { color: var(--uf-blue-dark); }
-  .nav-item.is-active::after { left: 30%; right: 30%; top: 0; bottom: auto; width: auto; height: 3px; background: var(--uf-blue); }
+  .nav-item { flex-direction: column; gap: 4px; margin: 0; padding: 10px 2px 12px; border-radius: 0; font-size: 11px; text-align: center; }
+  .nav-item:hover { background: none; }
+  .nav-item.is-active { color: var(--uf-blue-dark); background: none; }
+  .nav-item.is-active::before { left: 30%; right: 30%; top: 0; bottom: auto; width: auto; height: 3px; border-radius: 0 0 3px 3px; }
   .nav-icon { font-size: 18px; width: auto; }
 }
 </style>
