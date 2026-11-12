@@ -1,19 +1,22 @@
 <script setup lang="ts">
 import BaseButton from '@/shared/ui/BaseButton.vue'
+import { computed } from 'vue'
 import { faCircleArrowLeft, faCircleCheck, faCircleXmark, faRotateLeft } from '@/shared/icons'
-import { questions } from '../data/questions'
+import type { Question } from '../data/questions'
 
-const props = defineProps<{ answers: number[]; score: number; passed: boolean }>()
+const props = defineProps<{ paper: Question[]; answers: number[]; score: number; passed: boolean }>()
 const emit = defineEmits<{ back: []; retry: [] }>()
 
-const isRight = (index: number) => props.answers[index] === questions[index]?.correct
+const isRight = (index: number) => props.answers[index] === props.paper[index]?.correct
+const rightCount = computed(() => props.paper.filter((_, i) => isRight(i)).length)
 </script>
 
 <template>
   <div class="card">
     <h1 class="big-title" tabindex="-1" data-page-heading>My results · {{ score }}/100</h1>
+    <p class="summary">{{ rightCount }} right answers out of {{ paper.length }}.</p>
     <ol class="results">
-      <li v-for="(question, i) in questions" :key="question.text" :class="isRight(i) ? 'is-ok' : 'is-ko'">
+      <li v-for="(question, i) in paper" :key="question.text" :class="isRight(i) ? 'is-ok' : 'is-ko'">
         <FontAwesomeIcon :icon="isRight(i) ? faCircleCheck : faCircleXmark" class="icon" />
         <div>
           <p class="q">{{ question.text }}</p>
@@ -32,7 +35,8 @@ const isRight = (index: number) => props.answers[index] === questions[index]?.co
 </template>
 
 <style scoped>
-.big-title { font-size: clamp(24px, 3vw, 30px); font-weight: 800; margin-bottom: 20px; }
+.big-title { font-size: clamp(24px, 3vw, 30px); font-weight: 800; margin-bottom: 6px; }
+.summary { color: var(--uf-muted); margin-bottom: 20px; }
 .results { display: grid; gap: 12px; }
 .results li { display: flex; gap: 14px; padding: 14px 16px; border-radius: 12px; font-size: 14px; line-height: 1.6; }
 .is-ok { background: var(--uf-green-bg); }

@@ -11,7 +11,7 @@ const emit = defineEmits<{ start: []; back: [] }>()
   <div class="card intro">
     <h1 class="big-title" tabindex="-1" data-page-heading>Exam</h1>
     <img :src="confetti" alt="" class="intro-img" />
-    <p class="lead"><span class="text-blue">Congratulations!</span> You finished all the lessons and learned a lot. Now is the time to test your knowledge with an exam composed of {{ questionCount }} questions.</p>
+    <p class="lead"><span class="text-blue">Congratulations!</span> You finished all the lessons and learned a lot. Now is the time to test your knowledge with an exam composed of {{ questionCount }} questions. They cover the 5 chapters and come in a new random order each time.</p>
     <p class="lead">If you <span class="text-blue">score {{ passMark }} or above</span>, you get your <span class="text-blue">certificate</span>.</p>
   </div>
   <div class="actions actions-split">

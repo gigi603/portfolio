@@ -2,13 +2,13 @@
 import { computed } from 'vue'
 import BaseButton from '@/shared/ui/BaseButton.vue'
 import { faCircleArrowLeft, faCircleArrowRight, faCircleCheck, faCircleXmark } from '@/shared/icons'
-import { questions } from '../data/questions'
+import { chapters } from '@/features/course'
 import { useExamStore } from '../stores/exam'
 
 const emit = defineEmits<{ leave: [] }>()
 const exam = useExamStore()
 
-const progressPercent = computed(() => ((exam.current + 1) / questions.length) * 100)
+const progressPercent = computed(() => ((exam.current + 1) / exam.paper.length) * 100)
 const feedback = computed(() => {
   if (!exam.checked) return ''
   return exam.isRight ? 'Correct!' : 'Not quite. The right answer is highlighted in green.'
@@ -23,8 +23,9 @@ function answerState(index: number): string {
 
 <template>
   <div class="card">
-    <p class="count">Question {{ exam.current + 1 }}/{{ questions.length }}</p>
-    <div class="bar" role="progressbar" aria-label="Exam progress" aria-valuemin="1" :aria-valuemax="questions.length" :aria-valuenow="exam.current + 1">
+    <p class="count">Question {{ exam.current + 1 }}/{{ exam.paper.length }}</p>
+    <p class="topic">Chapter {{ exam.question.chapter + 1 }} · {{ chapters[exam.question.chapter]?.title }}</p>
+    <div class="bar" role="progressbar" aria-label="Exam progress" aria-valuemin="1" :aria-valuemax="exam.paper.length" :aria-valuenow="exam.current + 1">
       <span :style="{ width: `${progressPercent}%` }"></span>
     </div>
     <fieldset>
@@ -51,7 +52,8 @@ function answerState(index: number): string {
 
 <style scoped>
 .count { text-align: center; font-weight: 700; }
-.bar { height: 8px; max-width: 360px; margin: 16px auto 28px; background: var(--uf-green-bg); border-radius: 8px; overflow: hidden; }
+.topic { text-align: center; font-size: 13px; color: var(--uf-muted); margin-top: 4px; }
+.bar { height: 8px; max-width: 360px; margin: 14px auto 28px; background: var(--uf-green-bg); border-radius: 8px; overflow: hidden; }
 .bar span { display: block; height: 100%; background: var(--uf-green); border-radius: 8px; transition: width .3s; }
 fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 legend { padding: 0; margin-bottom: 18px; width: 100%; }

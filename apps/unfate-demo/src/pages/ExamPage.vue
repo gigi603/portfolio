@@ -30,7 +30,7 @@ watch(() => [exam.step, exam.current], () => {
     <ExamIntro v-if="exam.step === 'intro'" :question-count="questions.length" :pass-mark="PASS_MARK" @start="exam.start()" @back="router.push(lessonRoute(lessons.length - 1))" />
     <ExamQuestion v-else-if="exam.step === 'question'" @leave="exam.show('intro')" />
     <ExamScore v-else-if="exam.step === 'score'" :score="exam.score" :pass-mark="PASS_MARK" :course-title="course.title" @results="exam.show('results')" @certificate="exam.show('certificate')" @retry="exam.start()" />
-    <ExamResults v-else-if="exam.step === 'results'" :answers="exam.answers" :score="exam.score" :passed="passed" @back="exam.show('score')" @retry="exam.start()" />
+    <ExamResults v-else-if="exam.step === 'results'" :paper="exam.paper" :answers="exam.answers" :score="exam.score" :passed="passed" @back="exam.show('score')" @retry="exam.start()" />
     <template v-else>
       <CertificateCard :name="session.fullName" :course-title="course.title" :score="exam.score" :date="today" />
       <div class="actions">
