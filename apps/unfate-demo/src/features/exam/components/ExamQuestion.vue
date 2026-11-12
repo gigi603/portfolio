@@ -38,6 +38,7 @@ function answerState(index: number): string {
       <legend><h1 class="question" tabindex="-1" data-page-heading>{{ exam.question.text[lang] }}</h1></legend>
       <label v-for="(answer, index) in exam.question.answers[lang]" :key="answer" class="answer" :class="answerState(index)">
         <input type="radio" name="answer" :value="index" :checked="exam.selected === index" :disabled="exam.checked" @change="exam.select(index)" />
+        <span class="radio" aria-hidden="true"></span>
         <span>{{ answer }}</span>
         <FontAwesomeIcon v-if="exam.checked && index === exam.question.correct" :icon="faCircleCheck" class="answer-icon" />
         <FontAwesomeIcon v-else-if="exam.checked && index === exam.selected" :icon="faCircleXmark" class="answer-icon" />
@@ -67,8 +68,18 @@ legend { padding: 0; margin-bottom: 18px; width: 100%; }
 .answer { position: relative; display: flex; align-items: center; gap: 12px; padding: 20px; margin-bottom: 12px; border-radius: 10px; background: #f5f6fa; border: 2px solid transparent; cursor: pointer; font-size: 16px; letter-spacing: .3px; transition: background-color .15s, border-color .15s; }
 .answer:hover { border-color: #d6d8e7; }
 .answer input { position: absolute; opacity: 0; pointer-events: none; }
-.answer:focus-within { outline: 3px solid var(--uf-blue); outline-offset: 2px; }
-.answer.is-selected, .answer.is-right { background: var(--uf-green-bg); color: var(--uf-green-dark); font-weight: 600; border-color: var(--uf-green); }
+/* Focus ring for keyboard users only, not after a mouse click */
+.answer:has(input:focus-visible) { outline: 3px solid var(--uf-blue); outline-offset: 2px; }
+/* Radio dot: grey ring, then the same selected blue dot as the current lesson in the outline */
+.radio { flex: none; width: 20px; height: 20px; border-radius: 50%; border: 2px solid #b4b9c8; background: #fff; transition: border-color .15s; }
+/* Chosen but not validated yet: neutral (green and red only tell right or wrong after "Validate") */
+.answer.is-selected { color: var(--uf-text); font-weight: 600; border-color: var(--uf-blue); }
+.answer.is-selected .radio { border-color: var(--uf-blue); background: radial-gradient(circle, var(--uf-blue) 0 38%, #fff 44%); }
+.answer.is-right { background: var(--uf-green-bg); color: var(--uf-green-dark); font-weight: 600; border-color: var(--uf-green); }
+/* After validation the ring takes the answer's colour; only the answer the learner picked keeps its dot */
+.answer.is-right .radio, .answer.is-wrong .radio { border-color: currentColor; }
+.answer:has(input:checked) .radio { background: radial-gradient(circle, currentColor 0 38%, #fff 44%); }
+.answer.is-selected:has(input:checked) .radio { background: radial-gradient(circle, var(--uf-blue) 0 38%, #fff 44%); }
 .answer.is-wrong { background: var(--uf-red-bg); color: var(--uf-red-dark); border-color: var(--uf-red); }
 .answer-icon { margin-left: auto; font-size: 18px; }
 .feedback { min-height: 24px; font-weight: 600; margin-top: 6px; }
