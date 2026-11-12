@@ -97,12 +97,17 @@ ol { display: grid; gap: 4px; }
 .chapter { display: flex; align-items: center; gap: 10px; width: 100%; padding: 8px 6px; font: inherit; font-size: 13px; font-weight: 600; text-align: left; color: var(--uf-muted); text-decoration: none; border-radius: 8px; }
 .chapter .label { flex: 1; }
 button.chapter:hover, a.chapter:hover { background: var(--uf-blue-bg); }
+.chapter.is-done:hover { background: var(--uf-blue-bg); }
 .chapter.is-current { color: var(--uf-blue-dark); }
 .chapter.is-locked { color: var(--uf-soft); }
+/* Completed chapter (and passed exam): all green, like the completed lessons */
+.chapter { border: 1.5px solid transparent; }
+.chapter.is-done { color: var(--uf-green-dark); background: var(--uf-green-soft); border-color: var(--uf-green-border); }
+.chapter.is-done .chevron { color: var(--uf-green-dark); }
+.chapter.is-done > .num { background: var(--uf-green-dark); border-color: var(--uf-green-dark); color: #fff; }
 .chevron { font-size: 10px; color: var(--uf-muted); transition: transform .2s; }
 .chevron.is-open { transform: rotate(180deg); }
 .num { display: inline-grid; place-items: center; flex: none; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #c8cedb; font-size: 10px; font-weight: 700; }
-.is-done > .num { border-color: var(--uf-green); color: var(--uf-green-dark); }
 .is-current > .num { border-color: var(--uf-blue); }
 ul { margin: 4px 0 8px 14px; display: grid; gap: 4px; }
 .lesson { display: flex; gap: 8px; align-items: center; width: 100%; padding: 6px 8px; font-size: 12px; font-weight: 600; color: var(--uf-muted); text-decoration: none; border-radius: 8px; border: 1.5px solid transparent; transition: background-color .15s, border-color .15s; }
@@ -112,5 +117,4 @@ a.lesson:hover { background: var(--uf-blue-bg); }
 /* Completed lesson: title in the same green as its check icon, inside a light green frame */
 .lesson.is-done { color: var(--uf-green-dark); background: var(--uf-green-soft); border-color: var(--uf-green-border); }
 a.lesson.is-done:hover { background: var(--uf-blue-bg); }
-.lesson.is-done.is-current { box-shadow: inset 3px 0 0 var(--uf-green-dark); }
 </style>
