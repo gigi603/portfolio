@@ -39,16 +39,13 @@ const activeName = computed(() => (['course', 'lesson', 'exam'].includes(String(
 .nav { padding: 32px 0 24px 40px; }
 .nav-logo { margin-bottom: 52px; }
 ul { display: flex; flex-direction: column; gap: 14px; }
-/* Selected tab: original look (dark bold text, dark bar on the right edge) on a light grey pill.
+/* Selected tab: light grey pill, bold black text and icon, black bar on the left.
    Not selected: grey, regular. Hover: dark text only. */
 ul { gap: 6px; }
-.nav-item { position: relative; display: flex; align-items: center; gap: 14px; margin-left: -14px; padding: 12px 14px; color: #8a90a6; font-weight: 600; font-size: 15px; text-decoration: none; transition: background-color .15s, color .15s; }
+.nav-item { position: relative; display: flex; align-items: center; gap: 14px; margin: 0 20px 0 -14px; padding: 12px 14px; border-radius: 12px; color: #8a90a6; font-weight: 600; font-size: 15px; text-decoration: none; transition: background-color .15s, color .15s; }
 .nav-item:hover { color: var(--uf-text); }
-.nav-item.is-active { color: var(--uf-text); font-weight: 700; }
-/* Grey pill stops short of the bar, which stays on the nav's right edge as before */
-.nav-item.is-active::before { content: ''; position: absolute; inset: 0 22px 0 0; z-index: -1; background: #f0f1f5; border-radius: 12px; }
-.nav-item.is-active::after { content: ''; position: absolute; right: 0; top: 8px; bottom: 8px; width: 3px; background: var(--uf-text); border-radius: 3px; }
-.nav-item { isolation: isolate; }
+.nav-item.is-active { color: var(--uf-text); background: #f0f1f5; font-weight: 700; }
+.nav-item.is-active::after { content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 4px; background: var(--uf-text); border-radius: 0 4px 4px 0; }
 .nav-icon { width: 18px; }
 @media (max-width: 1180px) {
   .nav { padding-left: 28px; }
@@ -58,9 +55,8 @@ ul { gap: 6px; }
   .nav-logo { display: none; }
   ul { flex-direction: row; gap: 0; }
   li { flex: 1; }
-  .nav-item { flex-direction: column; gap: 4px; margin: 0; padding: 10px 2px 12px; font-size: 11px; text-align: center; }
-  .nav-item.is-active { color: var(--uf-blue-dark); }
-  .nav-item.is-active::before { display: none; }
+  .nav-item { flex-direction: column; gap: 4px; margin: 0; padding: 10px 2px 12px; border-radius: 0; font-size: 11px; text-align: center; }
+  .nav-item.is-active { color: var(--uf-blue-dark); background: none; }
   .nav-item.is-active::after { left: 30%; right: 30%; top: 0; bottom: auto; width: auto; height: 3px; background: var(--uf-blue); }
   .nav-icon { font-size: 18px; width: auto; }
 }
