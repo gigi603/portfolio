@@ -184,6 +184,8 @@ export default {
     lastName: 'Last name',
     email: 'Email',
     save: 'Save informations',
+    wallet: 'Wallet',
+    noWallet: 'No wallet connected',
     saved: 'Your information has been saved',
     errorName: 'Please fill in your first and last name.',
     errorEmail: 'Please enter a valid email address.',

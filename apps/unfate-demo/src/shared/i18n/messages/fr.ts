@@ -185,6 +185,8 @@ const fr: typeof en = {
     lastName: 'Nom',
     email: 'E-mail',
     save: 'Enregistrer',
+    wallet: 'Wallet',
+    noWallet: 'Aucun wallet connecté',
     saved: 'Vos informations ont été enregistrées',
     errorName: 'Renseignez votre prénom et votre nom.',
     errorEmail: 'Saisissez une adresse e-mail valide.',

@@ -65,7 +65,11 @@ onBeforeUnmount(() => {
     <button type="button" class="trigger" aria-haspopup="true" :aria-expanded="open" @click="open = !open">
       <img :src="alex" alt="" class="avatar" />
       <template v-if="!compact">
-        <span class="name">{{ session.fullName }}</span>
+        <span class="who">
+          <span class="name">{{ session.fullName }}</span>
+          <!-- Connected wallet shown right under the name, so it stays visible -->
+          <span v-if="session.walletConnected" class="trigger-wallet"><FontAwesomeIcon :icon="faWallet" /> {{ session.walletAddress }}</span>
+        </span>
         <FontAwesomeIcon :icon="faChevronDown" class="chevron" />
       </template>
       <span v-else class="sr-only">{{ t('account.menu') }}</span>
@@ -73,7 +77,7 @@ onBeforeUnmount(() => {
     <div v-if="open" class="menu">
       <p class="name">{{ session.fullName }}</p>
       <p class="email">{{ session.profile.email }}</p>
-      <p v-if="session.walletConnected" class="wallet"><FontAwesomeIcon :icon="faWallet" /> {{ t('account.walletConnected') }} <span>0x7a3F…92cE</span></p>
+      <p v-if="session.walletConnected" class="wallet"><FontAwesomeIcon :icon="faWallet" /> {{ t('account.walletConnected') }} <span>{{ session.walletAddress }}</span></p>
       <button type="button" class="item" @click="toggleWallet"><FontAwesomeIcon :icon="faWallet" /> {{ session.walletConnected ? t('account.disconnectWallet') : t('account.connectWallet') }}</button>
       <RouterLink :to="{ name: 'settings' }" class="item" @click="close"><FontAwesomeIcon :icon="faGear" /> {{ t('account.settings') }}</RouterLink>
       <button type="button" class="item" @click="logout"><FontAwesomeIcon :icon="faRightFromBracket" /> {{ t('account.logout') }}</button>
@@ -90,7 +94,10 @@ onBeforeUnmount(() => {
 .chevron { font-size: 13px; }
 .menu { position: absolute; z-index: 40; top: calc(100% + 10px); right: 0; width: 260px; background: #fff; border-radius: 14px; padding: 16px; box-shadow: 0 16px 40px rgb(20 20 43 / 18%); }
 .email { color: var(--uf-muted); font-size: 14px; margin: 2px 0 12px; }
-.wallet { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px; font-weight: 600; color: var(--uf-green-dark); background: var(--uf-green-bg); border-radius: 8px; padding: 8px 10px; margin-bottom: 8px; }
+/* Connected wallet: neutral box, no colour */
+.wallet { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px; font-weight: 600; color: var(--uf-text); border: 1px solid var(--uf-line); border-radius: 8px; padding: 8px 10px; margin-bottom: 8px; }
+.who { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
+.trigger-wallet { display: inline-flex; gap: 5px; align-items: center; font-size: 12px; font-weight: 500; color: var(--uf-muted); }
 .wallet span { color: var(--uf-muted); font-weight: 500; }
 .item { display: flex; gap: 10px; align-items: center; width: 100%; padding: 10px 8px; border-radius: 8px; font-size: 14px; font-weight: 600; text-align: left; text-decoration: none; }
 .item:hover { background: var(--uf-field); }

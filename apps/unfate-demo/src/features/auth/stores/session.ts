@@ -19,6 +19,8 @@ const defaultProfile = (): Profile => ({ firstName: 'Alex', lastName: 'Jones', e
 export const useSessionStore = defineStore('session', () => {
   const loggedIn = ref(false)
   const walletConnected = ref(false)
+  /** Demo wallet address, shortened like wallets show it */
+  const walletAddress = '0x7a3F…92cE'
   const profile = ref<Profile>(defaultProfile())
 
   const fullName = computed(() => `${profile.value.firstName} ${profile.value.lastName}`.trim())
@@ -56,5 +58,5 @@ export const useSessionStore = defineStore('session', () => {
     profile.value = defaultProfile()
   }
 
-  return { loggedIn, walletConnected, profile, fullName, login, loginWith, logout, toggleWallet, updateProfile, reset }
+  return { loggedIn, walletConnected, walletAddress, profile, fullName, login, loginWith, logout, toggleWallet, updateProfile, reset }
 })
