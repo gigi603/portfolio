@@ -1,0 +1,57 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import UnfateLogo from '@/shared/ui/UnfateLogo.vue'
+import { faCircleCheck, faFolderOpen, faGear, faLayerGroup, faStar } from '@/shared/icons'
+
+const route = useRoute()
+
+const items = [
+  { name: 'catalog', label: 'All courses', icon: faLayerGroup },
+  { name: 'ongoing', label: 'Ongoing', icon: faFolderOpen },
+  { name: 'favorites', label: 'Favorites', icon: faStar },
+  { name: 'completed', label: 'Completed', icon: faCircleCheck },
+  { name: 'settings', label: 'Settings', icon: faGear },
+] as const
+
+// Course, lesson and exam pages belong to "All courses"
+const activeName = computed(() => (['course', 'lesson', 'exam'].includes(String(route.name)) ? 'catalog' : route.name))
+</script>
+
+<template>
+  <nav class="nav" aria-label="Main">
+    <UnfateLogo class="nav-logo" />
+    <ul>
+      <li v-for="item in items" :key="item.name">
+        <RouterLink :to="{ name: item.name }" class="nav-item" :class="{ 'is-active': activeName === item.name }" :aria-current="activeName === item.name ? 'page' : undefined">
+          <FontAwesomeIcon :icon="item.icon" class="nav-icon" />
+          <span>{{ item.label }}</span>
+        </RouterLink>
+      </li>
+    </ul>
+  </nav>
+</template>
+
+<style scoped>
+.nav { padding: 32px 0 24px 40px; }
+.nav-logo { margin-bottom: 52px; }
+ul { display: flex; flex-direction: column; gap: 14px; }
+.nav-item { position: relative; display: flex; align-items: center; gap: 14px; padding: 12px 0; color: #8a90a6; font-weight: 600; font-size: 15px; text-decoration: none; }
+.nav-item:hover { color: var(--uf-text); }
+.nav-item.is-active { color: var(--uf-text); font-weight: 700; }
+.nav-item.is-active::after { content: ''; position: absolute; right: 0; top: 8px; bottom: 8px; width: 3px; background: var(--uf-text); border-radius: 3px; }
+.nav-icon { width: 18px; }
+@media (max-width: 1180px) {
+  .nav { padding-left: 28px; }
+}
+@media (max-width: 760px) {
+  .nav { grid-row: 2; padding: 0; background: #fff; border-top: 1px solid var(--uf-line); }
+  .nav-logo { display: none; }
+  ul { flex-direction: row; gap: 0; }
+  li { flex: 1; }
+  .nav-item { flex-direction: column; gap: 4px; padding: 10px 2px 12px; font-size: 11px; text-align: center; }
+  .nav-item.is-active { color: var(--uf-blue-dark); }
+  .nav-item.is-active::after { left: 30%; right: 30%; top: 0; bottom: auto; width: auto; height: 3px; background: var(--uf-blue); }
+  .nav-icon { font-size: 18px; width: auto; }
+}
+</style>

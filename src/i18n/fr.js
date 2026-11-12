@@ -145,6 +145,15 @@ export default {
     "similarText": "Parlons de votre site lors d'un premier appel gratuit de 30 minutes.",
     "similarCta": "Réserver un appel"
   },
+  "demo": {
+    "kicker": "Démo interactive",
+    "title": "Essayer Unfate",
+    "frameTitle": "Démo interactive de {name}",
+    "videoLabel": "Vidéo de la démo de {name} : connexion, leçon, progression et examen",
+    "open": "Ouvrir la démo en plein écran",
+    "download": "Télécharger la vidéo",
+    "disclaimer": "Démo recréée en code à partir de la maquette V2. Elle tourne dans votre navigateur, sans serveur ni vrai compte : rien n'est enregistré et tout repart à zéro quand vous rechargez la page. L'application est en anglais, comme le produit."
+  },
   "projects": {
     "1": {
       "label": "Projet client",
@@ -205,6 +214,12 @@ export default {
       }
     },
     "4": {
+      "demo": {
+        "text": "J'ai fait coder par Claude une version qui fonctionne de la V2, à partir de ma maquette Figma. J'ai dirigé chaque écran et je l'ai vérifiée sur ordinateur et sur téléphone. Vous pouvez vous connecter, suivre les leçons, voir votre progression avancer et passer l'examen.",
+        "step1": "Connectez-vous avec « Fill in for me »",
+        "step2": "Lisez une leçon et marquez-la terminée",
+        "step3": "Passez l'examen de 10 questions"
+      },
       "label": "Projet client · V2 personnelle",
       "hook": "Une plateforme de cours en ligne qui relie un professeur à ses élèves, une entreprise à ses salariés ou un expert à tout particulier qui veut apprendre.",
       "tagline": "Une plateforme où professeurs et entreprises publient leurs cours, et sa V2 reconstruite sur un design system",

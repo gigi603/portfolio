@@ -1,0 +1,61 @@
+/* Unfate design tokens (from the V2 Figma variables) and base styles */
+:root {
+  --uf-text: #14142b;
+  --uf-muted: #5f6283;
+  --uf-soft: #a0a3bd;
+  --uf-line: #e4e6ef;
+  --uf-bg: #eff0f6;
+  --uf-field: #f4f5f9;
+  --uf-blue: #1e96fc;
+  --uf-blue-dark: #0b6fd0;
+  --uf-blue-bg: #e3f1ff;
+  --uf-green: #3ccf8e;
+  --uf-green-strong: #1f9d66;
+  --uf-green-dark: #18804f;
+  --uf-green-bg: #e3f8ee;
+  --uf-red: #e5484d;
+  --uf-red-dark: #b1242a;
+  --uf-red-bg: #fdecec;
+  --uf-yellow-bg: #fff6dc;
+  --uf-radius: 16px;
+  --uf-shadow: 0 6px 20px rgb(20 20 43 / 4%);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body, #app { height: 100%; margin: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--uf-text);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, p, figure { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+img { display: block; max-width: 100%; }
+button, input { font: inherit; color: inherit; }
+button { background: none; border: 0; padding: 0; cursor: pointer; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--uf-blue); outline-offset: 2px; border-radius: 6px; }
+[tabindex='-1']:focus { outline: none; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.card { background: #fff; border-radius: var(--uf-radius); padding: clamp(20px, 3.4vw, 34px); box-shadow: var(--uf-shadow); }
+.page { max-width: 820px; }
+.page-title { font-size: 18px; font-weight: 700; margin-bottom: 22px; }
+.actions { display: flex; justify-content: center; gap: 16px; margin-top: 24px; flex-wrap: wrap; }
+.actions-split { justify-content: space-between; }
+.actions-split > * { flex: 1 1 220px; max-width: 280px; }
+.back-link { display: inline-flex; align-items: center; gap: 12px; font-weight: 700; font-size: 16px; margin-bottom: 20px; min-height: 32px; text-decoration: none; }
+.back-link svg { color: var(--uf-soft); }
+.text-blue { color: var(--uf-blue-dark); }
+.text-green { color: var(--uf-green-dark); }
+.text-soft { color: var(--uf-soft); }
+
+@media (max-width: 760px) {
+  .actions-split { flex-direction: column-reverse; align-items: stretch; }
+  .actions-split > * { max-width: none; flex: 1 1 auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}

@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build": "npm run build:demo && vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "build:demo": "npm --prefix apps/unfate-demo ci && npm --prefix apps/unfate-demo run build",
+    "test:demo": "npm --prefix apps/unfate-demo test"
   },
   "dependencies": {
     "@achrinza/node-ipc": "^10.1.9",

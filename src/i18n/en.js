@@ -145,6 +145,15 @@ export default {
     "similarText": "Let's talk about your site in a free 30-minute call.",
     "similarCta": "Book a call"
   },
+  "demo": {
+    "kicker": "Interactive demo",
+    "title": "Try Unfate",
+    "frameTitle": "Interactive demo of {name}",
+    "videoLabel": "Video of the {name} demo: log in, lesson, progress and exam",
+    "open": "Open the demo full screen",
+    "download": "Download the video",
+    "disclaimer": "A demo rebuilt in code from the V2 design. It runs in your browser with no server and no real account: nothing is saved, and everything resets when you reload the page."
+  },
   "projects": {
     "1": {
       "label": "Client project",
@@ -205,6 +214,12 @@ export default {
       }
     },
     "4": {
+      "demo": {
+        "text": "I had Claude code a working version of the V2 from my Figma design. I directed every screen and checked it on desktop and on mobile. You can log in, follow the lessons, watch your progress move and take the exam.",
+        "step1": "Log in with “Fill in for me”",
+        "step2": "Read a lesson and mark it as completed",
+        "step3": "Take the 10-question exam"
+      },
       "label": "Client project · personal V2",
       "hook": "An online learning platform that connects a teacher with their students, a company with its employees, or an expert with anyone who wants to learn.",
       "tagline": "A platform where teachers and companies publish their courses, and its V2 rebuilt on a design system",

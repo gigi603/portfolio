@@ -20,5 +20,15 @@
       "destination": "/projects",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/demo/unfate/(.*)",
+      "destination": "/demo/unfate/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }

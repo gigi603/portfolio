@@ -115,6 +115,31 @@
                 </div>
               </div>
             </section>
+        <!-- Coded demo of the product (Unfate): live window on large screens, video + full-screen button everywhere -->
+        <section v-if="project.demo" class="demo" id="section-demo" aria-labelledby="demo-title">
+          <div class="demo-head">
+            <p class="demo-kicker">{{ $t('demo.kicker') }}</p>
+            <h3 id="demo-title">{{ $t('demo.title') }}</h3>
+            <p class="demo-text">{{ $t(`projects.${project.id}.demo.text`) }}</p>
+            <ul class="demo-steps">
+              <li v-for="n in 3" :key="n"><span>{{ n }}</span>{{ $t(`projects.${project.id}.demo.step${n}`) }}</li>
+            </ul>
+          </div>
+          <div class="demo-window">
+            <div class="demo-window-bar" aria-hidden="true"><i></i><i></i><i></i><span>{{ domain('https://gilbert-trinidad.com') }}{{ project.demo.path }}</span></div>
+            <div class="demo-screen">
+              <iframe v-if="showLiveDemo" :src="`${project.demo.path}?embed=1`" :title="$t('demo.frameTitle', { name: project.name })" loading="lazy" class="demo-frame"></iframe>
+              <video v-else :key="demoVideo(project).src" class="demo-video" :class="{ 'demo-video-phone': isPhone }" :poster="demoVideo(project).poster" autoplay muted loop playsinline preload="metadata" :aria-label="$t('demo.videoLabel', { name: project.name })">
+                <source :src="demoVideo(project).src" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="demo-actions">
+            <a :href="project.demo.path" class="case-btn demo-btn">{{ $t('demo.open') }}</a>
+            <a :href="demoVideo(project).src" download class="demo-link">{{ $t('demo.download') }}</a>
+          </div>
+          <p class="demo-disclaimer">{{ $t('demo.disclaimer') }}</p>
+        </section>
         <section class="case-end">
           <div class="case-contact">
             <b>{{ $t('case.contactTitle') }}</b>
@@ -168,6 +193,9 @@
         bookingUrl: BOOKING_URL,
         activeSection: null,
         scrollFrame: null,
+        // Live demo window only on large screens with a mouse; phones get the video
+        showLiveDemo: false,
+        isPhone: false,
       }
     },
     computed: {
@@ -193,19 +221,28 @@
     mounted() {
       window.addEventListener('scroll', this.onScroll, { passive: true })
       this.$nextTick(this.updateActiveSection)
+      this.showLiveDemo = window.matchMedia('(min-width: 1024px) and (pointer: fine)').matches
+      this.isPhone = window.matchMedia('(max-width: 640px)').matches
     },
     beforeDestroy() {
       window.removeEventListener('scroll', this.onScroll)
       cancelAnimationFrame(this.scrollFrame)
     },
     methods: {
+      // Phones get the vertical recording, other screens the desktop one
+      demoVideo(project) {
+        return this.isPhone
+          ? { src: project.demo.videoMobile, poster: project.demo.posterMobile }
+          : { src: project.demo.video, poster: project.demo.poster }
+      },
       nextProject(project) {
         const i = projects.findIndex(p => p.id === project.id)
         return projects[(i + 1) % projects.length]
       },
       tocItems(project) {
         const items = project.sections.map(section => ({ id: `section-${section}`, label: this.$t(`case.sections.${section}`) }))
-        return items.concat({ id: 'section-screens', label: this.$t('gallery.title') })
+        const all = items.concat({ id: 'section-screens', label: this.$t('gallery.title') })
+        return project.demo ? all.concat({ id: 'section-demo', label: this.$t('demo.title') }) : all
       },
       scrollToSection(id) {
         const el = document.getElementById(id)
@@ -849,6 +886,150 @@
     .evo-shot:hover,
     .evo-shot:focus-visible {
       transform: none;
+    }
+  }
+
+  /* Coded demo section (Unfate) */
+  .demo {
+    padding: 40px 0 56px;
+  }
+  .demo-head {
+    max-width: 760px;
+    margin-bottom: 28px;
+  }
+  .demo-kicker {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    background: #f6efff;
+    color: #7d26b9;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .demo-head h3 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+  .demo-text {
+    color: #383a3c;
+    line-height: 1.75;
+  }
+  .demo-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    margin-top: 18px;
+    font-size: 14px;
+    color: #383a3c;
+  }
+  .demo-steps li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .demo-steps span {
+    display: inline-grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #9535d7;
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .demo-window {
+    border-radius: 24px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 24px 60px rgba(61, 22, 87, 0.16);
+    border: 1px solid #eadcf8;
+  }
+  .demo-window-bar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 12px 16px;
+    background: #f6efff;
+  }
+  .demo-window-bar i {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #d9c4ef;
+  }
+  .demo-window-bar span {
+    margin-left: 12px;
+    padding: 4px 14px;
+    border-radius: 9999px;
+    background: #fff;
+    font-size: 12px;
+    color: #6b6b6b;
+  }
+  .demo-screen {
+    position: relative;
+    background: #eff0f6;
+  }
+  .demo-frame {
+    display: block;
+    width: 100%;
+    height: min(780px, 80vh);
+    border: 0;
+  }
+  .demo-video {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+  .demo-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 24px;
+    margin-top: 24px;
+  }
+  .demo-btn {
+    background: #9535d7;
+    color: #fff;
+  }
+  .demo-btn:hover {
+    background: #7d26b9;
+  }
+  .demo-link {
+    color: #7d26b9;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .demo-disclaimer {
+    margin-top: 14px;
+    font-size: 13px;
+    color: #6b6b6b;
+    max-width: 760px;
+    line-height: 1.6;
+  }
+  @media (max-width: 640px) {
+    .demo-head h3 {
+      font-size: 24px;
+    }
+    .demo-window {
+      border-radius: 18px;
+    }
+    .demo-video-phone {
+      aspect-ratio: 9 / 19.5;
+      max-height: 75vh;
+      object-fit: contain;
+      background: #eff0f6;
+    }
+    .demo-actions .demo-btn {
+      width: 100%;
+      justify-content: center;
     }
   }
 </style>
