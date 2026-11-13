@@ -22,7 +22,6 @@ const fr: typeof en = {
   },
   login: {
     title: 'Connexion',
-    subtitle: 'Reprenez vos leçons de DeFi là où vous les avez laissées.',
     google: 'Continuer avec Google',
     wallet: 'Continuer avec un wallet',
     divider: 'ou avec votre e-mail',

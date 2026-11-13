@@ -21,7 +21,6 @@ export default {
   },
   login: {
     title: 'Log in',
-    subtitle: 'Pick up your DeFi lessons where you left off.',
     google: 'Continue with Google',
     wallet: 'Continue with a wallet',
     divider: 'or with your email',

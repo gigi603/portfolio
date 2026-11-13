@@ -44,7 +44,6 @@ function notInDemo(feature: string): void {
 <template>
   <form class="login-form" novalidate @submit.prevent="submit">
     <h1 class="title" tabindex="-1" data-page-heading>{{ t('login.title') }}</h1>
-    <p class="subtitle">{{ t('login.subtitle') }}</p>
 
     <div class="providers">
       <BaseButton variant="outline" block @click="loginWith('google')">
@@ -78,8 +77,7 @@ function notInDemo(feature: string): void {
 
 <style scoped>
 .login-form { max-width: 360px; width: 100%; }
-.title { font-size: 28px; font-weight: 800; }
-.subtitle { color: var(--uf-muted); font-size: 15px; margin: 6px 0 20px; line-height: 1.5; }
+.title { font-size: 28px; font-weight: 800; margin-bottom: 20px; }
 .providers { display: grid; gap: 12px; }
 .divider { display: flex; align-items: center; gap: 12px; color: var(--uf-muted); font-size: 13px; margin: 16px 0 4px; }
 .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #d6d8e7; }
