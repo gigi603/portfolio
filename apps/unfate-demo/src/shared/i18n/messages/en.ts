@@ -82,7 +82,8 @@ export default {
     emptyState: {
       ongoing: { title: 'No course in progress', text: 'Start a course and it will show here, so you can pick up where you left off.' },
       favorites: { title: 'No favorites yet', text: 'Tap the star on a course to keep it here.' },
-      completed: { title: 'No completed course yet', text: 'Pass a course exam to find it here, with your certificate.' },
+      completed: { title: 'No completed course yet', text: 'Your certificate will show here once you pass the exam.' },
+      yourCourse: 'Your course',
       suggestion: 'A good place to start',
     },
     noMatch: 'No course matches “{query}”.',

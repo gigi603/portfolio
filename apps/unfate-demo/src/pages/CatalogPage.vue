@@ -67,7 +67,10 @@ function toggleFavorite(): void {
       :filter="filter"
       :course="{ title: course.title, image: course.image, meta: t('catalog.meta', { n: lessons.length, level: course.level }) }"
       :action-label="actionLabel"
-      @open="router.push({ name: 'course' })"
+      :lessons-done="progress.lessonsDone"
+      :total="lessons.length"
+      @open="filter === 'completed' && progress.started ? continueCourse() : router.push({ name: 'course' })"
+      @favorite="toggleFavorite"
     />
     <p v-else-if="isEmpty" class="empty">{{ emptyMessage }}</p>
 
