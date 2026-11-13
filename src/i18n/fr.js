@@ -256,20 +256,26 @@ export default {
         "login": {
           "title": "Connexion"
         },
-        "settings": {
-          "title": "Paramètres"
+        "catalog": {
+          "title": "Tous les cours"
         },
-        "practice": {
-          "title": "Entraînement"
+        "course": {
+          "title": "Page du cours"
         },
-        "examInstructions": {
-          "title": "Consignes d'examen"
+        "lesson": {
+          "title": "Leçon terminée"
         },
-        "nextQuestion": {
-          "title": "Question suivante"
+        "examIntro": {
+          "title": "Introduction de l'examen"
         },
-        "examPassed": {
-          "title": "Examen réussi"
+        "question": {
+          "title": "Question corrigée"
+        },
+        "score": {
+          "title": "Score de l'examen"
+        },
+        "certificate": {
+          "title": "Certificat"
         }
       }
     }

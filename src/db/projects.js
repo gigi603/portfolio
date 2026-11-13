@@ -28,12 +28,15 @@ const projects = [
     },
     img:require("@/assets/images/projects/vignette-unfate.webp"),
     images: [
-      { key: 'login', src:require("@/assets/images/projects/Login.svg") },
-      { key: 'settings', src:require("@/assets/images/projects/Settings.svg") },
-      { key: 'practice', src:require("@/assets/images/projects/Practice.svg") },
-      { key: 'examInstructions', src:require("@/assets/images/projects/Exam_Instruction.svg") },
-      { key: 'nextQuestion', src:require("@/assets/images/projects/Exam_next_question.svg") },
-      { key: 'examPassed', src:require("@/assets/images/projects/Exam_Success.svg") },
+      // V2 screens, captured from the coded demo
+      { key: 'login', src:require("@/assets/images/projects/unfate/gallery/connexion.webp") },
+      { key: 'catalog', src:require("@/assets/images/projects/unfate/gallery/catalogue.webp") },
+      { key: 'course', src:require("@/assets/images/projects/unfate/gallery/cours.webp") },
+      { key: 'lesson', src:require("@/assets/images/projects/unfate/gallery/lecon.webp") },
+      { key: 'examIntro', src:require("@/assets/images/projects/unfate/gallery/intro-examen.webp") },
+      { key: 'question', src:require("@/assets/images/projects/unfate/gallery/question.webp") },
+      { key: 'score', src:require("@/assets/images/projects/unfate/gallery/score.webp") },
+      { key: 'certificate', src:require("@/assets/images/projects/unfate/gallery/certificat.webp") },
     ],
   },
   { 
