@@ -49,14 +49,14 @@ const icon = computed(() => ({ ongoing: faFolderOpen, favorites: faStar, complet
       </div>
     </div>
     <div v-else class="suggestion">
-      <p class="eyebrow">{{ t('catalog.emptyState.suggestion') }}</p>
+      <p class="eyebrow">{{ t(filter === 'favorites' ? 'catalog.emptyState.toFavorite' : 'catalog.emptyState.suggestion') }}</p>
       <div v-if="filter === 'favorites'" class="pick is-static">
         <img :src="course.image" alt="" class="thumb" />
         <span class="pick-text">
           <span class="pick-title">{{ course.title }}</span>
           <span class="pick-meta">{{ course.meta }}</span>
         </span>
-        <button type="button" class="pick-star" @click="emit('favorite')"><FontAwesomeIcon :icon="faStarOutline" /> {{ t('catalog.addFavorite') }}</button>
+        <button type="button" class="pick-star" :aria-label="t('catalog.addFavorite')" :title="t('catalog.addFavorite')" @click="emit('favorite')"><FontAwesomeIcon :icon="faStarOutline" /></button>
       </div>
       <button v-else type="button" class="pick" @click="emit('open')">
         <img :src="course.image" alt="" class="thumb" />
@@ -87,9 +87,10 @@ const icon = computed(() => ({ ongoing: faFolderOpen, favorites: faStar, complet
 .pick-go { flex: none; display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 10px; background: var(--uf-blue); color: #fff; font-weight: 700; font-size: 14px; box-shadow: 0 8px 20px rgb(30 150 252 / 28%); }
 /* Favorites: the row itself is not a link, the star button is the action */
 .pick.is-static:hover { border-color: var(--uf-line); background: var(--uf-field); }
-.pick-star { flex: none; display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 10px; background: #fff; border: 1.5px solid var(--uf-yellow, #f5b800); color: var(--uf-text); font-weight: 700; font-size: 14px; transition: background-color .15s; }
-.pick-star svg { color: #f5b800; }
-.pick-star:hover { background: var(--uf-yellow-bg); }
+.pick.is-static { flex-wrap: nowrap; }
+/* Star only, like the star on the course card: a 44px round target, outline until the course is added */
+.pick-star { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 1.5px solid #f5d36b; color: #f5b800; font-size: 20px; transition: background-color .15s, border-color .15s; }
+.pick-star:hover { background: var(--uf-yellow-bg); border-color: #f5b800; }
 /* Completed: locked certificate preview + where the learner stands */
 .reward { display: flex; gap: 28px; align-items: center; }
 .cert { flex: none; width: 240px; border-radius: 14px; overflow: hidden; background: #fff; border: 1px solid var(--uf-line); box-shadow: 0 10px 24px rgb(20 20 43 / 8%); }

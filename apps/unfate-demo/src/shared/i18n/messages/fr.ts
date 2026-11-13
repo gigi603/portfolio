@@ -85,6 +85,7 @@ const fr: typeof en = {
       favorites: { title: 'Pas encore de favori', text: 'Touchez l’étoile d’un cours pour le garder ici.' },
       completed: { title: 'Aucun cours terminé', text: 'Votre certificat apparaîtra ici dès que vous aurez réussi l’examen.' },
       yourCourse: 'Votre cours',
+      toFavorite: 'Mettre en favoris',
       suggestion: 'Pour bien commencer',
     },
     noMatch: 'Aucun cours ne correspond à « {query} ».',

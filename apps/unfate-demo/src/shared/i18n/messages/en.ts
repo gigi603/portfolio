@@ -84,6 +84,7 @@ export default {
       favorites: { title: 'No favorites yet', text: 'Tap the star on a course to keep it here.' },
       completed: { title: 'No completed course yet', text: 'Your certificate will show here once you pass the exam.' },
       yourCourse: 'Your course',
+      toFavorite: 'Add to favorites',
       suggestion: 'A good place to start',
     },
     noMatch: 'No course matches “{query}”.',
