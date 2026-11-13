@@ -3,7 +3,7 @@
     <NotFoundComponent v-if="!currentProject"/>
     <template v-for="project in projects">
       <article v-if="project.id == $route.params.id" :key="project.id" class="project-page">
-        <h1 class="project-back"><button @click="$router.go(-1)" class="mr-2" :aria-label="$t('case.back')"><font-awesome-icon icon="fa-solid fa-chevron-left" color="#000" size="sm" /></button> {{ project.name }}</h1>
+        <h1 class="project-back"><router-link to="/" class="mr-2" :aria-label="$t('case.back')"><font-awesome-icon icon="fa-solid fa-chevron-left" color="#000" size="sm" /></router-link> {{ project.name }}</h1>
         <!-- Projects with a coded demo: intro then demo first, the case study follows -->
         <template v-if="project.demo">
           <p class="project-label">{{ $t(`projects.${project.id}.label`) }}</p>

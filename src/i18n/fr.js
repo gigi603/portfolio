@@ -134,7 +134,7 @@ export default {
     },
     "evoBefore": "V1",
     "evoAfter": "V2",
-    "back": "Retour",
+    "back": "Retour à l'accueil",
     "atAGlance": "En bref",
     "clientLabel": "Client",
     "roleLabel": "Rôle",

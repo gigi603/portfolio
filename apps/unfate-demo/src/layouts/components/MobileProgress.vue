@@ -7,7 +7,7 @@ import { useI18n } from 'vue-i18n'
 
 // Progress on tablets and phones, where the right panel is hidden.
 // Lesson and exam: a compact strip (steps done + segments) that opens the full outline in a bottom sheet.
-// The course page already lists the chapters, and the catalogue and settings pages show the progress card
+// The course page already lists the chapters, and the catalogue pages show the progress card
 // under their title, so the strip is only added on lessons and the exam.
 const { t } = useI18n()
 const route = useRoute()
