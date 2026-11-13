@@ -15,19 +15,29 @@ const dashOffset = computed(() => RING_LENGTH - (RING_LENGTH * props.score) / 10
 </script>
 
 <template>
-  <div class="card score-card">
+  <div class="card score-card" :class="passed ? 'is-pass' : 'is-fail'">
     <h1 class="big-title" tabindex="-1" data-page-heading>{{ t('exam.scoreTitle') }}</h1>
     <div class="score">
       <div class="ring-wrap">
         <svg viewBox="0 0 120 120" class="ring" aria-hidden="true">
           <circle cx="60" cy="60" r="52" class="ring-bg" />
-          <circle cx="60" cy="60" r="52" class="ring-fg" :class="{ 'is-fail': !passed }" :style="{ strokeDashoffset: dashOffset }" />
+          <circle cx="60" cy="60" r="52" class="ring-fg" :style="{ strokeDashoffset: dashOffset }" />
         </svg>
         <p class="ring-value" aria-hidden="true">{{ score }}</p>
       </div>
-      <p class="message" :class="{ 'is-fail': !passed }">
-        <template v-if="passed"><b>{{ t('exam.congrats') }}</b> {{ t('exam.passed', { score }) }}</template>
-        <template v-else><b>{{ t('exam.almost') }}</b> {{ t('exam.failed', { score, mark: passMark }) }}</template>
+      <!-- The score in the sentence takes the gauge colour: green when passed, amber when not -->
+      <p class="message">
+        <template v-if="passed">
+          <b>{{ t('exam.congrats') }}</b>{{ ' ' }}
+          <i18n-t keypath="exam.passed" tag="span" scope="global"><template #score><strong class="score-num">{{ score }}</strong></template></i18n-t>
+        </template>
+        <template v-else>
+          <b>{{ t('exam.almost') }}</b>{{ ' ' }}
+          <i18n-t keypath="exam.failed" tag="span" scope="global">
+            <template #score><strong class="score-num">{{ score }}</strong></template>
+            <template #mark>{{ passMark }}</template>
+          </i18n-t>
+        </template>
       </p>
     </div>
     <p class="lead">
@@ -49,12 +59,15 @@ const dashOffset = computed(() => RING_LENGTH - (RING_LENGTH * props.score) / 10
 .ring { width: 170px; height: 170px; transform: rotate(-90deg); }
 .ring circle { fill: none; stroke-width: 12; }
 .ring-bg { stroke: #f0f1f6; }
-.ring-fg { stroke: var(--uf-green); stroke-linecap: round; stroke-dasharray: 327; transition: stroke-dashoffset .8s ease; }
-.ring-fg.is-fail { stroke: #f59e0b; }
-.ring-value { position: absolute; inset: 0; display: grid; place-items: center; font-size: 46px; font-weight: 800; }
+/* One colour for the gauge, the number inside it and the score in the sentence (contrast ≥ 3:1 for large text) */
+.is-pass { --score-color: var(--uf-green-strong); }
+.is-fail { --score-color: #d97706; }
+.ring-fg { stroke: var(--score-color); stroke-linecap: round; stroke-dasharray: 327; transition: stroke-dashoffset .8s ease; }
+.ring-value { position: absolute; inset: 0; display: grid; place-items: center; font-size: 46px; font-weight: 800; color: var(--score-color); }
 .message { font-size: 22px; line-height: 1.35; color: var(--uf-muted); font-weight: 600; }
 .message b { color: var(--uf-green-dark); }
-.message.is-fail b { color: #a35f00; }
+.is-fail .message b { color: #a35f00; }
+.score-num { color: var(--score-color); font-weight: 800; }
 .lead { text-align: left; margin-top: 16px; font-size: 17px; line-height: 1.75; }
 @media (max-width: 760px) {
   .score { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 16px; }
