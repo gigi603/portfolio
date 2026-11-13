@@ -243,6 +243,10 @@ export default {
           "title": "Leçon",
           "caption": "En V1, chaque leçon était une longue page et le plan à droite ne montrait que six étapes. En V2, le cours est découpé en chapitres de deux ou trois leçons : le plan s'ouvre chapitre par chapitre, la leçon en cours est en bleu et passe au vert une fois terminée."
         },
+        "quiz": {
+          "title": "Quiz",
+          "caption": "En V1, l'examen comptait 10 questions et la réponse choisie se colorait en vert avant même d'être validée. En V2, il y a 50 questions dans un ordre aléatoire, le chapitre concerné est indiqué, et la correction s'affiche dès qu'on valide : la mauvaise réponse en rouge, la bonne en vert."
+        },
         "certificate": {
           "title": "Certificat",
           "caption": "En V1, le certificat était un long texte avec une liste de compétences. En V2, il tient sur une carte : le nom de l'apprenant, le cours, la date, le score et un numéro de certificat, sur un bandeau aux couleurs du cours."

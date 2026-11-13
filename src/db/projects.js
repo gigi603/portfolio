@@ -20,6 +20,7 @@ const projects = [
     evolution: {
       pairs: [
         { key: 'lesson', before: require("@/assets/images/projects/unfate/v1-lecon.webp"), after: require("@/assets/images/projects/unfate/v2-lecon.webp") },
+        { key: 'quiz', before: require("@/assets/images/projects/unfate/v1-quiz.webp"), after: require("@/assets/images/projects/unfate/v2-quiz.webp") },
         { key: 'certificate', before: require("@/assets/images/projects/unfate/v1-certificat.webp"), after: require("@/assets/images/projects/unfate/v2-certificat.webp") },
       ],
       extras: [

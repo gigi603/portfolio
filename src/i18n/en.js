@@ -243,6 +243,10 @@ export default {
           "title": "Lesson",
           "caption": "In the V1, each lesson was one long page and the outline on the right only showed six steps. In the V2, the course is split into chapters of two or three lessons: the outline opens chapter by chapter, the current lesson is blue and turns green once completed."
         },
+        "quiz": {
+          "title": "Quiz",
+          "caption": "In the V1, the exam had 10 questions and the chosen answer turned green before it was even validated. In the V2, there are 50 questions in random order, the related chapter is shown, and the correction appears as soon as you validate: the wrong answer in red, the right one in green."
+        },
         "certificate": {
           "title": "Certificate",
           "caption": "In the V1, the certificate was a long text with a list of skills. In the V2, it fits on one card: the learner's name, the course, the date, the score and a certificate number, on a band in the course's colours."
