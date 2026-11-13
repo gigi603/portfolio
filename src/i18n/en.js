@@ -223,7 +223,7 @@ export default {
       },
       "label": "Client project · personal V2",
       "hook": "An online learning platform that connects a teacher with their students, a company with its employees, or an expert with anyone who wants to learn.",
-      "tagline": "A platform where teachers and companies publish their courses, and its V2 rebuilt on a design system",
+      "tagline": "Online courses for anyone who wants to learn",
       "result": "V1 designed with the founder; V2: 64 screens moved onto a design system, 33 screens added",
       "client": "Unfate's founder, who started the project",
       "role": "Product design in Figma: moodboard, mockups and prototype; V2 on my own initiative",
