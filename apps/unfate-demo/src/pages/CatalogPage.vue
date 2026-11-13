@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { CourseCard, ProgressCard, UpcomingCourseCard, upcomingCourses, usePreferencesStore, type CatalogFilter } from '@/features/catalog'
+import { CourseCard, EmptyCatalog, ProgressCard, UpcomingCourseCard, upcomingCourses, usePreferencesStore, type CatalogFilter } from '@/features/catalog'
 import { useCourse, useProgressStore } from '@/features/course'
 import { useToast } from '@/shared/composables/useToast'
 import { useContinueCourse } from '@/shared/composables/useContinueCourse'
@@ -34,7 +34,7 @@ const showMainCourse = computed(() => {
 })
 const visibleUpcoming = computed(() => (props.filter === 'all' ? upcomingCourses.filter(c => matches(t(`catalog.upcoming.${c.id}.title`))) : []))
 const isEmpty = computed(() => !showMainCourse.value && visibleUpcoming.value.length === 0)
-const emptyMessage = computed(() => (query.value ? t('catalog.noMatch', { query: preferences.search.trim() }) : t(`catalog.empty.${props.filter}`)))
+const emptyMessage = computed(() => (query.value ? t('catalog.noMatch', { query: preferences.search.trim() }) : t('catalog.empty.all')))
 const { banner, examProgress, actionLabel: courseAction } = useCourseStatus()
 // Not started: "Get Started" (catalog wording); then the same label as the course page (continue, take or resume the exam, review)
 const actionLabel = computed(() => (progress.started || progress.examPassed ? courseAction.value : t('catalog.getStarted')))
@@ -62,7 +62,14 @@ function toggleFavorite(): void {
       @continue="continueCourse"
     />
 
-    <p v-if="isEmpty" class="empty">{{ emptyMessage }}</p>
+    <EmptyCatalog
+      v-if="isEmpty && !query && filter !== 'all'"
+      :filter="filter"
+      :course="{ title: course.title, image: course.image, meta: t('catalog.meta', { n: lessons.length, level: course.level }) }"
+      :action-label="actionLabel"
+      @open="router.push({ name: 'course' })"
+    />
+    <p v-else-if="isEmpty" class="empty">{{ emptyMessage }}</p>
 
     <CourseCard
       v-if="showMainCourse"

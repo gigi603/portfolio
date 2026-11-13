@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { CourseOutline, useCourse, useProgressStore } from '@/features/course'
-import { DonateCard, ProgressCard } from '@/features/catalog'
+import { DonateCard, EmptyProgress, ProgressCard } from '@/features/catalog'
 import { useToast } from '@/shared/composables/useToast'
 import { useContinueCourse } from '@/shared/composables/useContinueCourse'
 import { useCourseStatus } from '@/shared/composables/useCourseStatus'
@@ -40,7 +40,13 @@ const learning = computed(() => ['course', 'lesson', 'exam'].includes(String(rou
           @continue="continueCourse"
         />
         <p v-else-if="progress.examPassed" class="muted">{{ t('side.done') }}</p>
-        <p v-else class="muted">{{ t('side.none') }}</p>
+        <EmptyProgress
+          v-else
+          :title="course.title"
+          :image="course.image"
+          :total="lessons.length"
+          @start="router.push({ name: 'course' })"
+        />
       </section>
       <DonateCard class="donate" @donate="toast.show(t('common.notInDemo', { feature: t('side.donateToast') }))" />
     </template>
