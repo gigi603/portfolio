@@ -72,6 +72,9 @@ const fr: typeof en = {
     donate: 'Aidez-nous à créer plus',
     donateButton: 'Faire un don',
     donateToast: 'Les dons',
+    showOutline: 'Voir le plan',
+    closeOutline: 'Fermer le plan',
+    openOutline: 'Ouvrir le plan du cours',
   },
   catalog: {
     titles: { all: 'Tous les cours', ongoing: 'En cours', favorites: 'Favoris', completed: 'Terminés' },

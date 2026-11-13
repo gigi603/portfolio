@@ -71,6 +71,9 @@ export default {
     donate: 'Help Us Create More',
     donateButton: 'Donate',
     donateToast: 'Donations',
+    showOutline: 'Show outline',
+    closeOutline: 'Close the outline',
+    openOutline: 'Open the course outline',
   },
   catalog: {
     titles: { all: 'All courses', ongoing: 'Ongoing', favorites: 'Favorites', completed: 'Completed' },

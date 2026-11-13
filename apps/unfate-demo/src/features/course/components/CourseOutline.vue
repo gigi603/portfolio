@@ -102,8 +102,10 @@ function chapterLocked(chapterIndex: number): boolean {
 .segments span { height: 5px; background: #e1e4ec; border-radius: 3px; }
 .segments span.is-on { background: var(--uf-green); }
 ol { display: grid; gap: 4px; }
-.chapter { display: flex; align-items: center; gap: 10px; width: 100%; padding: 8px 6px; font: inherit; font-size: 13px; font-weight: 600; text-align: left; color: var(--uf-muted); text-decoration: none; border-radius: 8px; }
-.chapter .label { flex: 1; }
+.chapter { display: flex; align-items: flex-start; gap: 10px; width: 100%; padding: 8px 6px; font: inherit; font-size: 13px; font-weight: 600; text-align: left; color: var(--uf-muted); text-decoration: none; border-radius: 8px; }
+/* Several lines: the number, check and chevron stay on the first line instead of centring on the block */
+.chapter .label { flex: 1; min-width: 0; line-height: 20px; }
+.chapter > svg { flex: none; margin-top: calc((20px - 1em) / 2); }
 button.chapter:hover, a.chapter:hover { background: var(--uf-blue-bg); }
 .chapter.is-done:hover { background: var(--uf-blue-bg); }
 .chapter.is-current { color: var(--uf-blue-dark); }
@@ -118,10 +120,11 @@ button.chapter:hover, a.chapter:hover { background: var(--uf-blue-bg); }
 .num { display: inline-grid; place-items: center; flex: none; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #c8cedb; font-size: 10px; font-weight: 700; }
 .is-current > .num { border-color: var(--uf-blue); }
 ul { margin: 4px 0 8px 14px; display: grid; gap: 4px; }
-.lesson { display: flex; gap: 8px; align-items: center; width: 100%; padding: 6px 8px; font-size: 12px; font-weight: 600; color: var(--uf-muted); text-decoration: none; border-radius: 8px; border: 1.5px solid transparent; transition: background-color .15s, border-color .15s; }
+.lesson { display: flex; gap: 8px; align-items: flex-start; line-height: 16px; width: 100%; padding: 6px 8px; font-size: 12px; font-weight: 600; color: var(--uf-muted); text-decoration: none; border-radius: 8px; border: 1.5px solid transparent; transition: background-color .15s, border-color .15s; }
 a.lesson:hover { background: var(--uf-blue-bg); }
 .lesson.is-current { color: var(--uf-blue-dark); }
-.dot { flex: none; width: 1em; height: 1em; border-radius: 50%; }
+.lesson > svg { flex: none; margin-top: calc((16px - 1em) / 2); }
+.dot { flex: none; width: 1em; height: 1em; margin-top: 2px; border-radius: 50%; }
 .dot.is-selected { border: 2px solid var(--uf-blue); background: radial-gradient(circle, var(--uf-blue) 0 40%, #fff 44%); }
 .lesson.is-locked { color: var(--uf-soft); }
 /* Completed lesson: title in the same green as its check icon, inside a light green frame */

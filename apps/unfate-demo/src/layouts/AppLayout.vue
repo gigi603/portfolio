@@ -5,6 +5,7 @@ import UnfateLogo from '@/shared/ui/UnfateLogo.vue'
 import MainNav from './components/MainNav.vue'
 import SearchField from './components/SearchField.vue'
 import SidePanel from './components/SidePanel.vue'
+import MobileProgress from './components/MobileProgress.vue'
 import AccountMenu from './components/AccountMenu.vue'
 import LanguageSwitcher from '@/shared/ui/LanguageSwitcher.vue'
 
@@ -35,6 +36,7 @@ watch(
           <LanguageSwitcher class="top-language" />
           <AccountMenu class="top-account" compact />
         </div>
+        <MobileProgress />
         <RouterView />
       </div>
     </main>
