@@ -2,7 +2,7 @@
 import { computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { CertificateCard, ExamIntro, ExamQuestion, ExamResults, ExamScore, PASS_MARK, questions, useExamStore } from '@/features/exam'
-import { lessonRoute, lessons, useCourse, useProgressStore } from '@/features/course'
+import { chapterCount, lessonRoute, lessons, useCourse, useProgressStore } from '@/features/course'
 import { useSessionStore } from '@/features/auth'
 import BaseButton from '@/shared/ui/BaseButton.vue'
 import DemoShortcut from '@/shared/ui/DemoShortcut.vue'
@@ -32,7 +32,7 @@ watch(() => [exam.step, exam.current], () => {
 <template>
   <section class="page">
     <RouterLink :to="{ name: 'course' }" class="back-link"><FontAwesomeIcon :icon="faChevronLeft" /> {{ t('exam.back') }}</RouterLink>
-    <ExamIntro v-if="exam.step === 'intro'" :question-count="questions.length" :pass-mark="PASS_MARK" :resume-at="exam.ongoing ? exam.current + 1 : null" @start="exam.start()" @resume="exam.resume()" @back="router.push(lessonRoute(lessons.length - 1))" />
+    <ExamIntro v-if="exam.step === 'intro'" :question-count="questions.length" :pass-mark="PASS_MARK" :course-title="course.title" :image="course.image" :lesson-count="lessons.length" :chapter-count="chapterCount" :resume-at="exam.ongoing ? exam.current + 1 : null" @start="exam.start()" @resume="exam.resume()" @back="router.push(lessonRoute(lessons.length - 1))" />
     <ExamQuestion v-else-if="exam.step === 'question'" @leave="exam.show('intro')" />
     <!-- Demo-only shortcut, like the one on the course page: see the final result without answering the 50 questions -->
     <DemoShortcut v-if="exam.step === 'intro' || exam.step === 'question'" :title="t('course.shortcutTitle')" :text="t('exam.shortcutText', { n: questions.length })" :action="t('exam.shortcutButton')" @run="exam.answerAllForDemo()" />
