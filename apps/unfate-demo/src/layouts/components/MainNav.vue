@@ -55,9 +55,11 @@ ul { gap: 6px; }
   .nav-logo { display: none; }
   ul { flex-direction: row; gap: 0; }
   li { flex: 1; }
-  .nav-item { flex-direction: column; gap: 4px; margin: 0; padding: 10px 2px 12px; border-radius: 0; font-size: 11px; text-align: center; }
-  .nav-item.is-active { color: var(--uf-blue-dark); background: none; }
-  .nav-item.is-active::after { left: 30%; right: 30%; top: 0; bottom: auto; width: auto; height: 3px; background: var(--uf-blue); }
+  ul { padding: 6px 4px; }
+  /* Same selected style as on desktop: bold black text and icon on a light grey pill, black bar on top */
+  .nav-item { flex-direction: column; gap: 4px; margin: 0 2px; padding: 8px 2px 10px; border-radius: 12px; font-size: 11px; text-align: center; }
+  .nav-item.is-active { color: var(--uf-text); background: #f0f1f5; }
+  .nav-item.is-active::after { left: 30%; right: 30%; top: 0; bottom: auto; width: auto; height: 3px; background: var(--uf-text); border-radius: 0 0 3px 3px; }
   .nav-icon { font-size: 18px; width: auto; }
 }
 </style>
