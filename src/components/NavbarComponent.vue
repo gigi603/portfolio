@@ -1,71 +1,43 @@
 <template>
-  <div class="navbar-wrapper">
-    <div class="container mx-auto max-w-7xl px-3 md:px-6">
-      <nav class="navbar">
-        <router-link to="/" class="brand" :aria-label="$t('nav.homeLabel')">
-          <img src="@/assets/icons/logo-portfolio.svg" alt="">
-          <span class="brand-text">
-            <b>Gilbert Trinidad</b>
-            <small>Product Designer</small>
-          </span>
-        </router-link>
-
-        <!-- Desktop links, centered -->
-        <div class="links">
-          <router-link
-            v-for="link in sectionLinks"
-            :key="link.id"
-            :to="{ path: '/', hash: `#${link.id}` }"
-            class="link"
-            :class="{ active: activeSection === link.id }"
-          >{{ $t(`nav.${link.key}`) }}</router-link>
-          <a :href="cvUrl" download class="link link-cv">
-            {{ $t('nav.cv') }}
-            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-5-5m5 5l5-5M5 20h14" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-
-        <!-- Contact + language on the right; burger on mobile -->
-        <div class="actions">
-          <a href="#contact" class="cta">{{ $t('nav.contact') }}</a>
-          <LanguageSwitcher/>
-          <button type="button" class="burger" :aria-label="$t('nav.openMenu')" aria-haspopup="dialog" :aria-expanded="showMenu ? 'true' : 'false'" @click="openMenu">
-            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke="#111" stroke-width="2" stroke-linecap="round"/></svg>
-          </button>
-        </div>
-      </nav>
-    </div>
+  <div class="frame-nav">
+    <!-- Dark frame around the page (inspired by greymac.com), drawn above the content -->
+    <div class="edge" aria-hidden="true"></div>
+    <nav class="notch" :class="{ compact }" :aria-label="$t('nav.mainLabel')" @mouseenter="compact = false" @focusin="compact = false">
+      <span class="nmask" aria-hidden="true"></span>
+      <div class="nl">
+        <router-link v-for="link in sectionLinks.slice(0, 2)" :key="link.id" :to="{ path: '/', hash: `#${link.id}` }" class="link" :class="{ active: activeSection === link.id }">{{ $t(`nav.${link.key}`) }}</router-link>
+      </div>
+      <router-link to="/" class="lockup" :aria-label="$t('nav.homeLabel')">
+        <img src="@/assets/icons/logo-gilbert.svg" alt="" width="36" height="36">
+        <span><b>Gilbert Trinidad</b><small>Product Designer</small></span>
+      </router-link>
+      <div class="nr">
+        <router-link v-for="link in sectionLinks.slice(2)" :key="link.id" :to="{ path: '/', hash: `#${link.id}` }" class="link" :class="{ active: activeSection === link.id }">{{ $t(`nav.${link.key}`) }}</router-link>
+        <a href="#contact" class="link">{{ $t('nav.contactShort') }}</a>
+        <LanguageSwitcher class="lg"/>
+      </div>
+      <button type="button" class="menu" aria-haspopup="dialog" :aria-expanded="showMenu ? 'true' : 'false'" @click="openMenu">{{ $t('nav.menu') }}<i aria-hidden="true"></i></button>
+    </nav>
 
     <!-- Mobile full-screen menu. Clicks on any link inside close it. -->
     <div v-if="showMenu" ref="sheet" class="sheet" role="dialog" aria-modal="true" :aria-label="$t('nav.menu')" @keydown="onSheetKeydown" @click="onSheetClick">
       <div class="sheet-top">
-        <router-link to="/" class="brand">
-          <img src="@/assets/icons/logo-portfolio.svg" alt="">
-          <span class="brand-text">
-            <b>Gilbert Trinidad</b>
-            <small>Product Designer</small>
-          </span>
+        <router-link to="/" class="lockup">
+          <img src="@/assets/icons/logo-gilbert.svg" alt="" width="32" height="32">
+          <span><b>Gilbert Trinidad</b><small>Product Designer</small></span>
         </router-link>
         <button type="button" ref="closeButton" class="close" :aria-label="$t('nav.closeMenu')" @click="closeMenu">
-          <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="#111" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
       </div>
       <ul class="sheet-links">
         <li v-for="link in sectionLinks" :key="link.id">
-          <router-link :to="{ path: '/', hash: `#${link.id}` }" :class="{ active: activeSection === link.id }">
-            {{ $t(`nav.${link.key}`) }}<span aria-hidden="true">→</span>
-          </router-link>
+          <router-link :to="{ path: '/', hash: `#${link.id}` }" :class="{ active: activeSection === link.id }">{{ $t(`nav.${link.key}`) }}<span aria-hidden="true">→</span></router-link>
         </li>
-        <li>
-          <a :href="cvUrl" download>
-            {{ $t('nav.downloadCv') }}<span aria-hidden="true">↓</span>
-          </a>
-        </li>
+        <li><a href="#contact">{{ $t('nav.contactShort') }}<span aria-hidden="true">→</span></a></li>
+        <li><a :href="cvUrl" download>{{ $t('nav.downloadCv') }}<span aria-hidden="true">↓</span></a></li>
       </ul>
-      <div class="sheet-bottom">
-        <a v-if="bookingUrl" :href="bookingUrl" target="_blank" rel="noopener" class="sheet-btn sheet-btn-primary">{{ $t('nav.bookCall') }}</a>
-        <a href="#contact" class="sheet-btn sheet-btn-outline">{{ $t('nav.contact') }}</a>
-      </div>
+      <div class="sheet-bottom"><LanguageSwitcher/></div>
     </div>
   </div>
 </template>
@@ -89,6 +61,8 @@ export default {
       activeSection: null,
       scrollFrame: null,
       spyTimer: null,
+      compact: false,
+      lastY: 0,
     };
   },
   computed: {
@@ -98,6 +72,7 @@ export default {
     sectionLinks() {
       return [
         { id: 'projects', key: 'projects' },
+        { id: 'process', key: 'process' },
         SHOW_SERVICES && { id: 'services', key: 'services' },
         { id: 'about', key: 'about' },
       ].filter(Boolean)
@@ -114,7 +89,11 @@ export default {
       },
     },
   },
+  mounted() {
+    window.addEventListener('scroll', this.onScrollCompact, { passive: true })
+  },
   beforeDestroy() {
+    window.removeEventListener('scroll', this.onScrollCompact)
     this.stopScrollSpy()
     document.body.style.overflow = ''
   },
@@ -148,6 +127,12 @@ export default {
         return rect.top <= line && rect.bottom > line
       })
       this.activeSection = current ? current.id : null
+    },
+    // The notch shrinks to the logo when scrolling down, and opens again when scrolling up
+    onScrollCompact() {
+      const y = window.scrollY
+      this.compact = y > 200 && y > this.lastY
+      this.lastY = y
     },
     openMenu() {
       this.showMenu = true
@@ -185,198 +170,136 @@ export default {
 </script>
 
 <style scoped>
-  .navbar-wrapper {
-    position: sticky;
-    top: 16px;
+  .edge {
+    position: fixed;
+    inset: 12px;
+    border-radius: 24px;
+    border: 1px solid var(--hair);
+    box-shadow: 0 0 0 40px var(--frame), inset 0 0 60px rgba(149, 53, 215, 0.1);
+    pointer-events: none;
     z-index: 50;
-    margin-top: 16px;
   }
-  .navbar {
-    height: 64px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.88);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 6px 24px rgba(61, 22, 87, 0.08);
-    padding: 0 14px 0 16px;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-  }
-  .brand {
+  .notch {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 60;
+    height: 74px;
+    width: max-content;
     display: flex;
     align-items: center;
-    gap: 10px;
-    color: #111;
-    justify-self: start;
+    gap: 34px;
+    padding: 0 30px;
+    background: var(--frame);
+    border: 1px solid var(--hair);
+    border-top: 0;
+    border-radius: 0 0 26px 26px;
+    box-shadow: 0 18px 40px -18px rgba(149, 53, 215, 0.55);
+    font-family: Urbanist, system-ui, sans-serif;
+    transition: gap 0.4s ease;
   }
-  .brand img {
-    width: 38px;
-    height: 38px;
-  }
-  .brand-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.15;
-  }
-  .brand-text b {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 800;
-    font-size: 15px;
-  }
-  .brand-text small {
-    font-size: 12px;
-    color: #7a7a7a;
-  }
-  .links {
-    display: flex;
-    gap: 6px;
-  }
-  .link {
-    position: relative;
-    padding: 8px 14px;
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: 500;
-    color: #222;
-    transition: color 150ms ease;
-  }
-  .link:hover {
-    color: #9535d7;
-  }
-  .link.active {
-    color: #9535d7;
-    font-weight: 600;
-  }
-  .link.active::after {
+  /* Curved shoulders that join the notch to the frame */
+  .notch::before,
+  .notch::after {
     content: "";
     position: absolute;
-    left: 50%;
-    bottom: 0;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #9535d7;
-    transform: translateX(-50%);
+    top: 12px;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
   }
-  .link-cv {
-    color: #7a7a7a;
+  .notch::before { left: -21px; background: radial-gradient(circle at 0 100%, transparent 19.5px, var(--hair) 19.5px 20.5px, var(--frame) 20.5px); }
+  .notch::after { right: -21px; background: radial-gradient(circle at 100% 100%, transparent 19.5px, var(--hair) 19.5px 20.5px, var(--frame) 20.5px); }
+  .nmask { position: absolute; top: 0; left: -1px; right: -1px; height: 31px; background: var(--frame); pointer-events: none; }
+  .notch > *:not(.nmask) { position: relative; }
+  .nl, .nr {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 28px;
+    overflow: hidden;
+    max-width: 420px;
+    transition: max-width 0.4s ease, opacity 0.3s ease;
   }
-  .actions {
-    justify-self: end;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .cta {
-    background: #9535d7;
-    color: #fff;
-    border-radius: 9999px;
-    padding: 10px 20px;
+  .link {
+    color: #cdc9e7;
+    font-family: Urbanist, system-ui, sans-serif;
     font-size: 14px;
     font-weight: 600;
-    transition: opacity 150ms ease;
+    white-space: nowrap;
   }
-  .cta:hover {
-    opacity: 0.85;
+  .link:hover, .link.active { color: #fff; }
+  .link:focus-visible, .lockup:focus-visible, .menu:focus-visible { outline: 2px solid #c58cf2; outline-offset: 4px; border-radius: 8px; }
+  .lg { margin-left: 6px; padding-left: 22px; border-left: 1px solid rgba(255, 255, 255, 0.1); }
+  .lockup { display: flex; align-items: center; gap: 12px; }
+  .lockup img { filter: drop-shadow(0 0 12px rgba(149, 53, 215, 0.6)); }
+  .lockup span { display: flex; flex-direction: column; line-height: 1.15; white-space: nowrap; font-family: Urbanist, system-ui, sans-serif; }
+  .lockup b { font-size: 16px; font-weight: 800; color: #fff; font-family: inherit; }
+  .lockup small {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    font-family: inherit;
+    background: linear-gradient(90deg, #b865f2 0%, #a15cef 50%, #6e8bff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
-  .burger {
-    display: none;
-    width: 40px;
-    height: 40px;
-    place-items: center;
-    background: none;
-    border: 0;
-  }
-  @media (max-width: 1023px) {
-    .navbar {
-      grid-template-columns: 1fr auto;
-      padding: 0 8px 0 12px;
-    }
-    .links,
-    .cta {
-      display: none;
-    }
-    .burger {
-      display: grid;
-    }
-    .actions {
-      gap: 10px;
-    }
-    .brand-text b {
-      font-size: 14px;
-    }
-  }
+  .menu { display: none; }
+  .notch.compact { gap: 0; }
+  .notch.compact .nl, .notch.compact .nr { max-width: 0; opacity: 0; }
 
   .sheet {
     position: fixed;
     inset: 0;
-    z-index: 60;
-    background: #fff;
+    z-index: 70;
+    background: #0d0b17;
+    padding: 20px 24px 32px;
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    overflow-y: auto;
+    font-family: Urbanist, system-ui, sans-serif;
   }
-  .sheet-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .close {
-    width: 40px;
-    height: 40px;
-    display: grid;
-    place-items: center;
-    background: none;
-    border: 0;
-  }
-  .sheet-links {
-    list-style: none;
-    margin-top: 48px;
-  }
+  .sheet-top { display: flex; align-items: center; justify-content: space-between; }
+  .close { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.14); }
+  .sheet-links { list-style: none; margin: 48px 0 0; padding: 0; flex-grow: 1; }
   .sheet-links a {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 800;
-    font-size: 30px;
-    color: #111;
-    padding: 14px 4px;
-    border-bottom: 1px solid #f1eaf9;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-  }
-  .sheet-links a.active {
-    color: #9535d7;
-  }
-  .sheet-links span {
-    font-size: 20px;
-    color: #c9b3e6;
-  }
-  .sheet-bottom {
-    margin-top: auto;
-    padding-top: 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .sheet-btn {
-    text-align: center;
-    border-radius: 9999px;
-    padding: 15px 28px;
-    font-weight: 600;
-    font-size: 15px;
-  }
-  .sheet-btn-primary {
-    background: #9535d7;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     color: #fff;
-    box-shadow: 0 10px 24px rgba(149, 53, 215, 0.3);
+    font-family: Urbanist, system-ui, sans-serif;
+    font-size: 26px;
+    font-weight: 800;
   }
-  .sheet-btn-outline {
-    border: 2px solid #9535d7;
-    color: #9535d7;
+  .sheet-links a span { color: #c58cf2; font-family: Urbanist, system-ui, sans-serif; }
+  .sheet-bottom { padding-top: 24px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .notch, .nl, .nr { transition: none; }
+  }
+  @media (max-width: 860px) {
+    .edge { inset: 6px; border-radius: 18px; }
+    .notch { height: 62px; gap: 18px; padding: 0 10px 0 16px; border-radius: 0 0 20px 20px; }
+    .notch::before, .notch::after { top: 6px; }
+    .nmask { height: 25px; }
+    .nl, .nr { display: none; }
+    .lockup img { width: 30px; height: 30px; }
+    .lockup b { font-size: 14px; }
+    .lockup small { font-size: 11px; }
+    .menu {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font: 800 12px Urbanist, system-ui, sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      padding: 8px 12px;
+    }
+    .menu i { width: 14px; height: 8px; border-top: 2px solid #fff; border-bottom: 2px solid #fff; }
   }
 </style>

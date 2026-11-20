@@ -37,7 +37,7 @@ Gilbert ne code pas : il dirige Claude, qui écrit tout le code, et il valide ch
 
 ## Style visuel
 
-Le style actuel est conservé : violet `#9535d7` dominant, formes arrondies, titres en Montserrat, texte en Poppins, ombres douces teintées de violet. Détails dans `.claude/rules/style-visuel.md`.
+Depuis le 20/11/2026, l'accueil, la navigation et le contact sont en thème sombre néon (Urbanist, violet `#9535d7` + bleu `#6E8BFF`, cadre sombre et navigation en encoche). Les pages projet gardent le style clair : violet `#9535d7` dominant, formes arrondies, titres en Montserrat, texte en Poppins, ombres douces teintées de violet. Détails dans `.claude/rules/style-visuel.md`.
 
 ## Façon de travailler
 

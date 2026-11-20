@@ -15,7 +15,10 @@ export default {
     "closeMenu": "Fermer le menu",
     "menu": "Menu",
     "downloadCv": "Télécharger mon CV",
-    "bookCall": "Réserver un appel gratuit"
+    "bookCall": "Réserver un appel gratuit",
+    "process": "Ce que je fais",
+    "mainLabel": "Navigation principale",
+    "contactShort": "Contact"
   },
   "lang": {
     "fr": "Français",
@@ -298,7 +301,16 @@ export default {
     "errorBefore": "Une erreur est survenue. Réessayez ou écrivez-moi sur",
     "privacyNote": "Vos coordonnées servent uniquement à vous répondre.",
     "privacy": "Politique de confidentialité",
-    "copyright": "© 2026 Gilbert Trinidad"
+    "copyright": "© 2026 Gilbert Trinidad",
+    "eyebrow": "On se lance ?",
+    "linkedin": "Voir mon profil",
+    "cvDownload": "Télécharger (PDF)",
+    "sentTitle": "Message envoyé",
+    "another": "Écrire un autre message",
+    "namePlaceholder": "Votre nom",
+    "emailPlaceholder": "vous@entreprise.com",
+    "messagePlaceholder": "Le poste, le projet ou votre question, en quelques lignes.",
+    "emailError": "Cet email ne semble pas complet : vérifiez le @ et le domaine."
   },
   "privacy": {
     "title": "Politique de confidentialité",
@@ -332,5 +344,55 @@ export default {
     "text": "Cette page n'existe pas ou a été déplacée.",
     "projects": "Voir mes projets",
     "home": "Retour à l'accueil"
+  },
+  "home": {
+    "demoLabel": "Démo interactive · Unfate",
+    "demoAlt": "Démo interactive d'Unfate, la plateforme de cours en ligne",
+    "leadStart": "Je conçois des produits web qui ont ",
+    "leadFlow": "du flow",
+    "leadEnd": " : des parcours fluides pour vos utilisateurs, mis en ligne avec une équipe d'agents Claude que je dirige. Je vérifie chaque livrable.",
+    "workEyebrow": "Des parcours qui coulent",
+    "caseStudy": "Étude de cas",
+    "processEyebrow": "Mon flow de travail",
+    "testimonialsEyebrow": "Retours clientes",
+    "sceneAlts": [
+      "Gilbert écoute deux personnes lui expliquer leur besoin, dessiné en trait de néon",
+      "Gilbert imagine la chorégraphie, dessinée dans une bulle au-dessus de sa tête",
+      "Gilbert montre un prototype sur son téléphone à un cercle de danseurs",
+      "Gilbert répète face au miroir, à côté d'une liste de points cochés",
+      "Gilbert danse sur scène devant le public"
+    ],
+    "dance": {
+      "eyebrow": "Le rythme, hors écran",
+      "titleStart": "Le ",
+      "titleFlow": "flow",
+      "titleEnd": ", je l'ai appris en dansant",
+      "text": "Le hip-hop m'a appris à sentir quand un mouvement accroche. C'est le même réflexe quand je teste un parcours : je cherche l'endroit où l'utilisateur perd le rythme.",
+      "moves": [
+        {
+          "alt": "Illustration : Gilbert en toprock",
+          "text": "Les pas debout qui ouvrent un passage et posent le style.",
+          "design": "En design : la première impression."
+        },
+        {
+          "alt": "Illustration : Gilbert en popping",
+          "text": "Contracter un muscle pile sur le temps, comme une vague.",
+          "design": "En design : le micro-détail qui claque."
+        },
+        {
+          "alt": "Illustration : Gilbert en locking point",
+          "text": "Le point final, bras tendu vers le ciel.",
+          "design": "En design : livrer."
+        }
+      ],
+      "spots": "Mes spots : quai Saint-Bernard, La Felicità, la BnF"
+    },
+    "resonance": {
+      "label": "Résonance",
+      "text": "Un appui juste, et tout le mouvement résonne. En design, c'est pareil : un détail bien placé se ressent dans tout le parcours."
+    },
+    "photoAlt": "Gilbert Trinidad, souriant, pointe du doigt",
+    "aboutTitleA": "C'est moi qui",
+    "aboutTitleB": "mène la danse"
   }
 }

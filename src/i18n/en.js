@@ -19,7 +19,10 @@ export default {
     "closeMenu": "Close menu",
     "menu": "Menu",
     "downloadCv": "Download my CV",
-    "bookCall": "Book a free call"
+    "bookCall": "Book a free call",
+    "process": "What I do",
+    "mainLabel": "Main navigation",
+    "contactShort": "Contact"
   },
   "hero": {
     "hello": "Hi, I'm",
@@ -298,7 +301,16 @@ export default {
     "errorBefore": "Something went wrong. Please try again or reach me on",
     "privacyNote": "Your details are only used to reply to you.",
     "privacy": "Privacy policy",
-    "copyright": "© 2026 Gilbert Trinidad"
+    "copyright": "© 2026 Gilbert Trinidad",
+    "eyebrow": "Shall we?",
+    "linkedin": "See my profile",
+    "cvDownload": "Download (PDF)",
+    "sentTitle": "Message sent",
+    "another": "Write another message",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "you@company.com",
+    "messagePlaceholder": "The role, the project or your question, in a few lines.",
+    "emailError": "This email doesn't look complete: check the @ and the domain."
   },
   "privacy": {
     "title": "Privacy policy",
@@ -332,5 +344,55 @@ export default {
     "text": "This page doesn't exist or has moved.",
     "projects": "See my projects",
     "home": "Back to home"
+  },
+  "home": {
+    "demoLabel": "Interactive demo · Unfate",
+    "demoAlt": "Interactive demo of Unfate, the online learning platform",
+    "leadStart": "I design web products with ",
+    "leadFlow": "flow",
+    "leadEnd": ": smooth journeys for your users, shipped with a team of Claude agents I direct. I check every deliverable.",
+    "workEyebrow": "Journeys that flow",
+    "caseStudy": "Case study",
+    "processEyebrow": "My workflow",
+    "testimonialsEyebrow": "Client feedback",
+    "sceneAlts": [
+      "Gilbert listens to two people explaining what they need, drawn in neon line",
+      "Gilbert imagines the choreography, drawn in a thought bubble above his head",
+      "Gilbert shows a prototype on his phone to a circle of dancers",
+      "Gilbert rehearses in front of a mirror, next to a checked list",
+      "Gilbert dances on stage in front of an audience"
+    ],
+    "dance": {
+      "eyebrow": "Rhythm, off screen",
+      "titleStart": "I learned ",
+      "titleFlow": "flow",
+      "titleEnd": " by dancing",
+      "text": "Hip-hop taught me to feel when a move catches. I use the same reflex when I test a user journey: I look for the moment the user loses the beat.",
+      "moves": [
+        {
+          "alt": "Illustration: Gilbert doing toprock",
+          "text": "The standing steps that open a set and set the style.",
+          "design": "In design: the first impression."
+        },
+        {
+          "alt": "Illustration: Gilbert popping",
+          "text": "Tensing a muscle right on the beat, like a wave.",
+          "design": "In design: the small detail that hits."
+        },
+        {
+          "alt": "Illustration: Gilbert doing a locking point",
+          "text": "The final point, arm stretched to the sky.",
+          "design": "In design: shipping."
+        }
+      ],
+      "spots": "My spots: quai Saint-Bernard, La Felicità, the BnF"
+    },
+    "resonance": {
+      "label": "Resonance",
+      "text": "Land one step right and the whole move resonates. Design works the same way: one well-placed detail is felt across the whole journey."
+    },
+    "photoAlt": "Gilbert Trinidad, smiling and pointing",
+    "aboutTitleA": "I take",
+    "aboutTitleB": "the lead"
   }
 }
