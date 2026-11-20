@@ -9,7 +9,7 @@
         </svg>
         <div class="ct">
           <div class="ct-l">
-            <p class="eyb">{{ $t('contact.eyebrow') }}</p>
+            <p class="eyb"><img :src="vinyle" alt="" aria-hidden="true" width="28" height="28">{{ $t('contact.eyebrow') }}</p>
             <h2 id="contact-title" class="kicker">{{ $t('contact.title') }}</h2>
             <p class="lead">{{ $t('contact.subtitle') }}</p>
             <ul class="ct-links">
@@ -56,6 +56,7 @@ export default {
       form: { name: '', email: '', message: '', website: '' },
       status: 'idle',
       bookingUrl: BOOKING_URL,
+      vinyle: require('@/assets/images/neon/vinyle.webp'),
       emailError: false,
     }
   },
@@ -116,7 +117,8 @@ export default {
   .contact { position: relative; overflow: hidden; border-radius: 36px; padding: 80px 70px; background: linear-gradient(180deg, rgba(52, 34, 92, 0.55), rgba(20, 15, 36, 0.9)); border: 1px solid rgba(255, 255, 255, 0.08); scroll-margin-top: 100px; }
   .contact-bg { position: absolute; inset: 0; width: 100%; height: 100%; }
   .ct { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-  .eyb { font-size: 13px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #8f8ab5; margin-bottom: 16px; }
+  .eyb img { width: 28px; height: 28px; object-fit: contain; flex: none; }
+  .eyb { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #8f8ab5; margin-bottom: 16px; }
   .kicker { font-family: Urbanist, system-ui, sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.12em; font-size: 34px; line-height: 1.25; }
   .lead { margin-top: 22px; max-width: 440px; font-size: 18px; line-height: 1.55; color: #cdc9e7; font-weight: 500; }
   .ct-links { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 16px; }

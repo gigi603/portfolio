@@ -57,7 +57,7 @@
 			<!-- PROJECTS -->
 			<section id="projects">
 				<div class="sec-head">
-					<div><p class="eyb">{{ $t('home.workEyebrow') }}</p><h2 class="kicker">{{ $t('work.title') }}</h2></div>
+					<div><p class="eyb"><img :src="art.icons.vinyle" alt="" aria-hidden="true" width="28" height="28">{{ $t('home.workEyebrow') }}</p><h2 class="kicker">{{ $t('work.title') }}</h2></div>
 					<p>{{ $t('work.intro') }}</p>
 				</div>
 				<article class="card feat">
@@ -74,7 +74,7 @@
 					<router-link :to="{ name: 'ProjectDetailComponent', params: { id: featured.id } }" class="shot" tabindex="-1" aria-hidden="true"><img loading="lazy" :src="featured.img" alt=""></router-link>
 				</article>
 				<div class="duo">
-					<router-link v-for="project in others" :key="project.id" :to="{ name: 'ProjectDetailComponent', params: { id: project.id } }" class="duo-item">
+					<router-link v-for="project in others" :key="project.id" :to="{ name: 'ProjectDetailComponent', params: { id: project.id } }" class="duo-item card">
 						<div class="shot"><img loading="lazy" :src="project.img" alt=""></div>
 						<span class="label">{{ $t(`projects.${project.id}.type`) }}</span>
 						<h3>{{ displayName(project) }}</h3>
@@ -87,7 +87,7 @@
 			<!-- WHAT I DO: the illustration stays put and changes as each step scrolls past -->
 			<section id="process">
 				<div class="sec-head">
-					<div><p class="eyb">{{ $t('home.processEyebrow') }}</p><h2 class="kicker">{{ $t('skills.title') }}</h2></div>
+					<div><p class="eyb"><img :src="art.icons.casque" alt="" aria-hidden="true" width="28" height="28">{{ $t('home.processEyebrow') }}</p><h2 class="kicker">{{ $t('skills.title') }}</h2></div>
 					<p>{{ $t('skills.subtitle') }}</p>
 				</div>
 				<div class="sty">
@@ -109,11 +109,11 @@
 			<!-- TESTIMONIALS -->
 			<section id="testimonials">
 				<div class="sec-head">
-					<div><p class="eyb">{{ $t('home.testimonialsEyebrow') }}</p><h2 class="kicker">{{ $t('testimonials.title') }}</h2></div>
+					<div><p class="eyb"><img :src="art.icons.casque" alt="" aria-hidden="true" width="28" height="28">{{ $t('home.testimonialsEyebrow') }}</p><h2 class="kicker">{{ $t('testimonials.title') }}</h2></div>
 					<p>{{ $t('testimonials.subtitle') }}</p>
 				</div>
 				<div class="quotes">
-					<figure v-for="t in testimonials" :key="t.key" class="quote">
+					<figure v-for="t in testimonials" :key="t.key" class="quote card">
 						<div class="mark grad" aria-hidden="true">“</div>
 						<blockquote>{{ $t(`testimonials.${t.key}.pullStart`) }}<span class="grad">{{ $t(`testimonials.${t.key}.pullEnd`) }}</span>{{ $t(`testimonials.${t.key}.pullAfter`) }}</blockquote>
 						<figcaption class="who"><span class="ini" aria-hidden="true">{{ t.initials }}</span><span><b>{{ t.name }}</b><span>{{ $t(`testimonials.${t.key}.job`) }}</span></span></figcaption>
@@ -129,7 +129,7 @@
 
 			<!-- OFF SCREEN: dance -->
 			<section class="dance">
-				<p class="eyb">{{ $t('home.dance.eyebrow') }}</p>
+				<p class="eyb"><img :src="art.icons.baskets" alt="" aria-hidden="true" width="28" height="28">{{ $t('home.dance.eyebrow') }}</p>
 				<h2>{{ $t('home.dance.titleStart') }}<span class="grad">{{ $t('home.dance.titleFlow') }}</span>{{ $t('home.dance.titleEnd') }}</h2>
 				<p class="lead">{{ $t('home.dance.text') }}</p>
 				<div class="moves">
@@ -164,7 +164,7 @@
 				<div class="about">
 					<div class="portrait"><div class="pring"></div><div class="pring r2"></div><div class="ph"><img loading="lazy" :src="art.photo" :alt="$t('home.photoAlt')"></div></div>
 					<div>
-						<p class="eyb">{{ $t('about.title') }}</p>
+						<p class="eyb"><img :src="art.icons.casque" alt="" aria-hidden="true" width="28" height="28">{{ $t('about.title') }}</p>
 						<h2 class="kicker">{{ $t('home.aboutTitleA') }}<br><span class="accent">{{ $t('home.aboutTitleB') }}</span></h2>
 						<p>{{ $t('about.p1Start') }}<b>{{ $t('about.p1Highlight') }}</b>{{ $t('about.p1End') }}</p>
 						<p>{{ $t('about.p2') }}</p>
@@ -202,6 +202,11 @@ export default {
 				{ name: 'Locking point', img: require('@/assets/images/neon/locking.webp') },
 			],
 			art: {
+				icons: {
+					vinyle: require('@/assets/images/neon/vinyle.webp'),
+					casque: require('@/assets/images/neon/casque.webp'),
+					baskets: require('@/assets/images/neon/baskets.webp'),
+				},
 				demo: require('@/assets/images/neon/unfate-demo.webp'),
 				runningMan: require('@/assets/images/neon/running-man.webp'),
 				moonwalk: require('@/assets/images/neon/moonwalk.webp'),
@@ -283,7 +288,7 @@ export default {
 .nowrap { white-space: nowrap; }
 .kicker { font-weight: 900; text-transform: uppercase; letter-spacing: .2em; font-size: 28px; line-height: 1.25; }
 .kicker .accent { color: var(--violet); }
-.eyb { font-size: 13px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); margin-bottom: 16px; }
+.eyb { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); margin-bottom: 16px; }
 .lead { font-size: 20px; line-height: 1.55; color: var(--muted); font-weight: 500; }
 
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: 13px; padding: 12px 22px; border: 1px solid rgba(181, 110, 240, .45); color: #fff; }
@@ -342,6 +347,8 @@ section { padding-top: 190px; position: relative; scroll-margin-top: 90px; }
 .feat p { color: var(--muted); font-size: 18px; line-height: 1.55; font-weight: 500; }
 .feat .result { margin-top: 22px; font-size: 16px; }
 .feat .result b { color: var(--sky); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; font-weight: 800; margin-right: 8px; }
+.eyb img { width: 28px; height: 28px; object-fit: contain; flex: none; }
+.duo-item.card { display: block; padding: 30px 30px 34px; }
 .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
 .duo .shot { margin-bottom: 26px; transition: transform .3s ease; }
 .duo-item:hover .shot { transform: translateY(-4px); }
@@ -371,8 +378,8 @@ section { padding-top: 190px; position: relative; scroll-margin-top: 90px; }
 .sty-inline { display: none; }
 
 /* testimonials */
-.quotes { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
-.quote { margin: 0; }
+.quotes { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.quote { margin: 0; padding: 40px; }
 .quote .mark { font-size: 80px; line-height: .6; font-weight: 900; height: 34px; }
 .quote blockquote { font-size: 24px; line-height: 1.5; font-weight: 600; color: #EEEAF7; margin: 12px 0 0; }
 .who { margin-top: 28px; display: flex; align-items: center; gap: 14px; }
@@ -455,7 +462,9 @@ section { padding-top: 190px; position: relative; scroll-margin-top: 90px; }
 	.sty-inline { display: block; width: 100%; height: 190px; object-fit: contain; margin-bottom: 18px; }
 	.sty-step h3 { font-size: 24px; }
 	.sty-step p { font-size: 16px; }
-	.quotes { gap: 50px; }
+	.quotes { gap: 24px; }
+	.quote { padding: 28px; }
+	.duo-item.card { padding: 22px; }
 	.quote blockquote { font-size: 19px; }
 	.wave { margin-top: 100px; height: 120px; }
 	.wave .mw img { height: 80px; margin-left: -16px; }
