@@ -2,7 +2,7 @@
   <div class="frame-nav">
     <!-- Dark frame around the page (inspired by greymac.com), drawn above the content -->
     <div class="edge" aria-hidden="true"></div>
-    <nav class="notch" :class="{ compact }" :aria-label="$t('nav.mainLabel')" @mouseenter="compact = false" @focusin="compact = false">
+    <nav class="notch" :class="{ compact }" :aria-label="$t('nav.mainLabel')" @mouseenter="hovered = true" @mouseleave="hovered = false" @focusin="focused = true" @focusout="onFocusOut">
       <span class="nmask" aria-hidden="true"></span>
       <div class="nl">
         <router-link v-for="link in sectionLinks.slice(0, 2)" :key="link.id" :to="{ path: '/', hash: `#${link.id}` }" class="link" :class="{ active: activeSection === link.id }">{{ $t(`nav.${link.key}`) }}</router-link>
@@ -61,11 +61,16 @@ export default {
       activeSection: null,
       scrollFrame: null,
       spyTimer: null,
-      compact: false,
-      lastY: 0,
+      scrolled: false,
+      hovered: false,
+      focused: false,
     };
   },
   computed: {
+    // Full menu only at the very top of the page, or while the notch is hovered or focused
+    compact() {
+      return this.scrolled && !this.hovered && !this.focused
+    },
     cvUrl() {
       return this.$i18n.locale === 'en' ? '/files/Gilbert-Trinidad-Resume.pdf' : '/files/Gilbert-Trinidad-CV.pdf'
     },
@@ -91,6 +96,7 @@ export default {
   },
   mounted() {
     window.addEventListener('scroll', this.onScrollCompact, { passive: true })
+    this.onScrollCompact()
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.onScrollCompact)
@@ -128,11 +134,12 @@ export default {
       })
       this.activeSection = current ? current.id : null
     },
-    // The notch shrinks to the logo when scrolling down, and opens again when scrolling up
+    // Once the page leaves the top, the notch shows only the logo, name and title
     onScrollCompact() {
-      const y = window.scrollY
-      this.compact = y > 200 && y > this.lastY
-      this.lastY = y
+      this.scrolled = window.scrollY > 40
+    },
+    onFocusOut(event) {
+      if (!event.currentTarget.contains(event.relatedTarget)) this.focused = false
     },
     openMenu() {
       this.showMenu = true
