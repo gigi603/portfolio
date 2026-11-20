@@ -57,16 +57,16 @@ export default {
     "sophie": {
       "job": "Coach and therapist",
       "quote": "Gilbert designed my website and wrote its copy. He took the time to understand my work and my clients, who are often anxious about taking the first step. The result is a warm, clear site that feels like me and makes booking a session easy.",
-      "pullStart": "“A warm, clear site ",
+      "pullStart": "“The result is a warm, clear site ",
       "pullEnd": "that feels like me",
-      "pullAfter": ".”"
+      "pullAfter": " and makes booking a session easy.”"
     },
     "melodie": {
       "job": "Career coach and psychopractitioner",
       "quote": "My two services, career assessment and therapy, are very different. Gilbert understood that right away and gave each one its own clear path, with words that stay gentle, like my practice. Now visitors find the right service and book a discovery call easily.",
-      "pullStart": "“Visitors ",
+      "pullStart": "“Now visitors ",
       "pullEnd": "find the right service",
-      "pullAfter": ".”"
+      "pullAfter": " and book a discovery call easily.”"
     },
     "subtitle": "Two Paris coaches on how we designed their websites together."
   },
@@ -187,6 +187,140 @@ export default {
         "confirmation": {
           "title": "Confirmation page"
         }
+      },
+      "skills": [
+        "UX/UI design",
+        "Copywriting",
+        "Figma"
+      ],
+      "cs": {
+        "label": "Client project · Showcase site · Booking",
+        "title": [
+          "SPCoach: from first visit to ",
+          "booked session",
+          ""
+        ],
+        "intro": "The website of Sophie Pratt, a coach and therapist in Paris. She had no site yet: I designed the experience in Figma and wrote the copy with her, for visitors who are often anxious about taking the first step.",
+        "meta": {
+          "role": "UX/UI design in Figma and copywriting",
+          "client": "Sophie Pratt, coach and therapist, Paris",
+          "scope": "Design and copy · site built by a developer",
+          "tools": "Figma",
+          "type": "Showcase site · Booking",
+          "result": "Clients now reach Sophie through the site"
+        },
+        "context": {
+          "title": "Building trust before selling anything",
+          "body": [
+            "Sophie offers personal coaching, business coaching and therapy for social anxiety, in Paris and online. Many of her future clients are anxious about taking the first step."
+          ],
+          "callout": "Three offers, three audiences, and visitors who hesitate to reach out. They needed to understand quickly what Sophie does, whether it's for them and what it costs, without feeling pushed.",
+          "cards": [
+            {
+              "tag": "offre",
+              "title": "Personal coaching",
+              "text": "To move forward on your goals, in Paris or online."
+            },
+            {
+              "tag": "offre",
+              "title": "Business coaching",
+              "text": "A different audience with different expectations."
+            },
+            {
+              "tag": "offre",
+              "title": "Therapy for social anxiety",
+              "text": "Visitors who are often anxious about writing."
+            },
+            {
+              "tag": "frein",
+              "title": "The first step",
+              "text": "Contacting a therapist already takes effort."
+            }
+          ]
+        },
+        "decisions": {
+          "title": "Four decisions to make the first step easy",
+          "items": [
+            {
+              "title": "A free 30-minute discovery call",
+              "why": "For anxious visitors, a no-commitment chat is easier to take than a paid session."
+            },
+            {
+              "title": "The 8-session package up front",
+              "why": "Flagged as the popular offer with the saving shown, without hiding the single session."
+            },
+            {
+              "title": "A structure that follows the visitor's questions",
+              "why": "I wrote the copy alongside the structure, with Sophie. The FAQ and trust signals (Sorbonne, Qualiopi) round out the journey."
+            },
+            {
+              "title": "Designs ready for development",
+              "why": "The site was built with WordPress and Symfony. I didn't code it, but I worked directly with the developer."
+            }
+          ]
+        },
+        "third": {
+          "label": "The journey",
+          "title": "A page that answers questions in the order people ask them",
+          "questions": [
+            "What is it?",
+            "Is it for me?",
+            "How does it work?",
+            "What does it cost?",
+            "Who is she?"
+          ],
+          "image": "pricing",
+          "caption": "Pricing: the 8-session package is flagged as the popular offer and the saving is shown, without hiding the single session."
+        },
+        "screens": {
+          "label": "The journey in screens",
+          "title": "From home page to confirmation"
+        },
+        "how": {
+          "label": "How I worked",
+          "title": "Design and copy, thought out together",
+          "steps": [
+            {
+              "title": "Understand",
+              "text": "Sophie's services and her clients, often anxious about taking the first step."
+            },
+            {
+              "title": "Structure",
+              "text": "A journey that follows the visitor's questions, from the promise to the booking."
+            },
+            {
+              "title": "Write",
+              "text": "The copy alongside the structure, with Sophie's input."
+            },
+            {
+              "title": "Hand over",
+              "text": "Figma designs ready for development, working directly with the developer."
+            }
+          ]
+        },
+        "result": {
+          "title": "A live site that brings in clients",
+          "quote": [
+            "“The result is a warm, clear site ",
+            "that feels like me",
+            " and makes booking a session easy.”"
+          ],
+          "author": "Sophie Pratt, coach and therapist",
+          "facts": [
+            [
+              "Live",
+              "Sophie uses it to present her offers and take bookings."
+            ],
+            [
+              "New contacts",
+              "Clients have contacted her thanks to the site."
+            ],
+            [
+              "Design + copy",
+              "Both designed together, from the first screen to the confirmation."
+            ]
+          ]
+        }
       }
     },
     "2": {
@@ -215,6 +349,153 @@ export default {
         },
         "shop": {
           "title": "Shop"
+        }
+      },
+      "skills": [
+        "Figma design",
+        "WordPress · Divi",
+        "Claude agents"
+      ],
+      "cs": {
+        "label": "Client project · Showcase site · Shop",
+        "title": [
+          "Mélodie Yeremian: two services, ",
+          "one clear path",
+          ""
+        ],
+        "intro": "The website of Mélodie, a career coach and psychopractitioner. I designed it in Figma and built it on WordPress, then set up her Claude infrastructure: today she has her agents edit her site.",
+        "meta": {
+          "role": "Design in Figma and site build",
+          "client": "Mélodie Yeremian, Paris and remote",
+          "scope": "Design, WordPress site, Claude infrastructure",
+          "tools": "Figma, WordPress, Elementor then Divi, Claude",
+          "type": "Showcase site · Shop",
+          "result": "Clients now reach Mélodie through the site"
+        },
+        "context": {
+          "title": "Don't confuse career coaching with therapy",
+          "body": [
+            "Mélodie supports people through professional and personal transitions. She had no website yet: everything started from scratch."
+          ],
+          "callout": "Visitors had to find the right service quickly, and feel confident enough to book a first appointment.",
+          "cards": [
+            {
+              "tag": "offre",
+              "title": "Career assessment",
+              "text": "For professional transitions."
+            },
+            {
+              "tag": "offre",
+              "title": "Therapeutic support",
+              "text": "For personal transitions."
+            },
+            {
+              "tag": "contrainte",
+              "title": "Autonomy",
+              "text": "Mélodie had to be able to edit her site on her own."
+            },
+            {
+              "tag": "contrainte",
+              "title": "A gentle tone",
+              "text": "True to her practice, in the words as in the interface."
+            }
+          ]
+        },
+        "decisions": {
+          "title": "Four decisions for a clear path to the appointment",
+          "items": [
+            {
+              "title": "Two separate paths rather than one shared page",
+              "why": "Each service has its own page, details and discovery booking."
+            },
+            {
+              "title": "WordPress rather than a custom-coded site",
+              "why": "Built with Elementor, then migrated to Divi. I put Mélodie's autonomy first and accepted less freedom over interface details."
+            },
+            {
+              "title": "Turning the client's requests into interface",
+              "why": "The always-visible \"Book an appointment\" bar, a discovery button per service and a low-key shop came from Mélodie. I built them in without weighing down the journey."
+            },
+            {
+              "title": "A personal \"About me\" section",
+              "why": "In therapy as in career coaching, people choose a person first."
+            }
+          ]
+        },
+        "third": {
+          "label": "After launch",
+          "title": "A site Mélodie runs with her Claude agents",
+          "body": "Once the site was live, I connected Claude to it and set up Mélodie's infrastructure. She no longer goes into WordPress: she asks her agents for a change and they make it for her.",
+          "steps": [
+            {
+              "title": "Connect Claude",
+              "text": "Claude is linked to Mélodie's WordPress site.",
+              "tags": []
+            },
+            {
+              "title": "Create her agents",
+              "text": "Her agents, their instructions and the site's brand guidelines.",
+              "tags": [
+                "Agents",
+                "Instructions",
+                "Brand guidelines"
+              ]
+            },
+            {
+              "title": "Edit without WordPress",
+              "text": "Her latest request: a new testimonial, added by Claude following the brand guidelines and the layout.",
+              "tags": []
+            }
+          ]
+        },
+        "screens": {
+          "label": "The journey in screens",
+          "title": "From services to appointment"
+        },
+        "how": {
+          "label": "How I worked",
+          "title": "From design to site, then from site to agents",
+          "steps": [
+            {
+              "title": "Listen",
+              "text": "Mélodie's two services and her precise requests for the interface."
+            },
+            {
+              "title": "Design",
+              "text": "The mockups in Figma, with two separate paths."
+            },
+            {
+              "title": "Build",
+              "text": "The site on WordPress, first with Elementor, then migrated to Divi."
+            },
+            {
+              "title": "Automate",
+              "text": "Her Claude infrastructure: agents, instructions and brand guidelines."
+            }
+          ]
+        },
+        "result": {
+          "title": "Visitors who find the right service",
+          "quote": [
+            "“Now visitors ",
+            "find the right service",
+            " and book a discovery call easily.”"
+          ],
+          "author": "Mélodie Yeremian, career coach and psychopractitioner",
+          "facts": [
+            [
+              "Live",
+              "Mélodie presents both services there and takes bookings."
+            ],
+            [
+              "New contacts",
+              "Clients have contacted her after discovering her site."
+            ],
+            [
+              "Autonomous",
+              "She has her Claude agents edit her site, without touching WordPress."
+            ]
+          ]
         }
       }
     },
@@ -284,6 +565,185 @@ export default {
         },
         "certificate": {
           "title": "Certificate"
+        }
+      },
+      "skills": [
+        "Product design",
+        "Design system",
+        "Claude + Figma",
+        "Coded demo"
+      ],
+      "cs": {
+        "label": "Client project · personal V2 · Learning platform",
+        "title": [
+          "Unfate: making DeFi ",
+          "approachable",
+          ", one lesson at a time"
+        ],
+        "intro": "An online learning platform that connects a teacher with their students, a company with its employees, or an expert with anyone who wants to learn. I designed the V1 with the founder, then rebuilt a V2 on a design system by directing Claude.",
+        "meta": {
+          "role": "Product design: moodboard, mockups, prototype",
+          "client": "Unfate's founder, who started the project",
+          "scope": "V1 with the founder · V2 on my own initiative",
+          "tools": "Figma, Claude connected to Figma",
+          "type": "Online learning platform",
+          "result": "64 screens on a design system, 33 screens added"
+        },
+        "context": {
+          "title": "An intimidating subject, a platform that has to stay open",
+          "body": [
+            "Unfate started as its founder's idea: a place where teachers and companies publish their courses, with everything you need on a subject in one place. To begin, we put cryptocurrencies forward, with a first course on decentralised finance (DeFi) in six steps.",
+            "We worked in a shared Figma file, where the moodboard, mockups and prototype were discussed as we went."
+          ],
+          "callout": "DeFi is intimidating. The product had to make it approachable, keep learners motivated from one lesson to the next, and check what they had retained.",
+          "cards": [
+            {
+              "tag": "frein",
+              "title": "Technical vocabulary",
+              "text": "Abstract concepts that make people drop off on the first page."
+            },
+            {
+              "tag": "frein",
+              "title": "Fear of getting it wrong",
+              "text": "It's about money: learners need to feel confident."
+            },
+            {
+              "tag": "besoin",
+              "title": "Keeping the pace",
+              "text": "Staying motivated from one lesson to the next, all the way to the exam."
+            },
+            {
+              "tag": "contrainte",
+              "title": "Staying generic",
+              "text": "Welcoming other subjects and other teachers later on."
+            }
+          ]
+        },
+        "decisions": {
+          "title": "Five decisions so learners always know where they are",
+          "items": [
+            {
+              "title": "A path that is always visible",
+              "why": "Numbered lessons, a progress bar and locked next steps: you know where you are and what comes next."
+            },
+            {
+              "title": "Practise before being assessed",
+              "why": "A practice page comes before the exam, which shows one question at a time and ends with a certificate."
+            },
+            {
+              "title": "A catalogue built for several teachers",
+              "why": "Cards show the teacher, and learners find their ongoing, favourite and completed courses."
+            },
+            {
+              "title": "Frictionless sign-up",
+              "why": "Sign in with Google or by email, to reach the first course quickly."
+            },
+            {
+              "title": "More ways to pay",
+              "why": "One of the last steps: several ways to pay, including regulated euro or dollar stablecoins."
+            }
+          ]
+        },
+        "third": {
+          "label": "From V1 to V2",
+          "title": "The product was discontinued. I picked up the file to test a design system driven by AI",
+          "body": "On my own initiative, I wanted to see how far I could go by directing Claude connected to Figma. I set the direction, Claude carried it out, I checked every screen.",
+          "steps": [
+            {
+              "title": "Audit the V1",
+              "text": "Claude listed the file's inconsistencies.",
+              "figs": [
+                [
+                  "72",
+                  "text styles"
+                ],
+                [
+                  "2",
+                  "fonts mixed"
+                ],
+                [
+                  "1",
+                  "missing icon font"
+                ]
+              ]
+            },
+            {
+              "title": "Build the system",
+              "text": "Then apply it to the 64 screens without changing how they look, each screen compared with the V1.",
+              "figs": [
+                [
+                  "34",
+                  "colours"
+                ],
+                [
+                  "23",
+                  "tokens"
+                ],
+                [
+                  "39",
+                  "styles"
+                ],
+                [
+                  "20",
+                  "components"
+                ]
+              ]
+            },
+            {
+              "title": "Go further",
+              "text": "Redesigned sign-in, mobile versions, and a full course in chapters of two or three lessons.",
+              "figs": [
+                [
+                  "33",
+                  "screens added"
+                ]
+              ]
+            }
+          ]
+        },
+        "screens": {
+          "label": "The journey in screens",
+          "title": "From sign-in to certificate"
+        },
+        "how": {
+          "label": "How I worked",
+          "title": "I decide, AI speeds things up, I check everything",
+          "steps": [
+            {
+              "title": "Frame",
+              "text": "With the founder, in a shared Figma file: moodboard, flows, comments as we went."
+            },
+            {
+              "title": "Prototype",
+              "text": "Mockups and a clickable prototype, from the catalogue to the certificate."
+            },
+            {
+              "title": "Systematise",
+              "text": "Claude builds the design system under my direction and applies it to the screens."
+            },
+            {
+              "title": "Check",
+              "text": "Every screen compared with the V1, prototype links checked, then my sign-off."
+            }
+          ]
+        },
+        "result": {
+          "title": "A new screen is built from existing components, without starting from scratch",
+          "metrics": [
+            [
+              "64",
+              "V1 screens moved onto the design system without changing how they look"
+            ],
+            [
+              "+33",
+              "screens added thanks to the system: sign-in, mobile, courses in chapters"
+            ],
+            [
+              "20",
+              "reusable components to open the platform to other subjects"
+            ]
+          ],
+          "note": "The V1 set out the flows with the founder. The V2 was not released: it is personal work."
         }
       }
     }
@@ -394,6 +854,42 @@ export default {
     },
     "photoAlt": "Gilbert Trinidad, smiling and pointing",
     "aboutTitleA": "I take",
-    "aboutTitleB": "the lead"
+    "aboutTitleB": "the lead",
+    "skillsLabel": "Skills used"
+  },
+  "cs": {
+    "back": "All projects",
+    "overview": "Overview",
+    "context": "Context",
+    "decisions": "Key decisions",
+    "screens": "Screens",
+    "method": "Method",
+    "result": "Outcome",
+    "stake": "What was at stake",
+    "why": "Why",
+    "step": "Step {n}",
+    "retro": "In hindsight",
+    "contents": "Contents",
+    "meta": {
+      "role": "Role",
+      "client": "Client",
+      "scope": "Scope",
+      "tools": "Tools",
+      "type": "Type",
+      "result": "Outcome"
+    },
+    "tags": {
+      "frein": "Obstacle",
+      "besoin": "Need",
+      "contrainte": "Constraint",
+      "offre": "Offer"
+    },
+    "demoLead": "Interactive demo",
+    "demoSub": "rebuilt in code from the V2 design",
+    "siteLead": "Live site",
+    "visit": "Visit the site",
+    "contactA": "Want to ",
+    "contactB": "talk about it?",
+    "seeProject": "See the project"
   }
 }

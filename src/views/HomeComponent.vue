@@ -50,6 +50,9 @@
 					<a href="#projects" class="btn btn-big">{{ $t('hero.seeWork') }}</a>
 					<a href="#contact" class="btn btn-ghost">{{ $t('hero.contact') }}</a>
 				</div>
+				<ul class="hero-names" :aria-label="$t('work.title')">
+					<li v-for="project in heroProjects" :key="project.id"><router-link :to="{ name: 'ProjectDetailComponent', params: { id: project.id } }"><i aria-hidden="true"></i>{{ displayName(project) }}</router-link></li>
+				</ul>
 			</div>
 		</header>
 
@@ -62,9 +65,10 @@
 				</div>
 				<article class="card feat">
 					<div class="feat-text">
-						<span class="label">{{ $t(`projects.${featured.id}.type`) }}</span>
+						<span class="label">{{ $t(`projects.${featured.id}.label`) }}</span>
 						<h3>{{ featured.name }}</h3>
 						<p>{{ $t(`projects.${featured.id}.hook`) }}</p>
+						<ul class="tags" :aria-label="$t('home.skillsLabel')"><li v-for="(skill, i) in skills(featured.id)" :key="skill" class="tag" :class="`t${i % 4 + 1}`">{{ skill }}</li></ul>
 						<p class="result"><b>{{ $t('case.resultLabel') }}</b>{{ $t(`projects.${featured.id}.result`) }}</p>
 						<div class="ctas ctas-left">
 							<a :href="demoPath" class="btn btn-big btn-md">{{ $t('demo.cta') }}</a>
@@ -76,9 +80,10 @@
 				<div class="duo">
 					<router-link v-for="project in others" :key="project.id" :to="{ name: 'ProjectDetailComponent', params: { id: project.id } }" class="duo-item card">
 						<div class="shot"><img loading="lazy" :src="project.img" alt=""></div>
-						<span class="label">{{ $t(`projects.${project.id}.type`) }}</span>
+						<span class="label">{{ $t(`projects.${project.id}.label`) }} · {{ $t(`projects.${project.id}.type`) }}</span>
 						<h3>{{ displayName(project) }}</h3>
 						<p>{{ $t(`projects.${project.id}.hook`) }}</p>
+						<ul class="tags" :aria-label="$t('home.skillsLabel')"><li v-for="(skill, i) in skills(project.id)" :key="skill" class="tag" :class="`t${i % 4 + 1}`">{{ skill }}</li></ul>
 						<span class="more">{{ $t('testimonials.seeProject') }}</span>
 					</router-link>
 				</div>
@@ -133,7 +138,8 @@
 				<h2>{{ $t('home.dance.titleStart') }}<span class="grad">{{ $t('home.dance.titleFlow') }}</span>{{ $t('home.dance.titleEnd') }}</h2>
 				<p class="lead">{{ $t('home.dance.text') }}</p>
 				<div class="moves">
-					<article v-for="(move, i) in moves" :key="move.name" class="move">
+					<article v-for="(move, i) in moves" :key="move.name" class="move card">
+						<span class="mn" aria-hidden="true">0{{ i + 1 }}</span>
 						<div class="pose"><img loading="lazy" :src="move.img" :alt="$t(`home.dance.moves.${i}.alt`)"></div>
 						<h3>{{ move.name }}</h3>
 						<p>{{ $t(`home.dance.moves.${i}.text`) }}</p>
@@ -230,6 +236,9 @@ export default {
 		featured() {
 			return this.projects.find(p => p.featured) || this.projects[0]
 		},
+		heroProjects() {
+			return [this.featured].concat(this.others)
+		},
 		others() {
 			return this.projects.filter(p => p !== this.featured)
 		},
@@ -264,6 +273,12 @@ export default {
 		if (this.observer) this.observer.disconnect()
 	},
 	methods: {
+		// Skill badges of a project, in the current language (falls back to English)
+		skills(id) {
+			const pick = locale => ((this.$i18n.messages[locale] || {}).projects || {})[id]
+			const project = pick(this.$i18n.locale) || pick('en') || {}
+			return project.skills || []
+		},
 		displayName(project) {
 			return project.name === 'Melodie Yeremian' ? 'Mélodie Yeremian' : project.name
 		},
@@ -302,8 +317,19 @@ export default {
 .ctas-left { justify-content: flex-start; margin-top: 28px; }
 
 /* hero */
-.hero { position: relative; height: 1180px; overflow: hidden; }
-.hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero { position: relative; min-height: 1180px; padding-bottom: 60px; }
+/* The glow runs past the hero and fades out, so the transition into the projects has no edge */
+.hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: calc(100% + 320px); pointer-events: none; -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent); mask-image: linear-gradient(to bottom, #000 55%, transparent); }
+.hero-names { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 48px; margin: 64px 0 0; padding: 0; }
+.hero-names a { display: inline-flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); text-decoration: none; transition: color .2s ease; }
+.hero-names a:hover, .hero-names a:focus-visible { color: #fff; }
+.hero-names i { width: 7px; height: 7px; border-radius: 2px; background: #8FB0FF; box-shadow: 0 0 10px #8FB0FF; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; padding: 0; list-style: none; }
+.tag { font-size: 14px; font-weight: 700; padding: 6px 13px; border-radius: 999px; }
+.tag.t1 { background: rgba(181, 110, 240, .16); color: #E2C2FA; }
+.tag.t2 { background: rgba(144, 215, 255, .16); color: #A9E2FF; }
+.tag.t3 { background: rgba(255, 230, 144, .15); color: #FFE6A0; }
+.tag.t4 { background: rgba(144, 255, 188, .14); color: #AFFFD0; }
 .hero-c { position: relative; z-index: 2; text-align: center; padding-top: 150px; }
 .badge { display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px 8px 12px; border-radius: 999px; background: rgba(144, 255, 188, .12); border: 1px solid rgba(144, 255, 188, .3); color: #B9FFD6; font-size: 14px; font-weight: 600; }
 .badge i { width: 8px; height: 8px; border-radius: 50%; background: #7CF5B0; box-shadow: 0 0 12px #7CF5B0; }
@@ -345,8 +371,8 @@ section { padding-top: 190px; position: relative; scroll-margin-top: 90px; }
 .feat-text { position: relative; }
 .feat h3 { font-size: 40px; font-weight: 800; line-height: 1.1; margin: 16px 0; }
 .feat p { color: var(--muted); font-size: 18px; line-height: 1.55; font-weight: 500; }
-.feat .result { margin-top: 22px; font-size: 16px; }
-.feat .result b { color: var(--sky); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; font-weight: 800; margin-right: 8px; }
+.feat .result { margin-top: 24px; padding: 18px 20px; border-radius: 16px; background: rgba(255, 255, 255, .04); border: 1px solid var(--line); font-size: 16px; color: #E8E3F5; font-weight: 600; }
+.feat .result b { display: block; color: var(--sky); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; font-weight: 800; margin-bottom: 6px; }
 .eyb img { width: 28px; height: 28px; object-fit: contain; flex: none; }
 .duo-item.card { display: block; padding: 30px 30px 34px; }
 .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
@@ -381,7 +407,7 @@ section { padding-top: 190px; position: relative; scroll-margin-top: 90px; }
 .quotes { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
 .quote { margin: 0; padding: 40px; }
 .quote .mark { font-size: 80px; line-height: .6; font-weight: 900; height: 34px; }
-.quote blockquote { font-size: 24px; line-height: 1.5; font-weight: 600; color: #EEEAF7; margin: 12px 0 0; }
+.quote blockquote { font-size: 22px; line-height: 1.5; font-weight: 600; color: #EEEAF7; margin: 12px 0 0; }
 .who { margin-top: 28px; display: flex; align-items: center; gap: 14px; }
 .ini { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; font-weight: 900; font-size: 18px; background: linear-gradient(135deg, #34265A, #1A1430); border: 1px solid rgba(255, 255, 255, .14); }
 .who b { display: block; font-size: 16px; }
@@ -398,8 +424,10 @@ section { padding-top: 190px; position: relative; scroll-margin-top: 90px; }
 .dance { text-align: center; }
 .dance h2 { font-size: 44px; font-weight: 800; line-height: 1.1; margin: 0 auto; max-width: 760px; }
 .dance .lead { max-width: 680px; margin: 20px auto 0; }
-.moves { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 70px; }
-.move .pose { height: 220px; display: grid; place-items: end center; margin-bottom: 10px; }
+.moves { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; text-align: left; }
+.move.card { padding: 26px 26px 28px; }
+.move .mn { position: absolute; top: 22px; right: 24px; z-index: 1; font-weight: 900; font-size: 13px; letter-spacing: .14em; color: var(--dim); }
+.move .pose { height: 240px; display: grid; place-items: end center; border-radius: 20px; background: radial-gradient(60% 55% at 50% 75%, rgba(149, 53, 215, .22), transparent 75%); margin-bottom: 20px; }
 .move .pose img { max-height: 210px; max-width: 85%; }
 .move h3 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
 .move p { color: var(--muted); font-size: 15px; line-height: 1.5; font-weight: 500; }
@@ -432,7 +460,9 @@ section { padding-top: 190px; position: relative; scroll-margin-top: 90px; }
 /* mobile */
 @media (max-width: 860px) {
 	.wrap { padding: 0 20px; }
-	.hero { height: auto; padding-bottom: 40px; }
+	.hero { min-height: 0; padding-bottom: 40px; }
+	.hero-names { gap: 12px 26px; margin-top: 40px; }
+	.hero-names a { font-size: 12px; }
 	.hero-c { padding-top: 110px; }
 	h1 { font-size: 38px; }
 	h1 small { font-size: 18px; }
@@ -469,7 +499,7 @@ section { padding-top: 190px; position: relative; scroll-margin-top: 90px; }
 	.wave { margin-top: 100px; height: 120px; }
 	.wave .mw img { height: 80px; margin-left: -16px; }
 	.dance h2 { font-size: 30px; }
-	.moves { grid-template-columns: 1fr; gap: 40px; }
+	.moves { grid-template-columns: 1fr; gap: 16px; }
 	.move .pose { height: 180px; }
 	.move .pose img { max-height: 170px; }
 	.landing { margin: 50px auto -20px; left: 50%; transform: translateX(-50%) scale(.68); transform-origin: center bottom; }

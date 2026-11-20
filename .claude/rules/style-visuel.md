@@ -7,7 +7,7 @@ paths:
 
 # Style visuel du portfolio
 
-> **Mise à jour du 20/11/2026 (accord de Gilbert)** : l'accueil, la navigation et le contact passent en thème sombre « néon » : fond `#0D0B17`, cadre `#050409` avec un trait violet fin et une navigation en encoche (inspirée de greymac.com), police Urbanist, dégradé violet `#9535D7` → bleu électrique `#6E8BFF`, illustrations de danse en trait de néon. Les pages projet gardent le style clair ci-dessous, posées dans le cadre sombre.
+> **Mise à jour du 20/11/2026 (accord de Gilbert)** : l'accueil, la navigation et le contact passent en thème sombre « néon » : fond `#0D0B17`, cadre `#050409` avec un trait violet fin et une navigation en encoche (inspirée de greymac.com), police Urbanist, dégradé violet `#9535D7` → bleu électrique `#6E8BFF`, illustrations de danse en trait de néon. Depuis le 20/11/2026 au soir, les études de cas (pages projet) passent aussi en thème sombre néon, sur le modèle des maquettes /mnt/project-files/design/builda/etude-*. Le style clair ci-dessous ne vaut plus que pour les autres pages (politique, 404).
 
 Garde le style actuel. Ne change pas de direction visuelle sans l'accord de Gilbert.
 
