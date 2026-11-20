@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="w-full m-0 p-0">
+  <div id="app" class="w-full m-0 p-0" :class="{ 'app-dark': $route.path === '/' || $route.name === 'ProjectDetailComponent' }">
     <NavbarComponent/>
     <!-- The notch navigation is fixed: other pages start below it -->
     <div v-if="$route.path !== '/'" class="nav-spacer" aria-hidden="true"></div>
@@ -110,6 +110,10 @@ body {
 }
 .nav-spacer {
   height: 96px;
+}
+/* Dark pages: the area under the navigation matches the page */
+.app-dark {
+  background: #0D0B17;
 }
 @media (max-width: 860px) {
   body {
