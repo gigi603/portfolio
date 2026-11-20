@@ -5,6 +5,8 @@
 			<svg class="hero-bg" viewBox="0 0 1440 1180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
 				<defs>
 					<radialGradient id="hglow" cx="50%" cy="58%" r="40%"><stop offset="0" stop-color="#9535D7" stop-opacity=".55"/><stop offset=".55" stop-color="#9535D7" stop-opacity=".12"/><stop offset="1" stop-color="#0D0B17" stop-opacity="0"/></radialGradient>
+					<linearGradient id="hln" x1="0" x2="1"><stop stop-color="#fff" stop-opacity="0"/><stop offset=".7" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity=".05"/></linearGradient>
+					<linearGradient id="hlnr" x1="1" x2="0"><stop stop-color="#fff" stop-opacity="0"/><stop offset=".7" stop-color="#fff" stop-opacity=".25"/><stop offset="1" stop-color="#fff" stop-opacity=".05"/></linearGradient>
 					<radialGradient id="hwarm" cx="42%" cy="72%" r="22%"><stop offset="0" stop-color="#6E8BFF" stop-opacity=".35"/><stop offset="1" stop-color="#6E8BFF" stop-opacity="0"/></radialGradient>
 				</defs>
 				<rect width="1440" height="1180" fill="url(#hglow)"/>
@@ -15,7 +17,27 @@
 					<circle cx="720" cy="640" r="380" stroke-opacity=".13"/>
 					<circle cx="720" cy="640" r="520" stroke-opacity=".10"/>
 					<circle cx="720" cy="640" r="670" stroke-opacity=".07"/>
-					<circle cx="720" cy="640" r="830" stroke-opacity=".05"/>
+				</g>
+				<!-- Lines converging on the demo, with small neon points -->
+				<g fill="none" stroke="url(#hln)" stroke-width="1">
+					<path d="M0 300 C 300 330, 480 470, 640 500"/>
+					<path d="M0 380 C 280 400, 470 480, 640 506"/>
+					<path d="M0 460 C 260 470, 460 500, 640 512"/>
+					<path d="M0 560 C 280 560, 470 530, 640 518"/>
+					<path d="M0 650 C 300 620, 480 550, 640 524"/>
+					<path d="M0 740 C 320 690, 490 570, 640 530"/>
+				</g>
+				<g fill="none" stroke="url(#hlnr)" stroke-width="1">
+					<path d="M1440 512 L 800 512"/>
+					<path d="M1440 420 C 1150 440, 960 495, 800 506"/>
+					<path d="M1440 620 C 1150 600, 960 530, 800 518"/>
+				</g>
+				<g class="neon-dots">
+					<circle cx="260" cy="420" r="5" fill="#8FB0FF"/><circle cx="260" cy="420" r="14" fill="#8FB0FF" opacity=".18"/>
+					<circle cx="170" cy="350" r="5" fill="#8FB0FF"/><circle cx="170" cy="350" r="14" fill="#8FB0FF" opacity=".18"/>
+					<circle cx="330" cy="604" r="5" fill="#8FB0FF"/><circle cx="330" cy="604" r="14" fill="#8FB0FF" opacity=".18"/>
+					<circle cx="1150" cy="512" r="5" fill="#C58CF2"/><circle cx="1150" cy="512" r="14" fill="#C58CF2" opacity=".2"/>
+					<circle cx="1020" cy="472" r="4" fill="#8F7BFF"/>
 				</g>
 			</svg>
 			<div class="hero-c wrap">
