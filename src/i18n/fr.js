@@ -43,7 +43,8 @@ export default {
       "prototyping": "Prototype en code",
       "ui": "Design system",
       "ai": "Claude Code",
-      "launch": "Mise en ligne"
+      "launch": "Mise en ligne",
+      "claudeFigma": "Claude + Figma"
     }
   },
   "work": {

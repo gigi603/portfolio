@@ -99,6 +99,8 @@ p, span, li, a {
 }
 html {
   background: var(--frame);
+  /* Must not be "visible": otherwise the body's overflow (clip) is handed to the window and the page can't scroll */
+  overflow-x: hidden;
 }
 body {
   background-color: #EEE6FF;

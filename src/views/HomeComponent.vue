@@ -9,12 +9,13 @@
 				</defs>
 				<rect width="1440" height="1180" fill="url(#hglow)"/>
 				<rect width="1440" height="1180" fill="url(#hwarm)"/>
-				<g fill="none" stroke="#fff">
-					<circle cx="720" cy="640" r="110" stroke-opacity=".10"/>
-					<circle cx="720" cy="640" r="200" stroke-opacity=".08"/>
-					<circle cx="720" cy="640" r="300" stroke-opacity=".07"/>
-					<circle cx="720" cy="640" r="410" stroke-opacity=".05"/>
-					<circle cx="720" cy="640" r="530" stroke-opacity=".04"/>
+				<g fill="none" stroke="#fff" stroke-width="1.2">
+					<circle cx="720" cy="640" r="130" stroke-opacity=".22"/>
+					<circle cx="720" cy="640" r="250" stroke-opacity=".17"/>
+					<circle cx="720" cy="640" r="380" stroke-opacity=".13"/>
+					<circle cx="720" cy="640" r="520" stroke-opacity=".10"/>
+					<circle cx="720" cy="640" r="670" stroke-opacity=".07"/>
+					<circle cx="720" cy="640" r="830" stroke-opacity=".05"/>
 				</g>
 			</svg>
 			<div class="hero-c wrap">
@@ -27,6 +28,7 @@
 						<span class="play"><b aria-hidden="true">▶</b>{{ $t('home.demoLabel') }}</span>
 					</a>
 					<img class="dancer" :src="art.runningMan" alt="" aria-hidden="true">
+					<span v-for="chip in chips" :key="chip.key" class="chip" :class="chip.pos" aria-hidden="true"><em :class="chip.tone">{{ chip.icon }}</em>{{ $t(`hero.chips.${chip.key}`) }}</span>
 				</div>
 				<p class="lead">{{ $t('home.leadStart') }}<em class="flow">{{ $t('home.leadFlow') }}</em>{{ $t('home.leadEnd') }}</p>
 				<div class="ctas">
@@ -191,6 +193,13 @@ export default {
 				sixStep: require('@/assets/images/neon/six-step.webp'),
 				photo: require('@/assets/images/danse/photo-apropos.webp'),
 			},
+			// Neon labels floating around the demo
+			chips: [
+				{ key: 'research', icon: '01', tone: 't-violet', pos: 'c1' },
+				{ key: 'claudeFigma', icon: '✦', tone: 't-blue', pos: 'c2' },
+				{ key: 'prototyping', icon: '</>', tone: 't-sky', pos: 'c3' },
+				{ key: 'launch', icon: '✓', tone: 't-mint', pos: 'c4' },
+			],
 			testimonials: [
 				{ key: 'sophie', name: 'Sophie Pratt', initials: 'S' },
 				{ key: 'melodie', name: 'Mélodie Yeremian', initials: 'M' },
@@ -290,6 +299,16 @@ h1 small { display: block; font-size: 22px; font-weight: 600; color: var(--muted
 .play b { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; background: radial-gradient(circle at 30% 70%, #6E8BFF, #8F7BFF 40%, #A64BEB); }
 .browser:hover .play { border-color: #fff; }
 .dancer { position: absolute; left: -200px; bottom: -60px; width: 250px; pointer-events: none; }
+.chip { position: absolute; z-index: 3; display: flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 700; padding: 8px 14px 8px 9px; border-radius: 12px; white-space: nowrap; color: #F3E8FF; background: rgba(20, 14, 36, .78); border: 1px solid rgba(197, 140, 242, .65); box-shadow: 0 0 0 1px rgba(197, 140, 242, .15), 0 0 18px rgba(166, 75, 235, .55), inset 0 0 12px rgba(166, 75, 235, .25); text-shadow: 0 0 10px rgba(226, 194, 250, .6); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.chip em { font-style: normal; width: 24px; height: 24px; border-radius: 7px; display: grid; place-items: center; font-size: 11px; font-weight: 800; text-shadow: none; }
+.chip .t-violet { background: rgba(181, 110, 240, .25); color: #E2C2FA; box-shadow: 0 0 10px rgba(181, 110, 240, .6); }
+.chip .t-blue { background: rgba(143, 176, 255, .22); color: #C9D7FF; box-shadow: 0 0 10px rgba(110, 139, 255, .6); }
+.chip .t-sky { background: rgba(144, 215, 255, .2); color: #BDE9FF; box-shadow: 0 0 10px rgba(144, 215, 255, .55); }
+.chip .t-mint { background: rgba(144, 255, 188, .18); color: #B9FFD6; box-shadow: 0 0 10px rgba(124, 245, 176, .55); }
+.c1 { right: -130px; top: -22px; }
+.c2 { right: -160px; top: 120px; }
+.c3 { right: -140px; top: 262px; }
+.c4 { right: -100px; bottom: -20px; }
 .hero .lead { max-width: 690px; margin: 56px auto 0; }
 .flow { font-style: italic; font-weight: 800; color: #fff; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 6'%3E%3Cpath d='M0 3 Q 5 0 10 3 T 20 3 T 30 3 T 40 3' stroke='%23B865F2' stroke-width='1.8' fill='none'/%3E%3C/svg%3E") repeat-x 0 100% / 20px 6px; padding-bottom: 6px; }
 
@@ -400,6 +419,7 @@ section { padding-top: 190px; position: relative; scroll-margin-top: 90px; }
 	.dancer { left: auto; right: -6px; bottom: auto; top: -150px; width: 130px; }
 	.browser .bar span { display: none; }
 	.play { font-size: 12px; right: 10px; bottom: 10px; }
+	.chip { position: static; display: inline-flex; margin: 14px 4px 0; font-size: 12px; }
 	.hero .lead { font-size: 17px; margin-top: 34px; }
 	.ctas { flex-direction: column; align-items: stretch; gap: 12px; }
 	.btn-big { font-size: 15px; padding: 18px; }
