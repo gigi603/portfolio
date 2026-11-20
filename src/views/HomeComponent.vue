@@ -11,13 +11,6 @@
 				</defs>
 				<rect width="1440" height="1180" fill="url(#hglow)"/>
 				<rect width="1440" height="1180" fill="url(#hwarm)"/>
-				<g fill="none" stroke="#fff" stroke-width="1.2">
-					<circle cx="720" cy="640" r="130" stroke-opacity=".22"/>
-					<circle cx="720" cy="640" r="250" stroke-opacity=".17"/>
-					<circle cx="720" cy="640" r="380" stroke-opacity=".13"/>
-					<circle cx="720" cy="640" r="520" stroke-opacity=".10"/>
-					<circle cx="720" cy="640" r="670" stroke-opacity=".07"/>
-				</g>
 				<!-- Lines converging on the demo, with small neon points -->
 				<g fill="none" stroke="url(#hln)" stroke-width="1">
 					<path d="M0 300 C 300 330, 480 470, 640 500"/>
