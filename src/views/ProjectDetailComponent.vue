@@ -6,6 +6,7 @@
       <nav class="cs-toc" :aria-label="$t('cs.contents')">
         <div class="cs-toc-in">
           <a v-for="(item, i) in tocItems" :key="item.id" :href="`#${item.id}`" :class="{ on: activeSection === item.id }" @click.prevent="scrollToSection(item.id)"><b>{{ pad(i) }}</b>{{ item.label }}</a>
+          <a v-if="project.demo" :href="project.demo.path" class="btn btn-big toc-demo">{{ $t('demo.cta') }} →</a>
         </div>
       </nav>
 
@@ -352,6 +353,8 @@ ol { list-style: none; padding: 0; margin: 0; }
   .cs-toc a:hover { color: #fff; }
   .cs-toc a.on { background: rgba(149, 53, 215, .18); color: #fff; box-shadow: inset 2px 0 0 var(--violet); }
   .cs-toc a.on b { color: var(--sky); }
+  .cs-toc a.toc-demo { margin-top: 18px; justify-content: center; padding: 12px 10px; font-size: 11px; color: #fff; letter-spacing: .06em; }
+  .cs-toc a.toc-demo:hover { color: #fff; }
 }
 .cs-main { min-width: 0; max-width: 1180px; }
 
