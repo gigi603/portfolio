@@ -10,7 +10,7 @@
         <div class="ct">
           <div class="ct-l">
             <p class="eyb"><img :src="vinyle" alt="" aria-hidden="true" width="28" height="28">{{ $t('contact.eyebrow') }}</p>
-            <h2 id="contact-title" class="kicker">{{ $t('contact.title') }}</h2>
+            <h2 id="contact-title" class="kicker">{{ titleParts[0] }}<span v-if="titleParts[1]" class="grad">{{ titleParts[1] }}</span></h2>
             <p class="lead">{{ $t('contact.subtitle') }}</p>
             <ul class="ct-links">
               <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/gilbert-trinidad-755417102/" target="_blank" rel="noopener">{{ $t('contact.linkedin') }} →</a></li>
@@ -61,6 +61,12 @@ export default {
     }
   },
   computed: {
+    // Met en dégradé la fin du titre à partir de « de flow » / « du flow » / « flow »
+    titleParts() {
+      const title = this.$t('contact.title')
+      const match = title.match(/^(.*?)((?:de |du )?flow\b.*)$/i)
+      return match ? [match[1], match[2]] : [title, '']
+    },
     cvUrl() {
       return this.$i18n.locale === 'en' ? '/files/Gilbert-Trinidad-Resume.pdf' : '/files/Gilbert-Trinidad-CV.pdf'
     },
@@ -119,6 +125,7 @@ export default {
   .ct { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
   .eyb img { width: 28px; height: 28px; object-fit: contain; flex: none; }
   .eyb { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #8f8ab5; margin-bottom: 16px; }
+  .grad { background: linear-gradient(90deg, #B865F2 0%, #A15CEF 50%, #6E8BFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .kicker { font-family: Urbanist, system-ui, sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.12em; font-size: 34px; line-height: 1.25; }
   .lead { margin-top: 22px; max-width: 440px; font-size: 18px; line-height: 1.55; color: #cdc9e7; font-weight: 500; }
   .ct-links { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 16px; }
