@@ -890,6 +890,15 @@ export default {
     "visit": "Voir le site",
     "contactA": "Envie d'en ",
     "contactB": "parler ?",
-    "seeProject": "Voir le projet"
+    "seeProject": "Voir le projet",
+    "present": "Mode présentation",
+    "presentShort": "Présenter",
+    "caseStudy": "Étude de cas",
+    "quit": "Quitter la présentation",
+    "prev": "Diapositive précédente",
+    "next": "Diapositive suivante",
+    "keysA": "Naviguez avec",
+    "keysB": "pour quitter",
+    "esc": "Échap"
   }
 }
