@@ -125,7 +125,7 @@ export default {
   .ct { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
   .eyb img { width: 28px; height: 28px; object-fit: contain; flex: none; }
   .eyb { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #8f8ab5; margin-bottom: 16px; }
-  .grad { background: linear-gradient(90deg, #B865F2 0%, #A15CEF 50%, #6E8BFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .grad { white-space: nowrap; background: linear-gradient(90deg, #B865F2 0%, #A15CEF 50%, #6E8BFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .kicker { font-family: Urbanist, system-ui, sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.12em; font-size: 34px; line-height: 1.25; }
   .lead { margin-top: 22px; max-width: 440px; font-size: 18px; line-height: 1.55; color: #cdc9e7; font-weight: 500; }
   .ct-links { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 16px; }
