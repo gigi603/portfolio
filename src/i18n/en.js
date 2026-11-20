@@ -43,7 +43,8 @@ export default {
       "prototyping": "Code prototypes",
       "ui": "Design system",
       "ai": "Claude Code",
-      "launch": "Launch"
+      "launch": "Launch",
+      "claudeFigma": "Claude + Figma"
     }
   },
   "work": {
