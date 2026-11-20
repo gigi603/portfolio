@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'ProjectDetailComponent', params: { id: project.id } }" class="project-card">
+  <router-link :to="{ name: 'ProjectDetailComponent', params: { id: project.id } }" class="project-card" :class="{ 'project-card-featured': project.featured }">
     <div class="project-card-image">
       <img loading="lazy" :src="project.img" alt="">
     </div>
@@ -122,6 +122,29 @@ export default {
   .project-card-arrow img {
     width: 28px;
     height: 28px;
+  }
+  /* Featured project: spans both grid columns, image and text side by side */
+  .project-card-featured {
+    grid-column: 1 / -1;
+  }
+  @media (min-width: 768px) {
+    .project-card-featured {
+      flex-direction: row;
+    }
+    .project-card-featured .project-card-image {
+      flex: 0 0 58%;
+      height: auto;
+      min-height: 380px;
+    }
+    .project-card-featured .project-card-body {
+      padding: 40px;
+    }
+    .project-card-featured h3 {
+      font-size: 32px;
+    }
+    .project-card-featured p {
+      font-size: 17px;
+    }
   }
   @media (max-width: 640px) {
     .project-card-image {

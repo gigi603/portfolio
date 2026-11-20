@@ -1,6 +1,8 @@
 <template>
   <div id="app" class="w-full m-0 p-0">
     <NavbarComponent/>
+    <!-- The notch navigation is fixed: other pages start below it -->
+    <div v-if="$route.path !== '/'" class="nav-spacer" aria-hidden="true"></div>
       <router-view :data="datas"/>
       <FooterComponent/>
   </div>
@@ -90,8 +92,31 @@ p, span, li, a {
   padding: 30px;
 }
 
+/* Dark frame around the page (inspired by greymac.com) */
+:root {
+  --frame: #050409;
+  --hair: rgba(197, 140, 242, 0.28);
+}
+html {
+  background: var(--frame);
+}
 body {
   background-color: #EEE6FF;
+  margin: 12px;
+  border-radius: 24px;
+  overflow: clip;
+}
+.nav-spacer {
+  height: 96px;
+}
+@media (max-width: 860px) {
+  body {
+    margin: 6px;
+    border-radius: 18px;
+  }
+  .nav-spacer {
+    height: 80px;
+  }
 }
 
 .border-color-card {

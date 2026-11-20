@@ -21,6 +21,11 @@ const routes = [
     name: 'ProjectsComponent',
     component: () => import('../views/ProjectsComponent.vue')
   },
+  // Atypikhouse was removed from the site (2026-11-09): send old links to the project list
+  {
+    path: '/project/3',
+    redirect: '/projects'
+  },
   {
     path: "/project/:id",
     name: "ProjectDetailComponent",

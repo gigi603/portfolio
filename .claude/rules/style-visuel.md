@@ -7,6 +7,8 @@ paths:
 
 # Style visuel du portfolio
 
+> **Mise à jour du 20/11/2026 (accord de Gilbert)** : l'accueil, la navigation et le contact passent en thème sombre « néon » : fond `#0D0B17`, cadre `#050409` avec un trait violet fin et une navigation en encoche (inspirée de greymac.com), police Urbanist, dégradé violet `#9535D7` → bleu électrique `#6E8BFF`, illustrations de danse en trait de néon. Les pages projet gardent le style clair ci-dessous, posées dans le cadre sombre.
+
 Garde le style actuel. Ne change pas de direction visuelle sans l'accord de Gilbert.
 
 - **Couleur dominante : violet `#9535d7`** pour les boutons, liens, états actifs et le mot clé des titres. Fonds clairs lavande (`#f6efff`, `#fbf7ff`), texte quasi noir (`#111`) et gris (`#383a3c`).

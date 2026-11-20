@@ -1,6 +1,6 @@
 ---
 name: etude-de-cas
-description: Rédige ou retravaille l'étude de cas d'un projet du portfolio (SPCoach, Mélodie, Atypikhouse, Unfate…) en FR et EN. À utiliser quand Gilbert demande d'écrire, d'enrichir ou de revoir une étude de cas.
+description: Rédige ou retravaille l'étude de cas d'un projet du portfolio (Unfate, SPCoach, Mélodie…) en FR et EN. À utiliser quand Gilbert demande d'écrire, d'enrichir ou de revoir une étude de cas.
 argument-hint: "[nom du projet]"
 ---
 

@@ -3,11 +3,41 @@
     <NotFoundComponent v-if="!currentProject"/>
     <template v-for="project in projects">
       <article v-if="project.id == $route.params.id" :key="project.id" class="project-page">
-        <h1 class="project-back"><button @click="$router.go(-1)" class="mr-2" :aria-label="$t('case.back')"><font-awesome-icon icon="fa-solid fa-chevron-left" color="#000" size="sm" /></button> {{ project.name }}</h1>
+        <h1 class="project-back"><router-link to="/" class="mr-2" :aria-label="$t('case.back')"><font-awesome-icon icon="fa-solid fa-chevron-left" color="#000" size="sm" /></router-link> {{ project.name }}</h1>
+        <!-- Projects with a coded demo: intro then demo first, the case study follows -->
+        <template v-if="project.demo">
+          <p class="project-label">{{ $t(`projects.${project.id}.label`) }}</p>
+          <p class="project-tagline">{{ $t(`projects.${project.id}.tagline`) }}</p>
+          <!-- Coded demo of the product (Unfate), shown right after the intro so visitors try it before reading: live window on large screens, video on phones -->
+          <section v-if="project.demo" class="demo" id="section-demo" aria-labelledby="demo-title">
+            <div class="demo-head">
+              <p class="demo-kicker">{{ $t('demo.kicker') }}</p>
+              <h3 id="demo-title">{{ $t('demo.title') }}</h3>
+              <p class="demo-text">{{ $t(`projects.${project.id}.demo.text`) }}</p>
+              <ul class="demo-steps">
+                <li v-for="n in 3" :key="n"><span>{{ n }}</span>{{ $t(`projects.${project.id}.demo.step${n}`) }}</li>
+              </ul>
+            </div>
+            <div class="demo-window">
+              <div class="demo-window-bar" aria-hidden="true"><i></i><i></i><i></i><span>{{ domain('https://gilbert-trinidad.com') }}{{ project.demo.path }}</span></div>
+              <div class="demo-screen">
+                <iframe v-if="showLiveDemo" :src="`${project.demo.path}?embed=1`" :title="$t('demo.frameTitle', { name: project.name })" loading="lazy" class="demo-frame"></iframe>
+                <video v-else :key="demoVideo(project).src" class="demo-video" :class="{ 'demo-video-phone': isPhone }" :poster="demoVideo(project).poster" autoplay muted loop playsinline preload="metadata" :aria-label="$t('demo.videoLabel', { name: project.name })">
+                  <source :src="demoVideo(project).src" type="video/mp4">
+                </video>
+              </div>
+            </div>
+            <div class="demo-actions">
+              <a :href="project.demo.path" class="case-btn demo-btn">{{ $t('demo.open') }}</a>
+              <a :href="demoVideo(project).src" download class="demo-link">{{ $t('demo.download') }}</a>
+            </div>
+            <p class="demo-disclaimer">{{ $t('demo.disclaimer') }}</p>
+          </section>
+        </template>
         <div class="project-columns">
           <div class="project-main">
-            <p class="project-label">{{ $t(`projects.${project.id}.label`) }}</p>
-            <p v-if="project.sections" class="project-tagline">{{ $t(`projects.${project.id}.tagline`) }}</p>
+            <p v-if="!project.demo" class="project-label">{{ $t(`projects.${project.id}.label`) }}</p>
+            <p v-if="project.sections && !project.demo" class="project-tagline">{{ $t(`projects.${project.id}.tagline`) }}</p>
             <!-- Below 1024px the summary sits here, before the sections -->
             <div class="project-mobile-only">
               <div class="side-card">
@@ -20,12 +50,38 @@
                   <div v-if="$te(`projects.${project.id}.tools`, 'en')"><dt>{{ $t('case.toolsLabel') }}</dt><dd class="side-chips"><span v-for="tool in $t(`projects.${project.id}.tools`).split(', ')" :key="tool">{{ tool }}</span></dd></div>
                 </dl>
                 <a v-if="project.url_website" :href="project.url_website" target="_blank" rel="noopener" class="side-btn side-btn-primary">{{ $t(`projects.${project.id}.visit_label`) }} ↗</a>
+                <a v-if="project.demo" :href="project.demo.path" class="side-btn side-btn-primary">{{ $t('demo.cta') }} →</a>
               </div>
             </div>
             <template v-if="project.sections">
               <div v-for="section in project.sections" :key="section" :id="`section-${section}`" class="project-section">
                 <h3>{{ $t(`case.sections.${section}`) }}</h3>
                 <p>{{ $t(`projects.${project.id}.sections.${section}`) }}</p>
+                <div v-if="section === 'evolution' && project.evolution" class="evo">
+                  <figure v-for="pair in project.evolution.pairs" :key="pair.key" class="evo-pair">
+                    <div class="evo-row">
+                      <button type="button" class="evo-shot" :aria-label="$t('gallery.open', { title: evoTitle(project, pair.key, 'before') })" @click="showEvo(pair.key, 'before')">
+                        <span class="evo-badge evo-badge-v1">{{ $t('case.evoBefore') }}</span>
+                        <img :src="pair.before" :alt="evoTitle(project, pair.key, 'before')" loading="lazy">
+                      </button>
+                      <span class="evo-arrow" aria-hidden="true">→</span>
+                      <button type="button" class="evo-shot" :aria-label="$t('gallery.open', { title: evoTitle(project, pair.key, 'after') })" @click="showEvo(pair.key, 'after')">
+                        <span class="evo-badge evo-badge-v2">{{ $t('case.evoAfter') }}</span>
+                        <img :src="pair.after" :alt="evoTitle(project, pair.key, 'after')" loading="lazy">
+                      </button>
+                    </div>
+                    <figcaption><b>{{ $t(`projects.${project.id}.evolution.${pair.key}.title`) }}</b> {{ $t(`projects.${project.id}.evolution.${pair.key}.caption`) }}</figcaption>
+                  </figure>
+                  <div class="evo-extras">
+                    <figure v-for="extra in project.evolution.extras" :key="extra.key" class="evo-extra">
+                      <button type="button" class="evo-shot" :class="{ 'evo-shot-tall': extra.tall }" :aria-label="$t('gallery.open', { title: $t(`projects.${project.id}.evolution.${extra.key}.title`) })" @click="showEvo(extra.key)">
+                        <span class="evo-badge evo-badge-v2">{{ $t('case.evoAfter') }}</span>
+                        <img :src="extra.src" :alt="$t(`projects.${project.id}.evolution.${extra.key}.title`)" loading="lazy">
+                      </button>
+                      <figcaption><b>{{ $t(`projects.${project.id}.evolution.${extra.key}.title`) }}</b> {{ $t(`projects.${project.id}.evolution.${extra.key}.caption`) }}</figcaption>
+                    </figure>
+                  </div>
+                </div>
               </div>
             </template>
             <p v-else class="project-section-text">{{ $t(`projects.${project.id}.description`) }}</p>
@@ -42,6 +98,7 @@
                 <div v-if="$te(`projects.${project.id}.tools`, 'en')"><dt>{{ $t('case.toolsLabel') }}</dt><dd class="side-chips"><span v-for="tool in $t(`projects.${project.id}.tools`).split(', ')" :key="tool">{{ tool }}</span></dd></div>
               </dl>
               <a v-if="project.url_website" :href="project.url_website" target="_blank" rel="noopener" class="side-btn side-btn-primary">{{ $t(`projects.${project.id}.visit_label`) }} ↗</a>
+                <a v-if="project.demo" :href="project.demo.path" class="side-btn side-btn-primary">{{ $t('demo.cta') }} →</a>
             </div>
             <nav v-if="project.sections" class="side-card side-toc" :aria-label="$t('case.contents')">
               <h4>{{ $t('case.contents') }}</h4>
@@ -143,6 +200,9 @@
         bookingUrl: BOOKING_URL,
         activeSection: null,
         scrollFrame: null,
+        // Live demo window only on large screens with a mouse; phones get the video
+        showLiveDemo: false,
+        isPhone: false,
       }
     },
     computed: {
@@ -155,31 +215,42 @@
       viewerScreens() {
         const project = this.currentProject
         if (!project) return []
-        return project.images.map(img => ({
+        const screens = project.images.map(img => ({
           src: img.src,
           title: this.screenTitle(project, img),
           caption: this.$te(`projects.${project.id}.screens.${img.key}.caption`, 'en') ? this.$t(`projects.${project.id}.screens.${img.key}.caption`) : '',
           device: img.device || 'desktop',
           url: this.domain(project.url_website),
         }))
+        return screens.concat(this.evoScreens(project))
       },
     },
     mounted() {
       window.addEventListener('scroll', this.onScroll, { passive: true })
       this.$nextTick(this.updateActiveSection)
+      this.showLiveDemo = window.matchMedia('(min-width: 1024px) and (pointer: fine)').matches
+      this.isPhone = window.matchMedia('(max-width: 640px)').matches
     },
     beforeDestroy() {
       window.removeEventListener('scroll', this.onScroll)
       cancelAnimationFrame(this.scrollFrame)
     },
     methods: {
+      // Phones get the vertical recording, other screens the desktop one, in the language of the site
+      demoVideo(project) {
+        const inLocale = path => path.replace('{locale}', this.$i18n.locale === 'en' ? 'en' : 'fr')
+        return this.isPhone
+          ? { src: inLocale(project.demo.videoMobile), poster: inLocale(project.demo.posterMobile) }
+          : { src: inLocale(project.demo.video), poster: inLocale(project.demo.poster) }
+      },
       nextProject(project) {
         const i = projects.findIndex(p => p.id === project.id)
         return projects[(i + 1) % projects.length]
       },
       tocItems(project) {
         const items = project.sections.map(section => ({ id: `section-${section}`, label: this.$t(`case.sections.${section}`) }))
-        return items.concat({ id: 'section-screens', label: this.$t('gallery.title') })
+        const all = items.concat({ id: 'section-screens', label: this.$t('gallery.title') })
+        return project.demo ? [{ id: 'section-demo', label: this.$t('demo.title') }].concat(all) : all
       },
       scrollToSection(id) {
         const el = document.getElementById(id)
@@ -199,6 +270,40 @@
           if (el && el.getBoundingClientRect().top <= line) active = item.id
         })
         this.activeSection = active || this.tocItems(this.currentProject)[0].id
+      },
+      // V1/V2 images of the "evolution" section, appended after the gallery screens in the viewer
+      evoScreens(project) {
+        if (!project.evolution) return []
+        const base = `projects.${project.id}.evolution`
+        const list = []
+        project.evolution.pairs.forEach(pair => {
+          ['before', 'after'].forEach(side => list.push({
+            id: `${pair.key}-${side}`,
+            src: pair[side],
+            title: this.evoTitle(project, pair.key, side),
+            caption: this.$t(`${base}.${pair.key}.caption`),
+            device: 'desktop',
+            url: '',
+          }))
+        })
+        project.evolution.extras.forEach(extra => list.push({
+          id: extra.key,
+          src: extra.src,
+          title: `${this.$t('case.evoAfter')} · ${this.$t(`${base}.${extra.key}.title`)}`,
+          caption: this.$t(`${base}.${extra.key}.caption`),
+          device: 'desktop',
+          url: '',
+        }))
+        return list
+      },
+      evoTitle(project, key, side) {
+        return `${this.$t(side === 'before' ? 'case.evoBefore' : 'case.evoAfter')} · ${this.$t(`projects.${project.id}.evolution.${key}.title`)}`
+      },
+      showEvo(key, side) {
+        const project = this.currentProject
+        const id = side ? `${key}-${side}` : key
+        const i = this.evoScreens(project).findIndex(screen => screen.id === id)
+        this.showImg(project.images.length + i)
       },
       screenTitle(project, img) {
         return this.$t(`projects.${project.id}.screens.${img.key}.title`)
@@ -258,6 +363,7 @@
     margin-bottom: 8px;
   }
   .project-tagline {
+    max-width: 820px;
     font-size: 26px;
     font-weight: 700;
     line-height: 1.35;
@@ -676,5 +782,270 @@
     .case-next { grid-template-columns: 64px minmax(0, 1fr) auto; gap: 12px; padding: 12px; }
     .case-next img { width: 64px; height: 64px; border-radius: 14px; }
     .case-next-arrow { width: 36px; height: 36px; }
+  }
+  /* V1 -> V2 comparison inside the "evolution" section */
+  .evo {
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .evo-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+  }
+  .evo-arrow {
+    color: #9535d8;
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .evo-shot {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 1px solid #ece2f8;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 10px 24px rgba(61, 22, 87, 0.08);
+    cursor: zoom-in;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .evo-shot:hover,
+  .evo-shot:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px rgba(61, 22, 87, 0.14);
+  }
+  .evo-shot img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+  }
+  .evo-row .evo-shot {
+    aspect-ratio: 16 / 9;
+  }
+  .evo-shot-tall {
+    aspect-ratio: 4 / 5;
+  }
+  .evo-shot-tall img {
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  .evo-badge {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 9999px;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    z-index: 1;
+  }
+  .evo-badge-v1 {
+    background: #5b5e63;
+  }
+  .evo-badge-v2 {
+    background: #9535d8;
+  }
+  .evo figcaption {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #5b5e63;
+  }
+  .evo figcaption b {
+    color: #1b1b1f;
+  }
+  .evo-extras {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .evo-extras .evo-shot:not(.evo-shot-tall) {
+    aspect-ratio: 4 / 5;
+  }
+  .evo-extras .evo-shot img {
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  @media (max-width: 767px) {
+    .evo-row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .evo-arrow {
+      justify-self: center;
+      transform: rotate(90deg);
+    }
+    .evo-extras {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .evo-shot {
+      transition: none;
+    }
+    .evo-shot:hover,
+    .evo-shot:focus-visible {
+      transform: none;
+    }
+  }
+
+  /* Coded demo section (Unfate) */
+  .demo {
+    padding: 40px 0 56px;
+  }
+  /* Demo right after the intro: tighter top, a line separates it from the case study */
+  .project-tagline + .demo {
+    padding-top: 0;
+    margin-bottom: 48px;
+    border-bottom: 1px solid #ece6f5;
+  }
+  .demo-head {
+    max-width: 760px;
+    margin-bottom: 28px;
+  }
+  .demo-kicker {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    background: #f6efff;
+    color: #7d26b9;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .demo-head h3 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+  .demo-text {
+    color: #383a3c;
+    line-height: 1.75;
+  }
+  .demo-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    margin-top: 18px;
+    font-size: 14px;
+    color: #383a3c;
+  }
+  .demo-steps li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .demo-steps span {
+    flex-shrink: 0;
+    display: inline-grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #9535d7;
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .demo-window {
+    border-radius: 24px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 24px 60px rgba(61, 22, 87, 0.16);
+    border: 1px solid #eadcf8;
+  }
+  .demo-window-bar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 12px 16px;
+    background: #f6efff;
+  }
+  .demo-window-bar i {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #d9c4ef;
+  }
+  .demo-window-bar span {
+    margin-left: 12px;
+    padding: 4px 14px;
+    border-radius: 9999px;
+    background: #fff;
+    font-size: 12px;
+    color: #6b6b6b;
+  }
+  .demo-screen {
+    position: relative;
+    background: #eff0f6;
+  }
+  .demo-frame {
+    display: block;
+    width: 100%;
+    height: min(780px, 80vh);
+    border: 0;
+  }
+  .demo-video {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+  .demo-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 24px;
+    margin-top: 24px;
+  }
+  .demo-btn {
+    background: #9535d7;
+    color: #fff;
+  }
+  .demo-btn:hover {
+    background: #7d26b9;
+  }
+  .demo-link {
+    color: #7d26b9;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .demo-disclaimer {
+    margin-top: 14px;
+    font-size: 13px;
+    color: #6b6b6b;
+    max-width: 760px;
+    line-height: 1.6;
+  }
+  @media (max-width: 640px) {
+    .demo-head h3 {
+      font-size: 24px;
+    }
+    .demo-window {
+      border-radius: 18px;
+    }
+    .demo-video-phone {
+      aspect-ratio: 9 / 19.5;
+      max-height: 75vh;
+      object-fit: contain;
+      background: #eff0f6;
+    }
+    .demo-actions .demo-btn {
+      width: 100%;
+      justify-content: center;
+    }
   }
 </style>

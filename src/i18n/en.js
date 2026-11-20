@@ -19,7 +19,10 @@ export default {
     "closeMenu": "Close menu",
     "menu": "Menu",
     "downloadCv": "Download my CV",
-    "bookCall": "Book a free call"
+    "bookCall": "Book a free call",
+    "process": "What I do",
+    "mainLabel": "Main navigation",
+    "contactShort": "Contact"
   },
   "hero": {
     "hello": "Hi, I'm",
@@ -45,7 +48,7 @@ export default {
   },
   "work": {
     "title": "Selected work",
-    "intro": "Two coaching websites I designed, and two platforms: a concept and a client product."
+    "intro": "A learning platform for a client, and two coaching websites I designed."
   },
   "testimonials": {
     "title": "What clients say",
@@ -129,9 +132,12 @@ export default {
       "solution": "Solution",
       "outcome": "Outcome",
       "decisions": "Decisions and trade-offs",
+      "evolution": "From V1 to V2",
       "retro": "Looking back"
     },
-    "back": "Back",
+    "evoBefore": "V1",
+    "evoAfter": "V2",
+    "back": "Back to home",
     "atAGlance": "At a glance",
     "clientLabel": "Client",
     "roleLabel": "Role",
@@ -141,6 +147,16 @@ export default {
     "similarTitle": "A similar project?",
     "similarText": "Let's talk about your site in a free 30-minute call.",
     "similarCta": "Book a call"
+  },
+  "demo": {
+    "kicker": "Interactive demo",
+    "title": "Try Unfate",
+    "frameTitle": "Interactive demo of {name}",
+    "videoLabel": "Video of the {name} demo: log in, lesson, progress and exam",
+    "open": "Open the demo full screen",
+    "download": "Download the video",
+    "cta": "Try the demo",
+    "disclaimer": "A demo rebuilt in code from the V2 design. It runs in your browser with no server and no real account: nothing is saved, and everything resets when you reload the page. Like this site, it is available in English and French."
   },
   "projects": {
     "1": {
@@ -155,7 +171,7 @@ export default {
       "sections": {
         "context": "Sophie offers personal coaching, business coaching and therapy for social anxiety, in Paris and online. She had no website yet. Many of her future clients are anxious about taking the first step, so the site had to feel safe before it could sell anything.",
         "challenge": "Three different offers, three different audiences, and visitors who hesitate to reach out. They needed to understand quickly what Sophie does, whether it's for them, how it works and what it costs, without feeling pushed.",
-        "decisions": "1. A free 30-minute discovery call. For visitors who dread the first step, a no-commitment chat is easier to take than a paid session.\n2. The 8-session package up front. It is flagged as the popular offer with the saving shown, guiding people towards the full programme without hiding the single session.\n3. A structure that follows the visitor's questions: what is it, is it for me, how does it work, what does it cost, who is she. I wrote the copy alongside the structure, with Sophie's input, and the FAQ and trust signals (Sorbonne, Qualiopi) round out the journey.\n4. Designs ready for development. I designed the site in Figma, and a developer built it on WordPress from my designs.",
+        "decisions": "1. A free 30-minute discovery call. For visitors who dread the first step, a no-commitment chat is easier to take than a paid session.\n2. The 8-session package up front. It is flagged as the popular offer with the saving shown, guiding people towards the full programme without hiding the single session.\n3. A structure that follows the visitor's questions: what is it, is it for me, how does it work, what does it cost, who is she. I wrote the copy alongside the structure, with Sophie's input, and the FAQ and trust signals (Sorbonne, Qualiopi) round out the journey.\n4. Designs ready for development. I designed the site in Figma. It was built with WordPress and Symfony: I didn't code it, but I worked directly with the developer.",
         "outcome": "The site is live and Sophie uses it to present her offers and take bookings. Clients have contacted her thanks to the site. In her words: \"The result is a warm, clear site that feels like me and makes booking a session easy.\"",
         "retro": "I didn't use AI on this project. Today I would redo it all with Claude, from design to launch."
       },
@@ -178,15 +194,15 @@ export default {
       "tagline": "A site built from scratch that makes visitors want to contact Mélodie",
       "result": "Clients now reach Mélodie through the site",
       "client": "Mélodie Yeremian, career coach and psychopractitioner, Paris and remote",
-      "role": "Design in Figma and site build (WordPress, Divi)",
-      "tools": "Figma, WordPress, Divi Builder, Claude",
+      "role": "Design in Figma and site build (WordPress, Elementor then Divi)",
+      "tools": "Figma, WordPress, Elementor, Divi Builder, Claude",
       "visit_label": "Visit melodieyeremian.com",
       "sections": {
         "context": "Mélodie supports people through professional and personal transitions with two distinct services: career assessments (bilan de compétences) and therapeutic support. She had no website yet: everything started from scratch.",
         "challenge": "The two services meet very different needs. Visitors had to find theirs quickly, without confusing a career assessment with therapy, and feel confident enough to book a first appointment. Two constraints framed the project: Mélodie had to be able to edit her site on her own, and the tone had to stay gentle, true to her practice.",
-        "decisions": "1. Two separate paths rather than one shared page. Each service has its own page, details and discovery booking.\n2. WordPress and Divi Builder rather than a custom-coded site. I put Mélodie's autonomy first and accepted less freedom over interface details.\n3. Turning the client's requests into interface. The always-visible \"Book an appointment\" bar, a discovery button for each service and a low-key shop came from Mélodie. My role was to build them in without weighing down the journey.\n4. A personal \"About me\" section, because in therapy as in career coaching, people choose a person first.",
-        "outcome": "The site is live and Mélodie uses it to present both services and take bookings. Since launch, clients have contacted her after discovering her site. In her words: \"Now visitors find the right service and book a discovery call easily.\"",
-        "retro": "I didn't use AI to build this site. Today I would start directly with Claude instead of installing and setting up WordPress by hand. So I built a workflow that connects the site to Claude: future changes to WordPress, Divi and the plugins are made by asking Claude, without going through the WordPress admin. It's ready and being installed on Mélodie's Claude account, so she can run her site on her own."
+        "decisions": "1. Two separate paths rather than one shared page. Each service has its own page, details and discovery booking.\n2. WordPress rather than a custom-coded site. I first built it with Elementor, then migrated it to Divi. I put Mélodie's autonomy first and accepted less freedom over interface details.\n3. Turning the client's requests into interface. The always-visible \"Book an appointment\" bar, a discovery button for each service and a low-key shop came from Mélodie. My role was to build them in without weighing down the journey.\n4. A personal \"About me\" section, because in therapy as in career coaching, people choose a person first.",
+        "outcome": "The site is live and Mélodie uses it to present both services and take bookings. Since launch, clients have contacted her after discovering her site. In her words: \"Now visitors find the right service and book a discovery call easily.\"\n\nAfter launch, I connected Claude to the site and set up Mélodie's Claude infrastructure: her agents, their instructions and the site's brand guidelines. Mélodie no longer goes into WordPress: she asks her agents for a change and they make it for her. Her latest request was to add a new testimonial. Claude added it exactly as needed, following the brand guidelines and the layout, thanks to the setup I put in place.",
+        "retro": "I didn't use AI to build this site. Today I would start directly with Claude instead of installing and setting up WordPress by hand."
       },
       "type": "Showcase site · Shop",
       "screens": {
@@ -201,43 +217,72 @@ export default {
         }
       }
     },
-    "3": {
-      "label": "Concept project",
-      "hook": "Booking platform for unusual stays",
-      "description": "Atypikhouse is a concept for a rental platform dedicated to unusual stays. I designed the desktop and mobile experience to help people find a quiet getaway and book it easily.",
-      "type": "Web & mobile platform",
-      "screens": {
-        "homeDesktop": {
-          "title": "Home on desktop"
-        },
-        "homeMobile": {
-          "title": "Home on mobile"
-        }
-      }
-    },
     "4": {
-      "label": "Client project",
-      "hook": "Learning platform with crypto-paid courses",
-      "description": "Unfate is a learning platform built around one idea: everything you need on a subject in one place, so you don't have to piece it together from across the web. Courses are paid in cryptocurrency. Working with the founding team, I designed the main flows: login, settings, practice and exams. The product has since been discontinued.",
-      "type": "Web app",
+      "demo": {
+        "text": "I had Claude code a working version of the V2 from my Figma design. I directed every screen and checked it on desktop and on mobile. You can log in, follow the lessons, watch your progress move and take the exam.",
+        "step1": "Log in with “Fill in for me”",
+        "step2": "Read a lesson and mark it as completed",
+        "step3": "Take the 50-question exam, or let the demo answer for you"
+      },
+      "label": "Client project · personal V2",
+      "hook": "An online learning platform that connects a teacher with their students, a company with its employees, or an expert with anyone who wants to learn.",
+      "tagline": "Online courses for anyone who wants to learn",
+      "result": "V1 designed with the founder; V2: 64 screens moved onto a design system, 33 screens added",
+      "client": "Unfate's founder, who started the project",
+      "role": "Product design in Figma: moodboard, mockups and prototype; V2 on my own initiative",
+      "tools": "Figma, Claude",
+      "type": "Online learning platform",
+      "description": "Unfate is a learning platform where teachers and companies publish their courses. We started with crypto. I designed the V1 with the founder, then rebuilt a V2 on a design system with Claude.",
+      "sections": {
+        "context": "Unfate started as its founder's idea: a learning platform where teachers or companies publish their courses, with everything you need on a subject in one place. To begin, we put one main subject forward, cryptocurrencies and how they work, with a first course on decentralised finance (DeFi) in six steps. The platform remains open to any other kind of course. We worked together in a shared Figma file, where the moodboard, mockups and prototype were discussed as we went.",
+        "challenge": "DeFi is intimidating: technical vocabulary, abstract concepts, fear of making a mistake with your money. The platform had to make the subject approachable, keep learners motivated from one lesson to the next and check what they had retained. It also had to stay generic enough to welcome other subjects and other teachers later on.",
+        "decisions": "1. A path that is always visible. Each course is split into numbered lessons, with a progress bar (\"3/6 completed\") and the next steps locked, so learners always know where they are and what comes next.\n2. Practise before being assessed. A practice page comes before the exam, which opens with clear instructions, shows one question at a time and ends with the results and a certificate.\n3. A catalogue built for several teachers. Course cards show the teacher, and learners find their ongoing, favourite and completed courses.\n4. Frictionless sign-up. Sign in with Google or by email, so learners reach their first course quickly.\n5. More ways to pay. One of the last steps of the project was to diversify payment methods, notably by including regulated cryptocurrencies such as euro or dollar stablecoins.",
+        "evolution": "The product was discontinued. I later picked up the Figma file on my own initiative, to see how far I could go by directing Claude connected to Figma.\n1. Audit the V1. Claude listed the inconsistencies: 72 text style combinations, two fonts mixed (Inter and Roboto), a missing icon font.\n2. Build the design system. Under my direction, Claude created 34 base colours, 23 semantic tokens, 39 text styles, spacing, shadows and 20 components, then applied them to the 64 screens without changing how they look. I had every screen compared with the V1 and the prototype links checked, then signed off the result.\n3. Go further thanks to the system. On that base, we added 33 screens: redesigned sign-in and sign-up, mobile versions, and a full course split into chapters of two or three lessons, each with its own \"completed\" state. The same rules apply everywhere: the current lesson is blue, it turns green once completed, and the next one only becomes active when you reach it.",
+        "outcome": "The V1 set out the platform's flows with the founder: catalogue, lessons, practice, exam and certificate. The V2 was not released, it is personal work. It shows what a design system changes: a new screen is built from existing components instead of starting from scratch, which makes it possible to add courses and teachers without losing consistency.",
+        "retro": "I would set up the design system from the start, before the screens: it would have avoided the 72 text variants and made the platform easier to open to subjects other than crypto."
+      },
+      "evolution": {
+        "lesson": {
+          "title": "Lesson",
+          "caption": "In the V1, each lesson was one long page and the outline on the right only showed six steps. In the V2, the course is split into chapters of two or three lessons: the outline opens chapter by chapter, the current lesson is blue and turns green once completed."
+        },
+        "quiz": {
+          "title": "Quiz",
+          "caption": "In the V1, the exam had 10 questions and the chosen answer turned green before it was even validated. In the V2, there are 50 questions in random order, the related chapter is shown, and the correction appears as soon as you validate: the wrong answer in red, the right one in green."
+        },
+        "certificate": {
+          "title": "Certificate",
+          "caption": "In the V1, the certificate was a long text with a list of skills. In the V2, it fits on one card: the learner's name, the course, the date, the score and a certificate number, on a band in the course's colours."
+        },
+        "system": {
+          "title": "Design system",
+          "caption": "The foundations Claude built under my direction: colours, semantic tokens, text styles, spacing and shadows."
+        }
+      },
       "screens": {
         "login": {
           "title": "Sign-in"
         },
-        "settings": {
-          "title": "Settings"
+        "catalog": {
+          "title": "All courses"
         },
-        "practice": {
-          "title": "Practice"
+        "course": {
+          "title": "Course page"
         },
-        "examInstructions": {
-          "title": "Exam instructions"
+        "lesson": {
+          "title": "Completed lesson"
         },
-        "nextQuestion": {
-          "title": "Next question"
+        "examIntro": {
+          "title": "Exam introduction"
         },
-        "examPassed": {
-          "title": "Exam passed"
+        "question": {
+          "title": "Corrected question"
+        },
+        "score": {
+          "title": "Exam score"
+        },
+        "certificate": {
+          "title": "Certificate"
         }
       }
     }
@@ -256,7 +301,16 @@ export default {
     "errorBefore": "Something went wrong. Please try again or reach me on",
     "privacyNote": "Your details are only used to reply to you.",
     "privacy": "Privacy policy",
-    "copyright": "© 2026 Gilbert Trinidad"
+    "copyright": "© 2026 Gilbert Trinidad",
+    "eyebrow": "Shall we?",
+    "linkedin": "See my profile",
+    "cvDownload": "Download (PDF)",
+    "sentTitle": "Message sent",
+    "another": "Write another message",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "you@company.com",
+    "messagePlaceholder": "The role, the project or your question, in a few lines.",
+    "emailError": "This email doesn't look complete: check the @ and the domain."
   },
   "privacy": {
     "title": "Privacy policy",
@@ -290,5 +344,55 @@ export default {
     "text": "This page doesn't exist or has moved.",
     "projects": "See my projects",
     "home": "Back to home"
+  },
+  "home": {
+    "demoLabel": "Interactive demo · Unfate",
+    "demoAlt": "Interactive demo of Unfate, the online learning platform",
+    "leadStart": "I design web products with ",
+    "leadFlow": "flow",
+    "leadEnd": ": smooth journeys for your users, shipped with a team of Claude agents I direct. I check every deliverable.",
+    "workEyebrow": "Journeys that flow",
+    "caseStudy": "Case study",
+    "processEyebrow": "My workflow",
+    "testimonialsEyebrow": "Client feedback",
+    "sceneAlts": [
+      "Gilbert listens to two people explaining what they need, drawn in neon line",
+      "Gilbert imagines the choreography, drawn in a thought bubble above his head",
+      "Gilbert shows a prototype on his phone to a circle of dancers",
+      "Gilbert rehearses in front of a mirror, next to a checked list",
+      "Gilbert dances on stage in front of an audience"
+    ],
+    "dance": {
+      "eyebrow": "Rhythm, off screen",
+      "titleStart": "I learned ",
+      "titleFlow": "flow",
+      "titleEnd": " by dancing",
+      "text": "Hip-hop taught me to feel when a move catches. I use the same reflex when I test a user journey: I look for the moment the user loses the beat.",
+      "moves": [
+        {
+          "alt": "Illustration: Gilbert doing toprock",
+          "text": "The standing steps that open a set and set the style.",
+          "design": "In design: the first impression."
+        },
+        {
+          "alt": "Illustration: Gilbert popping",
+          "text": "Tensing a muscle right on the beat, like a wave.",
+          "design": "In design: the small detail that hits."
+        },
+        {
+          "alt": "Illustration: Gilbert doing a locking point",
+          "text": "The final point, arm stretched to the sky.",
+          "design": "In design: shipping."
+        }
+      ],
+      "spots": "My spots: quai Saint-Bernard, La Felicità, the BnF"
+    },
+    "resonance": {
+      "label": "Resonance",
+      "text": "Land one step right and the whole move resonates. Design works the same way: one well-placed detail is felt across the whole journey."
+    },
+    "photoAlt": "Gilbert Trinidad, smiling and pointing",
+    "aboutTitleA": "I take",
+    "aboutTitleB": "the lead"
   }
 }

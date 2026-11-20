@@ -26,3 +26,6 @@ node_modules
 # Claude Code : fichiers personnels, jamais versionnés
 CLAUDE.local.md
 .claude/settings.local.json
+
+# Démo Unfate : générée au build depuis apps/unfate-demo
+/public/demo/unfate

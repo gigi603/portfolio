@@ -1,6 +1,46 @@
 // Texts for each project live in src/i18n (projects.<id>)
 const projects = [
   { 
+    id: '4', 
+    name: "Unfate",
+    // Shown first on a full-width card in the project grid
+    featured: true,
+    sections: ['context', 'challenge', 'decisions', 'evolution', 'outcome', 'retro'],
+    url_website:"",
+    // Coded demo of the V2: separate Vue 3 app in apps/unfate-demo, built into public/demo/unfate + recordings in public/videos.
+    // One recording per language: {locale} becomes fr or en.
+    demo: {
+      path: '/demo/unfate/',
+      video: '/videos/unfate-demo-{locale}.mp4',
+      poster: '/videos/unfate-demo-{locale}.jpg',
+      videoMobile: '/videos/unfate-demo-mobile-{locale}.mp4',
+      posterMobile: '/videos/unfate-demo-mobile-{locale}.jpg',
+    },
+    // V1 (with the founder) next to V2 (rebuilt with Claude in Figma), shown inside the "evolution" section
+    evolution: {
+      pairs: [
+        { key: 'lesson', before: require("@/assets/images/projects/unfate/v1-lecon.webp"), after: require("@/assets/images/projects/unfate/v2-lecon.webp") },
+        { key: 'quiz', before: require("@/assets/images/projects/unfate/v1-quiz.webp"), after: require("@/assets/images/projects/unfate/v2-quiz.webp") },
+        { key: 'certificate', before: require("@/assets/images/projects/unfate/v1-certificat.webp"), after: require("@/assets/images/projects/unfate/v2-certificat.webp") },
+      ],
+      extras: [
+        { key: 'system', src: require("@/assets/images/projects/unfate/v2-fondations.webp") },
+      ],
+    },
+    img:require("@/assets/images/projects/vignette-unfate.webp"),
+    images: [
+      // V2 screens, captured from the coded demo
+      { key: 'login', src:require("@/assets/images/projects/unfate/gallery/connexion.webp") },
+      { key: 'catalog', src:require("@/assets/images/projects/unfate/gallery/catalogue.webp") },
+      { key: 'course', src:require("@/assets/images/projects/unfate/gallery/cours.webp") },
+      { key: 'lesson', src:require("@/assets/images/projects/unfate/gallery/lecon.webp") },
+      { key: 'examIntro', src:require("@/assets/images/projects/unfate/gallery/intro-examen.webp") },
+      { key: 'question', src:require("@/assets/images/projects/unfate/gallery/question.webp") },
+      { key: 'score', src:require("@/assets/images/projects/unfate/gallery/score.webp") },
+      { key: 'certificate', src:require("@/assets/images/projects/unfate/gallery/certificat.webp") },
+    ],
+  },
+  { 
     id: '1', 
     name: "SPCoach",
     sections: ['context', 'challenge', 'decisions', 'outcome', 'retro'],
@@ -23,31 +63,7 @@ const projects = [
       { key: 'pricing', src:require("@/assets/images/projects/gallery/melodie-tarifs.webp") },
       { key: 'shop', src:require("@/assets/images/projects/gallery/melodie-boutique.webp") },
     ],
-  },
-  { 
-    id: '3', 
-    name: "Atypikhouse",
-    url_website:'',
-    img:require("@/assets/images/projects/vignette-atypikhouse.webp"),
-    images: [
-      { key: 'homeDesktop', src:require("@/assets/images/projects/gallery/atypikhouse-desktop.webp") },
-      { key: 'homeMobile', device: 'mobile', src:require("@/assets/images/projects/gallery/atypikhouse-mobile.webp") },
-    ],
-  },
-  { 
-    id: '4', 
-    name: "Unfate",
-    url_website:"",
-    img:require("@/assets/images/projects/vignette-unfate.webp"),
-    images: [
-      { key: 'login', src:require("@/assets/images/projects/Login.svg") },
-      { key: 'settings', src:require("@/assets/images/projects/Settings.svg") },
-      { key: 'practice', src:require("@/assets/images/projects/Practice.svg") },
-      { key: 'examInstructions', src:require("@/assets/images/projects/Exam_Instruction.svg") },
-      { key: 'nextQuestion', src:require("@/assets/images/projects/Exam_next_question.svg") },
-      { key: 'examPassed', src:require("@/assets/images/projects/Exam_Success.svg") },
-    ],
-  },
+  }
 ]
 
 export default projects
