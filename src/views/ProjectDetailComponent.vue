@@ -1,1051 +1,539 @@
 <template>
-  <div class="container mx-auto max-w-7xl px-6 project-wrapper">
-    <NotFoundComponent v-if="!currentProject"/>
-    <template v-for="project in projects">
-      <article v-if="project.id == $route.params.id" :key="project.id" class="project-page">
-        <h1 class="project-back"><router-link to="/" class="mr-2" :aria-label="$t('case.back')"><font-awesome-icon icon="fa-solid fa-chevron-left" color="#000" size="sm" /></router-link> {{ project.name }}</h1>
-        <!-- Projects with a coded demo: intro then demo first, the case study follows -->
-        <template v-if="project.demo">
-          <p class="project-label">{{ $t(`projects.${project.id}.label`) }}</p>
-          <p class="project-tagline">{{ $t(`projects.${project.id}.tagline`) }}</p>
-          <!-- Coded demo of the product (Unfate), shown right after the intro so visitors try it before reading: live window on large screens, video on phones -->
-          <section v-if="project.demo" class="demo" id="section-demo" aria-labelledby="demo-title">
-            <div class="demo-head">
-              <p class="demo-kicker">{{ $t('demo.kicker') }}</p>
-              <h3 id="demo-title">{{ $t('demo.title') }}</h3>
-              <p class="demo-text">{{ $t(`projects.${project.id}.demo.text`) }}</p>
-              <ul class="demo-steps">
-                <li v-for="n in 3" :key="n"><span>{{ n }}</span>{{ $t(`projects.${project.id}.demo.step${n}`) }}</li>
-              </ul>
-            </div>
-            <div class="demo-window">
-              <div class="demo-window-bar" aria-hidden="true"><i></i><i></i><i></i><span>{{ domain('https://gilbert-trinidad.com') }}{{ project.demo.path }}</span></div>
-              <div class="demo-screen">
-                <iframe v-if="showLiveDemo" :src="`${project.demo.path}?embed=1`" :title="$t('demo.frameTitle', { name: project.name })" loading="lazy" class="demo-frame"></iframe>
-                <video v-else :key="demoVideo(project).src" class="demo-video" :class="{ 'demo-video-phone': isPhone }" :poster="demoVideo(project).poster" autoplay muted loop playsinline preload="metadata" :aria-label="$t('demo.videoLabel', { name: project.name })">
-                  <source :src="demoVideo(project).src" type="video/mp4">
-                </video>
-              </div>
-            </div>
-            <div class="demo-actions">
-              <a :href="project.demo.path" class="case-btn demo-btn">{{ $t('demo.open') }}</a>
-              <a :href="demoVideo(project).src" download class="demo-link">{{ $t('demo.download') }}</a>
-            </div>
-            <p class="demo-disclaimer">{{ $t('demo.disclaimer') }}</p>
-          </section>
-        </template>
-        <div class="project-columns">
-          <div class="project-main">
-            <p v-if="!project.demo" class="project-label">{{ $t(`projects.${project.id}.label`) }}</p>
-            <p v-if="project.sections && !project.demo" class="project-tagline">{{ $t(`projects.${project.id}.tagline`) }}</p>
-            <!-- Below 1024px the summary sits here, before the sections -->
-            <div class="project-mobile-only">
-              <div class="side-card">
-                <h4>{{ $t('case.atAGlance') }}</h4>
-                <dl>
-                  <div v-if="$te(`projects.${project.id}.client`, 'en')"><dt>{{ $t('case.clientLabel') }}</dt><dd>{{ $t(`projects.${project.id}.client`) }}</dd></div>
-                  <div v-if="$te(`projects.${project.id}.role`, 'en')"><dt>{{ $t('case.roleLabel') }}</dt><dd>{{ $t(`projects.${project.id}.role`) }}</dd></div>
-                  <div v-if="$te(`projects.${project.id}.result`, 'en')" class="side-result"><dt>{{ $t('case.resultLabel') }}</dt><dd>{{ $t(`projects.${project.id}.result`) }}</dd></div>
-                  <div><dt>{{ $t('case.typeLabel') }}</dt><dd>{{ $t(`projects.${project.id}.type`) }}</dd></div>
-                  <div v-if="$te(`projects.${project.id}.tools`, 'en')"><dt>{{ $t('case.toolsLabel') }}</dt><dd class="side-chips"><span v-for="tool in $t(`projects.${project.id}.tools`).split(', ')" :key="tool">{{ tool }}</span></dd></div>
-                </dl>
-                <a v-if="project.url_website" :href="project.url_website" target="_blank" rel="noopener" class="side-btn side-btn-primary">{{ $t(`projects.${project.id}.visit_label`) }} ↗</a>
-                <a v-if="project.demo" :href="project.demo.path" class="side-btn side-btn-primary">{{ $t('demo.cta') }} →</a>
-              </div>
-            </div>
-            <template v-if="project.sections">
-              <div v-for="section in project.sections" :key="section" :id="`section-${section}`" class="project-section">
-                <h3>{{ $t(`case.sections.${section}`) }}</h3>
-                <p>{{ $t(`projects.${project.id}.sections.${section}`) }}</p>
-                <div v-if="section === 'evolution' && project.evolution" class="evo">
-                  <figure v-for="pair in project.evolution.pairs" :key="pair.key" class="evo-pair">
-                    <div class="evo-row">
-                      <button type="button" class="evo-shot" :aria-label="$t('gallery.open', { title: evoTitle(project, pair.key, 'before') })" @click="showEvo(pair.key, 'before')">
-                        <span class="evo-badge evo-badge-v1">{{ $t('case.evoBefore') }}</span>
-                        <img :src="pair.before" :alt="evoTitle(project, pair.key, 'before')" loading="lazy">
-                      </button>
-                      <span class="evo-arrow" aria-hidden="true">→</span>
-                      <button type="button" class="evo-shot" :aria-label="$t('gallery.open', { title: evoTitle(project, pair.key, 'after') })" @click="showEvo(pair.key, 'after')">
-                        <span class="evo-badge evo-badge-v2">{{ $t('case.evoAfter') }}</span>
-                        <img :src="pair.after" :alt="evoTitle(project, pair.key, 'after')" loading="lazy">
-                      </button>
-                    </div>
-                    <figcaption><b>{{ $t(`projects.${project.id}.evolution.${pair.key}.title`) }}</b> {{ $t(`projects.${project.id}.evolution.${pair.key}.caption`) }}</figcaption>
-                  </figure>
-                  <div class="evo-extras">
-                    <figure v-for="extra in project.evolution.extras" :key="extra.key" class="evo-extra">
-                      <button type="button" class="evo-shot" :class="{ 'evo-shot-tall': extra.tall }" :aria-label="$t('gallery.open', { title: $t(`projects.${project.id}.evolution.${extra.key}.title`) })" @click="showEvo(extra.key)">
-                        <span class="evo-badge evo-badge-v2">{{ $t('case.evoAfter') }}</span>
-                        <img :src="extra.src" :alt="$t(`projects.${project.id}.evolution.${extra.key}.title`)" loading="lazy">
-                      </button>
-                      <figcaption><b>{{ $t(`projects.${project.id}.evolution.${extra.key}.title`) }}</b> {{ $t(`projects.${project.id}.evolution.${extra.key}.caption`) }}</figcaption>
-                    </figure>
-                  </div>
-                </div>
-              </div>
-            </template>
-            <p v-else class="project-section-text">{{ $t(`projects.${project.id}.description`) }}</p>
-          </div>
-          <aside class="project-aside">
-            <div class="project-sticky">
-            <div class="side-card">
-              <h4>{{ $t('case.atAGlance') }}</h4>
-              <dl>
-                <div v-if="$te(`projects.${project.id}.client`, 'en')"><dt>{{ $t('case.clientLabel') }}</dt><dd>{{ $t(`projects.${project.id}.client`) }}</dd></div>
-                <div v-if="$te(`projects.${project.id}.role`, 'en')"><dt>{{ $t('case.roleLabel') }}</dt><dd>{{ $t(`projects.${project.id}.role`) }}</dd></div>
-                <div v-if="$te(`projects.${project.id}.result`, 'en')" class="side-result"><dt>{{ $t('case.resultLabel') }}</dt><dd>{{ $t(`projects.${project.id}.result`) }}</dd></div>
-                <div><dt>{{ $t('case.typeLabel') }}</dt><dd>{{ $t(`projects.${project.id}.type`) }}</dd></div>
-                <div v-if="$te(`projects.${project.id}.tools`, 'en')"><dt>{{ $t('case.toolsLabel') }}</dt><dd class="side-chips"><span v-for="tool in $t(`projects.${project.id}.tools`).split(', ')" :key="tool">{{ tool }}</span></dd></div>
-              </dl>
-              <a v-if="project.url_website" :href="project.url_website" target="_blank" rel="noopener" class="side-btn side-btn-primary">{{ $t(`projects.${project.id}.visit_label`) }} ↗</a>
-                <a v-if="project.demo" :href="project.demo.path" class="side-btn side-btn-primary">{{ $t('demo.cta') }} →</a>
-            </div>
-            <nav v-if="project.sections" class="side-card side-toc" :aria-label="$t('case.contents')">
-              <h4>{{ $t('case.contents') }}</h4>
-              <a v-for="item in tocItems(project)" :key="item.id" :href="`#${item.id}`" :class="{ active: activeSection === item.id }" @click.prevent="scrollToSection(item.id)"><i></i>{{ item.label }}</a>
-            </nav>
-            <div v-if="bookingUrl" class="side-contact">
-              <b>{{ $t('case.similarTitle') }}</b>
-              <p>{{ $t('case.similarText') }}</p>
-              <a :href="bookingUrl" target="_blank" rel="noopener" class="side-btn side-btn-white">{{ $t('case.similarCta') }}</a>
-            </div>
-            </div>
-          </aside>
+  <div class="cs-page">
+    <NotFoundComponent v-if="!project"/>
+    <article v-else :key="project.id" class="cs">
+      <!-- Contents rail, large screens only -->
+      <nav class="cs-toc" :aria-label="$t('cs.contents')">
+        <div class="cs-toc-in">
+          <a v-for="(item, i) in tocItems" :key="item.id" :href="`#${item.id}`" :class="{ on: activeSection === item.id }" @click.prevent="scrollToSection(item.id)"><b>{{ pad(i) }}</b>{{ item.label }}</a>
         </div>
-            <section class="gallery" id="section-screens">
-              <div class="gallery-head">
-                <h3>{{ $t('gallery.title') }}</h3>
-                <p>{{ $t('gallery.hint') }}</p>
-              </div>
-              <div class="gallery-panel">
-                <div class="gallery-grid">
-                  <figure
-                    v-for="(img, index) in project.images"
-                    :key="img.key"
-                    class="gallery-item"
-                    :class="{ 'gallery-item-wide': isWide(index, project.images.length), 'gallery-item-mobile': img.device === 'mobile' }"
-                    data-aos="fade-up"
-                    :data-aos-delay="index * 80"
-                  >
-                    <button type="button" class="gallery-frame" :aria-label="$t('gallery.open', { title: screenTitle(project, img) })" @click="showImg(index)">
-                      <span v-if="img.device !== 'mobile'" class="gallery-bar" aria-hidden="true">
-                        <i></i><i></i><i></i>
-                        <span>{{ domain(project.url_website) }}</span>
-                      </span>
-                      <span class="gallery-shot">
-                        <img :src="img.src" :alt="screenTitle(project, img)" :loading="index === 0 ? 'eager' : 'lazy'">
-                      </span>
-                      <span class="gallery-zoom" aria-hidden="true">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4M11 8v6M8 11h6"/></svg>
-                      </span>
-                    </button>
-                    <figcaption>
-                      <b><span class="gallery-number">{{ index + 1 }}</span>{{ screenTitle(project, img) }}</b>
-                      <span v-if="$te(`projects.${project.id}.screens.${img.key}.caption`, 'en')">{{ $t(`projects.${project.id}.screens.${img.key}.caption`) }}</span>
-                    </figcaption>
-                  </figure>
-                </div>
-              </div>
-            </section>
-        <section class="case-end">
-          <div class="case-contact">
-            <b>{{ $t('case.contactTitle') }}</b>
-            <p>{{ $t('case.contactText') }}</p>
-            <div class="case-btns">
-              <router-link :to="{ path: '/', hash: '#contact' }" class="case-btn case-btn-white">{{ $t('about.cta') }}</router-link>
-              <a :href="cvUrl" download class="case-btn case-btn-ghost">{{ $t('about.cv') }}</a>
+      </nav>
+
+      <div class="cs-main">
+        <!-- HEADER -->
+        <header id="cs-overview" class="cs-top">
+          <router-link :to="{ path: '/', hash: '#projects' }" class="cs-back">← {{ $t('cs.back') }}</router-link>
+          <p class="cs-lbl"><i aria-hidden="true"></i>{{ c('label') }}</p>
+          <h1>{{ c('title')[0] }}<span class="grad">{{ c('title')[1] }}</span>{{ c('title')[2] }}</h1>
+          <p class="cs-intro">{{ c('intro') }}</p>
+          <dl class="cs-meta">
+            <div v-for="key in metaKeys" :key="key" :class="{ res: key === 'result' }"><dt>{{ $t(`cs.meta.${key}`) }}</dt><dd>{{ c(`meta.${key}`) }}</dd></div>
+          </dl>
+
+          <div class="cs-hero">
+            <div class="browser">
+              <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>{{ heroUrl }}</span></div>
+              <a v-if="project.demo" :href="project.demo.path" class="hero-shot"><img :src="demoShot" :alt="$t('home.demoAlt')" width="1600" height="1000"></a>
+              <button v-else type="button" class="hero-shot" :aria-label="$t('gallery.open', { title: screenTitle(project.images[0]) })" @click="showImg(0)">
+                <img :src="project.images[0].src" :alt="screenTitle(project.images[0])">
+              </button>
+            </div>
+            <div class="cs-cta">
+              <span v-if="project.demo"><b>{{ $t('cs.demoLead') }}</b> · {{ $t('cs.demoSub') }}</span>
+              <span v-else><b>{{ $t('cs.siteLead') }}</b> · {{ domain(project.url_website) }}</span>
+              <a v-if="project.demo" :href="project.demo.path" class="btn btn-big">{{ $t('demo.cta') }} →</a>
+              <a v-else :href="project.url_website" target="_blank" rel="noopener" class="btn btn-big">{{ $t('cs.visit') }} ↗</a>
+            </div>
+            <p v-if="project.demo" class="cs-disclaimer">{{ $t('demo.disclaimer') }}</p>
+          </div>
+        </header>
+
+        <!-- 01 CONTEXT -->
+        <section id="cs-context" class="cs-sec">
+          <p class="num"><em>01</em>{{ $t('cs.context') }}</p>
+          <h2>{{ c('context.title') }}</h2>
+          <p v-for="(para, i) in c('context.body')" :key="i" class="body">{{ para }}</p>
+          <blockquote class="callout">{{ c('context.callout') }}<small>{{ $t('cs.stake') }}</small></blockquote>
+          <div class="cards c4">
+            <div v-for="(card, i) in c('context.cards')" :key="i" class="cs-card">
+              <span class="ctag" :class="`ctag-${card.tag}`">{{ $t(`cs.tags.${card.tag}`) }}</span>
+              <h3>{{ card.title }}</h3>
+              <p>{{ card.text }}</p>
             </div>
           </div>
-          <router-link v-if="nextProject(project)" :to="`/project/${nextProject(project).id}`" class="case-next">
-            <img :src="nextProject(project).img" alt="">
-            <span class="case-next-text">
-              <small>{{ $t('case.nextLabel') }}</small>
-              <b>{{ nextProject(project).name }}</b>
-              <span v-if="$te(`projects.${nextProject(project).id}.hook`, 'en')">{{ $t(`projects.${nextProject(project).id}.hook`) }}</span>
-            </span>
-            <span class="case-next-arrow" aria-hidden="true">→</span>
-          </router-link>
         </section>
-        <div class="project-mobile-only project-mobile-contact">
-            <div v-if="bookingUrl" class="side-contact">
-              <b>{{ $t('case.similarTitle') }}</b>
-              <p>{{ $t('case.similarText') }}</p>
-              <a :href="bookingUrl" target="_blank" rel="noopener" class="side-btn side-btn-white">{{ $t('case.similarCta') }}</a>
+
+        <!-- 02 DECISIONS -->
+        <section id="cs-decisions" class="cs-sec">
+          <p class="num"><em>02</em>{{ $t('cs.decisions') }}</p>
+          <h2>{{ c('decisions.title') }}</h2>
+          <ol class="dec">
+            <li v-for="(item, i) in c('decisions.items')" :key="i" class="d">
+              <span class="n" aria-hidden="true">{{ pad(i + 1) }}</span>
+              <h3>{{ item.title }}</h3>
+              <p class="why"><b>{{ $t('cs.why') }}</b>{{ item.why }}</p>
+            </li>
+          </ol>
+        </section>
+
+        <!-- 03 PROJECT SPECIFIC -->
+        <section id="cs-third" class="cs-sec">
+          <p class="num"><em>03</em>{{ c('third.label') }}</p>
+          <h2>{{ c('third.title') }}</h2>
+          <p v-if="c('third.body')" class="body">{{ c('third.body') }}</p>
+          <ol v-if="c('third.steps')" class="steps3">
+            <li v-for="(step, i) in c('third.steps')" :key="i" class="st">
+              <p class="k">{{ $t('cs.step', { n: i + 1 }) }}</p>
+              <h3>{{ step.title }}</h3>
+              <p>{{ step.text }}</p>
+              <div v-if="(step.figs && step.figs.length) || (step.tags && step.tags.length)" class="fig">
+                <span v-for="fig in step.figs" :key="fig[1]"><strong>{{ fig[0] }}</strong> {{ fig[1] }}</span>
+                <span v-for="tag in step.tags" :key="tag">{{ tag }}</span>
+              </div>
+            </li>
+          </ol>
+          <ol v-if="c('third.questions')" class="qflow">
+            <li v-for="(q, i) in c('third.questions')" :key="i"><b>{{ pad(i + 1) }}</b><span>{{ q }}</span></li>
+          </ol>
+          <figure v-if="thirdImage" class="big">
+            <button type="button" class="browser zoomable" :aria-label="$t('gallery.open', { title: screenTitle(thirdImage) })" @click="showImg(project.images.indexOf(thirdImage))">
+              <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span>{{ domain(project.url_website) }}</span></span>
+              <img :src="thirdImage.src" :alt="screenTitle(thirdImage)" loading="lazy">
+            </button>
+            <figcaption>{{ c('third.caption') }}</figcaption>
+          </figure>
+          <!-- Unfate: V1 next to V2 -->
+          <template v-if="project.evolution">
+            <figure v-for="pair in project.evolution.pairs" :key="pair.key" class="ba-fig">
+              <div class="ba">
+                <button type="button" class="side v1" :aria-label="$t('gallery.open', { title: evoTitle(pair.key, 'before') })" @click="showEvo(pair.key, 'before')"><b>{{ $t('case.evoBefore') }}</b><img :src="pair.before" :alt="evoTitle(pair.key, 'before')" loading="lazy"></button>
+                <button type="button" class="side v2" :aria-label="$t('gallery.open', { title: evoTitle(pair.key, 'after') })" @click="showEvo(pair.key, 'after')"><b>{{ $t('case.evoAfter') }}</b><img :src="pair.after" :alt="evoTitle(pair.key, 'after')" loading="lazy"></button>
+              </div>
+              <figcaption><strong>{{ $t(`projects.${project.id}.evolution.${pair.key}.title`) }}.</strong> {{ $t(`projects.${project.id}.evolution.${pair.key}.caption`) }}</figcaption>
+            </figure>
+          </template>
+        </section>
+
+        <!-- 04 SCREENS -->
+        <section id="cs-screens" class="cs-sec">
+          <p class="num"><em>04</em>{{ c('screens.label') }}</p>
+          <h2>{{ c('screens.title') }}</h2>
+          <p class="hint">{{ $t('gallery.hint') }}</p>
+          <div class="gal">
+            <figure v-for="(img, i) in project.images" :key="img.key">
+              <button type="button" class="gal-shot" :aria-label="$t('gallery.open', { title: screenTitle(img) })" @click="showImg(i)">
+                <img :src="img.src" :alt="screenTitle(img)" loading="lazy">
+              </button>
+              <figcaption><strong>{{ screenTitle(img) }}</strong><template v-if="$te(`projects.${project.id}.screens.${img.key}.caption`, 'en')"> · {{ $t(`projects.${project.id}.screens.${img.key}.caption`) }}</template></figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <!-- 05 METHOD -->
+        <section id="cs-method" class="cs-sec">
+          <p class="num"><em>05</em>{{ c('how.label') }}</p>
+          <h2>{{ c('how.title') }}</h2>
+          <ol class="how">
+            <li v-for="(step, i) in c('how.steps')" :key="i"><b>{{ pad(i + 1) }}</b><h3>{{ step.title }}</h3><p>{{ step.text }}</p></li>
+          </ol>
+        </section>
+
+        <!-- 06 RESULT -->
+        <section id="cs-result" class="cs-sec">
+          <p class="num"><em>06</em>{{ $t('cs.result') }}</p>
+          <h2>{{ c('result.title') }}</h2>
+          <template v-if="c('result.metrics')">
+            <div class="impact">
+              <div v-for="(m, i) in c('result.metrics')" :key="i" class="m"><strong>{{ m[0] }}</strong><span>{{ m[1] }}</span></div>
             </div>
+            <p class="note">{{ c('result.note') }}</p>
+          </template>
+          <template v-else>
+            <figure class="quote">
+              <blockquote>{{ c('result.quote')[0] }}<span class="grad">{{ c('result.quote')[1] }}</span>{{ c('result.quote')[2] }}</blockquote>
+              <figcaption>{{ c('result.author') }}</figcaption>
+            </figure>
+            <div class="facts">
+              <div v-for="(f, i) in c('result.facts')" :key="i" class="fact"><b>{{ f[0] }}</b><span>{{ f[1] }}</span></div>
+            </div>
+          </template>
+          <div class="retro"><b>{{ $t('cs.retro') }}</b><p>{{ $t(`projects.${project.id}.sections.retro`) }}</p></div>
+        </section>
+
+        <!-- NEXT + CONTACT -->
+        <div class="next">
+          <router-link :to="`/project/${next.id}`" class="nx">
+            <span class="nx-text">
+              <small>{{ $t('case.nextLabel') }}</small>
+              <b>{{ displayName(next) }}</b>
+              <span>{{ $t(`projects.${next.id}.hook`) }}</span>
+              <em>{{ $t('cs.seeProject') }} →</em>
+            </span>
+            <img :src="next.img" alt="" loading="lazy">
+          </router-link>
+          <div class="ct">
+            <p class="ct-title">{{ $t('cs.contactA') }}<span class="grad">{{ $t('cs.contactB') }}</span></p>
+            <p>{{ $t('case.contactText') }}</p>
+            <div class="row">
+              <router-link :to="{ path: '/', hash: '#contact' }" class="btn btn-big">{{ $t('about.cta') }}</router-link>
+              <a :href="cvUrl" download class="btn btn-ghost">{{ $t('about.cv') }}</a>
+            </div>
+          </div>
         </div>
-      </article>
-    </template>
-      <ScreenViewer :screens="viewerScreens" :index="index" :visible="visible" @hide="handleHide"/>
+      </div>
+    </article>
+    <ScreenViewer :screens="viewerScreens" :index="index" :visible="visible" @hide="handleHide"/>
   </div>
 </template>
 
 <script>
 // This project runs Vue 2 (beforeDestroy), but the lint config uses Vue 3 rules
 /* eslint-disable vue/no-deprecated-destroyed-lifecycle */
-  import projects from '../db/projects'
-  import { BOOKING_URL } from '../config'
-  import ScreenViewer from '../components/ScreenViewer.vue'
-  import NotFoundComponent from './NotFoundComponent.vue'
+import projects from '../db/projects'
+import ScreenViewer from '../components/ScreenViewer.vue'
+import NotFoundComponent from './NotFoundComponent.vue'
 
-  export default {
-    name: 'ProjectDetailComponent',
-    components: { ScreenViewer, NotFoundComponent },
-    data: function() {
-      return {
-        id: this.$route.params.id,
-        visible: false,
-        index: 0,
-        projects: projects,
-        currentPage: 1,
-        bookingUrl: BOOKING_URL,
-        activeSection: null,
-        scrollFrame: null,
-        // Live demo window only on large screens with a mouse; phones get the video
-        showLiveDemo: false,
-        isPhone: false,
-      }
+export default {
+  name: 'ProjectDetailComponent',
+  components: { ScreenViewer, NotFoundComponent },
+  data() {
+    return {
+      visible: false,
+      index: 0,
+      activeSection: 'cs-overview',
+      scrollFrame: null,
+      demoShot: require('@/assets/images/neon/unfate-demo.webp'),
+      metaKeys: ['role', 'client', 'scope', 'tools', 'type', 'result'],
+    }
+  },
+  computed: {
+    project() {
+      return projects.find(p => p.id === this.$route.params.id)
     },
-    computed: {
-      cvUrl() {
-        return this.$i18n.locale === 'en' ? '/files/Gilbert-Trinidad-Resume.pdf' : '/files/Gilbert-Trinidad-CV.pdf'
-      },
-      currentProject() {
-        return projects.find(project => project.id === this.$route.params.id)
-      },
-      viewerScreens() {
-        const project = this.currentProject
-        if (!project) return []
-        const screens = project.images.map(img => ({
-          src: img.src,
-          title: this.screenTitle(project, img),
-          caption: this.$te(`projects.${project.id}.screens.${img.key}.caption`, 'en') ? this.$t(`projects.${project.id}.screens.${img.key}.caption`) : '',
-          device: img.device || 'desktop',
-          url: this.domain(project.url_website),
-        }))
-        return screens.concat(this.evoScreens(project))
-      },
+    next() {
+      const i = projects.findIndex(p => p.id === this.project.id)
+      return projects[(i + 1) % projects.length]
     },
-    mounted() {
-      window.addEventListener('scroll', this.onScroll, { passive: true })
-      this.$nextTick(this.updateActiveSection)
-      this.showLiveDemo = window.matchMedia('(min-width: 1024px) and (pointer: fine)').matches
-      this.isPhone = window.matchMedia('(max-width: 640px)').matches
+    cvUrl() {
+      return this.$i18n.locale === 'en' ? '/files/Gilbert-Trinidad-Resume.pdf' : '/files/Gilbert-Trinidad-CV.pdf'
     },
-    beforeDestroy() {
-      window.removeEventListener('scroll', this.onScroll)
+    heroUrl() {
+      return this.project.demo ? `gilbert-trinidad.com${this.project.demo.path.replace(/\/$/, '')}` : this.domain(this.project.url_website)
+    },
+    thirdImage() {
+      const key = this.c('third.image')
+      return key ? this.project.images.find(img => img.key === key) : null
+    },
+    tocItems() {
+      return [
+        ['cs-overview', 'cs.overview'], ['cs-context', 'cs.context'], ['cs-decisions', 'cs.decisions'],
+        ['cs-third', null], ['cs-screens', 'cs.screens'], ['cs-method', 'cs.method'], ['cs-result', 'cs.result'],
+      ].map(([id, key]) => ({ id, label: key ? this.$t(key) : this.c('third.label') }))
+    },
+    viewerScreens() {
+      if (!this.project) return []
+      const screens = this.project.images.map(img => ({
+        src: img.src,
+        title: this.screenTitle(img),
+        caption: this.$te(`projects.${this.project.id}.screens.${img.key}.caption`, 'en') ? this.$t(`projects.${this.project.id}.screens.${img.key}.caption`) : '',
+        device: img.device || 'desktop',
+        url: this.domain(this.project.url_website),
+      }))
+      return screens.concat(this.evoScreens())
+    },
+  },
+  watch: {
+    '$route.params.id'() {
+      this.visible = false
+      this.activeSection = 'cs-overview'
+    },
+  },
+  mounted() {
+    window.addEventListener('scroll', this.onScroll, { passive: true })
+    this.$nextTick(this.updateActiveSection)
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.onScroll)
+    cancelAnimationFrame(this.scrollFrame)
+  },
+  methods: {
+    // Case study content of the current project (projects.<id>.cs), in the current language
+    c(path) {
+      const read = locale => path.split('.').reduce((node, part) => (node == null ? undefined : node[part]),
+        (((this.$i18n.messages[locale] || {}).projects || {})[this.project.id] || {}).cs)
+      const value = read(this.$i18n.locale)
+      return value === undefined ? read('en') : value
+    },
+    pad(n) {
+      return String(n).padStart(2, '0')
+    },
+    displayName(project) {
+      return project.name === 'Melodie Yeremian' ? 'Mélodie Yeremian' : project.name
+    },
+    screenTitle(img) {
+      return this.$t(`projects.${this.project.id}.screens.${img.key}.title`)
+    },
+    domain(url) {
+      return url ? url.replace(/^https?:\/\//, '').replace(/\/$/, '') : ''
+    },
+    scrollToSection(id) {
+      const el = document.getElementById(id)
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    },
+    onScroll() {
       cancelAnimationFrame(this.scrollFrame)
+      this.scrollFrame = requestAnimationFrame(this.updateActiveSection)
     },
-    methods: {
-      // Phones get the vertical recording, other screens the desktop one, in the language of the site
-      demoVideo(project) {
-        const inLocale = path => path.replace('{locale}', this.$i18n.locale === 'en' ? 'en' : 'fr')
-        return this.isPhone
-          ? { src: inLocale(project.demo.videoMobile), poster: inLocale(project.demo.posterMobile) }
-          : { src: inLocale(project.demo.video), poster: inLocale(project.demo.poster) }
-      },
-      nextProject(project) {
-        const i = projects.findIndex(p => p.id === project.id)
-        return projects[(i + 1) % projects.length]
-      },
-      tocItems(project) {
-        const items = project.sections.map(section => ({ id: `section-${section}`, label: this.$t(`case.sections.${section}`) }))
-        const all = items.concat({ id: 'section-screens', label: this.$t('gallery.title') })
-        return project.demo ? [{ id: 'section-demo', label: this.$t('demo.title') }].concat(all) : all
-      },
-      scrollToSection(id) {
-        const el = document.getElementById(id)
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      },
-      onScroll() {
-        cancelAnimationFrame(this.scrollFrame)
-        this.scrollFrame = requestAnimationFrame(this.updateActiveSection)
-      },
-      // The active entry is the last section whose top has passed a line 35% down the viewport
-      updateActiveSection() {
-        if (!this.currentProject || !this.currentProject.sections) return
-        const line = window.innerHeight * 0.35
-        let active = null
-        this.tocItems(this.currentProject).forEach(item => {
-          const el = document.getElementById(item.id)
-          if (el && el.getBoundingClientRect().top <= line) active = item.id
-        })
-        this.activeSection = active || this.tocItems(this.currentProject)[0].id
-      },
-      // V1/V2 images of the "evolution" section, appended after the gallery screens in the viewer
-      evoScreens(project) {
-        if (!project.evolution) return []
-        const base = `projects.${project.id}.evolution`
-        const list = []
-        project.evolution.pairs.forEach(pair => {
-          ['before', 'after'].forEach(side => list.push({
-            id: `${pair.key}-${side}`,
-            src: pair[side],
-            title: this.evoTitle(project, pair.key, side),
-            caption: this.$t(`${base}.${pair.key}.caption`),
-            device: 'desktop',
-            url: '',
-          }))
-        })
-        project.evolution.extras.forEach(extra => list.push({
-          id: extra.key,
-          src: extra.src,
-          title: `${this.$t('case.evoAfter')} · ${this.$t(`${base}.${extra.key}.title`)}`,
-          caption: this.$t(`${base}.${extra.key}.caption`),
+    // The active entry is the last section whose top has passed a line 35% down the viewport
+    updateActiveSection() {
+      if (!this.project) return
+      const line = window.innerHeight * 0.35
+      let active = this.tocItems[0].id
+      this.tocItems.forEach(item => {
+        const el = document.getElementById(item.id)
+        if (el && el.getBoundingClientRect().top <= line) active = item.id
+      })
+      this.activeSection = active
+    },
+    // V1/V2 images, appended after the screens in the viewer
+    evoScreens() {
+      const project = this.project
+      if (!project.evolution) return []
+      const list = []
+      project.evolution.pairs.forEach(pair => {
+        ['before', 'after'].forEach(side => list.push({
+          id: `${pair.key}-${side}`,
+          src: pair[side],
+          title: this.evoTitle(pair.key, side),
+          caption: this.$t(`projects.${project.id}.evolution.${pair.key}.caption`),
           device: 'desktop',
           url: '',
         }))
-        return list
-      },
-      evoTitle(project, key, side) {
-        return `${this.$t(side === 'before' ? 'case.evoBefore' : 'case.evoAfter')} · ${this.$t(`projects.${project.id}.evolution.${key}.title`)}`
-      },
-      showEvo(key, side) {
-        const project = this.currentProject
-        const id = side ? `${key}-${side}` : key
-        const i = this.evoScreens(project).findIndex(screen => screen.id === id)
-        this.showImg(project.images.length + i)
-      },
-      screenTitle(project, img) {
-        return this.$t(`projects.${project.id}.screens.${img.key}.title`)
-      },
-      domain(url) {
-        return url ? url.replace(/^https?:\/\//, '').replace(/\/$/, '') : ''
-      },
-      // The first screen spans the full width, and so does a last screen left alone on its row
-      isWide(index, count) {
-        return index === 0 || (index === count - 1 && (count - 1) % 2 === 1)
-      },
-      showImg (index) {
-        this.index = index
-        this.visible = true
-      },
-      handleHide () {
-        this.visible = false
-      },
-      onPageClick(page){
-        this.currentPage = page;
-        //this.imgs(this.currentPage);
-      },
-      loadMore() {
-        this.currentPage += 1
-      }
-    }
-  }
+      })
+      return list
+    },
+    evoTitle(key, side) {
+      return `${this.$t(side === 'before' ? 'case.evoBefore' : 'case.evoAfter')} · ${this.$t(`projects.${this.project.id}.evolution.${key}.title`)}`
+    },
+    showEvo(key, side) {
+      const i = this.evoScreens().findIndex(screen => screen.id === `${key}-${side}`)
+      this.showImg(this.project.images.length + i)
+    },
+    showImg(index) {
+      this.index = index
+      this.visible = true
+    },
+    handleHide() {
+      this.visible = false
+    },
+  },
+}
 </script>
+
 <style scoped>
-  .project-wrapper {
-    padding-top: 32px;
-    padding-bottom: 80px;
-  }
-  .project-page {
-    background: #fff;
-    border-radius: 32px;
-    box-shadow: 0 24px 60px rgba(61, 22, 87, 0.1);
-    padding: 48px 56px 64px;
-  }
-  .project-back {
-    font-weight: 700;
-    font-size: 24px;
-    margin-bottom: 28px;
-  }
-  .project-columns {
-    display: grid;
-    grid-template-columns: minmax(0, 680px) 320px;
-    justify-content: space-between;
-    gap: 64px;
-  }
-  .project-label {
-    color: #9535d8;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-  .project-tagline {
-    max-width: 820px;
-    font-size: 26px;
-    font-weight: 700;
-    line-height: 1.35;
-    margin-bottom: 30px;
-  }
-  .project-section {
-    margin-bottom: 26px;
-  }
-  .project-section h3 {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .project-section p {
-    white-space: pre-line;
-  }
-  .project-section p,
-  .project-section-text {
-    font-size: 16px;
-    line-height: 1.75;
-    color: #383a3c;
-  }
-  .project-sticky {
-    position: sticky;
-    top: 96px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
-  .side-card {
-    border: 1px solid #ece2f8;
-    border-radius: 24px;
-    padding: 24px;
-    background: #fbf8ff;
-  }
-  .side-card h4 {
-    font-size: 12px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #7b2cb8;
-    font-weight: 600;
-    margin-bottom: 14px;
-  }
-  .side-card dl > div {
-    padding: 10px 0;
-    border-top: 1px solid #f3ecfb;
-  }
-  .side-card dl > div:first-child {
-    border-top: 0;
-    padding-top: 0;
-  }
-  .side-card dt {
-    font-size: 12.5px;
-    color: #8a8a8a;
-  }
-  .side-card dd {
-    font-size: 14.5px;
-    font-weight: 500;
-    margin-top: 2px;
-  }
-  .side-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .side-chips span {
-    background: #f3e8ff;
-    color: #7b2cb8;
-    border-radius: 9999px;
-    padding: 3px 10px;
-    font-size: 12.5px;
-  }
-  .side-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 9999px;
-    padding: 12px;
-    font-weight: 600;
-    font-size: 14.5px;
-    margin-top: 18px;
-    transition: opacity 150ms ease;
-  }
-  .side-btn:hover {
-    opacity: 0.85;
-  }
-  .side-btn-primary {
-    background: #9535d7;
-    color: #fff;
-    box-shadow: 0 10px 24px rgba(149, 53, 215, 0.28);
-  }
-  .side-toc a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 7px 0;
-    font-size: 14.5px;
-    color: #777;
-  }
-  .side-toc a i {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #e2d4f3;
-    flex-shrink: 0;
-  }
-  .side-toc a.active {
-    color: #111;
-    font-weight: 600;
-  }
-  .side-toc a.active i {
-    background: #9535d7;
-    box-shadow: 0 0 0 4px #f0e3ff;
-  }
-  .side-contact {
-    border-radius: 24px;
-    padding: 24px;
-    background: linear-gradient(150deg, #9535d7, #b46be6 60%, #e09bd0);
-    color: #fff;
-    box-shadow: 0 18px 36px rgba(149, 53, 215, 0.28);
-  }
-  .side-contact b {
-    display: block;
-    font-size: 17px;
-    margin-bottom: 6px;
-  }
-  .side-contact p {
-    font-size: 13.5px;
-    line-height: 1.55;
-    opacity: 0.92;
-  }
-  .side-btn-white {
-    background: #fff;
-    color: #7b2cb8;
-    margin-top: 16px;
-  }
-  .project-mobile-only {
-    display: none;
-  }
-  @media (max-width: 1023px) {
-    .project-columns {
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
-    .project-aside {
-      display: none;
-    }
-    .project-mobile-only {
-      display: block;
-      margin-bottom: 28px;
-    }
-    .project-mobile-contact {
-      margin: 32px 0 0;
-    }
-  }
-  @media (max-width: 767px) {
-    .project-page {
-      border-radius: 24px;
-      padding: 24px 20px;
-    }
-    .project-tagline {
-      font-size: 22px;
-    }
-  }
-  .gallery {
-    padding-top: 40px;
-    padding-bottom: 40px;
-  }
-  .gallery-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 16px;
-    margin-bottom: 26px;
-  }
-  .gallery-head h3 {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 800;
-    font-size: 28px;
-  }
-  .gallery-head p {
-    font-size: 15px;
-    color: #7a7a7a;
-  }
-  .gallery-panel {
-    background: linear-gradient(180deg, #f6efff, #fbf7ff);
-    border-radius: 32px;
-    padding: 36px;
-  }
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 28px;
-  }
-  .gallery-item-wide {
-    grid-column: 1 / -1;
-  }
-  .gallery-frame {
-    position: relative;
-    display: block;
-    width: 100%;
-    text-align: left;
-    background: #fff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 18px 40px rgba(61, 22, 87, 0.12), 0 2px 6px rgba(61, 22, 87, 0.06);
-    cursor: zoom-in;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .gallery-bar {
-    height: 30px;
-    background: #f4f1f8;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 0 12px;
-    border-bottom: 1px solid #ece4f6;
-  }
-  .gallery-bar i {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: #dccbf0;
-  }
-  .gallery-bar span {
-    margin-left: 12px;
-    flex: 1;
-    max-width: 260px;
-    height: 16px;
-    border-radius: 8px;
-    background: #fff;
-    font-size: 9.5px;
-    color: #9a8fb0;
-    display: flex;
-    align-items: center;
-    padding-left: 9px;
-  }
-  .gallery-shot {
-    display: block;
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-  }
-  .gallery-item-wide .gallery-shot {
-    aspect-ratio: 16 / 8.2;
-  }
-  .gallery-shot img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    display: block;
-    transition: transform 0.5s ease;
-  }
-  .gallery-item-mobile .gallery-frame {
-    max-width: 260px;
-    margin: 0 auto;
-    border-radius: 28px;
-    border: 8px solid #1f1a2b;
-  }
-  .gallery-item-mobile .gallery-shot {
-    aspect-ratio: 9 / 19.5;
-  }
-  .gallery-zoom {
-    position: absolute;
-    right: 14px;
-    bottom: 14px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #9535d7;
-    display: grid;
-    place-items: center;
-    opacity: 0;
-    box-shadow: 0 8px 18px rgba(149, 53, 215, 0.35);
-    transition: opacity 0.3s ease;
-  }
-  .gallery-frame:hover,
-  .gallery-frame:focus-visible {
-    transform: translateY(-6px);
-    box-shadow: 0 28px 56px rgba(61, 22, 87, 0.2);
-  }
-  .gallery-frame:hover img,
-  .gallery-frame:focus-visible img {
-    transform: scale(1.04);
-  }
-  .gallery-frame:hover .gallery-zoom,
-  .gallery-frame:focus-visible .gallery-zoom {
-    opacity: 1;
-  }
-  .gallery-item figcaption {
-    margin-top: 14px;
-    padding: 0 4px;
-  }
-  .gallery-item-mobile figcaption {
-    text-align: center;
-  }
-  .gallery-item figcaption b {
-    display: block;
-    font-size: 15px;
-    font-weight: 600;
-  }
-  .gallery-item figcaption > span {
-    font-size: 13.5px;
-    color: #7a7a7a;
-  }
-  .gallery-number {
-    display: inline-grid;
-    place-items: center;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: #9535d7;
-    color: #fff;
-    font-size: 11px;
-    font-weight: 600;
-    margin-right: 8px;
-    vertical-align: 1px;
-  }
-  @media (max-width: 767px) {
-    .gallery-head {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .gallery-panel {
-      padding: 20px;
-    }
-    .gallery-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .gallery-frame,
-    .gallery-shot img {
-      transition: none;
-    }
-    .gallery-frame:hover,
-    .gallery-frame:focus-visible {
-      transform: none;
-    }
-    .gallery-frame:hover img,
-    .gallery-frame:focus-visible img {
-      transform: none;
-    }
-  }
-  .item {
-    flex-basis: 30.33%
-  }
+.cs-page {
+  --bg: #0D0B17; --card: rgba(28, 22, 48, .72); --line: rgba(255, 255, 255, .08);
+  --muted: #CDC9E7; --dim: #8F8AB5; --violet: #A64BEB; --lilac: #C58CF2; --sky: #8FB0FF;
+  --grad: linear-gradient(90deg, #B865F2 0%, #A15CEF 50%, #6E8BFF 100%);
+  background: var(--bg);
+  color: #fff;
+  font-family: Urbanist, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  padding-bottom: 40px;
+}
+.cs-page *, .cs-page h1, .cs-page h2, .cs-page h3, .cs-page p, .cs-page span, .cs-page a, .cs-page li, .cs-page button { font-family: Urbanist, system-ui, sans-serif; }
+.grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+button { background: none; border: 0; padding: 0; color: inherit; cursor: zoom-in; text-align: left; }
+ol { list-style: none; padding: 0; margin: 0; }
 
-  @media (max-width: 915px) { /* Taille écran tablette */
-  .item {
-    flex-basis: 44%; /* ou flex-basis: calc(100% / 2); */
-  }
+.cs { max-width: 1240px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1280px) {
+  .cs { max-width: 1440px; grid-template-columns: 170px minmax(0, 1fr); gap: 56px; }
 }
 
-@media (max-width: 480px) { /* Taille écran mobile */
-  .item {
-    flex-basis: 100%;
-  }
+/* contents rail */
+.cs-toc { display: none; }
+@media (min-width: 1280px) {
+  .cs-toc { display: block; }
+  .cs-toc-in { position: sticky; top: 120px; display: flex; flex-direction: column; gap: 4px; padding-top: 110px; }
+  .cs-toc a { display: flex; gap: 10px; align-items: center; padding: 8px 10px; border-radius: 10px; font-size: 13px; font-weight: 700; color: var(--dim); text-decoration: none; transition: color .2s ease, background .2s ease; }
+  .cs-toc a b { font-size: 11px; letter-spacing: .1em; color: var(--dim); }
+  .cs-toc a:hover { color: #fff; }
+  .cs-toc a.on { background: rgba(149, 53, 215, .18); color: #fff; box-shadow: inset 2px 0 0 var(--violet); }
+  .cs-toc a.on b { color: var(--sky); }
 }
-  .animated-component.fade-enter-from,
-.animated-component.zoom-enter-from {
-  transition: none;
-}
-/* Fade animation */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 300ms ease;
-}
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-/* Zoom animation */
-.zoom-enter-active,
-.zoom-leave-active {
-  transition: transform 300ms ease;
-}
-.zoom-enter-from,
-.zoom-leave-to {
-  transform: scale(0.9);
-}
+.cs-main { min-width: 0; max-width: 1180px; }
 
-  /* Fin d'étude de cas : contact + projet suivant */
-  .side-result dd { color: #9535d7; font-weight: 600; }
-  .case-end { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; margin-top: 56px; }
-  /* Let both cards shrink below their content width on very small screens */
-  .case-end > * { min-width: 0; }
-  .case-next-text { min-width: 0; overflow-wrap: anywhere; }
-  .case-contact { background: linear-gradient(135deg, #9535d7, #b46be6); color: #fff; border-radius: 28px; padding: 32px; box-shadow: 0 18px 40px rgba(149, 53, 215, .25); }
-  .case-contact b { display: block; font-family: Montserrat, sans-serif; font-size: 24px; margin-bottom: 8px; }
-  .case-contact p { margin: 0 0 22px; opacity: .92; line-height: 1.6; }
-  .case-btns { display: flex; flex-wrap: wrap; gap: 12px; }
-  .case-btn { display: inline-block; border-radius: 999px; padding: 12px 22px; font-weight: 600; font-size: 15px; transition: transform .2s; }
-  .case-btn:hover { transform: translateY(-2px); }
-  .case-btn-white { background: #fff; color: #9535d7; }
-  .case-btn-ghost { border: 2px solid rgba(255,255,255,.7); color: #fff; }
-  .case-next { display: grid; grid-template-columns: 140px 1fr auto; align-items: center; gap: 20px; background: #fff; border-radius: 28px; padding: 20px; box-shadow: 0 18px 40px rgba(149, 53, 215, .12); color: #1f1f2e; transition: transform .2s, box-shadow .2s; }
-  .case-next:hover { transform: translateY(-3px); box-shadow: 0 22px 48px rgba(149, 53, 215, .2); }
-  .case-next img { width: 140px; height: 140px; object-fit: cover; border-radius: 20px; }
-  .case-next-text small { display: block; color: #9535d7; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; font-size: 12px; margin-bottom: 6px; }
-  .case-next-text b { display: block; font-family: Montserrat, sans-serif; font-size: 22px; margin-bottom: 6px; }
-  .case-next-text span { color: #5b5b6b; font-size: 14px; line-height: 1.5; }
-  .case-next-arrow { width: 48px; height: 48px; border-radius: 50%; background: #f3e8fc; color: #9535d7; display: flex; align-items: center; justify-content: center; font-size: 22px; }
-  @media (max-width: 900px) {
-    .case-end { grid-template-columns: minmax(0, 1fr); margin-top: 40px; }
-    .case-contact { padding: 26px; }
-    .case-next { grid-template-columns: 88px 1fr auto; gap: 14px; padding: 14px; }
-    .case-next img { width: 88px; height: 88px; border-radius: 16px; }
-    .case-next-text b { font-size: 18px; }
-    .case-next-arrow { width: 40px; height: 40px; }
-  }
-  @media (max-width: 400px) {
-    .case-contact { padding: 22px 20px; }
-    .case-btns { flex-direction: column; }
-    .case-btn { text-align: center; }
-    .case-next { grid-template-columns: 64px minmax(0, 1fr) auto; gap: 12px; padding: 12px; }
-    .case-next img { width: 64px; height: 64px; border-radius: 14px; }
-    .case-next-arrow { width: 36px; height: 36px; }
-  }
-  /* V1 -> V2 comparison inside the "evolution" section */
-  .evo {
-    margin-top: 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
-  .evo-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-    align-items: center;
-    gap: 12px;
-  }
-  .evo-arrow {
-    color: #9535d8;
-    font-weight: 700;
-    font-size: 20px;
-  }
-  .evo-shot {
-    position: relative;
-    display: block;
-    width: 100%;
-    padding: 0;
-    border: 1px solid #ece2f8;
-    border-radius: 16px;
-    overflow: hidden;
-    background: #fff;
-    box-shadow: 0 10px 24px rgba(61, 22, 87, 0.08);
-    cursor: zoom-in;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  .evo-shot:hover,
-  .evo-shot:focus-visible {
-    transform: translateY(-2px);
-    box-shadow: 0 16px 32px rgba(61, 22, 87, 0.14);
-  }
-  .evo-shot img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top left;
-  }
-  .evo-row .evo-shot {
-    aspect-ratio: 16 / 9;
-  }
-  .evo-shot-tall {
-    aspect-ratio: 4 / 5;
-  }
-  .evo-shot-tall img {
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-  }
-  .evo-badge {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    border-radius: 9999px;
-    padding: 3px 10px;
-    font-size: 12px;
-    font-weight: 700;
-    color: #fff;
-    z-index: 1;
-  }
-  .evo-badge-v1 {
-    background: #5b5e63;
-  }
-  .evo-badge-v2 {
-    background: #9535d8;
-  }
-  .evo figcaption {
-    margin-top: 10px;
-    font-size: 14px;
-    line-height: 1.6;
-    color: #5b5e63;
-  }
-  .evo figcaption b {
-    color: #1b1b1f;
-  }
-  .evo-extras {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
-  }
-  .evo-extras .evo-shot:not(.evo-shot-tall) {
-    aspect-ratio: 4 / 5;
-  }
-  .evo-extras .evo-shot img {
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-  }
-  @media (max-width: 767px) {
-    .evo-row {
-      grid-template-columns: minmax(0, 1fr);
-    }
-    .evo-arrow {
-      justify-self: center;
-      transform: rotate(90deg);
-    }
-    .evo-extras {
-      grid-template-columns: minmax(0, 1fr);
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .evo-shot {
-      transition: none;
-    }
-    .evo-shot:hover,
-    .evo-shot:focus-visible {
-      transform: none;
-    }
-  }
+/* buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: 13px; padding: 12px 22px; border: 1px solid rgba(181, 110, 240, .45); background: rgba(52, 34, 92, .55); color: #fff; white-space: nowrap; text-decoration: none; cursor: pointer; }
+.btn-big { font-size: 14px; padding: 15px 26px; border: 1px solid rgba(200, 190, 255, .55); background: radial-gradient(130% 150% at 85% 80%, #6E8BFF 0%, #9535D7 48%, #8A2FCB 100%); box-shadow: inset 0 2px 0 rgba(255, 255, 255, .35), inset 0 -6px 18px rgba(60, 20, 120, .45), 0 10px 50px rgba(79, 107, 255, .3), 0 0 70px rgba(149, 53, 215, .4); }
+.btn-ghost { background: transparent; border-color: rgba(255, 255, 255, .18); }
+.btn:focus-visible, .cs-page a:focus-visible, .cs-page button:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
 
-  /* Coded demo section (Unfate) */
-  .demo {
-    padding: 40px 0 56px;
-  }
-  /* Demo right after the intro: tighter top, a line separates it from the case study */
-  .project-tagline + .demo {
-    padding-top: 0;
-    margin-bottom: 48px;
-    border-bottom: 1px solid #ece6f5;
-  }
-  .demo-head {
-    max-width: 760px;
-    margin-bottom: 28px;
-  }
-  .demo-kicker {
-    display: inline-block;
-    padding: 6px 14px;
-    border-radius: 9999px;
-    background: #f6efff;
-    color: #7d26b9;
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 14px;
-  }
-  .demo-head h3 {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 800;
-    font-size: 28px;
-    margin-bottom: 12px;
-  }
-  .demo-text {
-    color: #383a3c;
-    line-height: 1.75;
-  }
-  .demo-steps {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 22px;
-    margin-top: 18px;
-    font-size: 14px;
-    color: #383a3c;
-  }
-  .demo-steps li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .demo-steps span {
-    flex-shrink: 0;
-    display: inline-grid;
-    place-items: center;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    background: #9535d7;
-    color: #fff;
-    font-weight: 700;
-    font-size: 13px;
-  }
-  .demo-window {
-    border-radius: 24px;
-    overflow: hidden;
-    background: #fff;
-    box-shadow: 0 24px 60px rgba(61, 22, 87, 0.16);
-    border: 1px solid #eadcf8;
-  }
-  .demo-window-bar {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    padding: 12px 16px;
-    background: #f6efff;
-  }
-  .demo-window-bar i {
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    background: #d9c4ef;
-  }
-  .demo-window-bar span {
-    margin-left: 12px;
-    padding: 4px 14px;
-    border-radius: 9999px;
-    background: #fff;
-    font-size: 12px;
-    color: #6b6b6b;
-  }
-  .demo-screen {
-    position: relative;
-    background: #eff0f6;
-  }
-  .demo-frame {
-    display: block;
-    width: 100%;
-    height: min(780px, 80vh);
-    border: 0;
-  }
-  .demo-video {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
-  }
-  .demo-actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 14px 24px;
-    margin-top: 24px;
-  }
-  .demo-btn {
-    background: #9535d7;
-    color: #fff;
-  }
-  .demo-btn:hover {
-    background: #7d26b9;
-  }
-  .demo-link {
-    color: #7d26b9;
-    font-weight: 600;
-    font-size: 14px;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  .demo-disclaimer {
-    margin-top: 14px;
-    font-size: 13px;
-    color: #6b6b6b;
-    max-width: 760px;
-    line-height: 1.6;
-  }
-  @media (max-width: 640px) {
-    .demo-head h3 {
-      font-size: 24px;
-    }
-    .demo-window {
-      border-radius: 18px;
-    }
-    .demo-video-phone {
-      aspect-ratio: 9 / 19.5;
-      max-height: 75vh;
-      object-fit: contain;
-      background: #eff0f6;
-    }
-    .demo-actions .demo-btn {
-      width: 100%;
-      justify-content: center;
-    }
-  }
+/* header */
+.cs-top { position: relative; padding-top: 40px; scroll-margin-top: 110px; }
+.cs-top::before { content: ""; position: absolute; left: 50%; top: -180px; width: min(1100px, 100vw); height: 700px; transform: translateX(-50%); background: radial-gradient(closest-side, rgba(149, 53, 215, .35), rgba(110, 139, 255, .1) 55%, transparent); pointer-events: none; }
+.cs-back { position: relative; font-size: 14px; font-weight: 700; color: var(--dim); text-decoration: none; }
+.cs-back:hover { color: #fff; }
+.cs-lbl { position: relative; margin-top: 34px; display: flex; gap: 10px; align-items: center; font-size: 12px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--sky); }
+.cs-lbl i { flex: none; width: 7px; height: 7px; border-radius: 2px; background: var(--sky); box-shadow: 0 0 10px var(--sky); }
+h1 { position: relative; font-size: 62px; line-height: 1.05; font-weight: 800; margin-top: 18px; letter-spacing: -.01em; max-width: 1000px; }
+.cs-intro { position: relative; margin-top: 22px; font-size: 21px; line-height: 1.6; color: var(--muted); font-weight: 500; max-width: 820px; }
+.cs-meta { position: relative; margin: 44px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; background: rgba(27, 21, 45, .55); }
+.cs-meta div { padding: 22px 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.cs-meta div:nth-child(3n) { border-right: none; }
+.cs-meta div:nth-child(n+4) { border-bottom: none; }
+.cs-meta dt { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--dim); font-weight: 800; margin-bottom: 8px; }
+.cs-meta dd { margin: 0; font-size: 16px; font-weight: 600; line-height: 1.45; color: #EEEAF7; }
+.cs-meta .res dd { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 800; }
+
+.cs-hero { position: relative; margin-top: 44px; }
+.browser { display: block; width: 100%; border-radius: 18px; overflow: hidden; background: #1A1430; border: 1px solid rgba(255, 255, 255, .14); box-shadow: 0 40px 90px rgba(0, 0, 0, .55), 0 0 120px rgba(149, 53, 215, .3); }
+.bar { height: 36px; display: flex; align-items: center; gap: 7px; padding: 0 14px; background: rgba(255, 255, 255, .04); border-bottom: 1px solid rgba(255, 255, 255, .08); }
+.bar i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255, 255, 255, .18); }
+.bar span { margin-left: 14px; font-size: 12px; font-weight: 600; color: var(--dim); background: rgba(0, 0, 0, .25); padding: 4px 14px; border-radius: 8px; }
+.browser img, .hero-shot { display: block; width: 100%; }
+a.hero-shot img { height: auto; }
+.cs-cta { position: relative; z-index: 2; width: max-content; max-width: 100%; margin: -30px auto 0; display: flex; gap: 14px; align-items: center; padding: 10px 10px 10px 24px; border-radius: 999px; background: rgba(13, 11, 23, .9); border: 1px solid rgba(181, 110, 240, .45); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 20px 50px rgba(0, 0, 0, .5); font-size: 15px; font-weight: 600; color: var(--muted); }
+.cs-cta b { color: #fff; }
+.cs-disclaimer { margin: 18px auto 0; max-width: 760px; text-align: center; font-size: 13px; line-height: 1.55; color: var(--dim); }
+
+/* sections */
+.cs-sec { padding-top: 140px; scroll-margin-top: 60px; }
+.num { display: flex; align-items: center; gap: 14px; font-size: 13px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--sky); }
+.num em { font-style: normal; padding: 6px 10px; border-radius: 10px; background: rgba(110, 139, 255, .14); color: #B9CCFF; letter-spacing: .1em; }
+h2 { font-size: 42px; line-height: 1.12; font-weight: 800; margin-top: 18px; max-width: 860px; }
+.body { margin-top: 22px; font-size: 18px; line-height: 1.7; color: var(--muted); font-weight: 500; max-width: 760px; }
+.body + .body { margin-top: 14px; }
+.hint { margin-top: 14px; color: var(--dim); font-size: 14px; font-weight: 600; }
+.callout { margin: 40px 0 0; padding: 30px 34px; border-radius: 22px; border-left: 3px solid var(--violet); background: linear-gradient(90deg, rgba(149, 53, 215, .18), rgba(27, 21, 45, .2)); font-size: 24px; line-height: 1.45; font-weight: 700; max-width: 900px; }
+.callout small { display: block; margin-top: 12px; font-size: 13px; font-weight: 700; color: var(--dim); letter-spacing: .1em; text-transform: uppercase; }
+
+.cards { display: grid; gap: 18px; margin-top: 40px; }
+.c4 { grid-template-columns: repeat(4, 1fr); }
+.cs-card { padding: 26px 24px 28px; border-radius: 22px; border: 1px solid var(--line); background: var(--card); }
+.ctag { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; padding: 5px 10px; border-radius: 8px; margin-bottom: 16px; }
+.ctag-frein { background: rgba(181, 110, 240, .16); color: #E2C2FA; }
+.ctag-offre, .ctag-besoin { background: rgba(110, 139, 255, .16); color: #B9CCFF; }
+.ctag-contrainte { background: rgba(144, 255, 188, .13); color: #AFFFD0; }
+.cs-card h3 { font-size: 20px; font-weight: 800; line-height: 1.25; margin-bottom: 8px; }
+.cs-card p { font-size: 15px; line-height: 1.55; color: var(--muted); font-weight: 500; }
+
+.dec { margin-top: 44px; display: grid; gap: 16px; }
+.d { display: grid; grid-template-columns: 70px 1fr 1.1fr; gap: 28px; align-items: start; padding: 28px 30px; border-radius: 22px; border: 1px solid var(--line); background: var(--card); }
+.d .n { font-size: 34px; font-weight: 900; line-height: 1; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.d h3 { font-size: 21px; font-weight: 800; line-height: 1.3; }
+.d .why { font-size: 15px; line-height: 1.6; color: var(--muted); font-weight: 500; }
+.d .why b { display: block; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); margin-bottom: 6px; }
+
+.steps3 { margin-top: 44px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.st { padding: 28px 26px; border-radius: 22px; border: 1px solid var(--line); background: var(--card); }
+.st .k { font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--sky); margin-bottom: 12px; }
+.st h3 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+.st p { font-size: 15px; line-height: 1.6; color: var(--muted); font-weight: 500; }
+.st .fig { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+.st .fig span { font-size: 13px; font-weight: 700; padding: 6px 10px; border-radius: 10px; background: rgba(255, 255, 255, .05); border: 1px solid var(--line); color: var(--muted); }
+.st .fig strong { color: #fff; }
+
+.qflow { margin-top: 44px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.qflow li { padding: 20px 18px; border-radius: 18px; border: 1px solid var(--line); background: var(--card); }
+.qflow b { display: block; font-size: 12px; font-weight: 900; letter-spacing: .14em; color: var(--sky); margin-bottom: 10px; }
+.qflow span { font-size: 17px; font-weight: 700; line-height: 1.35; }
+
+figure { margin: 40px 0 0; }
+figcaption { margin-top: 14px; font-size: 14px; line-height: 1.55; color: var(--dim); font-weight: 500; max-width: 820px; }
+figcaption strong { color: var(--muted); }
+.big .browser { box-shadow: 0 30px 70px rgba(0, 0, 0, .45); }
+
+.ba-fig { margin-top: 48px; }
+.ba { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.ba .side { display: block; width: 100%; }
+.ba .side b { display: inline-block; margin-bottom: 12px; font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; }
+.ba .v1 b { background: rgba(255, 255, 255, .08); color: var(--muted); }
+.ba .v2 b { background: linear-gradient(90deg, rgba(149, 53, 215, .5), rgba(110, 139, 255, .5)); color: #fff; }
+.ba img { display: block; width: 100%; border-radius: 14px; border: 1px solid rgba(255, 255, 255, .1); transition: transform .3s ease; }
+.ba .v2 img { box-shadow: 0 0 60px rgba(149, 53, 215, .35); }
+.ba .side:hover img { transform: translateY(-3px); }
+
+.gal { margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px 18px; }
+.gal figure { margin: 0; }
+.gal-shot { display: block; width: 100%; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255, 255, 255, .1); background: #1A1430; }
+.gal-shot img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; transition: transform .3s ease; }
+.gal-shot:hover img { transform: scale(1.02); }
+.gal figcaption { margin-top: 10px; font-size: 13px; }
+
+.how { margin-top: 44px; display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; }
+.how li { padding: 28px 24px; border-right: 1px solid var(--line); background: rgba(27, 21, 45, .45); }
+.how li:last-child { border-right: none; }
+.how b { display: block; font-size: 12px; font-weight: 900; letter-spacing: .16em; color: var(--sky); margin-bottom: 14px; }
+.how h3 { font-size: 19px; font-weight: 800; margin-bottom: 8px; }
+.how p { font-size: 14.5px; line-height: 1.55; color: var(--muted); font-weight: 500; }
+
+.impact { margin-top: 44px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.m { padding: 34px 28px; border-radius: 24px; border: 1px solid rgba(181, 110, 240, .3); background: radial-gradient(90% 90% at 20% 0%, rgba(149, 53, 215, .28), transparent 70%), var(--card); }
+.m strong { display: block; font-size: 64px; font-weight: 900; line-height: 1; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.m span { display: block; margin-top: 12px; font-size: 16px; font-weight: 600; color: #EEEAF7; line-height: 1.45; }
+.note { margin-top: 22px; font-size: 14px; color: var(--dim); font-weight: 600; }
+
+.quote { margin-top: 44px; padding: 40px; border-radius: 24px; border: 1px solid rgba(181, 110, 240, .3); background: radial-gradient(90% 120% at 10% 0%, rgba(149, 53, 215, .25), transparent 70%), var(--card); }
+.quote blockquote { margin: 0; font-size: 28px; line-height: 1.4; font-weight: 700; max-width: 900px; }
+.quote figcaption { margin-top: 18px; font-size: 14px; font-weight: 700; color: var(--dim); letter-spacing: .04em; }
+.facts { margin-top: 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.fact { padding: 24px; border-radius: 20px; border: 1px solid var(--line); background: var(--card); }
+.fact b { display: block; font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+.fact span { font-size: 15px; line-height: 1.55; color: var(--muted); font-weight: 500; }
+
+.retro { margin-top: 40px; padding: 34px; border-radius: 24px; border: 1px dashed rgba(181, 110, 240, .4); display: grid; grid-template-columns: 200px 1fr; gap: 30px; align-items: start; }
+.retro b { font-size: 12px; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; color: var(--lilac); }
+.retro p { font-size: 20px; line-height: 1.55; font-weight: 600; }
+
+.next { margin-top: 140px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; }
+.nx { border-radius: 28px; border: 1px solid var(--line); background: var(--card); padding: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; color: #fff; text-decoration: none; transition: border-color .2s ease; }
+.nx:hover { border-color: rgba(181, 110, 240, .45); }
+.nx-text { display: block; }
+.nx small { display: block; font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
+.nx b { display: block; font-size: 30px; font-weight: 800; margin: 10px 0 8px; }
+.nx-text > span { display: block; font-size: 15px; line-height: 1.55; color: var(--muted); }
+.nx em { display: block; margin-top: 16px; font-style: normal; font-weight: 800; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--lilac); }
+.nx img { width: 100%; border-radius: 12px; border: 1px solid rgba(255, 255, 255, .1); }
+.ct { border-radius: 28px; padding: 34px; background: radial-gradient(100% 120% at 50% 100%, rgba(149, 53, 215, .45), rgba(110, 139, 255, .12) 60%, transparent), rgba(27, 21, 45, .7); border: 1px solid rgba(181, 110, 240, .3); }
+.ct-title { font-size: 28px; font-weight: 800; }
+.ct p:not(.ct-title) { margin-top: 10px; color: var(--muted); font-size: 16px; line-height: 1.55; }
+.ct .row { margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 1000px) {
+  .c4 { grid-template-columns: 1fr 1fr; }
+  .qflow { grid-template-columns: repeat(3, 1fr); }
+  .how { grid-template-columns: 1fr 1fr; }
+  .how li:nth-child(2n) { border-right: none; }
+  .how li:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .next { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .cs { padding: 0 20px; }
+  .cs-top { padding-top: 24px; }
+  h1 { font-size: 38px; }
+  .cs-intro { font-size: 17px; }
+  .cs-meta { grid-template-columns: 1fr 1fr; }
+  .cs-meta div, .cs-meta div:nth-child(3n), .cs-meta div:nth-child(n+4) { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 16px; }
+  .cs-meta div:nth-child(2n) { border-right: none; }
+  .cs-meta div:nth-child(n+5) { border-bottom: none; }
+  .cs-meta dd { font-size: 14px; }
+  .bar span { display: none; }
+  .cs-cta { width: auto; margin-top: 16px; flex-direction: column; align-items: stretch; text-align: center; font-size: 13px; padding: 16px; border-radius: 22px; }
+  .cs-sec { padding-top: 90px; }
+  h2 { font-size: 28px; }
+  .body { font-size: 16px; }
+  .callout { font-size: 19px; padding: 22px; }
+  .c4 { gap: 12px; }
+  .cs-card { padding: 18px 16px; }
+  .cs-card h3 { font-size: 17px; }
+  .cs-card p { font-size: 14px; }
+  .d { grid-template-columns: 1fr; gap: 10px; padding: 22px; }
+  .steps3, .ba, .gal, .impact, .facts, .nx { grid-template-columns: 1fr; }
+  .qflow { grid-template-columns: 1fr 1fr; }
+  .how { grid-template-columns: 1fr; }
+  .how li, .how li:nth-child(2n), .how li:nth-child(-n+2) { border-right: none; border-bottom: 1px solid var(--line); }
+  .how li:last-child { border-bottom: none; }
+  .m strong { font-size: 52px; }
+  .quote { padding: 26px; }
+  .quote blockquote { font-size: 21px; }
+  .retro { grid-template-columns: 1fr; gap: 12px; padding: 24px; }
+  .retro p { font-size: 17px; }
+  .next { margin-top: 90px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ba img, .gal-shot img { transition: none; }
+}
 </style>
