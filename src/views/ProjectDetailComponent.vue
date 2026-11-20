@@ -6,14 +6,19 @@
       <nav class="cs-toc" :aria-label="$t('cs.contents')">
         <div class="cs-toc-in">
           <a v-for="(item, i) in tocItems" :key="item.id" :href="`#${item.id}`" :class="{ on: activeSection === item.id }" @click.prevent="scrollToSection(item.id)"><b>{{ pad(i) }}</b>{{ item.label }}</a>
+          <button type="button" class="btn toc-present" @click="presenting = true"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 5.2v3.6L9.8 7z" fill="currentColor"/><path d="M5 14h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>{{ $t('cs.presentShort') }}</button>
           <a v-if="project.demo" :href="project.demo.path" class="btn btn-big toc-demo">{{ $t('demo.cta') }} →</a>
+          <a v-else-if="project.url_website" :href="project.url_website" target="_blank" rel="noopener" class="btn btn-big toc-demo">{{ $t('cs.visit') }} ↗</a>
         </div>
       </nav>
 
       <div class="cs-main">
         <!-- HEADER -->
         <header id="cs-overview" class="cs-top">
-          <router-link :to="{ path: '/', hash: '#projects' }" class="cs-back">← {{ $t('cs.back') }}</router-link>
+          <div class="hdr-row">
+            <router-link :to="{ path: '/', hash: '#projects' }" class="cs-back">← {{ $t('cs.back') }}</router-link>
+            <button type="button" class="btn present-btn" @click="presenting = true"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 5.2v3.6L9.8 7z" fill="currentColor"/><path d="M5 14h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>{{ $t('cs.present') }}</button>
+          </div>
           <p class="cs-lbl"><i aria-hidden="true"></i>{{ c('label') }}</p>
           <h1>{{ c('title')[0] }}<span class="grad">{{ c('title')[1] }}</span>{{ c('title')[2] }}</h1>
           <p class="cs-intro">{{ c('intro') }}</p>
@@ -173,6 +178,7 @@
         </div>
       </div>
     </article>
+    <PresentationDeck v-if="presenting && project" :name="displayName(project)" :slides="slides" @close="presenting = false"/>
     <ScreenViewer :screens="viewerScreens" :index="index" :visible="visible" @hide="handleHide"/>
   </div>
 </template>
@@ -182,14 +188,16 @@
 /* eslint-disable vue/no-deprecated-destroyed-lifecycle */
 import projects from '../db/projects'
 import ScreenViewer from '../components/ScreenViewer.vue'
+import PresentationDeck from '../components/PresentationDeck.vue'
 import NotFoundComponent from './NotFoundComponent.vue'
 
 export default {
   name: 'ProjectDetailComponent',
-  components: { ScreenViewer, NotFoundComponent },
+  components: { ScreenViewer, NotFoundComponent, PresentationDeck },
   data() {
     return {
       visible: false,
+      presenting: false,
       index: 0,
       activeSection: 'cs-overview',
       scrollFrame: null,
@@ -215,6 +223,45 @@ export default {
       const key = this.c('third.image')
       return key ? this.project.images.find(img => img.key === key) : null
     },
+    // Slides of the presentation mode, built from the same content as the page
+    slides() {
+      const p = this.project
+      const id = p.id
+      const label = key => this.$t(key)
+      const list = [{
+        type: 'cover', num: '00', label: label('cs.overview'), title: this.c('title'), intro: this.c('intro'),
+        chips: [['role', 'cs.meta.role'], ['tools', 'cs.meta.tools'], ['result', 'cs.meta.result']].map(([k, l]) => [this.$t(l), this.c(`meta.${k}`)]),
+        img: p.demo ? this.demoShot : p.images[0].src,
+        alt: p.demo ? this.$t('home.demoAlt') : this.screenTitle(p.images[0]),
+      }, {
+        type: 'context', num: '01', label: label('cs.context'), title: this.c('context.title'), callout: this.c('context.callout'), cards: this.c('context.cards'),
+      }, {
+        type: 'decisions', num: '02', label: label('cs.decisions'), title: this.c('decisions.title'), items: this.c('decisions.items'),
+      }]
+      const third = { num: '03', label: this.c('third.label'), title: this.c('third.title') }
+      if (p.evolution) {
+        p.evolution.pairs.forEach(pair => list.push(Object.assign({}, third, {
+          type: 'pair', before: pair.before, after: pair.after,
+          altBefore: this.evoTitle(pair.key, 'before'), altAfter: this.evoTitle(pair.key, 'after'),
+          caption: `${this.$t(`projects.${id}.evolution.${pair.key}.title`)}. ${this.$t(`projects.${id}.evolution.${pair.key}.caption`)}`,
+        })))
+      } else if (this.thirdImage) {
+        list.push(Object.assign({}, third, { type: 'questions', questions: this.c('third.questions'), img: this.thirdImage.src, alt: this.screenTitle(this.thirdImage), caption: this.c('third.caption') }))
+      } else {
+        list.push(Object.assign({}, third, { type: 'steps', steps: this.c('third.steps') }))
+      }
+      list.push({
+        type: 'screens', num: '04', label: label('cs.screens'), title: this.c('screens.title'),
+        images: p.images.slice(0, 3).map(img => ({ src: img.src, title: this.screenTitle(img) })),
+      }, {
+        type: 'how', num: '05', label: label('cs.method'), title: this.c('how.title'), steps: this.c('how.steps'),
+      }, {
+        type: 'result', num: '06', label: label('cs.result'), title: this.c('result.title'),
+        metrics: this.c('result.metrics'), quote: this.c('result.quote'), author: this.c('result.author'),
+        retro: this.$t(`projects.${id}.sections.retro`),
+      })
+      return list
+    },
     tocItems() {
       return [
         ['cs-overview', 'cs.overview'], ['cs-context', 'cs.context'], ['cs-decisions', 'cs.decisions'],
@@ -236,6 +283,7 @@ export default {
   watch: {
     '$route.params.id'() {
       this.visible = false
+      this.presenting = false
       this.activeSection = 'cs-overview'
     },
   },
@@ -353,7 +401,8 @@ ol { list-style: none; padding: 0; margin: 0; }
   .cs-toc a:hover { color: #fff; }
   .cs-toc a.on { background: rgba(149, 53, 215, .18); color: #fff; box-shadow: inset 2px 0 0 var(--violet); }
   .cs-toc a.on b { color: var(--sky); }
-  .cs-toc a.toc-demo { margin-top: 18px; justify-content: center; padding: 12px 10px; font-size: 11px; color: #fff; letter-spacing: .06em; }
+  .cs-toc .toc-present { margin-top: 18px; font-size: 11px; padding: 10px; }
+  .cs-toc a.toc-demo { margin-top: 10px; justify-content: center; padding: 12px 10px; font-size: 11px; color: #fff; letter-spacing: .06em; }
   .cs-toc a.toc-demo:hover { color: #fff; }
 }
 .cs-main { min-width: 0; max-width: 1180px; }
@@ -367,6 +416,10 @@ ol { list-style: none; padding: 0; margin: 0; }
 /* header */
 .cs-top { position: relative; padding-top: 40px; scroll-margin-top: 110px; }
 .cs-top::before { content: ""; position: absolute; left: 50%; top: -180px; width: min(1100px, 100vw); height: 700px; transform: translateX(-50%); background: radial-gradient(closest-side, rgba(149, 53, 215, .35), rgba(110, 139, 255, .1) 55%, transparent); pointer-events: none; }
+.hdr-row { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.btn svg { width: 16px; height: 16px; flex: none; }
+.present-btn { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), 0 0 24px rgba(166, 75, 235, .25); }
+.present-btn:hover { border-color: rgba(200, 190, 255, .8); }
 .cs-back { position: relative; font-size: 14px; font-weight: 700; color: var(--dim); text-decoration: none; }
 .cs-back:hover { color: #fff; }
 .cs-lbl { position: relative; margin-top: 34px; display: flex; gap: 10px; align-items: center; font-size: 12px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--sky); }
