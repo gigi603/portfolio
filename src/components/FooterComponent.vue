@@ -7,7 +7,7 @@
           <rect width="1200" height="520" fill="url(#cg)"/>
           <g fill="none" stroke="#fff"><circle cx="600" cy="560" r="160" stroke-opacity=".1"/><circle cx="600" cy="560" r="280" stroke-opacity=".07"/><circle cx="600" cy="560" r="420" stroke-opacity=".05"/></g>
         </svg>
-        <div class="ct">
+        <div class="ct" data-aos="zoom-in">
           <div class="ct-l">
             <p class="eyb"><img :src="vinyle" alt="" aria-hidden="true" width="28" height="28">{{ $t('contact.eyebrow') }}</p>
             <h2 id="contact-title" class="kicker">{{ titleParts[0] }}<span v-if="titleParts[1]" class="grad">{{ titleParts[1] }}</span></h2>
