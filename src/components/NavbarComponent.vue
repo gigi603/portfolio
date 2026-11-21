@@ -2,7 +2,7 @@
   <div class="frame-nav">
     <!-- Dark frame around the page (inspired by greymac.com), drawn above the content -->
     <div class="edge" aria-hidden="true"></div>
-    <nav class="notch" :class="{ compact }" :aria-label="$t('nav.mainLabel')" @mouseenter="hovered = true" @mouseleave="hovered = false" @focusin="focused = true" @focusout="onFocusOut">
+    <nav class="notch" :aria-label="$t('nav.mainLabel')">
       <span class="nmask" aria-hidden="true"></span>
       <div class="nl">
         <router-link v-for="link in sectionLinks.slice(0, 2)" :key="link.id" :to="{ path: '/', hash: `#${link.id}` }" custom v-slot="{ href, navigate }"><a :href="href" class="link" :class="{ active: activeSection === link.id }" :data-text="$t(`nav.${link.key}`)" :aria-current="activeSection === link.id ? 'location' : null" @click="navigate">{{ $t(`nav.${link.key}`) }}</a></router-link>
@@ -61,16 +61,9 @@ export default {
       activeSection: null,
       scrollFrame: null,
       spyTimer: null,
-      scrolled: false,
-      hovered: false,
-      focused: false,
     };
   },
   computed: {
-    // Full menu only at the very top of the page, or while the notch is hovered or focused
-    compact() {
-      return this.scrolled && !this.hovered && !this.focused
-    },
     cvUrl() {
       return this.$i18n.locale === 'en' ? '/files/Gilbert-Trinidad-Resume.pdf' : '/files/Gilbert-Trinidad-CV.pdf'
     },
@@ -94,12 +87,7 @@ export default {
       },
     },
   },
-  mounted() {
-    window.addEventListener('scroll', this.onScrollCompact, { passive: true })
-    this.onScrollCompact()
-  },
   beforeDestroy() {
-    window.removeEventListener('scroll', this.onScrollCompact)
     this.stopScrollSpy()
     document.body.style.overflow = ''
   },
@@ -140,13 +128,6 @@ export default {
         return rect.top <= line && rect.bottom > line
       })
       this.activeSection = current ? current.id : null
-    },
-    // Once the page leaves the top, the notch shows only the logo, name and title
-    onScrollCompact() {
-      this.scrolled = window.scrollY > 40
-    },
-    onFocusOut(event) {
-      if (!event.currentTarget.contains(event.relatedTarget)) this.focused = false
     },
     openMenu() {
       this.showMenu = true
@@ -295,8 +276,6 @@ export default {
     color: transparent;
   }
   .menu { display: none; }
-  .notch.compact { gap: 0; }
-  .notch.compact .nl, .notch.compact .nr { max-width: 0; opacity: 0; }
 
   .sheet {
     position: fixed;
