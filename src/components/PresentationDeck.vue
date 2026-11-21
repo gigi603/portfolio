@@ -161,6 +161,8 @@ export default {
   --card: rgba(28, 22, 48, .72); --line: rgba(255, 255, 255, .08); --muted: #CDC9E7; --dim: #8F8AB5; --violet: #A64BEB; --sky: #8FB0FF;
   --grad: linear-gradient(90deg, #B865F2 0%, #A15CEF 50%, #6E8BFF 100%);
   position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column;
+  /* Keep the controls clear of the notch / Dynamic Island and the home bar */
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
   background: #0D0B17; color: #fff; font-family: Urbanist, system-ui, sans-serif; -webkit-font-smoothing: antialiased;
 }
 .deck * { font-family: Urbanist, system-ui, sans-serif; }

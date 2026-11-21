@@ -104,7 +104,7 @@ html {
 }
 body {
   background-color: #EEE6FF;
-  margin: 12px;
+  margin: calc(12px + env(safe-area-inset-top, 0px)) calc(12px + env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) calc(12px + env(safe-area-inset-left, 0px));
   border-radius: 24px;
   overflow: clip;
 }
@@ -121,7 +121,7 @@ body {
 }
 @media (max-width: 860px) {
   body {
-    margin: 6px;
+    margin: calc(6px + env(safe-area-inset-top, 0px)) calc(6px + env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) calc(6px + env(safe-area-inset-left, 0px));
     border-radius: 18px;
   }
   .nav-spacer {

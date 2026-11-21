@@ -187,11 +187,11 @@ export default {
     align-items: center;
     justify-content: center;
     gap: 18px;
-    padding: 70px 0 24px;
+    padding: calc(70px + env(safe-area-inset-top, 0px)) 0 calc(24px + env(safe-area-inset-bottom, 0px));
   }
   .viewer-top {
     position: absolute;
-    top: 22px;
+    top: calc(22px + env(safe-area-inset-top, 0px));
     left: 32px;
     right: 32px;
     display: flex;
