@@ -32,5 +32,7 @@ const { t } = useI18n()
 @media (max-width: 640px) {
   .portfolio-bar { padding: 8px 12px; }
   .portfolio-note { display: none; }
+  .shell { height: auto; min-height: 100vh; min-height: 100svh; }
+  .app { flex: 1 0 auto; overflow: visible; display: flex; flex-direction: column; }
 }
 </style>

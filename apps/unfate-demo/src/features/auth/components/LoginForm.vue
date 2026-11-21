@@ -71,7 +71,6 @@ function notInDemo(feature: string): void {
       <p>{{ t('login.demoAccount') }} <b>{{ DEMO_ACCOUNT.email }}</b> / <b>{{ DEMO_ACCOUNT.password }}</b></p>
       <button type="button" class="link link-strong" @click="fillDemoAccount">{{ t('login.fill') }}</button>
     </div>
-    <p class="signup">{{ t('login.newHere') }} <button type="button" class="link" @click="notInDemo(t('login.signUpFeature'))">{{ t('login.signUp') }}</button></p>
   </form>
 </template>
 
@@ -89,5 +88,4 @@ function notInDemo(feature: string): void {
 .link:hover { text-decoration: underline; }
 .link-strong { font-weight: 700; margin-top: 4px; text-decoration: underline; text-underline-offset: 3px; }
 .demo-account { margin-top: 18px; padding: 14px 16px; border-radius: 12px; background: var(--uf-blue-bg); font-size: 14px; line-height: 1.6; }
-.signup { margin-top: 22px; font-size: 14px; }
 </style>

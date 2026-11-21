@@ -53,6 +53,12 @@ a { color: inherit; }
 .text-green { color: var(--uf-green-dark); }
 .text-soft { color: var(--uf-soft); }
 
+/* Phones: the whole document scrolls (no fixed-height app shell), so the browser bars and the
+   system navigation bar can slide away and nothing stays stuck behind them, whatever the phone */
+@media (max-width: 760px) {
+  html, body, #app { height: auto; min-height: 100%; }
+}
+
 @media (max-width: 760px) {
   .actions-split { flex-direction: column-reverse; align-items: stretch; }
   .actions-split > * { max-width: none; flex: 1 1 auto; }
