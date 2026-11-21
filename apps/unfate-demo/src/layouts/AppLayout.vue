@@ -19,6 +19,7 @@ watch(
   async () => {
     await nextTick()
     main.value?.scrollTo({ top: 0 })
+    window.scrollTo({ top: 0 })
     main.value?.querySelector<HTMLElement>('[data-page-heading]')?.focus({ preventScroll: true })
   },
 )
@@ -56,8 +57,8 @@ watch(
   .top-account { display: block; }
 }
 @media (max-width: 760px) {
-  .layout { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; }
-  .main { padding: 16px 16px 32px; }
+  .layout { flex: 1 0 auto; height: auto; grid-template-columns: 1fr; grid-template-rows: 1fr auto; }
+  .main { overflow: visible; padding: 16px 16px 32px; }
   .topbar { flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
   .top-logo { display: inline-flex; }
 }
