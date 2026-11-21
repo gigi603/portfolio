@@ -5,15 +5,15 @@
     <nav class="notch" :class="{ compact }" :aria-label="$t('nav.mainLabel')" @mouseenter="hovered = true" @mouseleave="hovered = false" @focusin="focused = true" @focusout="onFocusOut">
       <span class="nmask" aria-hidden="true"></span>
       <div class="nl">
-        <router-link v-for="link in sectionLinks.slice(0, 2)" :key="link.id" :to="{ path: '/', hash: `#${link.id}` }" class="link" :class="{ active: activeSection === link.id }">{{ $t(`nav.${link.key}`) }}</router-link>
+        <router-link v-for="link in sectionLinks.slice(0, 2)" :key="link.id" :to="{ path: '/', hash: `#${link.id}` }" custom v-slot="{ href, navigate }"><a :href="href" class="link" :class="{ active: activeSection === link.id }" :data-text="$t(`nav.${link.key}`)" :aria-current="activeSection === link.id ? 'location' : null" @click="navigate">{{ $t(`nav.${link.key}`) }}</a></router-link>
       </div>
       <router-link to="/" class="lockup" :aria-label="$t('nav.homeLabel')">
         <img src="@/assets/icons/logo-gilbert.svg" alt="" width="36" height="36">
         <span><b>Gilbert Trinidad</b><small>Product Designer</small></span>
       </router-link>
       <div class="nr">
-        <router-link v-for="link in sectionLinks.slice(2)" :key="link.id" :to="{ path: '/', hash: `#${link.id}` }" class="link" :class="{ active: activeSection === link.id }">{{ $t(`nav.${link.key}`) }}</router-link>
-        <a href="#contact" class="link">{{ $t('nav.contactShort') }}</a>
+        <router-link v-for="link in sectionLinks.slice(2)" :key="link.id" :to="{ path: '/', hash: `#${link.id}` }" custom v-slot="{ href, navigate }"><a :href="href" class="link" :class="{ active: activeSection === link.id }" :data-text="$t(`nav.${link.key}`)" :aria-current="activeSection === link.id ? 'location' : null" @click="navigate">{{ $t(`nav.${link.key}`) }}</a></router-link>
+        <router-link :to="{ path: '/', hash: '#contact' }" custom v-slot="{ href, navigate }"><a :href="href" class="link" :class="{ active: activeSection === 'contact' }" :data-text="$t('nav.contactShort')" :aria-current="activeSection === 'contact' ? 'location' : null" @click="navigate">{{ $t('nav.contactShort') }}</a></router-link>
         <LanguageSwitcher class="lg"/>
       </div>
       <button type="button" class="menu" aria-haspopup="dialog" :aria-expanded="showMenu ? 'true' : 'false'" :aria-label="$t('nav.menu')" @click="openMenu"><i aria-hidden="true"></i></button>
@@ -32,10 +32,10 @@
       </div>
       <ul class="sheet-links">
         <li v-for="link in sectionLinks" :key="link.id">
-          <router-link :to="{ path: '/', hash: `#${link.id}` }" :class="{ active: activeSection === link.id }">{{ $t(`nav.${link.key}`) }}<span aria-hidden="true">→</span></router-link>
+          <router-link :to="{ path: '/', hash: `#${link.id}` }" custom v-slot="{ href, navigate }"><a :href="href" :class="{ active: activeSection === link.id }" :aria-current="activeSection === link.id ? 'location' : null" @click="navigate"><em :data-text="$t(`nav.${link.key}`)">{{ $t(`nav.${link.key}`) }}</em><span aria-hidden="true">→</span></a></router-link>
         </li>
-        <li><a href="#contact">{{ $t('nav.contactShort') }}<span aria-hidden="true">→</span></a></li>
-        <li><a :href="cvUrl" download>{{ $t('nav.downloadCv') }}<span aria-hidden="true">↓</span></a></li>
+        <li><router-link :to="{ path: '/', hash: '#contact' }" custom v-slot="{ href, navigate }"><a :href="href" :class="{ active: activeSection === 'contact' }" :aria-current="activeSection === 'contact' ? 'location' : null" @click="navigate"><em :data-text="$t('nav.contactShort')">{{ $t('nav.contactShort') }}</em><span aria-hidden="true">→</span></a></router-link></li>
+        <li><a :href="cvUrl" download><em :data-text="$t('nav.downloadCv')">{{ $t('nav.downloadCv') }}</em><span aria-hidden="true">↓</span></a></li>
       </ul>
       <div class="sheet-lang"><span class="sheet-lang-label" aria-hidden="true">Langue · Language</span><LanguageSwitcher variant="big"/></div>
     </div>
@@ -126,7 +126,14 @@ export default {
     // The active link is the section crossing a line 40% down the viewport
     updateActiveSection() {
       const line = window.innerHeight * 0.4
-      const current = this.sectionLinks.find(link => {
+      const spied = [...this.sectionLinks, { id: 'contact' }]
+      // At the very bottom, the contact section may be too short to reach the line: it wins
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4
+      if (atBottom && document.getElementById('contact')) {
+        this.activeSection = 'contact'
+        return
+      }
+      const current = spied.find(link => {
         const section = document.getElementById(link.id)
         if (!section) return false
         const rect = section.getBoundingClientRect()
@@ -225,17 +232,52 @@ export default {
     align-items: center;
     gap: 28px;
     overflow: hidden;
+    /* Vertical room so the active line under a link isn't clipped */
+    padding: 12px 0;
     max-width: 420px;
     transition: max-width 0.4s ease, opacity 0.3s ease;
   }
+  /* Capitals via CSS (screen readers keep reading normal words). The hidden bold copy (::after)
+     reserves the bold width, so the menu doesn't move when a link becomes active. */
   .link {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
     color: #cdc9e7;
     font-family: Urbanist, system-ui, sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     white-space: nowrap;
   }
-  .link:hover, .link.active { color: #fff; }
+  .link::after {
+    content: attr(data-text);
+    height: 0;
+    font-weight: 800;
+    visibility: hidden;
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+  }
+  /* Active section: gradient line under the link + bold white text */
+  .link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -9px;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #b865f2 0%, #a15cef 50%, #6e8bff 100%);
+    box-shadow: 0 0 10px rgba(149, 53, 215, 0.8);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  .link:hover { color: #fff; }
+  .link.active { color: #fff; font-weight: 800; }
+  .link.active::before { transform: scaleX(1); }
   .link:focus-visible, .lockup:focus-visible, .menu:focus-visible { outline: 2px solid #c58cf2; outline-offset: 4px; border-radius: 8px; }
   .lg { margin-left: 6px; padding-left: 22px; border-left: 1px solid rgba(255, 255, 255, 0.1); }
   .lockup { display: flex; align-items: center; gap: 12px; }
@@ -280,11 +322,16 @@ export default {
     font-weight: 800;
   }
   .sheet-links a span { color: #c58cf2; font-family: Urbanist, system-ui, sans-serif; }
+  .sheet-links em { position: relative; display: inline-flex; flex-direction: column; font-style: normal; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; font-family: inherit; color: #cdc9e7; }
+  .sheet-links em::after { content: attr(data-text); height: 0; font-weight: 800; visibility: hidden; overflow: hidden; pointer-events: none; }
+  .sheet-links em::before { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 3px; border-radius: 3px; background: linear-gradient(90deg, #b865f2 0%, #a15cef 50%, #6e8bff 100%); box-shadow: 0 0 12px rgba(149, 53, 215, 0.8); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
+  .sheet-links a.active em { color: #fff; font-weight: 800; }
+  .sheet-links a.active em::before { transform: scaleX(1); }
   .sheet-lang { margin-top: 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
   .sheet-lang-label { font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #8f8ab5; }
 
   @media (prefers-reduced-motion: reduce) {
-    .notch, .nl, .nr { transition: none; }
+    .notch, .nl, .nr, .link::before, .sheet-links em::before { transition: none; }
   }
   @media (max-width: 860px) {
     .edge { inset: 6px; border-radius: 18px; }
