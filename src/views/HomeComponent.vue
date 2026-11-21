@@ -480,6 +480,7 @@ section { padding-top: 190px; position: relative; scroll-margin-top: 90px; }
 	.sec-head { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 40px; }
 	.sec-head > p { font-size: 16px; }
 	.feat { grid-template-columns: 1fr; padding: 22px; gap: 26px; }
+	.feat .shot { order: -1; }
 	.feat h3 { font-size: 28px; }
 	.feat p { font-size: 16px; }
 	.duo, .quotes, .about { grid-template-columns: 1fr; }
