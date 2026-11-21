@@ -59,11 +59,11 @@
 		<div class="wrap">
 			<!-- PROJECTS -->
 			<section id="projects">
-				<div class="sec-head">
+				<div class="sec-head" data-aos="zoom-in">
 					<div><p class="eyb"><img :src="art.icons.vinyle" alt="" aria-hidden="true" width="28" height="28">{{ $t('home.workEyebrow') }}</p><h2 class="kicker">{{ $t('work.title') }}</h2></div>
 					<p>{{ $t('work.intro') }}</p>
 				</div>
-				<article class="card feat">
+				<article class="card feat" data-aos="zoom-in">
 					<div class="feat-text">
 						<span class="label">{{ $t(`projects.${featured.id}.label`) }}</span>
 						<h3>{{ featured.name }}</h3>
@@ -78,7 +78,7 @@
 					<router-link :to="{ name: 'ProjectDetailComponent', params: { id: featured.id } }" class="shot" tabindex="-1" aria-hidden="true"><img loading="lazy" :src="featured.img" alt=""></router-link>
 				</article>
 				<div class="duo">
-					<router-link v-for="project in others" :key="project.id" :to="{ name: 'ProjectDetailComponent', params: { id: project.id } }" class="duo-item card">
+					<router-link v-for="(project, i) in others" :key="project.id" :to="{ name: 'ProjectDetailComponent', params: { id: project.id } }" class="duo-item card" data-aos="zoom-in" :data-aos-delay="i * 120">
 						<div class="shot"><img loading="lazy" :src="project.img" alt=""></div>
 						<span class="label">{{ $t(`projects.${project.id}.label`) }} · {{ $t(`projects.${project.id}.type`) }}</span>
 						<h3>{{ displayName(project) }}</h3>
@@ -91,7 +91,7 @@
 
 			<!-- WHAT I DO: the illustration stays put and changes as each step scrolls past -->
 			<section id="process">
-				<div class="sec-head">
+				<div class="sec-head" data-aos="zoom-in">
 					<div><p class="eyb"><img :src="art.icons.casque" alt="" aria-hidden="true" width="28" height="28">{{ $t('home.processEyebrow') }}</p><h2 class="kicker">{{ $t('skills.title') }}</h2></div>
 					<p>{{ $t('skills.subtitle') }}</p>
 				</div>
@@ -113,12 +113,12 @@
 
 			<!-- TESTIMONIALS -->
 			<section id="testimonials">
-				<div class="sec-head">
+				<div class="sec-head" data-aos="zoom-in">
 					<div><p class="eyb"><img :src="art.icons.casque" alt="" aria-hidden="true" width="28" height="28">{{ $t('home.testimonialsEyebrow') }}</p><h2 class="kicker">{{ $t('testimonials.title') }}</h2></div>
 					<p>{{ $t('testimonials.subtitle') }}</p>
 				</div>
 				<div class="quotes">
-					<figure v-for="t in testimonials" :key="t.key" class="quote card">
+					<figure v-for="(t, i) in testimonials" :key="t.key" class="quote card" data-aos="zoom-in" :data-aos-delay="i * 120">
 						<div class="mark grad" aria-hidden="true">“</div>
 						<blockquote>{{ $t(`testimonials.${t.key}.pullStart`) }}<span class="grad">{{ $t(`testimonials.${t.key}.pullEnd`) }}</span>{{ $t(`testimonials.${t.key}.pullAfter`) }}</blockquote>
 						<figcaption class="who"><span class="ini" aria-hidden="true">{{ t.initials }}</span><span><b>{{ t.name }}</b><span>{{ $t(`testimonials.${t.key}.job`) }}</span></span></figcaption>
@@ -135,10 +135,10 @@
 			<!-- OFF SCREEN: dance -->
 			<section class="dance">
 				<p class="eyb"><img :src="art.icons.baskets" alt="" aria-hidden="true" width="28" height="28">{{ $t('home.dance.eyebrow') }}</p>
-				<h2>{{ $t('home.dance.titleStart') }}<span class="grad">{{ $t('home.dance.titleFlow') }}</span>{{ $t('home.dance.titleEnd') }}</h2>
+				<h2 data-aos="zoom-in">{{ $t('home.dance.titleStart') }}<span class="grad">{{ $t('home.dance.titleFlow') }}</span>{{ $t('home.dance.titleEnd') }}</h2>
 				<p class="lead">{{ $t('home.dance.text') }}</p>
 				<div class="moves">
-					<article v-for="(move, i) in moves" :key="move.name" class="move card">
+					<article v-for="(move, i) in moves" :key="move.name" class="move card" data-aos="zoom-in" :data-aos-delay="i * 120">
 						<span class="mn" aria-hidden="true">0{{ i + 1 }}</span>
 						<div class="pose"><img loading="lazy" :src="move.img" :alt="$t(`home.dance.moves.${i}.alt`)"></div>
 						<h3>{{ move.name }}</h3>
@@ -163,12 +163,12 @@
 				</g><ellipse cx="309" cy="70" rx="85" ry="14" fill="#9535D7" opacity=".28"/></svg>
 				<img :src="art.sixStep" alt="">
 			</div>
-			<p class="reso"><span>{{ $t('home.resonance.label') }}</span>{{ $t('home.resonance.text') }}</p>
+			<p class="reso" data-aos="zoom-in"><span>{{ $t('home.resonance.label') }}</span>{{ $t('home.resonance.text') }}</p>
 
 			<!-- ABOUT -->
 			<section id="about">
 				<div class="about">
-					<div class="portrait"><div class="pring"></div><div class="pring r2"></div><div class="ph"><img loading="lazy" :src="art.photo" :alt="$t('home.photoAlt')"></div></div>
+					<div class="portrait" data-aos="zoom-in"><div class="pring"></div><div class="pring r2"></div><div class="ph"><img loading="lazy" :src="art.photo" :alt="$t('home.photoAlt')"></div></div>
 					<div>
 						<p class="eyb"><img :src="art.icons.casque" alt="" aria-hidden="true" width="28" height="28">{{ $t('about.title') }}</p>
 						<h2 class="kicker">{{ $t('home.aboutTitleA') }}<br><span class="accent">{{ $t('home.aboutTitleB') }}</span></h2>

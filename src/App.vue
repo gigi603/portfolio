@@ -111,6 +111,10 @@ body {
 .nav-spacer {
   height: 96px;
 }
+/* Scroll reveal: a soft zoom (the library default of 0.6 is too strong) */
+[data-aos="zoom-in"]:not(.aos-animate) {
+  transform: scale(0.92);
+}
 /* Dark pages: the area under the navigation matches the page */
 .app-dark {
   background: #0D0B17;

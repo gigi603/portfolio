@@ -28,9 +28,14 @@ new Vue({
   router,
   i18n,
   mounted() {
+    // Elements zoom in gently as they scroll into view (desktop and mobile).
+    // Turned off for people who ask their system to reduce motion.
     AOS.init({
-      duration: 600,
-      once: true
+      duration: 700,
+      easing: 'ease-out-cubic',
+      offset: 60,
+      once: true,
+      disable: () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
     })
   },
   render: h => h(App),

@@ -49,9 +49,9 @@
           <p class="num"><em>01</em>{{ $t('cs.context') }}</p>
           <h2>{{ c('context.title') }}</h2>
           <p v-for="(para, i) in c('context.body')" :key="i" class="body">{{ para }}</p>
-          <blockquote class="callout">{{ c('context.callout') }}<small>{{ $t('cs.stake') }}</small></blockquote>
+          <blockquote class="callout" data-aos="zoom-in">{{ c('context.callout') }}<small>{{ $t('cs.stake') }}</small></blockquote>
           <div class="cards c4">
-            <div v-for="(card, i) in c('context.cards')" :key="i" class="cs-card">
+            <div v-for="(card, i) in c('context.cards')" :key="i" class="cs-card" data-aos="zoom-in" :data-aos-delay="i * 100">
               <span class="ctag" :class="`ctag-${card.tag}`">{{ $t(`cs.tags.${card.tag}`) }}</span>
               <h3>{{ card.title }}</h3>
               <p>{{ card.text }}</p>
@@ -64,7 +64,7 @@
           <p class="num"><em>02</em>{{ $t('cs.decisions') }}</p>
           <h2>{{ c('decisions.title') }}</h2>
           <ol class="dec">
-            <li v-for="(item, i) in c('decisions.items')" :key="i" class="d">
+            <li v-for="(item, i) in c('decisions.items')" :key="i" class="d" data-aos="zoom-in">
               <span class="n" aria-hidden="true">{{ pad(i + 1) }}</span>
               <h3>{{ item.title }}</h3>
               <p class="why"><b>{{ $t('cs.why') }}</b>{{ item.why }}</p>
@@ -78,7 +78,7 @@
           <h2>{{ c('third.title') }}</h2>
           <p v-if="c('third.body')" class="body">{{ c('third.body') }}</p>
           <ol v-if="c('third.steps')" class="steps3">
-            <li v-for="(step, i) in c('third.steps')" :key="i" class="st">
+            <li v-for="(step, i) in c('third.steps')" :key="i" class="st" data-aos="zoom-in" :data-aos-delay="i * 100">
               <p class="k">{{ $t('cs.step', { n: i + 1 }) }}</p>
               <h3>{{ step.title }}</h3>
               <p>{{ step.text }}</p>
@@ -88,10 +88,10 @@
               </div>
             </li>
           </ol>
-          <ol v-if="c('third.questions')" class="qflow">
+          <ol v-if="c('third.questions')" class="qflow" data-aos="zoom-in">
             <li v-for="(q, i) in c('third.questions')" :key="i"><b>{{ pad(i + 1) }}</b><span>{{ q }}</span></li>
           </ol>
-          <figure v-if="thirdImage" class="big">
+          <figure v-if="thirdImage" class="big" data-aos="zoom-in">
             <button type="button" class="browser zoomable" :aria-label="$t('gallery.open', { title: screenTitle(thirdImage) })" @click="showImg(project.images.indexOf(thirdImage))">
               <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span>{{ domain(project.url_website) }}</span></span>
               <img :src="thirdImage.src" :alt="screenTitle(thirdImage)" loading="lazy">
@@ -100,7 +100,7 @@
           </figure>
           <!-- Unfate: V1 next to V2 -->
           <template v-if="project.evolution">
-            <figure v-for="pair in project.evolution.pairs" :key="pair.key" class="ba-fig">
+            <figure v-for="pair in project.evolution.pairs" :key="pair.key" class="ba-fig" data-aos="zoom-in">
               <div class="ba">
                 <button type="button" class="side v1" :aria-label="$t('gallery.open', { title: evoTitle(pair.key, 'before') })" @click="showEvo(pair.key, 'before')"><b>{{ $t('case.evoBefore') }}</b><img :src="pair.before" :alt="evoTitle(pair.key, 'before')" loading="lazy"></button>
                 <button type="button" class="side v2" :aria-label="$t('gallery.open', { title: evoTitle(pair.key, 'after') })" @click="showEvo(pair.key, 'after')"><b>{{ $t('case.evoAfter') }}</b><img :src="pair.after" :alt="evoTitle(pair.key, 'after')" loading="lazy"></button>
@@ -116,7 +116,7 @@
           <h2>{{ c('screens.title') }}</h2>
           <p class="hint">{{ $t('gallery.hint') }}</p>
           <div class="gal">
-            <figure v-for="(img, i) in project.images" :key="img.key">
+            <figure v-for="(img, i) in project.images" :key="img.key" data-aos="zoom-in" :data-aos-delay="(i % 3) * 100">
               <button type="button" class="gal-shot" :aria-label="$t('gallery.open', { title: screenTitle(img) })" @click="showImg(i)">
                 <img :src="img.src" :alt="screenTitle(img)" loading="lazy">
               </button>
@@ -129,7 +129,7 @@
         <section id="cs-method" class="cs-sec">
           <p class="num"><em>05</em>{{ c('how.label') }}</p>
           <h2>{{ c('how.title') }}</h2>
-          <ol class="how">
+          <ol class="how" data-aos="zoom-in">
             <li v-for="(step, i) in c('how.steps')" :key="i"><b>{{ pad(i + 1) }}</b><h3>{{ step.title }}</h3><p>{{ step.text }}</p></li>
           </ol>
         </section>
@@ -140,24 +140,24 @@
           <h2>{{ c('result.title') }}</h2>
           <template v-if="c('result.metrics')">
             <div class="impact">
-              <div v-for="(m, i) in c('result.metrics')" :key="i" class="m"><strong>{{ m[0] }}</strong><span>{{ m[1] }}</span></div>
+              <div v-for="(m, i) in c('result.metrics')" :key="i" class="m" data-aos="zoom-in" :data-aos-delay="i * 100"><strong>{{ m[0] }}</strong><span>{{ m[1] }}</span></div>
             </div>
             <p class="note">{{ c('result.note') }}</p>
           </template>
           <template v-else>
-            <figure class="quote">
+            <figure class="quote" data-aos="zoom-in">
               <blockquote>{{ c('result.quote')[0] }}<span class="grad">{{ c('result.quote')[1] }}</span>{{ c('result.quote')[2] }}</blockquote>
               <figcaption>{{ c('result.author') }}</figcaption>
             </figure>
             <div class="facts">
-              <div v-for="(f, i) in c('result.facts')" :key="i" class="fact"><b>{{ f[0] }}</b><span>{{ f[1] }}</span></div>
+              <div v-for="(f, i) in c('result.facts')" :key="i" class="fact" data-aos="zoom-in" :data-aos-delay="i * 100"><b>{{ f[0] }}</b><span>{{ f[1] }}</span></div>
             </div>
           </template>
-          <div class="retro"><b>{{ $t('cs.retro') }}</b><p>{{ $t(`projects.${project.id}.sections.retro`) }}</p></div>
+          <div class="retro" data-aos="zoom-in"><b>{{ $t('cs.retro') }}</b><p>{{ $t(`projects.${project.id}.sections.retro`) }}</p></div>
         </section>
 
         <!-- NEXT + CONTACT -->
-        <div class="next">
+        <div class="next" data-aos="zoom-in">
           <router-link :to="`/project/${next.id}`" class="nx">
             <span class="nx-text">
               <small>{{ $t('case.nextLabel') }}</small>
