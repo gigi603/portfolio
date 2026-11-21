@@ -37,7 +37,7 @@
         <li><a href="#contact">{{ $t('nav.contactShort') }}<span aria-hidden="true">→</span></a></li>
         <li><a :href="cvUrl" download>{{ $t('nav.downloadCv') }}<span aria-hidden="true">↓</span></a></li>
       </ul>
-      <div class="sheet-bottom"><LanguageSwitcher/></div>
+      <div class="sheet-lang"><span class="sheet-lang-label" aria-hidden="true">Langue · Language</span><LanguageSwitcher variant="big"/></div>
     </div>
   </div>
 </template>
@@ -268,7 +268,7 @@ export default {
   }
   .sheet-top { display: flex; align-items: center; justify-content: space-between; }
   .close { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.14); }
-  .sheet-links { list-style: none; margin: 48px 0 0; padding: 0; flex-grow: 1; }
+  .sheet-links { list-style: none; margin: 48px 0 0; padding: 0; }
   .sheet-links a {
     display: flex;
     justify-content: space-between;
@@ -280,7 +280,8 @@ export default {
     font-weight: 800;
   }
   .sheet-links a span { color: #c58cf2; font-family: Urbanist, system-ui, sans-serif; }
-  .sheet-bottom { padding-top: 24px; }
+  .sheet-lang { margin-top: 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .sheet-lang-label { font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #8f8ab5; }
 
   @media (prefers-reduced-motion: reduce) {
     .notch, .nl, .nr { transition: none; }
