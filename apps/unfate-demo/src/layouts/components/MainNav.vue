@@ -51,7 +51,8 @@ ul { gap: 6px; }
   .nav { padding-left: 28px; }
 }
 @media (max-width: 760px) {
-  .nav { grid-row: 2; padding: 0; background: #fff; border-top: 1px solid var(--uf-line); }
+  /* Bottom tab bar stays in view while the page scrolls, above the system bar */
+  .nav { grid-row: 2; position: sticky; bottom: 0; z-index: 20; padding: 0 0 env(safe-area-inset-bottom, 0px); background: #fff; border-top: 1px solid var(--uf-line); }
   .nav-logo { display: none; }
   ul { flex-direction: row; gap: 0; }
   li { flex: 1; }

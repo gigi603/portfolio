@@ -19,7 +19,7 @@ const { message } = useToast()
 .toast-enter-active, .toast-leave-active { transition: opacity .2s, transform .2s; }
 .toast-enter-from, .toast-leave-to { opacity: 0; transform: translateY(8px); }
 @media (max-width: 760px) {
-  .toast-region { bottom: auto; top: 12px; }
+  .toast-region { position: fixed; bottom: auto; top: 12px; }
   .toast-enter-from, .toast-leave-to { transform: translateY(-8px); }
 }
 </style>

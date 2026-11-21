@@ -42,11 +42,12 @@ async function enterApp(): Promise<void> {
 .blob-2 { width: 420px; height: 420px; right: -190px; bottom: -190px; background: #d6eaff; }
 .blob-3 { width: 120px; height: 120px; right: 40px; top: 150px; background: #eef6ff; }
 @media (max-width: 760px) {
-  .login-page { grid-template-columns: 1fr; }
+  .login-page { grid-template-columns: 1fr; height: auto; overflow: visible; }
   .login-showcase { display: none; }
   .blob { display: none; }
   .login-form-centred { margin: 0 auto; }
   .login-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.login-column { padding: 24px 20px 32px; }
+  /* Extra room at the bottom for the system bar (gesture bar, home indicator) */
+  .login-column { padding: 24px 20px calc(40px + env(safe-area-inset-bottom, 0px)); }
 }
 </style>
