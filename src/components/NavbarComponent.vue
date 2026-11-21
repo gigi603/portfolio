@@ -16,7 +16,7 @@
         <a href="#contact" class="link">{{ $t('nav.contactShort') }}</a>
         <LanguageSwitcher class="lg"/>
       </div>
-      <button type="button" class="menu" aria-haspopup="dialog" :aria-expanded="showMenu ? 'true' : 'false'" @click="openMenu">{{ $t('nav.menu') }}<i aria-hidden="true"></i></button>
+      <button type="button" class="menu" aria-haspopup="dialog" :aria-expanded="showMenu ? 'true' : 'false'" :aria-label="$t('nav.menu')" @click="openMenu"><i aria-hidden="true"></i></button>
     </nav>
 
     <!-- Mobile full-screen menu. Clicks on any link inside close it. -->
@@ -297,16 +297,15 @@ export default {
     .menu {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font: 800 12px Urbanist, system-ui, sans-serif;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
       color: #fff;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 999px;
-      padding: 8px 12px;
+      padding: 0;
     }
-    .menu i { width: 14px; height: 8px; border-top: 2px solid #fff; border-bottom: 2px solid #fff; }
+    .menu i { width: 16px; height: 8px; border-top: 2px solid #fff; border-bottom: 2px solid #fff; }
   }
 </style>
