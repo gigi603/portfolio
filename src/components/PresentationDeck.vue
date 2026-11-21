@@ -102,11 +102,11 @@
 /* eslint-disable vue/no-deprecated-destroyed-lifecycle */
 export default {
   name: 'PresentationDeck',
-  emits: ['close'],
   props: {
     name: { type: String, required: true },
     slides: { type: Array, required: true },
   },
+  emits: ['close'],
   data() {
     return { current: 0, touchX: null, lastFocus: null }
   },
