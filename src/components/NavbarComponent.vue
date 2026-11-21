@@ -2,6 +2,9 @@
   <div class="frame-nav">
     <!-- Dark frame around the page (inspired by greymac.com), drawn above the content -->
     <div class="edge" aria-hidden="true"></div>
+    <!-- Opaque bands under the iPhone status bar and Safari's bottom toolbar: the page never shows through them -->
+    <div class="safe safe-top" aria-hidden="true"></div>
+    <div class="safe safe-bottom" aria-hidden="true"></div>
     <nav class="notch" :aria-label="$t('nav.mainLabel')">
       <span class="nmask" aria-hidden="true"></span>
       <div class="nl">
@@ -167,16 +170,22 @@ export default {
 <style scoped>
   .edge {
     position: fixed;
-    inset: 12px;
+    top: calc(12px + env(safe-area-inset-top, 0px));
+    right: calc(12px + env(safe-area-inset-right, 0px));
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    left: calc(12px + env(safe-area-inset-left, 0px));
     border-radius: 24px;
     border: 1px solid var(--hair);
     box-shadow: 0 0 0 40px var(--frame), inset 0 0 60px rgba(149, 53, 215, 0.1);
     pointer-events: none;
     z-index: 50;
   }
+  .safe { position: fixed; left: 0; right: 0; z-index: 55; background: var(--frame); pointer-events: none; }
+  .safe-top { top: 0; height: env(safe-area-inset-top, 0px); }
+  .safe-bottom { bottom: 0; height: env(safe-area-inset-bottom, 0px); }
   .notch {
     position: fixed;
-    top: 0;
+    top: env(safe-area-inset-top, 0px);
     left: 50%;
     transform: translateX(-50%);
     z-index: 60;
@@ -282,7 +291,7 @@ export default {
     inset: 0;
     z-index: 70;
     background: #0d0b17;
-    padding: 20px 24px 32px;
+    padding: calc(20px + env(safe-area-inset-top, 0px)) calc(24px + env(safe-area-inset-right, 0px)) calc(32px + env(safe-area-inset-bottom, 0px)) calc(24px + env(safe-area-inset-left, 0px));
     display: flex;
     flex-direction: column;
     font-family: Urbanist, system-ui, sans-serif;
@@ -313,7 +322,13 @@ export default {
     .notch, .nl, .nr, .link::before, .sheet-links em::before { transition: none; }
   }
   @media (max-width: 860px) {
-    .edge { inset: 6px; border-radius: 18px; }
+    .edge {
+      top: calc(6px + env(safe-area-inset-top, 0px));
+      right: calc(6px + env(safe-area-inset-right, 0px));
+      bottom: calc(6px + env(safe-area-inset-bottom, 0px));
+      left: calc(6px + env(safe-area-inset-left, 0px));
+      border-radius: 18px;
+    }
     .notch { height: 62px; gap: 18px; padding: 0 10px 0 16px; border-radius: 0 0 20px 20px; }
     .notch::before, .notch::after { top: 6px; }
     .nmask { height: 25px; }
