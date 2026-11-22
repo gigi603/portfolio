@@ -44,3 +44,13 @@ Depuis le 20/11/2026, l'accueil, la navigation et le contact sont en thème somb
 - Avant de produire un travail (design, texte, code, audit) : au moins 3 recherches web et 3 pages lues sur les bonnes pratiques actuelles, sources citées.
 - Montre le résultat à Gilbert (capture ou aperçu) avant de le considérer comme fini.
 - Ne versionne aucun secret ni info privée : le dépôt est public.
+
+## Skills disponibles (`.claude/skills/`)
+
+- `/etude-de-cas` : écrire ou revoir l'étude de cas d'un projet.
+- `/recherche-ux` : recherche UX/UI sourcée (5 recherches, 5 pages lues) et recommandation.
+- `/direction-visuelle` : 5 pistes visuelles ou palettes, contrastes WCAG calculés.
+- `/audit-ui` : audit d'un écran par rapport à la charte et aux bonnes pratiques.
+- `/publier` : mise en ligne sur `main`, seulement sur demande de Gilbert.
+
+La charte visuelle reste une rule (`.claude/rules/style-visuel.md`) : elle s'applique à chaque modification, alors que les skills sont des méthodes qu'on lance au besoin.
